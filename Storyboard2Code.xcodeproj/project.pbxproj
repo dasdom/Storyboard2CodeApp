@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4311CD2AD31000DBA33 /* AppDelegate.swift */; };
+		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
+		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
+		F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F230C43E1CD2AD32000DBA33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F230C4261CD2AD31000DBA33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F230C42D1CD2AD31000DBA33;
+			remoteInfo = Storyboard2Code;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard2Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F230C4311CD2AD31000DBA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F230C4331CD2AD31000DBA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F230C4361CD2AD31000DBA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F230C4381CD2AD31000DBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F230C43D1CD2AD32000DBA33 /* Storyboard2CodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Storyboard2CodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard2CodeTests.swift; sourceTree = "<group>"; };
+		F230C4431CD2AD32000DBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F230C42B1CD2AD31000DBA33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F230C43A1CD2AD32000DBA33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F230C4251CD2AD31000DBA33 = {
+			isa = PBXGroup;
+			children = (
+				F230C4301CD2AD31000DBA33 /* Storyboard2Code */,
+				F230C4401CD2AD32000DBA33 /* Storyboard2CodeTests */,
+				F230C42F1CD2AD31000DBA33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F230C42F1CD2AD31000DBA33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */,
+				F230C43D1CD2AD32000DBA33 /* Storyboard2CodeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F230C4301CD2AD31000DBA33 /* Storyboard2Code */ = {
+			isa = PBXGroup;
+			children = (
+				F230C4311CD2AD31000DBA33 /* AppDelegate.swift */,
+				F230C4331CD2AD31000DBA33 /* Assets.xcassets */,
+				F230C4351CD2AD31000DBA33 /* MainMenu.xib */,
+				F230C4381CD2AD31000DBA33 /* Info.plist */,
+			);
+			path = Storyboard2Code;
+			sourceTree = "<group>";
+		};
+		F230C4401CD2AD32000DBA33 /* Storyboard2CodeTests */ = {
+			isa = PBXGroup;
+			children = (
+				F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */,
+				F230C4431CD2AD32000DBA33 /* Info.plist */,
+			);
+			path = Storyboard2CodeTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F230C42D1CD2AD31000DBA33 /* Storyboard2Code */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F230C4461CD2AD32000DBA33 /* Build configuration list for PBXNativeTarget "Storyboard2Code" */;
+			buildPhases = (
+				F230C42A1CD2AD31000DBA33 /* Sources */,
+				F230C42B1CD2AD31000DBA33 /* Frameworks */,
+				F230C42C1CD2AD31000DBA33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Storyboard2Code;
+			productName = Storyboard2Code;
+			productReference = F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F230C43C1CD2AD32000DBA33 /* Storyboard2CodeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F230C4491CD2AD32000DBA33 /* Build configuration list for PBXNativeTarget "Storyboard2CodeTests" */;
+			buildPhases = (
+				F230C4391CD2AD32000DBA33 /* Sources */,
+				F230C43A1CD2AD32000DBA33 /* Frameworks */,
+				F230C43B1CD2AD32000DBA33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F230C43F1CD2AD32000DBA33 /* PBXTargetDependency */,
+			);
+			name = Storyboard2CodeTests;
+			productName = Storyboard2CodeTests;
+			productReference = F230C43D1CD2AD32000DBA33 /* Storyboard2CodeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F230C4261CD2AD31000DBA33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = dasdom;
+				TargetAttributes = {
+					F230C42D1CD2AD31000DBA33 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					F230C43C1CD2AD32000DBA33 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = F230C42D1CD2AD31000DBA33;
+					};
+				};
+			};
+			buildConfigurationList = F230C4291CD2AD31000DBA33 /* Build configuration list for PBXProject "Storyboard2Code" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F230C4251CD2AD31000DBA33;
+			productRefGroup = F230C42F1CD2AD31000DBA33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F230C42D1CD2AD31000DBA33 /* Storyboard2Code */,
+				F230C43C1CD2AD32000DBA33 /* Storyboard2CodeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F230C42C1CD2AD31000DBA33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */,
+				F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F230C43B1CD2AD32000DBA33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F230C42A1CD2AD31000DBA33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F230C4391CD2AD32000DBA33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F230C43F1CD2AD32000DBA33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F230C42D1CD2AD31000DBA33 /* Storyboard2Code */;
+			targetProxy = F230C43E1CD2AD32000DBA33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F230C4351CD2AD31000DBA33 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F230C4361CD2AD31000DBA33 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F230C4441CD2AD32000DBA33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F230C4451CD2AD32000DBA33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F230C4471CD2AD32000DBA33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Storyboard2Code/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2Code;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F230C4481CD2AD32000DBA33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Storyboard2Code/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2Code;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F230C44A1CD2AD32000DBA33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Storyboard2CodeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard2Code.app/Contents/MacOS/Storyboard2Code";
+			};
+			name = Debug;
+		};
+		F230C44B1CD2AD32000DBA33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Storyboard2CodeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard2Code.app/Contents/MacOS/Storyboard2Code";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F230C4291CD2AD31000DBA33 /* Build configuration list for PBXProject "Storyboard2Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F230C4441CD2AD32000DBA33 /* Debug */,
+				F230C4451CD2AD32000DBA33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F230C4461CD2AD32000DBA33 /* Build configuration list for PBXNativeTarget "Storyboard2Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F230C4471CD2AD32000DBA33 /* Debug */,
+				F230C4481CD2AD32000DBA33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F230C4491CD2AD32000DBA33 /* Build configuration list for PBXNativeTarget "Storyboard2CodeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F230C44A1CD2AD32000DBA33 /* Debug */,
+				F230C44B1CD2AD32000DBA33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F230C4261CD2AD31000DBA33 /* Project object */;
+}
