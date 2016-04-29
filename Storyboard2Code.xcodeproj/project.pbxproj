@@ -11,6 +11,24 @@
 		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
 		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
 		F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */; };
+		F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */; };
+		F230C44F1CD2AD89000DBA33 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */; };
+		F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4501CD2B066000DBA33 /* DropTextField.swift */; };
+		F230C4611CD34A93000DBA33 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4531CD34A93000DBA33 /* Button.swift */; };
+		F230C4621CD34A93000DBA33 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4541CD34A93000DBA33 /* Color.swift */; };
+		F230C4631CD34A93000DBA33 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4551CD34A93000DBA33 /* Font.swift */; };
+		F230C4641CD34A93000DBA33 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4561CD34A93000DBA33 /* Label.swift */; };
+		F230C4651CD34A93000DBA33 /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4571CD34A93000DBA33 /* LayoutGuide.swift */; };
+		F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4581CD34A93000DBA33 /* SegmentedControl.swift */; };
+		F230C4671CD34A93000DBA33 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4591CD34A93000DBA33 /* TextField.swift */; };
+		F230C4681CD34A93000DBA33 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45A1CD34A93000DBA33 /* View.swift */; };
+		F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45B1CD34A93000DBA33 /* ViewController.swift */; };
+		F230C46A1CD34A93000DBA33 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45D1CD34A93000DBA33 /* Constraint.swift */; };
+		F230C46B1CD34A93000DBA33 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45E1CD34A93000DBA33 /* Enums.swift */; };
+		F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45F1CD34A93000DBA33 /* Extensions.swift */; };
+		F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4601CD34A93000DBA33 /* Protocols.swift */; };
+		F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C46E1CD34AEC000DBA33 /* Slider.swift */; };
+		F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +50,24 @@
 		F230C43D1CD2AD32000DBA33 /* Storyboard2CodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Storyboard2CodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard2CodeTests.swift; sourceTree = "<group>"; };
 		F230C4431CD2AD32000DBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		F230C4501CD2B066000DBA33 /* DropTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropTextField.swift; sourceTree = "<group>"; };
+		F230C4531CD34A93000DBA33 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		F230C4541CD34A93000DBA33 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F230C4551CD34A93000DBA33 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		F230C4561CD34A93000DBA33 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		F230C4571CD34A93000DBA33 /* LayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutGuide.swift; sourceTree = "<group>"; };
+		F230C4581CD34A93000DBA33 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		F230C4591CD34A93000DBA33 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		F230C45A1CD34A93000DBA33 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F230C45B1CD34A93000DBA33 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F230C45D1CD34A93000DBA33 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		F230C45E1CD34A93000DBA33 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		F230C45F1CD34A93000DBA33 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F230C4601CD34A93000DBA33 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F230C46E1CD34AEC000DBA33 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +110,11 @@
 			isa = PBXGroup;
 			children = (
 				F230C4311CD2AD31000DBA33 /* AppDelegate.swift */,
+				F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */,
+				F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */,
+				F230C4501CD2B066000DBA33 /* DropTextField.swift */,
+				F230C4521CD34A93000DBA33 /* Elements */,
+				F230C45C1CD34A93000DBA33 /* Helper */,
 				F230C4331CD2AD31000DBA33 /* Assets.xcassets */,
 				F230C4351CD2AD31000DBA33 /* MainMenu.xib */,
 				F230C4381CD2AD31000DBA33 /* Info.plist */,
@@ -88,6 +129,35 @@
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
 			path = Storyboard2CodeTests;
+			sourceTree = "<group>";
+		};
+		F230C4521CD34A93000DBA33 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				F230C4531CD34A93000DBA33 /* Button.swift */,
+				F230C4541CD34A93000DBA33 /* Color.swift */,
+				F230C4551CD34A93000DBA33 /* Font.swift */,
+				F230C4561CD34A93000DBA33 /* Label.swift */,
+				F230C4571CD34A93000DBA33 /* LayoutGuide.swift */,
+				F230C4581CD34A93000DBA33 /* SegmentedControl.swift */,
+				F230C4591CD34A93000DBA33 /* TextField.swift */,
+				F230C45A1CD34A93000DBA33 /* View.swift */,
+				F230C45B1CD34A93000DBA33 /* ViewController.swift */,
+				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
+				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		F230C45C1CD34A93000DBA33 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F230C45D1CD34A93000DBA33 /* Constraint.swift */,
+				F230C45E1CD34A93000DBA33 /* Enums.swift */,
+				F230C45F1CD34A93000DBA33 /* Extensions.swift */,
+				F230C4601CD34A93000DBA33 /* Protocols.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */,
+				F230C44F1CD2AD89000DBA33 /* MainWindowController.xib in Resources */,
 				F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,7 +261,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F230C4651CD34A93000DBA33 /* LayoutGuide.swift in Sources */,
+				F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */,
+				F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */,
+				F230C4671CD34A93000DBA33 /* TextField.swift in Sources */,
+				F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */,
+				F230C46B1CD34A93000DBA33 /* Enums.swift in Sources */,
 				F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */,
+				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
+				F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */,
+				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
+				F230C4621CD34A93000DBA33 /* Color.swift in Sources */,
+				F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */,
+				F230C4641CD34A93000DBA33 /* Label.swift in Sources */,
+				F230C4681CD34A93000DBA33 /* View.swift in Sources */,
+				F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */,
+				F230C4611CD34A93000DBA33 /* Button.swift in Sources */,
+				F230C46A1CD34A93000DBA33 /* Constraint.swift in Sources */,
+				F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

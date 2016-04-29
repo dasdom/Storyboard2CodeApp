@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="Storyboard2Code" customModuleProvider="target">
+            <connections>
+                <outlet property="codeTextView" destination="xks-5P-Xcl" id="w0Y-SK-bTU"/>
+                <outlet property="dropTextField" destination="fW1-Gp-47g" id="nV9-Ny-4st"/>
+                <outlet property="storyboardTextView" destination="Pb0-21-XHQ" id="bgQ-kl-9cs"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Storyboard2Code" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="800" height="400"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fW1-Gp-47g" customClass="DropTextField" customModule="Storyboard2Code" customModuleProvider="target">
+                        <rect key="frame" x="20" y="351" width="760" height="29"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="Drop Storyboard Here" drawsBackground="YES" usesSingleLineMode="YES" id="Pkm-UM-Pr6">
+                            <font key="font" metaFont="system" size="20"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cf1-J5-vAB">
+                        <rect key="frame" x="20" y="20" width="376" height="323"/>
+                        <clipView key="contentView" id="ubk-pY-qbs">
+                            <rect key="frame" x="1" y="1" width="359" height="321"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Pb0-21-XHQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="359" height="321"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="359" height="321"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="359" height="321"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="ndp-EA-m07">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="d1C-5M-1at">
+                            <rect key="frame" x="360" y="1" width="15" height="321"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibO-nz-MwX">
+                        <rect key="frame" x="404" y="20" width="376" height="322"/>
+                        <clipView key="contentView" id="o90-05-aQu">
+                            <rect key="frame" x="1" y="1" width="359" height="320"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xks-5P-Xcl">
+                                    <rect key="frame" x="0.0" y="0.0" width="359" height="320"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="359" height="320"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="359" height="320"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="TiC-uy-K65">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Pcl-zm-liL">
+                            <rect key="frame" x="360" y="1" width="15" height="320"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fW1-Gp-47g" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="6vv-YG-uB8"/>
+                    <constraint firstItem="ibO-nz-MwX" firstAttribute="trailing" secondItem="fW1-Gp-47g" secondAttribute="trailing" id="GBc-37-mjy"/>
+                    <constraint firstItem="Cf1-J5-vAB" firstAttribute="width" secondItem="ibO-nz-MwX" secondAttribute="width" id="I3v-AF-5hj"/>
+                    <constraint firstItem="Cf1-J5-vAB" firstAttribute="top" secondItem="fW1-Gp-47g" secondAttribute="bottom" constant="8" id="SrJ-hK-XBs"/>
+                    <constraint firstAttribute="trailing" secondItem="fW1-Gp-47g" secondAttribute="trailing" constant="20" id="Y11-Ff-rKp"/>
+                    <constraint firstItem="xks-5P-Xcl" firstAttribute="leading" secondItem="Cf1-J5-vAB" secondAttribute="trailing" constant="9" id="cBV-Va-wGM"/>
+                    <constraint firstItem="Cf1-J5-vAB" firstAttribute="bottom" secondItem="ibO-nz-MwX" secondAttribute="bottom" id="erw-3u-ZE2"/>
+                    <constraint firstItem="Cf1-J5-vAB" firstAttribute="leading" secondItem="fW1-Gp-47g" secondAttribute="leading" id="nJ9-f7-6Mj"/>
+                    <constraint firstItem="fW1-Gp-47g" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="uzG-JY-tcN"/>
+                    <constraint firstAttribute="bottom" secondItem="Cf1-J5-vAB" secondAttribute="bottom" constant="20" id="vm8-gc-BwM"/>
+                    <constraint firstItem="ibO-nz-MwX" firstAttribute="top" secondItem="Pb0-21-XHQ" secondAttribute="top" id="w7i-sh-flw"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>
