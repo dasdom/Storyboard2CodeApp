@@ -9,6 +9,7 @@ public protocol ElementCodeGeneratable {
   var type: ElementType { get }
   var propertyString: String { get }
   var initString: String { get }
+  var setupString: String { get }
   var addToSuperString: String { get }
   var superViewName: String? { get }
   var isMainView: Bool { get set }

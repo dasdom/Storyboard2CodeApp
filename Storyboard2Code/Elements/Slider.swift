@@ -23,8 +23,8 @@ public class Slider: View {
     type = ElementType.UISlider
   }
   
-  public override var initString: String {
-    var string = super.initString
+  public override var setupString: String {
+    var string = super.setupString
     string += "\(userLabel).minimumValue = \(minValue)\n"
     string += "\(userLabel).maximumValue = \(maxValue)\n"
     string += "\(userLabel).value = \(value)\n"

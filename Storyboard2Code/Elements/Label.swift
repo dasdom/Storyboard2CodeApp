@@ -18,6 +18,8 @@ public class Label: View {
     
     super.init(dict: dict)
     
+    contentModeDefault = "Left"
+    
     type = ElementType.UILabel
   }
   
@@ -28,14 +30,6 @@ public class Label: View {
     if userInteractionEnabled {
       string += "\(userLabel).userInteractionEnabled = \(userInteractionEnabled)\n"
     }
-    if contentMode != "Left" { // Default is Left
-      string += "\(userLabel).contentMode = .\(contentMode)\n"
-    }
-//    for color in colors {
-//      if !(color.key == "textColor" && color.codeString == "UIColor.darkTextColor()") { // Defaults
-//        string += "\(userLabel).\(color.key) = \(color.codeString)\n"
-//      }
-//    }
     if let font = font {
       if font.codeString != "UIFont.systemFontOfSize(17)" { // Default
         string += "\(userLabel).font = \(font.codeString)\n"

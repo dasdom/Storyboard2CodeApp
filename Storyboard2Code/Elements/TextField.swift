@@ -25,9 +25,6 @@ public class TextField: View {
   
   public override var initString: String {
     var string = super.initString
-    if contentMode != "ScaleToFill" { // Default = ScaleToFill
-      string += "\(userLabel).contentMode = .\(contentMode)\n"
-    }
     if contentHorizontalAlignment != "Left" { // Default = Left
       string += "\(userLabel).contentHorizontalAlignment = .\(contentHorizontalAlignment)\n"
     }

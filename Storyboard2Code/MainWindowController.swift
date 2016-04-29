@@ -63,6 +63,7 @@ class MainWindowController: NSWindowController {
     
     for view in parserDelegate.viewDict.values {
       outputString += view.initString
+      outputString += view.setupString
       outputString += "\n"
     }
     

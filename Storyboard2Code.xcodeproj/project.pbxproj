@@ -29,6 +29,10 @@
 		F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4601CD34A93000DBA33 /* Protocols.swift */; };
 		F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C46E1CD34AEC000DBA33 /* Slider.swift */; };
 		F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */; };
+		F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4731CD38B70000DBA33 /* ButtonTests.swift */; };
+		F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C4751CD38C0F000DBA33 /* dummy.xml */; };
+		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
+		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,12 @@
 		F230C4601CD34A93000DBA33 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F230C46E1CD34AEC000DBA33 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegate.swift; sourceTree = "<group>"; };
+		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
+		F230C4751CD38C0F000DBA33 /* dummy.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dummy.xml; sourceTree = "<group>"; };
+		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
+		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		F230C47B1CD3F836000DBA33 /* ButtonTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ButtonTest.storyboard; sourceTree = "<group>"; };
+		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +101,7 @@
 		F230C4251CD2AD31000DBA33 = {
 			isa = PBXGroup;
 			children = (
+				F230C47D1CD3FB66000DBA33 /* Elements.playground */,
 				F230C4301CD2AD31000DBA33 /* Storyboard2Code */,
 				F230C4401CD2AD32000DBA33 /* Storyboard2CodeTests */,
 				F230C42F1CD2AD31000DBA33 /* Products */,
@@ -125,7 +136,12 @@
 		F230C4401CD2AD32000DBA33 /* Storyboard2CodeTests */ = {
 			isa = PBXGroup;
 			children = (
+				F230C4721CD38B58000DBA33 /* Elements */,
 				F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */,
+				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
+				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
+				F230C4751CD38C0F000DBA33 /* dummy.xml */,
+				F230C47B1CD3F836000DBA33 /* ButtonTest.storyboard */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
 			path = Storyboard2CodeTests;
@@ -158,6 +174,14 @@
 				F230C4601CD34A93000DBA33 /* Protocols.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		F230C4721CD38B58000DBA33 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				F230C4731CD38B70000DBA33 /* ButtonTests.swift */,
+			);
+			path = Elements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +311,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */,
+				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
+				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

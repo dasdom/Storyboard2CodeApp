@@ -2,13 +2,16 @@ import Foundation
 
 public class View: AttributeCreatable, ElementCodeGeneratable {
   public let clipsSubviews: Bool
+  var clipsSubviewsDefault = true
   public var font: Font? = nil
   public var type = ElementType.UIView
   public var rect: CGRect? = nil
   public var colors: [Color] = []
   public let opaque: Bool
+  var opaqueDefault = false
   public let userInteractionEnabled: Bool
   public let contentMode: String
+  var contentModeDefault = "ScaleToFill"
   public let translatesAutoresizingMaskIntoConstraints: Bool
   public let id: String
   public let userLabel: String
@@ -29,13 +32,19 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   
   public var initString: String {
     guard isMainView == false else { return "" }
-    
-    var string = "\(userLabel) = \(type.rawValue)()\n"
+    return "\(userLabel) = \(type.rawValue)()\n"
+  }
+  
+  public var setupString: String {
+    var string = ""
     string += "\(userLabel).translatesAutoresizingMaskIntoConstraints = \(translatesAutoresizingMaskIntoConstraints)\n"
-    if clipsSubviews != true { // Default = YES
+    if contentMode != contentModeDefault {
+      string += "\(userLabel).contentMode = .\(contentMode)\n"
+    }
+    if clipsSubviews != clipsSubviewsDefault {
       string += "\(userLabel).clipsToBounds = \(clipsSubviews)\n"
     }
-    if opaque != false { // Default = false
+    if opaque != opaqueDefault {
       string += "\(userLabel).opaque = \(opaque)\n"
     }
     for color in colors {

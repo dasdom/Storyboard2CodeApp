@@ -38,6 +38,9 @@ public class Button: View {
     
     super.init(dict: dict)
     
+    clipsSubviewsDefault = false
+    opaqueDefault = false
+    
     type = ElementType.UIButton
   }
   
@@ -49,25 +52,36 @@ public class Button: View {
       assert(false, "Not supported yet")
       string += "Not supported yet"
     }
-    string += "\(userLabel).translatesAutoresizingMaskIntoConstraints = \(translatesAutoresizingMaskIntoConstraints)\n"
-    if opaque != false { // Default = false
-      string += "\(userLabel).opaque = \(opaque)\n"
-    }
-    if contentMode != "ScaleToFill" { // Default = ScaleToFill
-      string += "\(userLabel).contentMode = .\(contentMode)\n"
-    }
-    if contentHorizontalAlignment != "Left" { // Default = Left
+    return string
+  }
+  
+  public override var setupString: String {
+    var string = super.setupString
+    if contentHorizontalAlignment != "Center" { // Default = Center
       string += "\(userLabel).contentHorizontalAlignment = .\(contentHorizontalAlignment)\n"
     }
     if contentVerticalAlignment != "Center" { // Default = Center
       string += "\(userLabel).contentVerticalAlignment = .\(contentVerticalAlignment)\n"
     }
-    for color in colors {
-      string += "\(userLabel).\(color.key) = \(color.codeString)\n"
-    }
     if lineBreakMode != .ByTruncatingMiddle { // Default
       string += "\(userLabel).titleLabel?.lineBreakMode = \(lineBreakMode.codeString)"
     }
+
+    string += stateString(fromStates: states)
+    
+    return string
+  }
+  
+  public func colorString(fromColors colors: [Color]) -> String {
+    var string = ""
+    for color in colors {
+      string += "\(userLabel).\(color.key) = \(color.codeString)\n"
+    }
+    return string
+  }
+  
+  public func stateString(fromStates states: [ButtonState]) -> String {
+    var string = ""
     for state in states {
       string += state.codeString(userLabel)
     }

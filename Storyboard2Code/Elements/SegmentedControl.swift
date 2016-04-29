@@ -12,8 +12,8 @@ public class SegmentedControl: View {
     type = ElementType.UISegmentedControl
   }
   
-  public override var initString: String {
-    var string = super.initString
+  public override var setupString: String {
+    var string = super.setupString
     for (index, title) in segmentTitles.enumerate() {
       string += "\(userLabel).insertSegmentWithTitle(\"\(title)\", atIndex: \(index), animated: false)\n"
     }
