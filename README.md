@@ -1,5 +1,5 @@
 # Storybard2CodeApp
-Mac app that converts a storyboard into code. Work in progress.
+Mac app that converts an iOS storyboard into code. Work in progress.
 
 # Progress
 ## Rudimentary support
