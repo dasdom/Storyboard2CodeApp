@@ -22,21 +22,41 @@ public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
   }
 }
 
-public class Button: View {
+final public class Button: View {
   public let contentHorizontalAlignment: String
+  let contentHorizontalAlignmentDefault = "Center"
+  
   public let contentVerticalAlignment: String
+  let contentVerticalAlignmentDefault = "Center"
+  
   public let buttonType: String
+  
   public let lineBreakMode: LineBreakMode
+  let lineBreakModeDefault = LineBreakMode.ByTruncatingMiddle
+  
   public var states: [ButtonState] = []
   
+  
   public required init(dict: [String : String]) {
+    var tempReflectable: [String] = []
     
-    contentHorizontalAlignment = dict["contentHorizontalAlignment"]!.capitalizeFirst
-    contentVerticalAlignment = dict["contentVerticalAlignment"]!.capitalizeFirst
-    buttonType = dict["buttonType"]!.capitalizeFirst
-    lineBreakMode = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
+    var label = "contentHorizontalAlignment"
+    contentHorizontalAlignment = dict[label]!.capitalizeFirst
+    if contentHorizontalAlignment != contentHorizontalAlignmentDefault { tempReflectable.append(label) }
+    
+    label = "contentVerticalAlignment"
+    contentVerticalAlignment = dict[label]!.capitalizeFirst
+    if contentVerticalAlignment != contentVerticalAlignmentDefault { tempReflectable.append(label) }
+    
+    label = "buttonType"
+    buttonType = dict[label]!.capitalizeFirst
+    
+    label = "lineBreakMode"
+    lineBreakMode = LineBreakMode(rawValue: dict[label]!)!
+    if lineBreakMode != lineBreakModeDefault { tempReflectable.append(label) }
     
     super.init(dict: dict)
+    super.reflectable += tempReflectable
     
     clipsSubviewsDefault = false
     opaqueDefault = false
@@ -57,28 +77,17 @@ public class Button: View {
   
   public override var setupString: String {
     var string = super.setupString
-    if contentHorizontalAlignment != "Center" { // Default = Center
-      string += "\(userLabel).contentHorizontalAlignment = .\(contentHorizontalAlignment)\n"
-    }
-    if contentVerticalAlignment != "Center" { // Default = Center
-      string += "\(userLabel).contentVerticalAlignment = .\(contentVerticalAlignment)\n"
-    }
-    if lineBreakMode != .ByTruncatingMiddle { // Default
-      string += "\(userLabel).titleLabel?.lineBreakMode = \(lineBreakMode.codeString)"
-    }
-
     string += stateString(fromStates: states)
-    
     return string
   }
   
-  public func colorString(fromColors colors: [Color]) -> String {
-    var string = ""
-    for color in colors {
-      string += "\(userLabel).\(color.key) = \(color.codeString)\n"
-    }
-    return string
-  }
+//  public func colorString(fromColors colors: [Color]) -> String {
+//    var string = ""
+//    for color in colors {
+//      string += "\(userLabel).\(color.key) = \(color.codeString)\n"
+//    }
+//    return string
+//  }
   
   public func stateString(fromStates states: [ButtonState]) -> String {
     var string = ""

@@ -13,6 +13,7 @@ public protocol ElementCodeGeneratable {
   var addToSuperString: String { get }
   var superViewName: String? { get }
   var isMainView: Bool { get set }
+  func setup(property: String, value: String, isEnumValue: Bool) -> String
 }
 
 public extension ElementCodeGeneratable {
@@ -31,6 +32,11 @@ public extension ElementCodeGeneratable {
     }
     string += "addSubview(\(userLabel))\n"
     return string
+  }
+  
+  func setup(property: String, value: String, isEnumValue: Bool = false) -> String {
+    let dotOrEmpty = isEnumValue ? "." : ""
+    return "\(userLabel).\(property) = \(dotOrEmpty)\(value)\n"
   }
 }
 

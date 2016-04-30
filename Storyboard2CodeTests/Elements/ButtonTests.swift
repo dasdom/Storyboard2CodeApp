@@ -22,10 +22,7 @@ class ButtonTests: XCTestCase {
     sut = Button(dict: dict)
   }
   
-  func test_ButtonReturnsCorrectInitString() {
-    var expectedInitString = "tapMeButton = UIButton(type: .System)\n"
-    expectedInitString += "tapMeButton.translatesAutoresizingMaskIntoConstraints = false\n"
-    
-    XCTAssertEqual(sut.initString, expectedInitString)
+  func test_ButtonReturnsCorrectInitString() {    
+    XCTAssertEqual(sut.initString, "tapMeButton = UIButton(type: .System)\n")
   }
 }

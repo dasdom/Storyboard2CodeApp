@@ -24,7 +24,11 @@ public class Label: View {
   }
   
   public override var initString: String {
-    var string = super.initString
+    return super.initString
+  }
+  
+  public override var setupString: String {
+    var string = super.setupString
     string += "\(userLabel).text = \"\(text)\"\n"
     string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), forAxis: .Horizontal)\n"
     if userInteractionEnabled {
