@@ -14,10 +14,6 @@ button.reversesTitleShadowWhenHighlighted = true
 button.showsTouchWhenHighlighted = true
 button.adjustsImageWhenHighlighted = false
 button.adjustsImageWhenDisabled = false
+button.setTitleColor(UIColor(red: 1, green: 1, blue: 0.40000000600000002, alpha: 1), forState: .Normal)
 
-let dict = ["foo": "YES"]
-
-dict["boo"].flatMap {
-  $0 == "YES"
-}
 

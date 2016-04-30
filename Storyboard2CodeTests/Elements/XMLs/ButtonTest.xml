@@ -21,7 +21,9 @@
                                 <rect key="frame" x="20" y="28" width="87" height="48"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="20" maxX="10" maxY="10"/>
                                 <size key="titleShadowOffset" width="1" height="2"/>
-                                <state key="normal" title="Button 1"/>
+                                <state key="normal" title="Button 1">
+                                    <color key="titleColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96T-5U-hpa" userLabel="defaultButton">
                                 <rect key="frame" x="20" y="84" width="46" height="30"/>

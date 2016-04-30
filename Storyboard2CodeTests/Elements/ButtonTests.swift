@@ -11,7 +11,6 @@ import XCTest
 
 class ButtonTests: XCTestCase {
   
-//  var sut: Button!
   var codeString: String!
   let codeCreator = CodeCreator()
   
@@ -19,10 +18,7 @@ class ButtonTests: XCTestCase {
     super.setUp()
     
     guard let data = dataFromResource(withName: "ButtonTest", andType: "xml") else { fatalError() }
-//    guard let dict = StoryboardXMLHelper().attributedDictionary(fromData: data, forElement: "button") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
-//    print(dict)
-//    sut = Button(dict: dict)
   }
   
   func test_ButtonReturnsCorrectInitString() {
@@ -85,6 +81,13 @@ class ButtonTests: XCTestCase {
     XCTAssertTrue(codeString.containsString(expectedString))
   }
   
+  func testButtonSetupString_HasTitleColorString() {
+    let expectedString = "button.setTitleColor(UIColor(red: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), forState: .Normal)"
+    print(codeString)
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  //MARK: - Default Button
   func testDefaultButtonSetupString_HasNotEnabledString() {
     let expectedString = "defaultButton.enabled"
     XCTAssertFalse(codeString.containsString(expectedString))

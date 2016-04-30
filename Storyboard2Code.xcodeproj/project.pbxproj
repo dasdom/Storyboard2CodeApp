@@ -33,7 +33,7 @@
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
-		F254ED911CD50F7300505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C47B1CD3F836000DBA33 /* ButtonTest.xml */; };
+		F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTest.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,10 +75,11 @@
 		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
-		F230C47B1CD3F836000DBA33 /* ButtonTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTest.xml; sourceTree = "<group>"; };
 		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
 		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
+		F254ED931CD5495600505DD3 /* ButtonTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTest.xml; sourceTree = "<group>"; };
+		F254ED951CD5499000505DD3 /* ViewTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewTest.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +142,6 @@
 				F230C4721CD38B58000DBA33 /* Elements */,
 				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
 				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
-				F230C47B1CD3F836000DBA33 /* ButtonTest.xml */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
 			path = Storyboard2CodeTests;
@@ -181,8 +181,18 @@
 			isa = PBXGroup;
 			children = (
 				F230C4731CD38B70000DBA33 /* ButtonTests.swift */,
+				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
+			sourceTree = "<group>";
+		};
+		F254ED921CD5495600505DD3 /* XMLs */ = {
+			isa = PBXGroup;
+			children = (
+				F254ED931CD5495600505DD3 /* ButtonTest.xml */,
+				F254ED951CD5499000505DD3 /* ViewTest.storyboard */,
+			);
+			path = XMLs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F254ED911CD50F7300505DD3 /* ButtonTest.xml in Resources */,
+				F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,16 +24,16 @@ public enum Color: AttributeCreatable {
       green = Float(greenString),
       blue = Float(blueString),
       alpha = Float(alphaString) {
-        
-        self = RedGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
-        
+      
+      self = RedGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+      
     } else if let whiteString = dict["white"],
       alphaString = dict["alpha"],
       white = Float(whiteString),
       alpha = Float(alphaString) {
-        
-        self = WhiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
-        
+      
+      self = WhiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
+      
     } else if let string = dict["cocoaTouchSystemColor"] {
       self = StringRepresentation(key: dict["key"]!, string: string)
     } else {
@@ -46,9 +46,9 @@ extension Color: AttributeCodeGeneratable {
   public var codeString: String {
     switch self {
     case .RedGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
-      return "UIColor(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha))"
+      return String(format: "UIColor(red: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
     case .WhiteAlphaRepresentation(_, let white, let alpha):
-      return "UIColor(white: \(white), alpha: \(alpha))"
+      return String(format: "UIColor(white: %.3lf, alpha: %.3lf)", white, alpha)
     case .StringRepresentation(_, let string):
       return "UIColor.\(string)()"
     default:
