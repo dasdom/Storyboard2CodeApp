@@ -1,27 +1,5 @@
 import Foundation
 
-public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
-  public let key: String
-  public let title: String?
-  public var titleColor: Color? = nil
-  
-  public init(dict: [String : String]) {
-    key = dict["key"]!.capitalizedString
-    title = dict["title"]
-  }
-  
-  public func codeString(userLabel: String) -> String {
-    var string = ""
-    if let title = title {
-      string += "\(userLabel).setTitle(\"\(title)\", forState: .\(key))\n"
-    }
-    if let titleColor = titleColor {
-      string += "\(userLabel).setTitleColor(\(titleColor.codeString), forState: .\(key))\n"
-    }
-    return string
-  }
-}
-
 final public class Button: View {
   public let contentHorizontalAlignment: String
   let contentHorizontalAlignmentDefault = "Center"
@@ -34,8 +12,15 @@ final public class Button: View {
   public let lineBreakMode: LineBreakMode
   let lineBreakModeDefault = LineBreakMode.ByTruncatingMiddle
   
-  public var states: [ButtonState] = []
+  public let enabled: Bool?
+  public let highlighted: Bool?
+  public let selected: Bool?
+  public let reversesTitleShadowWhenHighlighted: Bool?
+  public let showsTouchWhenHighlighted: Bool?
+  public let adjustsImageWhenHighlighted: Bool?
+  public let adjustsImageWhenDisabled: Bool?
   
+  public var states: [ButtonState] = []
   
   public required init(dict: [String : String]) {
     var tempReflectable: [String] = []
@@ -53,7 +38,35 @@ final public class Button: View {
     
     label = "lineBreakMode"
     lineBreakMode = LineBreakMode(rawValue: dict[label]!)!
-    if lineBreakMode != lineBreakModeDefault { tempReflectable.append(label) }
+//    if lineBreakMode != lineBreakModeDefault { tempReflectable.append(label) }
+    
+    label = "enabled"
+    enabled = dict[label] == "YES"
+    if enabled != nil { tempReflectable.append(label) }
+    
+    label = "highlighted"
+    highlighted = dict[label] == "YES"
+    if highlighted != nil { tempReflectable.append(label) }
+    
+    label = "selected"
+    selected = dict[label] == "YES"
+    if selected != nil { tempReflectable.append(label) }
+    
+    label = "reversesTitleShadowWhenHighlighted"
+    reversesTitleShadowWhenHighlighted = dict[label] == "YES"
+    if reversesTitleShadowWhenHighlighted != nil { tempReflectable.append(label) }
+    
+    label = "showsTouchWhenHighlighted"
+    showsTouchWhenHighlighted = dict[label] == "YES"
+    if showsTouchWhenHighlighted != nil { tempReflectable.append(label) }
+    
+    label = "adjustsImageWhenHighlighted"
+    adjustsImageWhenHighlighted = dict[label] == "YES"
+    if adjustsImageWhenHighlighted != nil { tempReflectable.append(label) }
+    
+    label = "adjustsImageWhenDisabled"
+    adjustsImageWhenDisabled = dict[label] == "YES"
+    if adjustsImageWhenDisabled != nil { tempReflectable.append(label) }
     
     super.init(dict: dict)
     super.reflectable += tempReflectable
@@ -77,6 +90,9 @@ final public class Button: View {
   
   public override var setupString: String {
     var string = super.setupString
+    if lineBreakMode != lineBreakModeDefault {
+      string += "\(userLabel).titleLabel?.lineBreakMode = .\(lineBreakMode.codeString)\n"
+    }
     string += stateString(fromStates: states)
     return string
   }

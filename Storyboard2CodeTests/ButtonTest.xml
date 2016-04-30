@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-u7-b0P" userLabel="button1">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-u7-b0P" userLabel="button">
                                 <rect key="frame" x="20" y="28" width="87" height="48"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="20" maxX="10" maxY="10"/>
                                 <size key="titleShadowOffset" width="1" height="2"/>

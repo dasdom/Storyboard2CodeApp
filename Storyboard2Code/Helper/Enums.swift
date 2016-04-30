@@ -7,7 +7,7 @@ public enum ElementType: String {
 public enum LineBreakMode: String {
   case ByTruncatingTail = "tailTruncation"
   case ByCharWrapping = "charWrapping"
-  case ByClipping = "clipping"
+  case ByClipping = "clip"
   case ByTruncatingHead = "headTruncation"
   case ByTruncatingMiddle = "middleTruncation"
   

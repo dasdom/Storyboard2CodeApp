@@ -10,7 +10,6 @@
 		F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4311CD2AD31000DBA33 /* AppDelegate.swift */; };
 		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
 		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
-		F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */; };
 		F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */; };
 		F230C44F1CD2AD89000DBA33 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */; };
 		F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4501CD2B066000DBA33 /* DropTextField.swift */; };
@@ -33,6 +32,8 @@
 		F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C4751CD38C0F000DBA33 /* dummy.xml */; };
 		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
+		F254ED8A1CD4FAC800505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C47B1CD3F836000DBA33 /* ButtonTest.xml */; };
+		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +53,6 @@
 		F230C4361CD2AD31000DBA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F230C4381CD2AD31000DBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F230C43D1CD2AD32000DBA33 /* Storyboard2CodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Storyboard2CodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard2CodeTests.swift; sourceTree = "<group>"; };
 		F230C4431CD2AD32000DBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
@@ -76,8 +76,9 @@
 		F230C4751CD38C0F000DBA33 /* dummy.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dummy.xml; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
-		F230C47B1CD3F836000DBA33 /* ButtonTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ButtonTest.storyboard; sourceTree = "<group>"; };
+		F230C47B1CD3F836000DBA33 /* ButtonTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTest.xml; sourceTree = "<group>"; };
 		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
+		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,11 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				F230C4721CD38B58000DBA33 /* Elements */,
-				F230C4411CD2AD32000DBA33 /* Storyboard2CodeTests.swift */,
 				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
 				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
 				F230C4751CD38C0F000DBA33 /* dummy.xml */,
-				F230C47B1CD3F836000DBA33 /* ButtonTest.storyboard */,
+				F230C47B1CD3F836000DBA33 /* ButtonTest.xml */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
 			path = Storyboard2CodeTests;
@@ -161,6 +161,7 @@
 				F230C45B1CD34A93000DBA33 /* ViewController.swift */,
 				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
 				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
+				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -276,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */,
+				F254ED8A1CD4FAC800505DD3 /* ButtonTest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F230C4651CD34A93000DBA33 /* LayoutGuide.swift in Sources */,
+				F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */,
 				F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */,
 				F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */,
 				F230C4671CD34A93000DBA33 /* TextField.swift in Sources */,
@@ -312,7 +315,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
-				F230C4421CD2AD32000DBA33 /* Storyboard2CodeTests.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
 				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,
 			);
@@ -491,6 +493,7 @@
 				F230C4481CD2AD32000DBA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F230C4491CD2AD32000DBA33 /* Build configuration list for PBXNativeTarget "Storyboard2CodeTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +502,7 @@
 				F230C44B1CD2AD32000DBA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
