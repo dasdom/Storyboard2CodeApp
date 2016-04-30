@@ -5,15 +5,15 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--viewController-->
         <scene sceneID="sNi-fi-rHy">
             <objects>
-                <viewController id="EI8-wh-viY" sceneMemberID="viewController">
+                <viewController id="EI8-wh-viY" userLabel="viewController" customClass="Foo" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gR7-4C-xnc"/>
                         <viewControllerLayoutGuide type="bottom" id="f5n-ya-oLs"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UAX-U5-col">
+                    <view key="view" contentMode="scaleToFill" id="UAX-U5-col" userLabel="view">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -23,7 +23,7 @@
                                 <size key="titleShadowOffset" width="1" height="2"/>
                                 <state key="normal" title="Button 1"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96T-5U-hpa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96T-5U-hpa" userLabel="defaultButton">
                                 <rect key="frame" x="20" y="84" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>

@@ -29,11 +29,11 @@
 		F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C46E1CD34AEC000DBA33 /* Slider.swift */; };
 		F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */; };
 		F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4731CD38B70000DBA33 /* ButtonTests.swift */; };
-		F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C4751CD38C0F000DBA33 /* dummy.xml */; };
 		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
-		F254ED8A1CD4FAC800505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C47B1CD3F836000DBA33 /* ButtonTest.xml */; };
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
+		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
+		F254ED911CD50F7300505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F230C47B1CD3F836000DBA33 /* ButtonTest.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,12 +73,12 @@
 		F230C46E1CD34AEC000DBA33 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegate.swift; sourceTree = "<group>"; };
 		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
-		F230C4751CD38C0F000DBA33 /* dummy.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dummy.xml; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		F230C47B1CD3F836000DBA33 /* ButtonTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTest.xml; sourceTree = "<group>"; };
 		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
 		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
+		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +123,7 @@
 			children = (
 				F230C4311CD2AD31000DBA33 /* AppDelegate.swift */,
 				F230C44C1CD2AD89000DBA33 /* MainWindowController.swift */,
+				F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */,
 				F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */,
 				F230C4501CD2B066000DBA33 /* DropTextField.swift */,
 				F230C4521CD34A93000DBA33 /* Elements */,
@@ -140,7 +141,6 @@
 				F230C4721CD38B58000DBA33 /* Elements */,
 				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
 				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
-				F230C4751CD38C0F000DBA33 /* dummy.xml */,
 				F230C47B1CD3F836000DBA33 /* ButtonTest.xml */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
@@ -276,8 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F230C4761CD38C0F000DBA33 /* dummy.xml in Resources */,
-				F254ED8A1CD4FAC800505DD3 /* ButtonTest.xml in Resources */,
+				F254ED911CD50F7300505DD3 /* ButtonTest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +298,7 @@
 				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
 				F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */,
 				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
+				F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */,
 				F230C4621CD34A93000DBA33 /* Color.swift in Sources */,
 				F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */,
 				F230C4641CD34A93000DBA33 /* Label.swift in Sources */,

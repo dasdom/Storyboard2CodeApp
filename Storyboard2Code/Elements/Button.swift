@@ -41,31 +41,31 @@ final public class Button: View {
 //    if lineBreakMode != lineBreakModeDefault { tempReflectable.append(label) }
     
     label = "enabled"
-    enabled = dict[label] == "YES"
+    enabled = dict[label].flatMap { $0 == "YES" }
     if enabled != nil { tempReflectable.append(label) }
     
     label = "highlighted"
-    highlighted = dict[label] == "YES"
+    highlighted = dict[label].flatMap { $0 == "YES" }
     if highlighted != nil { tempReflectable.append(label) }
     
     label = "selected"
-    selected = dict[label] == "YES"
+    selected = dict[label].flatMap { $0 == "YES" }
     if selected != nil { tempReflectable.append(label) }
     
     label = "reversesTitleShadowWhenHighlighted"
-    reversesTitleShadowWhenHighlighted = dict[label] == "YES"
+    reversesTitleShadowWhenHighlighted = dict[label].flatMap { $0 == "YES" }
     if reversesTitleShadowWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "showsTouchWhenHighlighted"
-    showsTouchWhenHighlighted = dict[label] == "YES"
+    showsTouchWhenHighlighted = dict[label].flatMap { $0 == "YES" }
     if showsTouchWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "adjustsImageWhenHighlighted"
-    adjustsImageWhenHighlighted = dict[label] == "YES"
+    adjustsImageWhenHighlighted = dict[label].flatMap { $0 == "YES" }
     if adjustsImageWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "adjustsImageWhenDisabled"
-    adjustsImageWhenDisabled = dict[label] == "YES"
+    adjustsImageWhenDisabled = dict[label].flatMap { $0 == "YES" }
     if adjustsImageWhenDisabled != nil { tempReflectable.append(label) }
     
     super.init(dict: dict)

@@ -54,6 +54,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   }
   
   public var setupString: String {
+    guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
     for color in colors {

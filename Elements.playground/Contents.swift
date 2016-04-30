@@ -15,4 +15,9 @@ button.showsTouchWhenHighlighted = true
 button.adjustsImageWhenHighlighted = false
 button.adjustsImageWhenDisabled = false
 
+let dict = ["foo": "YES"]
+
+dict["boo"].flatMap {
+  $0 == "YES"
+}
 
