@@ -71,7 +71,6 @@ final public class Button: View {
     super.init(dict: dict)
     super.reflectable += tempReflectable
     
-    clipsSubviewsDefault = false
     opaqueDefault = false
     
     type = ElementType.UIButton

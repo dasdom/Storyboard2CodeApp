@@ -31,7 +31,7 @@ public class Label: View {
     var string = super.setupString
     string += "\(userLabel).text = \"\(text)\"\n"
     string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), forAxis: .Horizontal)\n"
-    if userInteractionEnabled {
+    if let userInteractionEnabled = userInteractionEnabled {
       string += "\(userLabel).userInteractionEnabled = \(userInteractionEnabled)\n"
     }
     if let font = font {

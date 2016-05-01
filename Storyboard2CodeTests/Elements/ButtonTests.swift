@@ -19,7 +19,7 @@ class ButtonTests: XCTestCase {
     
     guard let data = dataFromResource(withName: "ButtonTest", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
-    print(codeString)
+//    print(codeString)
   }
   
   func test_ButtonReturnsCorrectInitString() {
@@ -88,7 +88,15 @@ class ButtonTests: XCTestCase {
     XCTAssertTrue(codeString.containsString(expectedString))
   }
   
-  //MARK: - Default Button
+  func testDefaultButtonSetupString_HasNotUserInteractionEnabledString() {
+    let expectedString = "button.userInteractionEnabled"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+}
+
+
+//MARK: - Default Button
+extension ButtonTests {
   func testDefaultButtonSetupString_HasNotEnabledString() {
     let expectedString = "defaultButton.enabled"
     XCTAssertFalse(codeString.containsString(expectedString))

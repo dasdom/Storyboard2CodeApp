@@ -34,8 +34,8 @@
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
 		F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTest.xml */; };
-		F254ED981CD5DB9F00505DD3 /* ViewTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED951CD5499000505DD3 /* ViewTest.xml */; };
 		F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED991CD5DDCF00505DD3 /* ViewTests.swift */; };
+		F254ED9B1CD6945800505DD3 /* ViewTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED951CD5499000505DD3 /* ViewTest.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,7 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F254ED981CD5DB9F00505DD3 /* ViewTest.xml in Resources */,
+				F254ED9B1CD6945800505DD3 /* ViewTest.xml in Resources */,
 				F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

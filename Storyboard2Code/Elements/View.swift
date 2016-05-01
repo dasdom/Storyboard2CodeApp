@@ -1,19 +1,22 @@
 import Foundation
 
 public class View: AttributeCreatable, ElementCodeGeneratable {
-  public let clipsSubviews: Bool
-  var clipsSubviewsDefault = true
+  public let clipsSubviews: Bool?
   public var font: Font? = nil
   public var type = ElementType.UIView
   public var rect: CGRect? = nil
   public var colors: [Color] = []
-  public let opaque: Bool
-  var opaqueDefault = false
-  public let userInteractionEnabled: Bool
+  public let opaque: Bool?
+  var opaqueDefault = true
+  public let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
   public let contentMode: String
   var contentModeDefault = "ScaleToFill"
   public let translatesAutoresizingMaskIntoConstraints: Bool
+  public let autoresizesSubviews: Bool?
+  public let clearsContextBeforeDrawing: Bool?
+  public let tag: Int?
+  
   public let id: String
   public let userLabel: String
   public var superViewName: String?
@@ -27,20 +30,40 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     reflectable.append(label)
    
     label = "opaque"
-    opaque = dict[label] == "YES"
-    if opaque != opaqueDefault { reflectable.append(label) }
+    opaque = dict[label].flatMap { $0 == "YES" }
+    if let isOpaque = opaque where isOpaque != opaqueDefault {
+      reflectable.append(label)
+    }
 
     label = "contentMode"
     contentMode = dict[label]!.capitalizeFirst
     if contentMode != contentModeDefault { reflectable.append(label) }
 
     label = "clipsSubviews"
-    clipsSubviews = dict[label] == "YES"
+    clipsSubviews = dict[label].flatMap { $0 == "YES" }
 //    if clipsSubviews != clipsSubviewsDefault { reflectable.append(label) }
     
     label = "userInteractionEnabled"
-    userInteractionEnabled = dict[label] == "YES"
-    if userInteractionEnabled != userInteractionEnabledDefault { reflectable.append(label) }
+    userInteractionEnabled = dict[label].flatMap { $0 == "YES" }
+    if let enabled = userInteractionEnabled where enabled != userInteractionEnabledDefault {
+      reflectable.append(label)
+    }
+    
+    label = "autoresizesSubviews"
+    autoresizesSubviews = dict[label].flatMap { $0 == "YES" }
+    if autoresizesSubviews != nil { reflectable.append(label) }
+    
+    label = "clearsContextBeforeDrawing"
+    clearsContextBeforeDrawing = dict[label].flatMap { $0 == "YES" }
+    if clearsContextBeforeDrawing != nil { reflectable.append(label) }
+    
+    label = "tag"
+    if let tagString = dict[label] {
+      tag = Int(tagString)
+    } else {
+      tag = nil
+    }
+    if tag != nil { reflectable.append(label) }
     
     id = dict["id"]!
     
@@ -57,8 +80,8 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
-    if clipsSubviews != clipsSubviewsDefault {
-      string += setup("clipsToBounds", value: "\(clipsSubviews)")
+    if let clips = clipsSubviews {
+      string += setup("clipsToBounds", value: "\(clips)")
     }
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkTextColor()") { // Defaults
