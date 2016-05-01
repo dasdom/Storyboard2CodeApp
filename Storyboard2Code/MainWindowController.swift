@@ -18,8 +18,9 @@ class MainWindowController: NSWindowController {
       if let data = xmlData {
 //        let codeString = codeStringFrom(XMLdata: data)
         let codeString = CodeCreator().codeStringFrom(XMLdata: data)
-        let attributedText = codeTextView.attributedString()
-        codeTextView.insertText(codeString, replacementRange: NSMakeRange(0, attributedText.length))
+//        let attributedText = codeTextView.attributedString()
+//        codeTextView.insertText(codeString, replacementRange: NSMakeRange(0, attributedText.length))
+        codeTextView.string = codeString
       }
     }
   }
@@ -39,8 +40,9 @@ class MainWindowController: NSWindowController {
       
       xmlData = data
       
-      let attributedText = storyboardTextView.attributedString()
-      storyboardTextView.insertText(dataString, replacementRange: NSMakeRange(0, attributedText.length))
+//      let attributedText = storyboardTextView.attributedString()
+//      storyboardTextView.insertText(dataString, replacementRange: NSMakeRange(0, attributedText.length))
+      storyboardTextView.string = dataString as String
     }
   }
   
