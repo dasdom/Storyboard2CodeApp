@@ -19,6 +19,7 @@ class ButtonTests: XCTestCase {
     
     guard let data = dataFromResource(withName: "ButtonTest", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
+    print(codeString)
   }
   
   func test_ButtonReturnsCorrectInitString() {

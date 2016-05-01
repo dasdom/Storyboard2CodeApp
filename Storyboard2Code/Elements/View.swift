@@ -36,7 +36,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
 
     label = "clipsSubviews"
     clipsSubviews = dict[label] == "YES"
-    if clipsSubviews != clipsSubviewsDefault { reflectable.append(label) }
+//    if clipsSubviews != clipsSubviewsDefault { reflectable.append(label) }
     
     label = "userInteractionEnabled"
     userInteractionEnabled = dict[label] == "YES"
@@ -57,6 +57,9 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
+    if clipsSubviews != clipsSubviewsDefault {
+      string += setup("clipsToBounds", value: "\(clipsSubviews)")
+    }
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkTextColor()") { // Defaults
         string += "\(userLabel).\(color.key) = \(color.codeString)\n"
