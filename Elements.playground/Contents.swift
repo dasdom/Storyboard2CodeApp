@@ -2,28 +2,11 @@
 
 import UIKit
 
-//let button = UIButton(type: .System)
-//button.translatesAutoresizingMaskIntoConstraints = false
-//button.contentHorizontalAlignment = .Left
-//button.contentVerticalAlignment = .Top
-//button.titleLabel?.lineBreakMode = .ByClipping
-//button.enabled = false
-//button.highlighted = true
-//button.selected = true
-//button.reversesTitleShadowWhenHighlighted = true
-//button.showsTouchWhenHighlighted = true
-//button.adjustsImageWhenHighlighted = false
-//button.adjustsImageWhenDisabled = false
-//button.setTitleColor(UIColor(red: 1, green: 1, blue: 0.40000000600000002, alpha: 1), forState: .Normal)
-//print(button.hidden)
-
-let view = UIView()
-view.translatesAutoresizingMaskIntoConstraints = false
-view.autoresizesSubviews = false
-view.opaque = false
-view.clipsToBounds = true
-view.clearsContextBeforeDrawing = false
-view.userInteractionEnabled = false
-view.tag = 22
-view.contentMode = .Redraw
-
+let defaultLabel = UILabel()
+defaultLabel.translatesAutoresizingMaskIntoConstraints = false
+defaultLabel.contentHuggingPriorityForAxis(.Horizontal)
+defaultLabel.contentHuggingPriorityForAxis(.Vertical)
+defaultLabel.textAlignment == .Natural
+defaultLabel.lineBreakMode == .ByTruncatingTail
+defaultLabel.baselineAdjustment == .AlignBaselines
+defaultLabel.adjustsFontSizeToFitWidth == false

@@ -36,6 +36,8 @@
 		F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTest.xml */; };
 		F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED991CD5DDCF00505DD3 /* ViewTests.swift */; };
 		F254ED9B1CD6945800505DD3 /* ViewTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED951CD5499000505DD3 /* ViewTest.xml */; };
+		F2E2EF811CD7E5D800079EB8 /* LabelTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2E2EF801CD7E5D800079EB8 /* LabelTest.xml */; };
+		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		F254ED931CD5495600505DD3 /* ButtonTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTest.xml; sourceTree = "<group>"; };
 		F254ED951CD5499000505DD3 /* ViewTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ViewTest.xml; sourceTree = "<group>"; };
 		F254ED991CD5DDCF00505DD3 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		F2E2EF801CD7E5D800079EB8 /* LabelTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LabelTest.xml; sourceTree = "<group>"; };
+		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 			children = (
 				F230C4731CD38B70000DBA33 /* ButtonTests.swift */,
 				F254ED991CD5DDCF00505DD3 /* ViewTests.swift */,
+				F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
@@ -195,6 +200,7 @@
 			children = (
 				F254ED931CD5495600505DD3 /* ButtonTest.xml */,
 				F254ED951CD5499000505DD3 /* ViewTest.xml */,
+				F2E2EF801CD7E5D800079EB8 /* LabelTest.xml */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E2EF811CD7E5D800079EB8 /* LabelTest.xml in Resources */,
 				F254ED9B1CD6945800505DD3 /* ViewTest.xml in Resources */,
 				F254ED971CD54AC800505DD3 /* ButtonTest.xml in Resources */,
 			);
@@ -330,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */,
+				F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */,
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
 				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,

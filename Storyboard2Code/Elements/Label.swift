@@ -3,17 +3,17 @@ import Foundation
 public class Label: View {
   public let horizontalHuggingPriority: Int
   public let verticalHuggingPriority: Int
-  public let text: String
+  public let text: String?
   public let lineBreakMode: LineBreakMode
-  public let baselineAdjustment: String
+  public let baselineAdjustment: String?
   public let adjustsFontSizeToFit: Bool
   
   public required init(dict: [String : String]) {
     horizontalHuggingPriority = Int(dict["horizontalHuggingPriority"]!)!
     verticalHuggingPriority = Int(dict["verticalHuggingPriority"]!)!
-    text = dict["text"]!
+    text = dict["text"]
     lineBreakMode = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
-    baselineAdjustment = dict["baselineAdjustment"]!
+    baselineAdjustment = dict["baselineAdjustment"]
     adjustsFontSizeToFit = dict["adjustsFontSizeToFit"] == "YES"
     
     super.init(dict: dict)
@@ -29,7 +29,9 @@ public class Label: View {
   
   public override var setupString: String {
     var string = super.setupString
-    string += "\(userLabel).text = \"\(text)\"\n"
+    if let text = text {
+      string += "\(userLabel).text = \"\(text)\"\n"
+    }
     string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), forAxis: .Horizontal)\n"
     if let userInteractionEnabled = userInteractionEnabled {
       string += "\(userLabel).userInteractionEnabled = \(userInteractionEnabled)\n"

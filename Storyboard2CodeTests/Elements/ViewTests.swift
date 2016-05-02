@@ -18,7 +18,7 @@ class ViewTests: XCTestCase {
     super.setUp()
     guard let data = dataFromResource(withName: "ViewTest", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
-    print(codeString)
+//    print(codeString)
   }
   
   func test_ViewReturnsCorrectInitString() {
