@@ -30,4 +30,39 @@ class LabelTests: XCTestCase {
     let expectedString = "fooLabel.translatesAutoresizingMaskIntoConstraints = false"
     XCTAssertTrue(codeString.containsString(expectedString))
   }
+  
+  func testLabelSetupString_HasLineBreakModeString() {
+    let expectedString = "fooLabel.lineBreakMode = .ByTruncatingHead"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasNumberOfLinesString() {
+    let expectedString = "fooLabel.numberOfLines = 0"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasMinimumScaleFactorString() {
+    let expectedString = "fooLabel.minimumScaleFactor = 0.5"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasAdjustsFontSizeToFitWidthString() {
+    let expectedString = "fooLabel.adjustsFontSizeToFitWidth = true"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasEnabledString() {
+    let expectedString = "fooLabel.enabled = false"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasHighlightedString() {
+    let expectedString = "fooLabel.highlighted = true"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasTextString() {
+    let expectedString = "fooLabel.text = \"foo\nLabel\""
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
 }
