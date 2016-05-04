@@ -45,8 +45,10 @@ class LabelTests: XCTestCase {
     let expectedString = "fooLabel.minimumScaleFactor = 0.5"
     XCTAssertTrue(codeString.containsString(expectedString))
   }
-  
+
+  // Check if this is needed when minimumScaleFactor is set
   func testLabelSetupString_HasAdjustsFontSizeToFitWidthString() {
+    assert(false, "Check if this is needed when minimumScaleFactor is set")
     let expectedString = "fooLabel.adjustsFontSizeToFitWidth = true"
     XCTAssertTrue(codeString.containsString(expectedString))
   }

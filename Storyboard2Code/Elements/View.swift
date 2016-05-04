@@ -101,7 +101,15 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
             return stringFromChild(label, value: child.value)
           }
         } else {
-          let dotOrEmpty = value is String ? "." : ""
+          /// add a '.' when the value seems to be an enum value
+          let dotOrEmpty: String
+          if let stringValue = value as? String, _ = Float(stringValue) {
+            dotOrEmpty = ""
+          } else if let _ = value as? String {
+            dotOrEmpty = "."
+          } else {
+            dotOrEmpty = ""
+          }
           return "\(self.userLabel).\(label) = \(dotOrEmpty)\(value)\n"
         }
       }
