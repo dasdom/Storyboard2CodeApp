@@ -19,7 +19,7 @@ public class Label: View {
   public required init(dict: [String : String]) {
 
     horizontalHuggingPriority = Int(dict["horizontalHuggingPriority"]!)!
-    verticalHuggingPriority = Int(dict["verticalHuggingPriority"]!)!
+    verticalHuggingPriority   = Int(dict["verticalHuggingPriority"]!)!
     
     text                = dict["text"]
     textAlignment       = dict["textAlignment"]?.capitalizeFirst

@@ -23,38 +23,17 @@ final public class Button: View {
   public var states: [ButtonState] = []
   
   public required init(dict: [String : String]) {
-    var label = "contentHorizontalAlignment"
-    contentHorizontalAlignment = dict[label]!.capitalizeFirst
-    
-    label = "contentVerticalAlignment"
-    contentVerticalAlignment = dict[label]!.capitalizeFirst
-    
-    label = "buttonType"
-    buttonType = dict[label]!.capitalizeFirst
-    
-    label = "lineBreakMode"
-    lineBreakMode = LineBreakMode(rawValue: dict[label]!)!
-    
-    label = "enabled"
-    enabled = dict[label].flatMap { $0 == "YES" }
-    
-    label = "highlighted"
-    highlighted = dict[label].flatMap { $0 == "YES" }
-    
-    label = "selected"
-    selected = dict[label].flatMap { $0 == "YES" }
-    
-    label = "reversesTitleShadowWhenHighlighted"
-    reversesTitleShadowWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    
-    label = "showsTouchWhenHighlighted"
-    showsTouchWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    
-    label = "adjustsImageWhenHighlighted"
-    adjustsImageWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    
-    label = "adjustsImageWhenDisabled"
-    adjustsImageWhenDisabled = dict[label].flatMap { $0 == "YES" }
+    contentHorizontalAlignment          = dict["contentHorizontalAlignment"]!.capitalizeFirst
+    contentVerticalAlignment            = dict["contentVerticalAlignment"]!.capitalizeFirst
+    buttonType                          = dict["buttonType"]!.capitalizeFirst
+    lineBreakMode                       = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
+    enabled                             = dict["enabled"].flatMap { $0 == "YES" }
+    highlighted                         = dict["highlighted"].flatMap { $0 == "YES" }
+    selected                            = dict["selected"].flatMap { $0 == "YES" }
+    reversesTitleShadowWhenHighlighted  = dict["reversesTitleShadowWhenHighlighted"].flatMap { $0 == "YES" }
+    showsTouchWhenHighlighted           = dict["showsTouchWhenHighlighted"].flatMap { $0 == "YES" }
+    adjustsImageWhenHighlighted         = dict["adjustsImageWhenHighlighted"].flatMap { $0 == "YES" }
+    adjustsImageWhenDisabled            = dict["adjustsImageWhenDisabled"].flatMap { $0 == "YES" }
     
     super.init(dict: dict)
     

@@ -16,7 +16,7 @@ class ViewTests: XCTestCase {
   
   override func setUp() {
     super.setUp()
-    guard let data = dataFromResource(withName: "ViewTest", andType: "xml") else { fatalError() }
+    guard let data = dataFromResource(withName: "ViewTests", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
 //    print(codeString)
   }

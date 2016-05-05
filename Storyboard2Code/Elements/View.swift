@@ -24,12 +24,12 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   
   required public init(dict: [String : String]) {
     translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"] == "YES"
-    opaque = dict["opaque"].flatMap { $0 == "YES" }
-    contentMode = dict["contentMode"]!.capitalizeFirst
-    clipsSubviews = dict["clipsSubviews"].flatMap { $0 == "YES" }
-    userInteractionEnabled = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
-    autoresizesSubviews = dict["autoresizesSubviews"].flatMap { $0 == "YES" }
-    clearsContextBeforeDrawing = dict["clearsContextBeforeDrawing"].flatMap { $0 == "YES" }
+    opaque                      = dict["opaque"].flatMap { $0 == "YES" }
+    contentMode                 = dict["contentMode"]!.capitalizeFirst
+    clipsSubviews               = dict["clipsSubviews"].flatMap { $0 == "YES" }
+    userInteractionEnabled      = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
+    autoresizesSubviews         = dict["autoresizesSubviews"].flatMap { $0 == "YES" }
+    clearsContextBeforeDrawing  = dict["clearsContextBeforeDrawing"].flatMap { $0 == "YES" }
     
     if let tagString = dict["tag"] {
       tag = Int(tagString)
