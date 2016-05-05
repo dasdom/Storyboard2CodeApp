@@ -36,6 +36,11 @@ class LabelTests: XCTestCase {
     XCTAssertTrue(codeString.containsString(expectedString))
   }
   
+  func testLabelSetupString_HasTextAlignmentString() {
+    let expectedString = "fooLabel.textAlignment = .Justified"
+    XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
   func testLabelSetupString_HasNumberOfLinesString() {
     let expectedString = "fooLabel.numberOfLines = 0"
     XCTAssertTrue(codeString.containsString(expectedString))
@@ -46,12 +51,12 @@ class LabelTests: XCTestCase {
     XCTAssertTrue(codeString.containsString(expectedString))
   }
 
-  // Check if this is needed when minimumScaleFactor is set
-  func testLabelSetupString_HasAdjustsFontSizeToFitWidthString() {
-    assert(false, "Check if this is needed when minimumScaleFactor is set")
-    let expectedString = "fooLabel.adjustsFontSizeToFitWidth = true"
-    XCTAssertTrue(codeString.containsString(expectedString))
-  }
+//  // Check if this is needed when minimumScaleFactor is set
+//  func testLabelSetupString_HasAdjustsFontSizeToFitWidthString() {
+//    assert(false, "Check if this is needed when minimumScaleFactor is set")
+//    let expectedString = "fooLabel.adjustsFontSizeToFitWidth = true"
+//    XCTAssertTrue(codeString.containsString(expectedString))
+//  }
   
   func testLabelSetupString_HasEnabledString() {
     let expectedString = "fooLabel.enabled = false"
@@ -64,7 +69,45 @@ class LabelTests: XCTestCase {
   }
   
   func testLabelSetupString_HasTextString() {
-    let expectedString = "fooLabel.text = \"foo\nLabel\""
+    let expectedString = "fooLabel.text = \"foo\\nLabel\""
     XCTAssertTrue(codeString.containsString(expectedString))
+  }
+  
+  func testLabelSetupString_HasNotOpaqueString() {
+    let expectedString = "fooLabel.opaque"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+}
+
+//MARK: - Default Label
+extension LabelTests {
+  func testDefaultLabelSetupString_HasNotUserInteractionEnabledString() {
+    let expectedString = "defaultLabel.userInteractionEnabled"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+  
+  func testDefaultLabelSetupString_HasNotTextAlignmentString() {
+    let expectedString = "defaultLabel.textAlignment"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+  
+  func testDefaultLabelSetupString_HasNotLineBreakModeString() {
+    let expectedString = "defaultLabel.lineBreakMode"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+  
+  func testDefaultLabelSetupString_HasNotBaselineAdjustmentString() {
+    let expectedString = "defaultLabel.baselineAdjustment"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+  
+  func testDefaultLabelSetupString_HasNotAdjustsFontSizeToFitWidthString() {
+    let expectedString = "defaultLabel.adjustsFontSizeToFitWidth"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+  
+  func testDefaultLabelSetupString_HasNotOpaqueString() {
+    let expectedString = "defaultLabel.opaque"
+    XCTAssertFalse(codeString.containsString(expectedString))
   }
 }

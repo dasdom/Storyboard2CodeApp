@@ -3,50 +3,53 @@ import Foundation
 public class Label: View {
   public let horizontalHuggingPriority: Int
   public let verticalHuggingPriority: Int
-  public let text: String?
+  public var text: String?
+  public var textAlignment: String?
+  var textAlignmentDefault = "Natural"
   public let lineBreakMode: LineBreakMode
+  var lineBreakModeDefault = LineBreakMode.ByTruncatingTail
   public let baselineAdjustment: String?
+  var baseLineAdjustmentDefault = "AlignBaselines"
 //  public let adjustsFontSizeToFitWidth: Bool
   public let numberOfLines: String?
   public let minimumScaleFactor: String?
+  public let enabled: Bool?
+  public let highlighted: Bool?
   
   public required init(dict: [String : String]) {
-    var tempReflectable: [String] = []
 
     horizontalHuggingPriority = Int(dict["horizontalHuggingPriority"]!)!
     verticalHuggingPriority = Int(dict["verticalHuggingPriority"]!)!
     
-    var label = "text"
-    text = dict["text"]
-    if text != nil { tempReflectable.append(label) }
-    
-    lineBreakMode = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
-    
-    label = "baselineAdjustment"
-    baselineAdjustment = dict["baselineAdjustment"]
-    if baselineAdjustment != nil { tempReflectable.append(label) }
-    
-    label = "numberOfLines"
-    numberOfLines = dict["numberOfLines"]
-    if numberOfLines != nil { tempReflectable.append(label) }
-    
-    label = "minimumScaleFactor"
-    minimumScaleFactor = dict["minimumScaleFactor"]
-    if minimumScaleFactor != nil {
-      tempReflectable.append(label)
-      
-//      adjustsFontSizeToFitWidth = true
-//      tempReflectable.append("adjustsFontSizeToFitWidth")
-//    } else {
-//      adjustsFontSizeToFitWidth = false
-    }
+    text                = dict["text"]
+    textAlignment       = dict["textAlignment"]?.capitalizeFirst
+    lineBreakMode       = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
+    baselineAdjustment  = dict["baselineAdjustment"]?.capitalizeFirst
+    numberOfLines       = dict["numberOfLines"]
+    minimumScaleFactor  = dict["minimumScaleFactor"]
+    enabled             = dict["enabled"].flatMap { $0 == "YES" }
+    highlighted         = dict["highlighted"].flatMap { $0 == "YES" }
     
     super.init(dict: dict)
-    super.reflectable += tempReflectable
 
     contentModeDefault = "Left"
+    userInteractionEnabledDefault = false
     
     type = ElementType.UILabel
+  }
+  
+  override func reflectable() -> [String] {
+    var temp = super.reflectable()
+    if baselineAdjustment != baselineAdjustment { temp.append("baselineAdjustment") }
+    temp.append("numberOfLines")
+    temp.append("minimumScaleFactor")
+    temp.append("enabled")
+    temp.append("highlighted")
+    if textAlignment != textAlignmentDefault { temp.append("textAlignment") }
+
+    /// From the docs: "The opaque property has no effect in system-provided classes such as UIButton, UILabel, UITableViewCell, and so on."
+    temp = temp.filter { $0 != "opaque" }
+    return temp
   }
   
   public override var initString: String {
@@ -55,22 +58,18 @@ public class Label: View {
   
   public override var setupString: String {
     var string = super.setupString
-//    if let text = text {
-//      string += "\(userLabel).text = \"\(text)\"\n"
-//    }
+    if let text = text {
+      string += "\(userLabel).text = \"\(text)\"\n"
+    }
     string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), forAxis: .Horizontal)\n"
-//    if let userInteractionEnabled = userInteractionEnabled {
-//      string += "\(userLabel).userInteractionEnabled = \(userInteractionEnabled)\n"
-//    }
     if let font = font {
       if font.codeString != "UIFont.systemFontOfSize(17)" { // Default
         string += "\(userLabel).font = \(font.codeString)\n"
       }
     }
-    string += "\(userLabel).lineBreakMode = .\(lineBreakMode.codeString)"
-//    if let numberOfLines = numberOfLines {
-//      string += "\(userLabel).numberOfLines = \(numberOfLines)"
-//    }
+    if lineBreakMode != lineBreakModeDefault {
+      string += "\(userLabel).lineBreakMode = .\(lineBreakMode.codeString)"
+    }
     return string
   }
 }

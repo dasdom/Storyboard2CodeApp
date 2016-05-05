@@ -10,11 +10,14 @@ defaultLabel.textAlignment == .Natural
 defaultLabel.lineBreakMode == .ByTruncatingTail
 defaultLabel.baselineAdjustment == .AlignBaselines
 defaultLabel.adjustsFontSizeToFitWidth == false
+defaultLabel.opaque
+defaultLabel.userInteractionEnabled
 
 let fooLabel = UILabel()
 fooLabel.translatesAutoresizingMaskIntoConstraints = false
 fooLabel.lineBreakMode = .ByTruncatingHead
 fooLabel.numberOfLines = 0
+fooLabel.textAlignment = .Justified
 fooLabel.minimumScaleFactor = 0.5
 //fooLabel.adjustsFontSizeToFitWidth = true
 fooLabel.enabled = false

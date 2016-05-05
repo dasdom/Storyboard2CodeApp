@@ -23,53 +23,40 @@ final public class Button: View {
   public var states: [ButtonState] = []
   
   public required init(dict: [String : String]) {
-    var tempReflectable: [String] = []
-    
     var label = "contentHorizontalAlignment"
     contentHorizontalAlignment = dict[label]!.capitalizeFirst
-    if contentHorizontalAlignment != contentHorizontalAlignmentDefault { tempReflectable.append(label) }
     
     label = "contentVerticalAlignment"
     contentVerticalAlignment = dict[label]!.capitalizeFirst
-    if contentVerticalAlignment != contentVerticalAlignmentDefault { tempReflectable.append(label) }
     
     label = "buttonType"
     buttonType = dict[label]!.capitalizeFirst
     
     label = "lineBreakMode"
     lineBreakMode = LineBreakMode(rawValue: dict[label]!)!
-//    if lineBreakMode != lineBreakModeDefault { tempReflectable.append(label) }
     
     label = "enabled"
     enabled = dict[label].flatMap { $0 == "YES" }
-    if enabled != nil { tempReflectable.append(label) }
     
     label = "highlighted"
     highlighted = dict[label].flatMap { $0 == "YES" }
-    if highlighted != nil { tempReflectable.append(label) }
     
     label = "selected"
     selected = dict[label].flatMap { $0 == "YES" }
-    if selected != nil { tempReflectable.append(label) }
     
     label = "reversesTitleShadowWhenHighlighted"
     reversesTitleShadowWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    if reversesTitleShadowWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "showsTouchWhenHighlighted"
     showsTouchWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    if showsTouchWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "adjustsImageWhenHighlighted"
     adjustsImageWhenHighlighted = dict[label].flatMap { $0 == "YES" }
-    if adjustsImageWhenHighlighted != nil { tempReflectable.append(label) }
     
     label = "adjustsImageWhenDisabled"
     adjustsImageWhenDisabled = dict[label].flatMap { $0 == "YES" }
-    if adjustsImageWhenDisabled != nil { tempReflectable.append(label) }
     
     super.init(dict: dict)
-    super.reflectable += tempReflectable
     
     opaqueDefault = false
     
@@ -110,5 +97,19 @@ final public class Button: View {
       string += state.codeString(userLabel)
     }
     return string
+  }
+  
+  override func reflectable() -> [String] {
+    var temp = super.reflectable()
+    if contentHorizontalAlignment != contentHorizontalAlignmentDefault { temp.append("contentHorizontalAlignment") }
+    if contentVerticalAlignment != contentVerticalAlignmentDefault { temp.append("contentVerticalAlignment") }
+    temp.append("enabled")
+    temp.append("highlighted")
+    temp.append("selected")
+    temp.append("reversesTitleShadowWhenHighlighted")
+    temp.append("showsTouchWhenHighlighted")
+    temp.append("adjustsImageWhenHighlighted")
+    temp.append("adjustsImageWhenDisabled")
+    return temp
   }
 }

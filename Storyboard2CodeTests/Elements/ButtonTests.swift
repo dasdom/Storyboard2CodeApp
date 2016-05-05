@@ -87,16 +87,16 @@ class ButtonTests: XCTestCase {
     print(codeString)
     XCTAssertTrue(codeString.containsString(expectedString))
   }
-  
-  func testDefaultButtonSetupString_HasNotUserInteractionEnabledString() {
-    let expectedString = "button.userInteractionEnabled"
-    XCTAssertFalse(codeString.containsString(expectedString))
-  }
 }
 
 
 //MARK: - Default Button
 extension ButtonTests {
+  func testDefaultButtonSetupString_HasNotUserInteractionEnabledString() {
+    let expectedString = "button.userInteractionEnabled"
+    XCTAssertFalse(codeString.containsString(expectedString))
+  }
+ 
   func testDefaultButtonSetupString_HasNotEnabledString() {
     let expectedString = "defaultButton.enabled"
     XCTAssertFalse(codeString.containsString(expectedString))

@@ -18,6 +18,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
   var color: Color?
   var font: Font?
   var currentState: ButtonState?
+  var currentText: String?
   var viewMargins: Set<String> = []
   var layoutGuides: [LayoutGuide] = []
   var currentSegmentedControl: SegmentedControl?
@@ -82,11 +83,17 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       currentState = ButtonState(dict: attributeDict)
     case "viewControllerLayoutGuide":
       layoutGuides.append(LayoutGuide(dict: attributeDict))
+    case "string":
+      currentText = ""
     default:
       //      print("start: \(elementName)")
       break
     }
     
+  }
+  
+  func parser(parser: NSXMLParser, foundCharacters string: String) {
+    currentText? += string
   }
   
   func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -106,6 +113,12 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
         addView(segmentedControl)
       }
       currentSegmentedControl = nil
+    case "string":
+      if let label = tempViews.last as? Label {
+        label.text = currentText?.stringByReplacingOccurrencesOfString("\n", withString: "\\n")
+      } else {
+        fatalError("not supported yet")
+      }
     default:
       //      print("end: \(elementName)")
       break

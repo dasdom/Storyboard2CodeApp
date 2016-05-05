@@ -24,7 +24,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="headTruncation" numberOfLines="0" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" enabled="NO" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-Wg-li0" userLabel="fooLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="headTruncation" numberOfLines="0" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" enabled="NO" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-Wg-li0" userLabel="fooLabel">
                                 <rect key="frame" x="20" y="57" width="42" height="40"/>
                                 <string key="text">foo
 Label</string>
