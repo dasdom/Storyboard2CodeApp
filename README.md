@@ -2,10 +2,12 @@
 Mac app that converts an iOS storyboard into code. Work in progress.
 
 # Progress
-## Rudimentary support
+## Support (== most properties supported)
 - [x] UIView
 - [x] UIButton
 - [x] UILabel
+
+## Rudimentary support
 - [x] UITextField
 - [x] UISegmentedControl
 - [x] UISlider
