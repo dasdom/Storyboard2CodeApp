@@ -2,6 +2,7 @@ import Foundation
 
 public class View: AttributeCreatable, ElementCodeGeneratable {
   public let clipsSubviews: Bool?
+  var clipsSubviewsDefault = false
   public var font: Font? = nil
   public var type = ElementType.UIView
   public var rect: CGRect? = nil
@@ -53,7 +54,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
-    if let clips = clipsSubviews {
+    if let clips = clipsSubviews where clips != clipsSubviewsDefault {
       string += setup("clipsToBounds", value: "\(clips)")
     }
     for color in colors {

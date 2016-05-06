@@ -85,6 +85,20 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       layoutGuides.append(LayoutGuide(dict: attributeDict))
     case "string":
       currentText = ""
+    case "textInputTraits":
+      if let textField = tempViews.last as? TextField {
+        textField.autocapitalizationType = attributeDict["autocapitalizationType"]?.capitalizeFirst
+        textField.autocorrectionType = attributeDict["autocorrectionType"]?.capitalizeFirst
+        textField.spellCheckingType = attributeDict["spellCheckingType"]?.capitalizeFirst
+        textField.keyboardType = attributeDict["keyboardType"]?.capitalizeFirst
+        textField.returnKeyType = attributeDict["returnKeyType"]?.capitalizeFirst
+        textField.enablesReturnKeyAutomatically = attributeDict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
+        textField.secureTextEntry = attributeDict["secureTextEntry"].flatMap { $0 == "YES" }
+      
+        if let keyboardAppearanceString = attributeDict["keyboardAppearance"] {
+          textField.keyboardAppearance = KeyboardAppearance(rawValue: keyboardAppearanceString)?.codeString
+        }
+      }
     default:
       //      print("start: \(elementName)")
       break

@@ -20,7 +20,16 @@ public enum LineBreakMode: String {
     case .ByTruncatingMiddle: return "ByTruncatingMiddle"
     }
   }
+}
+
+public enum KeyboardAppearance: String {
+  case Dark = "alert"
   
+  public var codeString: String {
+    switch self {
+    case .Dark: return "Dark"
+    }
+  }
 }
 
 public enum ContentMode: String {
