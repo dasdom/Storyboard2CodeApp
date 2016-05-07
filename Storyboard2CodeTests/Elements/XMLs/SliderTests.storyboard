@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Foo-->
+        <scene sceneID="xxQ-wN-dg6">
+            <objects>
+                <viewController id="1UW-M4-gFU" userLabel="Foo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xwU-5U-eJR"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZZv-F3-mfh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="58a-lU-Czy" userLabel="view">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nO0-9Z-fah" userLabel="defaultSlider">
+                                <rect key="frame" x="18" y="28" width="564" height="31"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="-7" maxValue="33" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-a5-BCh" userLabel="fooSlider">
+                                <rect key="frame" x="18" y="66" width="564" height="31"/>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L8L-a5-BCh" firstAttribute="top" secondItem="nO0-9Z-fah" secondAttribute="bottom" constant="8" id="Jue-eE-Yq0"/>
+                            <constraint firstItem="nO0-9Z-fah" firstAttribute="top" secondItem="xwU-5U-eJR" secondAttribute="bottom" constant="8" id="Lhh-fH-D4n"/>
+                            <constraint firstItem="nO0-9Z-fah" firstAttribute="trailing" secondItem="58a-lU-Czy" secondAttribute="trailingMargin" id="Pon-dN-aZQ"/>
+                            <constraint firstItem="L8L-a5-BCh" firstAttribute="trailing" secondItem="nO0-9Z-fah" secondAttribute="trailing" id="bq0-jO-HkD"/>
+                            <constraint firstItem="nO0-9Z-fah" firstAttribute="leading" secondItem="58a-lU-Czy" secondAttribute="leadingMargin" id="i7t-8W-Yag"/>
+                            <constraint firstItem="L8L-a5-BCh" firstAttribute="leading" secondItem="nO0-9Z-fah" secondAttribute="leading" id="nqf-BH-8Df"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcg-K1-pxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="668" y="464"/>
+        </scene>
+    </scenes>
+</document>
