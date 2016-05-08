@@ -9,7 +9,7 @@
         <!--Foo-->
         <scene sceneID="xxQ-wN-dg6">
             <objects>
-                <viewController id="1UW-M4-gFU" userLabel="Foo" sceneMemberID="viewController">
+                <viewController id="1UW-M4-gFU" userLabel="Foo" customClass="Foo" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xwU-5U-eJR"/>
                         <viewControllerLayoutGuide type="bottom" id="ZZv-F3-mfh"/>
@@ -21,7 +21,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nO0-9Z-fah" userLabel="defaultSlider">
                                 <rect key="frame" x="18" y="28" width="564" height="31"/>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="-7" maxValue="33" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-a5-BCh" userLabel="fooSlider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="-7" maxValue="33" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-a5-BCh" userLabel="fooSlider">
                                 <rect key="frame" x="18" y="66" width="564" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="maximumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

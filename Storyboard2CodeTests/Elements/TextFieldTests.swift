@@ -18,7 +18,7 @@ class TextFieldTests: XCTestCase {
     super.setUp()
     guard let data = dataFromResource(withName: "TextFieldTests", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
-    print(codeString)
+//    print(codeString)
   }
   
   func test_TextFieldReturnsCorrectInitString() {
