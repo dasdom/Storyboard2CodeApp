@@ -18,7 +18,7 @@ class SliderTests: XCTestCase {
     super.setUp()
     guard let data = dataFromResource(withName: "SliderTests", andType: "xml") else { fatalError() }
     codeString = codeCreator.codeStringFrom(XMLdata: data)
-    print(codeString)
+//    print(codeString)
   }
   
   func test_SliderdReturnsCorrectInitString() {

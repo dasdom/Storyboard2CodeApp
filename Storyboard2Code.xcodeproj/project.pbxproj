@@ -32,6 +32,8 @@
 		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
 		F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */; };
+		F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */; };
+		F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */; };
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
 		F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTests.xml */; };
@@ -85,6 +87,8 @@
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
 		F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTests.swift; sourceTree = "<group>"; };
+		F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SegmentedControlTests.xml; sourceTree = "<group>"; };
+		F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTests.swift; sourceTree = "<group>"; };
 		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
 		F254ED931CD5495600505DD3 /* ButtonTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTests.xml; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */,
 				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
 				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
+				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
@@ -213,6 +218,7 @@
 				F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */,
 				F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */,
 				F2D9A2461CDD36B700F59171 /* SliderTests.xml */,
+				F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 			files = (
 				F2F7BB6F1CDBDFBA0002BAFF /* TextFieldTests.xml in Resources */,
 				F2E2EF811CD7E5D800079EB8 /* LabelTests.xml in Resources */,
+				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */,
 				F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */,
 				F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */,
 				F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */,
@@ -356,6 +363,7 @@
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
 				F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */,
 				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,
+				F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */,
 				F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
