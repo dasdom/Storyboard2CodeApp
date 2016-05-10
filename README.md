@@ -6,11 +6,11 @@ Mac app that converts an iOS storyboard into code. Work in progress.
 - [x] UIView
 - [x] UIButton
 - [x] UILabel
+- [x] UISlider
+- [x] UITextField
 
 ## Rudimentary support
-- [x] UITextField
 - [x] UISegmentedControl
-- [x] UISlider
 
 # Example output
 ```
