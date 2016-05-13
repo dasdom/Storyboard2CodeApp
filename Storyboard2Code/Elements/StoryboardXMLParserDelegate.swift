@@ -10,18 +10,19 @@ import Foundation
 
 class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
   var viewDict: [String:View] = [:]
-  var tempViews: [View] = []
+  private var tempViews: [View] = []
   var mainView: View?
   var viewController: ViewController?
   var constraints: [Constraint] = []
   var controllerConstraints: [Constraint] = []
-  var color: Color?
-  var font: Font?
-  var currentState: ButtonState?
-  var currentText: String?
+  private var color: Color?
+  private var font: Font?
+  private var currentState: ButtonState?
+  private var currentText: String?
   var viewMargins: Set<String> = []
-  var layoutGuides: [LayoutGuide] = []
-  var currentSegmentedControl: SegmentedControl?
+  private var layoutGuides: [LayoutGuide] = []
+  private var currentSegmentedControl: SegmentedControl?
+  var scenes: [Scene] = []
   
   func addView(view: View) {
     if let lastView = tempViews.last where lastView !== mainView {
@@ -133,13 +134,25 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       } else {
         fatalError("not supported yet")
       }
+    case "scene":
+      makeConstraintsUsable()
+      let scene = Scene(mainView: mainView!, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
+      scenes.append(scene)
+      
+      mainView = nil
+      viewDict.removeAll()
+      viewMargins.removeAll()
+      constraints.removeAll()
+      viewController = nil
+      controllerConstraints.removeAll()
+      
     default:
       //      print("end: \(elementName)")
       break
     }
   }
   
-  func parserDidEndDocument(parser: NSXMLParser) {
+  func makeConstraintsUsable() {
     constraints = constraints.map {
       var constraint = $0
       let firstItemName: String?
@@ -236,6 +249,107 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       }
       return true
     }
+  }
+  
+  func parserDidEndDocument(parser: NSXMLParser) {
+    makeConstraintsUsable()
+    
+//    constraints = constraints.map {
+//      var constraint = $0
+//      let firstItemName: String?
+//      
+//      if let firstItem = constraint.firstItem {
+//        firstItemName = viewDict[firstItem]?.userLabel
+//        if firstItemName == mainView?.userLabel {
+//          constraint.firstItemName = ""
+//        } else {
+//          constraint.firstItemName = viewDict[firstItem]?.userLabel
+//        }
+//      } else {
+//        firstItemName = mainView!.userLabel
+//      }
+//      var secondItemName: String? = nil
+//      if let secondItem = constraint.secondItem {
+//        secondItemName = viewDict[secondItem]?.userLabel
+//        if secondItemName == mainView?.userLabel {
+//          constraint.secondItemName = ""
+//        } else {
+//          constraint.secondItemName = viewDict[secondItem]?.userLabel
+//        }
+//      } else {
+//        //        print("constraint: \(constraint)")
+//      }
+//      
+//      if constraint.firstAttribute.hasSuffix("Margin") {
+//        var marginString = "let \(firstItemName!)Margins = "
+//        if firstItemName != mainView?.userLabel {
+//          marginString += "\(firstItemName!)."
+//        }
+//        marginString += "layoutMarginsGuide\n"
+//        viewMargins.insert(marginString)
+//        
+//        let firstAttribute = constraint.firstAttribute
+//        constraint.firstAttribute = firstAttribute.substringToIndex(firstAttribute.startIndex.advancedBy(firstAttribute.characters.count-6))
+//        constraint.firstItemName = "\(firstItemName!)Margins"
+//      }
+//      
+//      if let secondItemName = secondItemName, secondAttribute = constraint.secondAttribute {
+//        if secondAttribute.hasSuffix("Margin") {
+//          var marginString = "let \(secondItemName)Margins = "
+//          if secondItemName != mainView?.userLabel {
+//            marginString += "\(secondItemName)."
+//          }
+//          marginString += "layoutMarginsGuide\n"
+//          viewMargins.insert(marginString)
+//          
+//          if let secondAttribute = constraint.secondAttribute {
+//            constraint.secondAttribute = secondAttribute.substringToIndex(secondAttribute.startIndex.advancedBy(secondAttribute.characters.count-6))
+//            constraint.secondItemName = "\(secondItemName)Margins"
+//          }
+//        }
+//      }
+//      
+//      
+//      return constraint
+//    }
+//    
+//    controllerConstraints = constraints.filter {
+//      for guide in layoutGuides {
+//        if $0.firstItem == guide.id {
+//          return true
+//        }
+//        if $0.secondItem == guide.id {
+//          return true
+//        }
+//      }
+//      return false
+//    }
+//    
+//    controllerConstraints = controllerConstraints.map {
+//      var constraint = $0
+//      for guide in layoutGuides {
+//        if constraint.firstItem == guide.id {
+//          constraint.firstItemName = "\(guide.type)LayoutGuide"
+//        } else if constraint.secondItem == guide.id {
+//          constraint.secondItemName = "\(guide.type)LayoutGuide"
+//        }
+//      }
+//      return constraint
+//    }
+//    
+//    constraints = constraints.filter {
+//      //      return $0.secondItem != layoutGuides.first?.id
+//      
+//      for guide in layoutGuides {
+//        if $0.firstItem == guide.id {
+//          return false
+//        }
+//        if $0.secondItem == guide.id {
+//          return false
+//        }
+//      }
+//      return true
+//    }
     
   }
   

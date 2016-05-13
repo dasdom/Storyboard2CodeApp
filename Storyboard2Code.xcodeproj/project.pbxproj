@@ -32,13 +32,14 @@
 		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
 		F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */; };
-		F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */; };
+		F23DF4C51CE274DA00D9939E /* SegmentedControlTests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23DF4C41CE274DA00D9939E /* SegmentedControlTests.storyboard */; };
 		F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */; };
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
 		F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTests.xml */; };
 		F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED991CD5DDCF00505DD3 /* ViewTests.swift */; };
 		F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED951CD5499000505DD3 /* ViewTests.xml */; };
+		F2BF46911CE62E1A0031B663 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF46901CE62E1A0031B663 /* Scene.swift */; };
 		F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2D9A2461CDD36B700F59171 /* SliderTests.xml */; };
 		F2E2EF811CD7E5D800079EB8 /* LabelTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */; };
 		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
@@ -87,13 +88,14 @@
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
 		F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTests.swift; sourceTree = "<group>"; };
-		F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SegmentedControlTests.xml; sourceTree = "<group>"; };
+		F23DF4C41CE274DA00D9939E /* SegmentedControlTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SegmentedControlTests.storyboard; sourceTree = "<group>"; };
 		F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTests.swift; sourceTree = "<group>"; };
 		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
 		F254ED931CD5495600505DD3 /* ButtonTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTests.xml; sourceTree = "<group>"; };
 		F254ED951CD5499000505DD3 /* ViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ViewTests.xml; sourceTree = "<group>"; };
 		F254ED991CD5DDCF00505DD3 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		F2BF46901CE62E1A0031B663 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		F2D9A2461CDD36B700F59171 /* SliderTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SliderTests.xml; sourceTree = "<group>"; };
 		F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LabelTests.xml; sourceTree = "<group>"; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
 				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
 				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
+				F2BF46901CE62E1A0031B663 /* Scene.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -218,7 +221,7 @@
 				F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */,
 				F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */,
 				F2D9A2461CDD36B700F59171 /* SliderTests.xml */,
-				F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */,
+				F23DF4C41CE274DA00D9939E /* SegmentedControlTests.storyboard */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -316,7 +319,7 @@
 			files = (
 				F2F7BB6F1CDBDFBA0002BAFF /* TextFieldTests.xml in Resources */,
 				F2E2EF811CD7E5D800079EB8 /* LabelTests.xml in Resources */,
-				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */,
+				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.storyboard in Resources */,
 				F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */,
 				F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */,
 				F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */,
@@ -341,6 +344,7 @@
 				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
 				F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */,
 				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
+				F2BF46911CE62E1A0031B663 /* Scene.swift in Sources */,
 				F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */,
 				F230C4621CD34A93000DBA33 /* Color.swift in Sources */,
 				F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */,

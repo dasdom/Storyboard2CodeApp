@@ -54,5 +54,4 @@ class DropTextField: NSTextField {
     }
     return false
   }
-  
 }

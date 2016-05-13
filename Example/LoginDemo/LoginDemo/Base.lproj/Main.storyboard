@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="LoginDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="loginView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSQ-ut-hbC" userLabel="descriptionLabel">
+                                <rect key="frame" x="20" y="28" width="560" height="30"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mfx-c6-Fgu" userLabel="usernameTextField">
+                                <rect key="frame" x="20" y="66" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mCP-QW-bDT" userLabel="passwordTextField">
+                                <rect key="frame" x="20" y="104" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eh-ap-yTo" userLabel="loginButton">
+                                <rect key="frame" x="20" y="142" width="560" height="30"/>
+                                <state key="normal" title="Log me in"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mfx-c6-Fgu" firstAttribute="leading" secondItem="MSQ-ut-hbC" secondAttribute="leading" id="4mN-Lg-bFf"/>
+                            <constraint firstItem="mCP-QW-bDT" firstAttribute="top" secondItem="Mfx-c6-Fgu" secondAttribute="bottom" constant="8" id="5G8-IT-axk"/>
+                            <constraint firstItem="5eh-ap-yTo" firstAttribute="trailing" secondItem="mCP-QW-bDT" secondAttribute="trailing" id="D6E-A9-nlu"/>
+                            <constraint firstItem="MSQ-ut-hbC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="I0p-O9-b6A"/>
+                            <constraint firstItem="mCP-QW-bDT" firstAttribute="trailing" secondItem="Mfx-c6-Fgu" secondAttribute="trailing" id="dG5-gt-q7N"/>
+                            <constraint firstItem="MSQ-ut-hbC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="nJl-6g-hjQ"/>
+                            <constraint firstItem="MSQ-ut-hbC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oBB-vU-Gru"/>
+                            <constraint firstItem="5eh-ap-yTo" firstAttribute="leading" secondItem="mCP-QW-bDT" secondAttribute="leading" id="vVr-bi-SoE"/>
+                            <constraint firstItem="mCP-QW-bDT" firstAttribute="leading" secondItem="Mfx-c6-Fgu" secondAttribute="leading" id="vpa-cn-KHB"/>
+                            <constraint firstItem="5eh-ap-yTo" firstAttribute="top" secondItem="mCP-QW-bDT" secondAttribute="bottom" constant="8" id="x1g-eL-Qol"/>
+                            <constraint firstItem="Mfx-c6-Fgu" firstAttribute="trailing" secondItem="MSQ-ut-hbC" secondAttribute="trailing" id="yak-KG-CSf"/>
+                            <constraint firstItem="Mfx-c6-Fgu" firstAttribute="top" secondItem="MSQ-ut-hbC" secondAttribute="bottom" constant="8" id="z26-aN-rQ6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="339" y="389"/>
+        </scene>
+        <!--Foo View Controller-->
+        <scene sceneID="L8D-ol-Lzn">
+            <objects>
+                <viewController id="FnR-i0-y4C" customClass="FooViewController" customModule="LoginDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eWz-2g-vCQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="MVO-zc-97A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p6V-Wn-ppH" userLabel="fooView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foo!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAF-LF-e6e" userLabel="fooLabel">
+                                <rect key="frame" x="283" y="290" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IAF-LF-e6e" firstAttribute="centerX" secondItem="p6V-Wn-ppH" secondAttribute="centerX" id="47C-7o-lNk"/>
+                            <constraint firstItem="IAF-LF-e6e" firstAttribute="centerY" secondItem="p6V-Wn-ppH" secondAttribute="centerY" id="r2N-yU-Lg0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zOP-if-mAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1083" y="389"/>
+        </scene>
+    </scenes>
+</document>
