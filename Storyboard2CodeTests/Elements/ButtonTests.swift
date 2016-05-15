@@ -11,14 +11,18 @@ import XCTest
 
 class ButtonTests: XCTestCase {
   
-  var codeString: String!
+  var codeString = ""
   let codeCreator = CodeCreator()
   
   override func setUp() {
     super.setUp()
     
     guard let data = dataFromResource(withName: "ButtonTests", andType: "xml") else { fatalError() }
-    codeString = codeCreator.codeStringFrom(XMLdata: data)
+    let strings = codeCreator.codeStringsFrom(XMLdata: data)
+    codeString = ""
+    for (_, value) in strings {
+      codeString += value
+    }
 //    print(codeString)
   }
   

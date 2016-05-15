@@ -56,7 +56,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
     case "segmentedControl":
       currentSegmentedControl = SegmentedControl(dict: attributeDict)
     case "segment":
-      currentSegmentedControl?.segmentTitles.append(attributeDict["title"]!)
+      currentSegmentedControl?.segments.append(Segment(dict: attributeDict))
     case "slider":
       addView(Slider(dict: attributeDict))
     case "color":

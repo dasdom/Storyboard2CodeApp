@@ -11,14 +11,18 @@ import XCTest
 
 class SliderTests: XCTestCase {
   
-  var codeString: String!
+  var codeString = ""
   let codeCreator = CodeCreator()
   
   override func setUp() {
     super.setUp()
     guard let data = dataFromResource(withName: "SliderTests", andType: "xml") else { fatalError() }
-    codeString = codeCreator.codeStringFrom(XMLdata: data)
-//    print(codeString)
+    let strings = codeCreator.codeStringsFrom(XMLdata: data)
+    codeString = ""
+    for (_, value) in strings {
+      codeString += value
+    }
+    //    print(codeString)
   }
   
   func test_SliderdReturnsCorrectInitString() {

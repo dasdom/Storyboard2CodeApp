@@ -1,11 +1,23 @@
 import Foundation
 
+public struct Segment: AttributeCreatable  {
+  let title: String
+  let enabled: Bool?
+  
+  public init(dict: [String : String]) {
+    title = dict["title"]!
+    enabled = dict["enabled"].flatMap { $0 == "YES" }
+  }
+}
+
 public class SegmentedControl: View {
   public var selectedSegmentIndex: Int?
-  public var segmentTitles = [String]()
+  public var segments = [Segment]()
+  public var momentary: Bool?
   
   public required init(dict: [String : String]) {
     selectedSegmentIndex = Int(dict["selectedSegmentIndex"]!)!
+    momentary = dict["momentary"].flatMap { $0 == "YES" }
     
     super.init(dict: dict)
     
@@ -14,12 +26,21 @@ public class SegmentedControl: View {
   
   public override var setupString: String {
     var string = super.setupString
-    for (index, title) in segmentTitles.enumerate() {
-      string += "\(userLabel).insertSegmentWithTitle(\"\(title)\", atIndex: \(index), animated: false)\n"
+    for (index, segment) in segments.enumerate() {
+      string += "\(userLabel).insertSegmentWithTitle(\"\(segment.title)\", atIndex: \(index), animated: false)\n"
     }
-    if let selectedSegmentIndex = selectedSegmentIndex {
-      string += "\(userLabel).selectedSegmentIndex = \(selectedSegmentIndex)\n"
+    for (index, segment) in segments.enumerate() {
+      if let enabled = segment.enabled {
+        string += "\(userLabel).setEnabled(\(enabled), forSegmentAtIndex: \(index))\n"
+      }
     }
     return string
+  }
+  
+  override func reflectable() -> [String] {
+    var temp = super.reflectable()
+    temp.append("selectedSegmentIndex")
+    temp.append("momentary")
+    return temp
   }
 }
