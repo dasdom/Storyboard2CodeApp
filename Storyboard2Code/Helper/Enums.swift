@@ -1,7 +1,7 @@
 import Foundation
 
 public enum ElementType: String {
-  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider
+  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView
 }
 
 public enum LineBreakMode: String {

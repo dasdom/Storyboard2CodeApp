@@ -100,6 +100,9 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
           textField.keyboardAppearance = KeyboardAppearance(rawValue: keyboardAppearanceString)?.codeString
         }
       }
+    case "scrollView":
+      let scrollView = ScrollView(dict: attributeDict)
+      addView(scrollView)
     default:
       //      print("start: \(elementName)")
       break

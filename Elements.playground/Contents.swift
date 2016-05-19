@@ -2,16 +2,23 @@
 
 import UIKit
 
-let defaultSegmentedControl = UISegmentedControl()
-defaultSegmentedControl.insertSegmentWithTitle("First", atIndex: 0, animated: false)
-defaultSegmentedControl.insertSegmentWithTitle("Second", atIndex: 0, animated: false)
-defaultSegmentedControl.selectedSegmentIndex = 0
+let defaultScrollView = UIScrollView()
+defaultScrollView.clipsToBounds == true
+defaultScrollView.multipleTouchEnabled == true
+defaultScrollView.contentMode == .ScaleToFill
 
-let fooSegmentedControl = UISegmentedControl()
-fooSegmentedControl.insertSegmentWithTitle("Foo", atIndex: 0, animated: false)
-fooSegmentedControl.insertSegmentWithTitle("Bar", atIndex: 1, animated: false)
-fooSegmentedControl.insertSegmentWithTitle("Hello", atIndex: 2, animated: false)
-fooSegmentedControl.insertSegmentWithTitle("World", atIndex: 3, animated: false)
-fooSegmentedControl.setEnabled(false, forSegmentAtIndex: 3)
-fooSegmentedControl.selectedSegmentIndex = 1
-fooSegmentedControl.momentary = true
+let fooScrollView = UIScrollView()
+fooScrollView.directionalLockEnabled = true
+fooScrollView.bounces = false
+fooScrollView.alwaysBounceVertical = true
+fooScrollView.scrollEnabled = false
+fooScrollView.pagingEnabled = true
+fooScrollView.showsHorizontalScrollIndicator = false
+fooScrollView.showsVerticalScrollIndicator = false
+fooScrollView.indicatorStyle = .Black
+fooScrollView.delaysContentTouches = false
+fooScrollView.canCancelContentTouches = false
+fooScrollView.minimumZoomScale = 5
+fooScrollView.maximumZoomScale = 3
+fooScrollView.bouncesZoom = false
+fooScrollView.keyboardDismissMode = .OnDrag

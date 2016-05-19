@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F21895DF1CE8A6700077960F /* TableView.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895DE1CE8A6700077960F /* TableView.xml */; };
+		F21895E11CEA5DBC0077960F /* ScrollViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */; };
+		F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E21CECF9D60077960F /* ScrollViewTests.swift */; };
+		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
 		F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4311CD2AD31000DBA33 /* AppDelegate.swift */; };
 		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
 		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
@@ -60,6 +63,9 @@
 
 /* Begin PBXFileReference section */
 		F21895DE1CE8A6700077960F /* TableView.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableView.xml; sourceTree = "<group>"; };
+		F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScrollViewTests.xml; sourceTree = "<group>"; };
+		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewTests.swift; sourceTree = "<group>"; };
+		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard2Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F230C4311CD2AD31000DBA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F230C4331CD2AD31000DBA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
 				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
 				F2BF46901CE62E1A0031B663 /* Scene.swift */,
+				F21895E41CECFA730077960F /* ScrollView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
 				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
 				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
+				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
@@ -224,6 +232,7 @@
 				F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */,
 				F2D9A2461CDD36B700F59171 /* SliderTests.xml */,
 				F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */,
+				F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */,
 				F21895DE1CE8A6700077960F /* TableView.xml */,
 			);
 			path = XMLs;
@@ -326,6 +335,7 @@
 				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */,
 				F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */,
 				F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */,
+				F21895E11CEA5DBC0077960F /* ScrollViewTests.xml in Resources */,
 				F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F230C4651CD34A93000DBA33 /* LayoutGuide.swift in Sources */,
+				F21895E51CECFA730077960F /* ScrollView.swift in Sources */,
 				F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */,
 				F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */,
 				F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */,
@@ -366,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */,
+				F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */,
 				F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */,
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
