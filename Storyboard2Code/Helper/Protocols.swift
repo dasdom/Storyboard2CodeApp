@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ *  Conforming types can be initialized with a [String:String]
+ *  dictionary from the XML representation of a storyboard.
+ */
 public protocol AttributeCreatable {
   init(dict: [String:String])
 }
 
+/**
+ *  Conforming types can create code strings to be exported into swift files.
+ *
+ *  Each element that should be convertable from the storyboard representation
+ *  to the code representation hast to implement this protocol.
+ */
 public protocol ElementCodeGeneratable {
   var userLabel: String { get }
   var type: ElementType { get }
@@ -17,15 +27,17 @@ public protocol ElementCodeGeneratable {
 }
 
 public extension ElementCodeGeneratable {
+  /// Default implementation of the property declaration string
   var propertyString: String {
     guard isMainView == false else { return "" }
-
+    
     return "let \(userLabel): \(type.rawValue)\n"
   }
   
+  /// Default implementation of the addToSuperview string
   var addToSuperString: String {
     guard isMainView == false else { return "" }
-
+    
     var string = ""
     if let superViewName = superViewName {
       string += "\(superViewName)."
@@ -34,6 +46,15 @@ public extension ElementCodeGeneratable {
     return string
   }
   
+  /**
+   Helper method to make the setup code generation more readable.
+   
+   - parameter property:    name of the property
+   - parameter value:       value of the property
+   - parameter isEnumValue: true if a dot should be added before the value
+   
+   - returns: setup string
+   */
   func setup(property: String, value: String, isEnumValue: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
     return "\(userLabel).\(property) = \(dotOrEmpty)\(value)\n"
