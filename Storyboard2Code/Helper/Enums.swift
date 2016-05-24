@@ -1,5 +1,16 @@
 import Foundation
 
+/**
+ Supported storyboard elements
+ 
+ - UIView:             UIView
+ - UILabel:            UILabel
+ - UITextField:        UITextField
+ - UIButton:           UIButton
+ - UISegmentedControl: UISegmentedControl
+ - UISlider:           UISlider
+ - UIScrollView:       UIScrollView
+ */
 public enum ElementType: String {
   case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView
 }
