@@ -4,4 +4,7 @@ ixcode_project: Storyboard2Code.xcodeproj
 xcode_scheme: Storyboard2Code
 
 script:
-- xcodebuild test -scheme Storyboard2Code
+  - xcodebuild test -scheme Storyboard2Code
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
