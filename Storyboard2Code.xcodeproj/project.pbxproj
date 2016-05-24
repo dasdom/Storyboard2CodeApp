@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F21895DF1CE8A6700077960F /* TableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21895DE1CE8A6700077960F /* TableView.storyboard */; };
+		F21895DF1CE8A6700077960F /* TableView.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895DE1CE8A6700077960F /* TableView.xml */; };
 		F21895E11CEA5DBC0077960F /* ScrollViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */; };
 		F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E21CECF9D60077960F /* ScrollViewTests.swift */; };
 		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
@@ -62,7 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F21895DE1CE8A6700077960F /* TableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TableView.storyboard; sourceTree = "<group>"; };
+		F21895DE1CE8A6700077960F /* TableView.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableView.xml; sourceTree = "<group>"; };
 		F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScrollViewTests.xml; sourceTree = "<group>"; };
 		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewTests.swift; sourceTree = "<group>"; };
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 				F2D9A2461CDD36B700F59171 /* SliderTests.xml */,
 				F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */,
 				F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */,
-				F21895DE1CE8A6700077960F /* TableView.storyboard */,
+				F21895DE1CE8A6700077960F /* TableView.xml */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F21895DF1CE8A6700077960F /* TableView.storyboard in Resources */,
+				F21895DF1CE8A6700077960F /* TableView.xml in Resources */,
 				F2F7BB6F1CDBDFBA0002BAFF /* TextFieldTests.xml in Resources */,
 				F2E2EF811CD7E5D800079EB8 /* LabelTests.xml in Resources */,
 				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */,
