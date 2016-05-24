@@ -61,14 +61,23 @@ public extension ElementCodeGeneratable {
   }
 }
 
+/**
+ *  Conforming types provide attribute code generation.
+ */
 public protocol AttributeCodeGeneratable {
   var codeString: String { get }
 }
 
+/**
+ *  Conforming types provide control state code generation.
+ */
 public protocol ControlStateCodeGeneratable {
   func codeString(userLabel: String) -> String
 }
 
+/**
+ *  Conforming types provide constraint code generation.
+ */
 public protocol ConstraintCodeGeneratable {
   var codeString: String { get }
 }
