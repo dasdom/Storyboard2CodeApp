@@ -27,7 +27,7 @@ class ButtonTests: XCTestCase {
   }
   
   func test_ButtonReturnsCorrectInitString() {
-    let expectedString = "button = UIButton(type: .Syste)\n"
+    let expectedString = "button = UIButton(type: .System)\n"
     XCTAssertTrue(codeString.containsString(expectedString))
   }
   
