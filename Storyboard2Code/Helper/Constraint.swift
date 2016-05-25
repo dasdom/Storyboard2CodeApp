@@ -1,5 +1,8 @@
 import Foundation
 
+/**
+ *  Struct to store everything needed to create code for constraints.
+ */
 public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   public let firstItem: String?
   public var firstAttribute: String
@@ -12,6 +15,14 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   public var firstItemName: String? = nil
   public var secondItemName: String? = nil
   
+  /**
+   Init with dictionary from an attributesDict from the 
+   storyboard xml.
+   
+   - parameter dict: attributes dictionary
+   
+   - returns: initialized instance
+   */
   public init(dict: [String : String]) {
     firstItem = dict["firstItem"]
     firstAttribute = dict["firstAttribute"]!
@@ -22,6 +33,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     constant = dict["constant"]
   }
   
+  /// The string to generate code.
   public var codeString: String {
 //    guard let firstItemName = firstItemName else { fatalError() }
     

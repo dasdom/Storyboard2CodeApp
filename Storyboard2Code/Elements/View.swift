@@ -1,5 +1,6 @@
 import Foundation
 
+/// Class to store everything needed to generate UIView code
 public class View: AttributeCreatable, ElementCodeGeneratable {
   public let clipsSubviews: Bool?
   var clipsSubviewsDefault = false
@@ -43,7 +44,6 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     guard let temp = dict["userLabel"] else { print("userLabel missing in storyboard"); fatalError() }
     userLabel = temp
   }
-  
   
   public var initString: String {
     guard isMainView == false else { return "" }
