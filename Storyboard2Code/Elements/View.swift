@@ -65,6 +65,12 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     return string
   }
   
+  /**
+   Retuns an array of property names of properties that can be used to
+   generate code using reflection.
+   
+   - returns: array of property names
+   */
   func reflectable() -> [String] {
     var temp: [String] = ["translatesAutoresizingMaskIntoConstraints"]
     if opaque != opaqueDefault { temp.append("opaque") }
