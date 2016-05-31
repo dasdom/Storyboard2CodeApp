@@ -81,3 +81,10 @@ public protocol ControlStateCodeGeneratable {
 public protocol ConstraintCodeGeneratable {
   var codeString: String { get }
 }
+
+/**
+ *  Conforming types provide generated code for classes.
+ */
+public protocol ClassCodeCreatable {
+  var swiftCodeString: String { get }
+}

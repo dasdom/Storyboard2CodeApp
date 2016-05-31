@@ -20,7 +20,7 @@ struct CodeCreator {
     var outputDict: [String: String] = [:]
     
     for scene in parserDelegate.scenes {
-      outputDict[scene.mainView.userLabel.capitalizeFirst] = scene.swiftCodeString()
+      outputDict[scene.mainView.userLabel.capitalizeFirst] = scene.swiftCodeString
     }
     
 //    var outputString = "import UIKit\n\nclass "

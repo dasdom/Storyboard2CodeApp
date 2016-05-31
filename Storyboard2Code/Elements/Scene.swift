@@ -16,7 +16,7 @@ struct Scene {
   let viewController: ViewController
   let controllerConstraints: [Constraint]
   
-  func swiftCodeString() -> String {
+  var swiftCodeString: String {
     var outputString = "import UIKit\n\nclass "
     outputString += (mainView.userLabel.capitalizeFirst)
     outputString += ": UIView {\n"

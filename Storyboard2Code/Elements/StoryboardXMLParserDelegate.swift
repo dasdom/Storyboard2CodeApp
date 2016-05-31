@@ -139,9 +139,10 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       }
     case "scene":
       makeConstraintsUsable()
-      let scene = Scene(mainView: mainView!, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
-      scenes.append(scene)
-      
+      if let mainView = mainView {
+        let scene = Scene(mainView: mainView, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
+        scenes.append(scene)
+      }
       mainView = nil
       viewDict.removeAll()
       viewMargins.removeAll()
