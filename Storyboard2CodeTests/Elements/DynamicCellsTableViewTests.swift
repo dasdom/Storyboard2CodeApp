@@ -25,8 +25,8 @@ class DynamicCellsTableViewTests: XCTestCase {
     print(codeString)
   }
   
-  func test_ScrollViewReturnsCorrectInitString() {
+  func test_TableViewReturnsCorrectInitString() {
     let expectedString = "fooTableView = FooTableView()\n"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
 }

@@ -1,16 +1,16 @@
 import Foundation
 
 public enum Color: AttributeCreatable {
-  case RedGreenBlueRepresentation(key:String, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
-  case WhiteAlphaRepresentation(key: String, white: CGFloat, alpha: CGFloat)
-  case StringRepresentation(key: String, string: String)
-  case NotSupported
+  case redGreenBlueRepresentation(key:String, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+  case whiteAlphaRepresentation(key: String, white: CGFloat, alpha: CGFloat)
+  case stringRepresentation(key: String, string: String)
+  case notSupported
   
   public var key: String {
     switch self {
-    case .RedGreenBlueRepresentation(let key, _, _, _, _): return key
-    case .WhiteAlphaRepresentation(let key, _, _): return key
-    case .StringRepresentation(let key, _): return key
+    case .redGreenBlueRepresentation(let key, _, _, _, _): return key
+    case .whiteAlphaRepresentation(let key, _, _): return key
+    case .stringRepresentation(let key, _): return key
     default: return "Not Supported"
     }
   }
@@ -25,19 +25,19 @@ public enum Color: AttributeCreatable {
       blue = Float(blueString),
       alpha = Float(alphaString) {
       
-      self = RedGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+      self = redGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
       
     } else if let whiteString = dict["white"],
       alphaString = dict["alpha"],
       white = Float(whiteString),
       alpha = Float(alphaString) {
       
-      self = WhiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
+      self = whiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
       
     } else if let string = dict["cocoaTouchSystemColor"] {
-      self = StringRepresentation(key: dict["key"]!, string: string)
+      self = stringRepresentation(key: dict["key"]!, string: string)
     } else {
-      self = NotSupported
+      self = notSupported
     }
   }
 }
@@ -45,11 +45,11 @@ public enum Color: AttributeCreatable {
 extension Color: AttributeCodeGeneratable {
   public var codeString: String {
     switch self {
-    case .RedGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
+    case .redGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
       return String(format: "UIColor(red: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
-    case .WhiteAlphaRepresentation(_, let white, let alpha):
+    case .whiteAlphaRepresentation(_, let white, let alpha):
       return String(format: "UIColor(white: %.3lf, alpha: %.3lf)", white, alpha)
-    case .StringRepresentation(_, let string):
+    case .stringRepresentation(_, let string):
       return "UIColor.\(string)()"
     default:
       return "Not implemented yet"

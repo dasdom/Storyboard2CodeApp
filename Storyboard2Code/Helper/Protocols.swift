@@ -23,7 +23,7 @@ public protocol ElementCodeGeneratable {
   var addToSuperString: String { get }
   var superViewName: String? { get }
   var isMainView: Bool { get set }
-  func setup(property: String, value: String, isEnumValue: Bool) -> String
+  func setup(_ property: String, value: String, isEnumValue: Bool) -> String
 }
 
 public extension ElementCodeGeneratable {
@@ -55,7 +55,7 @@ public extension ElementCodeGeneratable {
    
    - returns: setup string
    */
-  func setup(property: String, value: String, isEnumValue: Bool = false) -> String {
+  func setup(_ property: String, value: String, isEnumValue: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
     return "\(userLabel).\(property) = \(dotOrEmpty)\(value)\n"
   }
@@ -72,7 +72,7 @@ public protocol AttributeCodeGeneratable {
  *  Conforming types provide control state code generation.
  */
 public protocol ControlStateCodeGeneratable {
-  func codeString(userLabel: String) -> String
+  func codeString(_ userLabel: String) -> String
 }
 
 /**

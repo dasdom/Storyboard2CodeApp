@@ -9,9 +9,9 @@
 import Foundation
 
 struct CodeCreator {
-  func codeStringsFrom(XMLdata data: NSData) -> [String: String] {
+  func codeStringsFrom(XMLdata data: Data) -> [String: String] {
     
-    let parser = NSXMLParser(data: data)
+    let parser = XMLParser(data: data)
     let parserDelegate = StoryboardXMLParserDelegate()
     parser.delegate = parserDelegate
     

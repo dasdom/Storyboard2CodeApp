@@ -26,10 +26,10 @@ public class SegmentedControl: View {
   
   public override var setupString: String {
     var string = super.setupString
-    for (index, segment) in segments.enumerate() {
+    for (index, segment) in segments.enumerated() {
       string += "\(userLabel).insertSegmentWithTitle(\"\(segment.title)\", atIndex: \(index), animated: false)\n"
     }
-    for (index, segment) in segments.enumerate() {
+    for (index, segment) in segments.enumerated() {
       if let enabled = segment.enabled {
         string += "\(userLabel).setEnabled(\(enabled), forSegmentAtIndex: \(index))\n"
       }

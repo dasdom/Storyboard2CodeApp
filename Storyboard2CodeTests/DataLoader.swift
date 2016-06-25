@@ -9,8 +9,8 @@
 import XCTest
 
 extension XCTestCase {
-  func dataFromResource(withName name: String, andType type: String) -> NSData? {
-    guard let path = NSBundle(forClass: self.dynamicType.self).pathForResource(name, ofType: type) else { return nil }
-    return NSData(contentsOfFile: path)
+  func dataFromResource(withName name: String, andType type: String) -> Data? {
+    guard let path = Bundle(for: self.dynamicType.self).pathForResource(name, ofType: type) else { return nil }
+    return (try? Data(contentsOf: URL(fileURLWithPath: path)))
   }
 }

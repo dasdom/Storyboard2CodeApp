@@ -16,39 +16,39 @@ class DropTextField: NSTextField {
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    registerForDraggedTypes([NSFilenamesPboardType, NSURLPboardType])
+    register(forDraggedTypes: [NSFilenamesPboardType, NSURLPboardType])
   }
   
-  override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
+  override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
     if checkExtension(sender) {
       fileTypeSupported = true
-      return .Copy
+      return .copy
     } else {
       fileTypeSupported = false
-      return .None
+      return NSDragOperation()
     }
   }
   
-  override func draggingUpdated(sender: NSDraggingInfo) -> NSDragOperation {
+  override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
     if fileTypeSupported {
-      return .Copy
+      return .copy
     } else {
-      return .None
+      return NSDragOperation()
     }
   }
   
-  override func performDragOperation(sender: NSDraggingInfo) -> Bool {
-    if let board = sender.draggingPasteboard().propertyListForType(NSFilenamesPboardType) as? [String], path = board.first {
+  override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+    if let board = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], path = board.first {
       droppedFilePath = path
       return true
     }
     return false
   }
   
-  func checkExtension(drag: NSDraggingInfo) -> Bool {
-    if let board = drag.draggingPasteboard().propertyListForType(NSFilenamesPboardType) as? [String], path = board.first {
-      let url = NSURL(fileURLWithPath: path)
-      if let fileExtension = url.pathExtension?.lowercaseString {
+  func checkExtension(_ drag: NSDraggingInfo) -> Bool {
+    if let board = drag.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], path = board.first {
+      let url = URL(fileURLWithPath: path)
+      if let fileExtension = url.pathExtension?.lowercased() {
         return fileTypes.contains(fileExtension)
       }
     }

@@ -27,48 +27,48 @@ class SegmentedControlTests: XCTestCase {
   
   func test_SegmentedControlReturnsCorrectInitString() {
     let expectedString = "fooSegmentedControl = UISegmentedControl()\n"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasTranslatesAutoresizingString() {
     let expectedString = "fooSegmentedControl.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleFooString() {
     let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Foo\", atIndex: 0, animated: false)"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleBarString() {
     let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Bar\", atIndex: 1, animated: false)"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleHelloString() {
     let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Hello\", atIndex: 2, animated: false)"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasSetEnabledString() {
     let expectedString = "fooSegmentedControl.setEnabled(false, forSegmentAtIndex: 3)"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasSelectedSegmentIndexString() {
     let expectedString = "fooSegmentedControl.selectedSegmentIndex = 1"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasMomentaryString() {
     let expectedString = "fooSegmentedControl.momentary = true"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
 }
 
 extension SegmentedControlTests {
   func testDefaultSegmentedControlSetupString_HasSetEnabled() {
     let expectedString = "defaultSegmentedControl.setEnabled"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
 }

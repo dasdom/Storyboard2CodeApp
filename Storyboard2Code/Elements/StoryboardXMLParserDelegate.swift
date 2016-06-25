@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
+class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var viewDict: [String:View] = [:]
   private var tempViews: [View] = []
   var mainView: View?
@@ -24,7 +24,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
   private var currentSegmentedControl: SegmentedControl?
   var scenes: [Scene] = []
   
-  func addView(view: View) {
+  func addView(_ view: View) {
     if let lastView = tempViews.last where lastView !== mainView {
       view.superViewName = lastView.userLabel
     }
@@ -32,7 +32,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
     tempViews.append(view)
   }
   
-  func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+  func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
     
     switch elementName {
     case "viewController":
@@ -110,15 +110,15 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
     
   }
   
-  func parser(parser: NSXMLParser, foundCharacters string: String) {
+  func parser(_ parser: XMLParser, foundCharacters string: String) {
     currentText? += string
   }
   
-  func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+  func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
     case "label", "textField", "view", "button", "slider":
-      tempViews.popLast()
+      _ = tempViews.popLast()
     case "state":
       if let button = tempViews.last as? Button {
         button.states.append(currentState!)
@@ -133,7 +133,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
       currentSegmentedControl = nil
     case "string":
       if let label = tempViews.last as? Label {
-        label.text = currentText?.stringByReplacingOccurrencesOfString("\n", withString: "\\n")
+        label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")
       } else {
         fatalError("not supported yet")
       }
@@ -192,7 +192,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
         viewMargins.insert(marginString)
         
         let firstAttribute = constraint.firstAttribute
-        constraint.firstAttribute = firstAttribute.substringToIndex(firstAttribute.startIndex.advancedBy(firstAttribute.characters.count-6))
+        constraint.firstAttribute = firstAttribute.substring(to: firstAttribute.characters.index(firstAttribute.startIndex, offsetBy: firstAttribute.characters.count-6))
         constraint.firstItemName = "\(firstItemName!)Margins"
       }
       
@@ -206,7 +206,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
           viewMargins.insert(marginString)
           
           if let secondAttribute = constraint.secondAttribute {
-            constraint.secondAttribute = secondAttribute.substringToIndex(secondAttribute.startIndex.advancedBy(secondAttribute.characters.count-6))
+            constraint.secondAttribute = secondAttribute.substring(to: secondAttribute.characters.index(secondAttribute.startIndex, offsetBy: secondAttribute.characters.count-6))
             constraint.secondItemName = "\(secondItemName)Margins"
           }
         }
@@ -255,7 +255,7 @@ class StoryboardXMLParserDelegate: NSObject, NSXMLParserDelegate {
     }
   }
   
-  func parserDidEndDocument(parser: NSXMLParser) {
+  func parserDidEndDocument(_ parser: XMLParser) {
     makeConstraintsUsable()
     
 //    constraints = constraints.map {

@@ -14,11 +14,11 @@ public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
   public var titleColor: Color? = nil
   
   public init(dict: [String : String]) {
-    key = dict["key"]!.capitalizedString
+    key = dict["key"]!.capitalized
     title = dict["title"]
   }
   
-  public func codeString(userLabel: String) -> String {
+  public func codeString(_ userLabel: String) -> String {
     var string = ""
     if let title = title {
       string += "\(userLabel).setTitle(\"\(title)\", forState: .\(key))\n"

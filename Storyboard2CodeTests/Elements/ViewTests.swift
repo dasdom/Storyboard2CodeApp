@@ -27,47 +27,47 @@ class ViewTests: XCTestCase {
   
   func test_ViewReturnsCorrectInitString() {
     let expectedString = "fooView = UIView()\n"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
  
   func testViewSetupString_HasTranslatesAutoresizingString() {
     let expectedString = "fooView.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasAutoresizesSubviewsString() {
     let expectedString = "fooView.autoresizesSubviews = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasOpaqueString() {
     let expectedString = "fooView.opaque = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasClipsToBoundsString() {
     let expectedString = "fooView.clipsToBounds = true"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasClearsContextBeforeDrawingString() {
     let expectedString = "fooView.clearsContextBeforeDrawing = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasUserInteractionEnabledString() {
     let expectedString = "fooView.userInteractionEnabled = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasTagString() {
     let expectedString = "fooView.tag = 22"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testViewSetupString_HasContentModeString() {
     let expectedString = "fooView.contentMode = .Redraw"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
 }
 
@@ -75,11 +75,11 @@ class ViewTests: XCTestCase {
 extension ViewTests {
   func testDefaultViewSetupString_HasNotContentModeString() {
     let expectedString = "defaultView.contentMode"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultViewSetupString_HasNotClipsToBoundsString() {
     let expectedString = "defaultView.clipsToBounds"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
 }

@@ -22,7 +22,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
       codeTextView.string = outputString
     }
   }
-  var xmlData: NSData? {
+  var xmlData: Data? {
     didSet {
       if let data = xmlData {
         swiftCodeStrings = CodeCreator().codeStringsFrom(XMLdata: data)
@@ -32,18 +32,18 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   
   override func windowDidLoad() {
     super.windowDidLoad()
-    dropTextField.addObserver(self, forKeyPath: "droppedFilePath", options: .New, context: nil)
+    dropTextField.addObserver(self, forKeyPath: "droppedFilePath", options: .new, context: nil)
     
     dropTextField.delegate = self
   }
   
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+  override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
     if keyPath == "droppedFilePath" {
-      guard let path = change?["new"] as? String else { return }
+      guard let path = change?["new" as NSKeyValueChangeKey] as? String else { return }
       dropTextField.stringValue = path
       
-      guard let data = NSData(contentsOfFile: path),
-        dataString = NSString(data: data, encoding: NSUTF8StringEncoding) else { return }
+      guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+        dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
       
       xmlData = data
       
@@ -51,14 +51,14 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     }
   }
   
-  override func controlTextDidChange(obj: NSNotification) {
-    if let path = (obj.userInfo?["NSFieldEditor"] as? NSTextView)?.string {
+  override func controlTextDidChange(_ obj: Notification) {
+    if let path = ((obj as NSNotification).userInfo?["NSFieldEditor"] as? NSTextView)?.string {
       print(path)
       
       dropTextField.stringValue = path
       
-      guard let data = NSData(contentsOfFile: path),
-        dataString = NSString(data: data, encoding: NSUTF8StringEncoding) else { return }
+      guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+        dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
       
       xmlData = data
       
@@ -66,14 +66,14 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     }
   }
   
-  @IBAction func export(sender: AnyObject) {
-    let paths = NSSearchPathForDirectoriesInDomains(.DesktopDirectory, .UserDomainMask, true)
+  @IBAction func export(_ sender: AnyObject) {
+    let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
     
     for (key, value) in swiftCodeStrings {
       let outputPath = "\(paths.first!)/\(key).swift"
       do {
-        try value.writeToFile(outputPath, atomically: true, encoding: NSUTF8StringEncoding)
-      } catch NSCocoaError.FileWriteNoPermissionError {
+        try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
+      } catch NSCocoaError.fileWriteNoPermissionError {
         print("FileWriteNoPermissionError")
       } catch {
         print("error")

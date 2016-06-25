@@ -27,32 +27,32 @@ class LabelTests: XCTestCase {
   
   func test_LabelReturnsCorrectInitString() {
     let expectedString = "fooLabel = UILabel()\n"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasTranslatesAutoresizingString() {
     let expectedString = "fooLabel.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasLineBreakModeString() {
     let expectedString = "fooLabel.lineBreakMode = .ByTruncatingHead"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasTextAlignmentString() {
     let expectedString = "fooLabel.textAlignment = .Justified"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasNumberOfLinesString() {
     let expectedString = "fooLabel.numberOfLines = 0"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasMinimumScaleFactorString() {
     let expectedString = "fooLabel.minimumScaleFactor = 0.5"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
 
 //  // Check if this is needed when minimumScaleFactor is set
@@ -64,22 +64,22 @@ class LabelTests: XCTestCase {
   
   func testLabelSetupString_HasEnabledString() {
     let expectedString = "fooLabel.enabled = false"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasHighlightedString() {
     let expectedString = "fooLabel.highlighted = true"
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasTextString() {
     let expectedString = "fooLabel.text = \"foo\\nLabel\""
-    XCTAssertTrue(codeString.containsString(expectedString))
+    XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasNotOpaqueString() {
     let expectedString = "fooLabel.opaque"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
 }
 
@@ -87,31 +87,31 @@ class LabelTests: XCTestCase {
 extension LabelTests {
   func testDefaultLabelSetupString_HasNotUserInteractionEnabledString() {
     let expectedString = "defaultLabel.userInteractionEnabled"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultLabelSetupString_HasNotTextAlignmentString() {
     let expectedString = "defaultLabel.textAlignment"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultLabelSetupString_HasNotLineBreakModeString() {
     let expectedString = "defaultLabel.lineBreakMode"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultLabelSetupString_HasNotBaselineAdjustmentString() {
     let expectedString = "defaultLabel.baselineAdjustment"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultLabelSetupString_HasNotAdjustsFontSizeToFitWidthString() {
     let expectedString = "defaultLabel.adjustsFontSizeToFitWidth"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
   
   func testDefaultLabelSetupString_HasNotOpaqueString() {
     let expectedString = "defaultLabel.opaque"
-    XCTAssertFalse(codeString.containsString(expectedString))
+    XCTAssertFalse(codeString.contains(expectedString))
   }
 }

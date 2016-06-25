@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Foo-->
@@ -15,18 +16,16 @@
                         <viewControllerLayoutGuide type="bottom" id="68m-bs-rjH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SH7-nq-OIp" userLabel="view">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bFS-ur-NSO" userLabel="defaultSegmentedControl">
-                                <rect key="frame" x="20" y="28" width="560" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7RC-2c-T0W" userLabel="fooSegmentedControl">
-                                <rect key="frame" x="20" y="64" width="560" height="29"/>
                                 <segments>
                                     <segment title="Foo"/>
                                     <segment title="Bar"/>
@@ -35,7 +34,7 @@
                                 </segments>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bFS-ur-NSO" firstAttribute="trailing" secondItem="SH7-nq-OIp" secondAttribute="trailingMargin" id="I0s-ff-0mV"/>
                             <constraint firstItem="7RC-2c-T0W" firstAttribute="top" secondItem="bFS-ur-NSO" secondAttribute="bottom" constant="8" id="bLO-OK-ZRP"/>

@@ -8,22 +8,22 @@
 
 import Foundation
 
-class StoryboardXMLHelper: NSObject, NSXMLParserDelegate {
+class StoryboardXMLHelper: NSObject, XMLParserDelegate {
   
   var attributedDictionary: [NSObject: AnyObject]?
   var elementName: String?
   
-  func attributedDictionary(fromData data: NSData, forElement element: String) -> [String: String]? {
+  func attributedDictionary(fromData data: Data, forElement element: String) -> [String: String]? {
     elementName = element
     
-    let parser = NSXMLParser(data: data)
+    let parser = XMLParser(data: data)
     parser.delegate = self
     parser.parse()
     
     return attributedDictionary as? [String: String]
   }
   
-  func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+  func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
     if elementName == self.elementName && attributedDictionary == nil {
       attributedDictionary = attributeDict
       parser.abortParsing()

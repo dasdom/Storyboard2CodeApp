@@ -84,7 +84,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   
   var reflectedSetup: String {
     /// Get setup string from child in a mirror
-    func stringFromChild(label: String?, value: Any, reflectable: [String]) -> String {
+    func stringFromChild(_ label: String?, value: Any, reflectable: [String]) -> String {
      
       if let label = label where reflectable.contains(label) {
         let optionalMirror = Mirror(reflecting: value)
@@ -114,7 +114,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     let reflectableNames = reflectable()
     let mirror = Mirror(reflecting: self)
     var string = ""
-    if let superclassMirror = mirror.superclassMirror() {
+    if let superclassMirror = mirror.superclassMirror {
       for child in superclassMirror.children {
         string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
       }
