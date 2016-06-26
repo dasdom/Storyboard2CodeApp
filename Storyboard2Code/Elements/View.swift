@@ -13,7 +13,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   public let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
   public let contentMode: String
-  var contentModeDefault = "ScaleToFill"
+  var contentModeDefault = "scaleToFill"
   public let translatesAutoresizingMaskIntoConstraints: Bool
   public let autoresizesSubviews: Bool?
   public let clearsContextBeforeDrawing: Bool?
@@ -27,7 +27,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   required public init(dict: [String : String]) {
     translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"] == "YES"
     opaque                      = dict["opaque"].flatMap { $0 == "YES" }
-    contentMode                 = dict["contentMode"]!.capitalizeFirst
+    contentMode                 = dict["contentMode"]!
     clipsSubviews               = dict["clipsSubviews"].flatMap { $0 == "YES" }
     userInteractionEnabled      = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
     autoresizesSubviews         = dict["autoresizesSubviews"].flatMap { $0 == "YES" }

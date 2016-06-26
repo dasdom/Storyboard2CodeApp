@@ -27,7 +27,7 @@ class ButtonTests: XCTestCase {
   }
   
   func test_ButtonReturnsCorrectInitString() {
-    let expectedString = "button = UIButton(type: .System)\n"
+    let expectedString = "button = UIButton(type: .system)\n"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
@@ -37,17 +37,17 @@ class ButtonTests: XCTestCase {
   }
   
   func testButtonSetupString_HasContentHorizontalAlignmentString() {
-    let expectedString = "button.contentHorizontalAlignment = .Left"
+    let expectedString = "button.contentHorizontalAlignment = .left"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testButtonSetupString_HasContentVerticalAlignmentString() {
-    let expectedString = "button.contentVerticalAlignment = .Top"
+    let expectedString = "button.contentVerticalAlignment = .top"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testButtonSetupString_HasLineBreakModeString() {
-    let expectedString = "button.titleLabel?.lineBreakMode = .ByClipping"
+    let expectedString = "button.titleLabel?.lineBreakMode = .byClipping"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   

@@ -5,11 +5,11 @@ public class Label: View {
   public let verticalHuggingPriority: Int
   public var text: String?
   public var textAlignment: String?
-  var textAlignmentDefault = "Natural"
+  var textAlignmentDefault = "natural"
   public let lineBreakMode: LineBreakMode
   var lineBreakModeDefault = LineBreakMode.ByTruncatingTail
   public let baselineAdjustment: String?
-  var baseLineAdjustmentDefault = "AlignBaselines"
+  var baseLineAdjustmentDefault = "alignBaselines"
 //  public let adjustsFontSizeToFitWidth: Bool
   public let numberOfLines: String?
   public let minimumScaleFactor: String?
@@ -22,9 +22,9 @@ public class Label: View {
     verticalHuggingPriority   = Int(dict["verticalHuggingPriority"]!)!
     
     text                = dict["text"]
-    textAlignment       = dict["textAlignment"]?.capitalizeFirst
+    textAlignment       = dict["textAlignment"]
     lineBreakMode       = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
-    baselineAdjustment  = dict["baselineAdjustment"]?.capitalizeFirst
+    baselineAdjustment  = dict["baselineAdjustment"]
     numberOfLines       = dict["numberOfLines"]
     minimumScaleFactor  = dict["minimumScaleFactor"]
     enabled             = dict["enabled"].flatMap { $0 == "YES" }

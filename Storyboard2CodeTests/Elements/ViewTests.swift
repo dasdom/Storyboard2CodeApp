@@ -66,7 +66,7 @@ class ViewTests: XCTestCase {
   }
   
   func testViewSetupString_HasContentModeString() {
-    let expectedString = "fooView.contentMode = .Redraw"
+    let expectedString = "fooView.contentMode = .redraw"
     XCTAssertTrue(codeString.contains(expectedString))
   }
 }

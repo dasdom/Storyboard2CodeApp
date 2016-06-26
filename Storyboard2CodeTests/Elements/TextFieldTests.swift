@@ -36,7 +36,7 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasBorderStyleString() {
-    let expectedString = "fooTextField.borderStyle = .Line"
+    let expectedString = "fooTextField.borderStyle = .line"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
@@ -46,7 +46,7 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasTextAlignmentString() {
-    let expectedString = "fooTextField.textAlignment = .Center"
+    let expectedString = "fooTextField.textAlignment = .center"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
@@ -56,7 +56,7 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasClearButtonModeString() {
-    let expectedString = "fooTextField.clearButtonMode = .WhileEditing"
+    let expectedString = "fooTextField.clearButtonMode = .whileEditing"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
@@ -71,32 +71,32 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasAutocapitalizationTypeString() {
-    let expectedString = "fooTextField.autocapitalizationType = .AllCharacters"
+    let expectedString = "fooTextField.autocapitalizationType = .allCharacters"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testTextFieldSetupString_HasAutocorrectionTypeString() {
-    let expectedString = "fooTextField.autocorrectionType = .No"
+    let expectedString = "fooTextField.autocorrectionType = .no"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testTextFieldSetupString_HasSpellCheckingTypeString() {
-    let expectedString = "fooTextField.spellCheckingType = .No"
+    let expectedString = "fooTextField.spellCheckingType = .no"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testTextFieldSetupString_HasKeyboardTypeString() {
-    let expectedString = "fooTextField.keyboardType = .Twitter"
+    let expectedString = "fooTextField.keyboardType = .twitter"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testTextFieldSetupString_HasKeyboardAppearanceString() {
-    let expectedString = "fooTextField.keyboardAppearance = .Dark"
+    let expectedString = "fooTextField.keyboardAppearance = .dark"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testTextFieldSetupString_HasReturnKeyTypeString() {
-    let expectedString = "fooTextField.returnKeyType = .Send"
+    let expectedString = "fooTextField.returnKeyType = .send"
     XCTAssertTrue(codeString.contains(expectedString))
   }
 

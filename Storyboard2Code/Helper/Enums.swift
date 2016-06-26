@@ -28,11 +28,11 @@ public enum LineBreakMode: String {
   
   public var codeString: String {
     switch self {
-    case .ByTruncatingTail: return "ByTruncatingTail"
-    case .ByCharWrapping: return "ByCharWrapping"
-    case .ByClipping: return "ByClipping"
-    case .ByTruncatingHead: return "ByTruncatingHead"
-    case .ByTruncatingMiddle: return "ByTruncatingMiddle"
+    case .ByTruncatingTail: return "byTruncatingTail"
+    case .ByCharWrapping: return "byCharWrapping"
+    case .ByClipping: return "byClipping"
+    case .ByTruncatingHead: return "byTruncatingHead"
+    case .ByTruncatingMiddle: return "byTruncatingMiddle"
     }
   }
 }
@@ -42,11 +42,11 @@ public enum LineBreakMode: String {
  * in the storyboard is different to the string to be used in code.
  */
 public enum KeyboardAppearance: String {
-  case Dark = "alert"
+  case dark = "alert"
   
   public var codeString: String {
     switch self {
-    case .Dark: return "Dark"
+    case .dark: return "dark"
     }
   }
 }

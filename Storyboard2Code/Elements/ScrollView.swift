@@ -32,13 +32,13 @@ public class ScrollView: View {
     pagingEnabled = dict["pagingEnabled"].flatMap { $0 == "YES" }
     showsHorizontalScrollIndicator = dict["showsHorizontalScrollIndicator"].flatMap { $0 == "YES" }
     showsVerticalScrollIndicator = dict["showsVerticalScrollIndicator"].flatMap { $0 == "YES" }
-    indicatorStyle = dict["indicatorStyle"]?.capitalizeFirst
+    indicatorStyle = dict["indicatorStyle"]
     delaysContentTouches = dict["delaysContentTouches"].flatMap { $0 == "YES" }
     canCancelContentTouches = dict["canCancelContentTouches"].flatMap { $0 == "YES" }
     minimumZoomScale = dict["minimumZoomScale"]
     maximumZoomScale = dict["maximumZoomScale"]
     bouncesZoom = dict["bouncesZoom"].flatMap { $0 == "YES" }
-    keyboardDismissMode = dict["keyboardDismissMode"]?.capitalizeFirst
+    keyboardDismissMode = dict["keyboardDismissMode"]
     
     super.init(dict: dict)
     

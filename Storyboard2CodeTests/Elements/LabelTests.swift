@@ -36,12 +36,12 @@ class LabelTests: XCTestCase {
   }
   
   func testLabelSetupString_HasLineBreakModeString() {
-    let expectedString = "fooLabel.lineBreakMode = .ByTruncatingHead"
+    let expectedString = "fooLabel.lineBreakMode = .byTruncatingHead"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testLabelSetupString_HasTextAlignmentString() {
-    let expectedString = "fooLabel.textAlignment = .Justified"
+    let expectedString = "fooLabel.textAlignment = .justified"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   

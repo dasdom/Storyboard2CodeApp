@@ -23,6 +23,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   private var layoutGuides: [LayoutGuide] = []
   private var currentSegmentedControl: SegmentedControl?
   var scenes: [Scene] = []
+  var tableViews: [TableView] = []
   
   func addView(_ view: View) {
     if let lastView = tempViews.last where lastView !== mainView {
@@ -88,11 +89,11 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       currentText = ""
     case "textInputTraits":
       if let textField = tempViews.last as? TextField {
-        textField.autocapitalizationType = attributeDict["autocapitalizationType"]?.capitalizeFirst
-        textField.autocorrectionType = attributeDict["autocorrectionType"]?.capitalizeFirst
-        textField.spellCheckingType = attributeDict["spellCheckingType"]?.capitalizeFirst
-        textField.keyboardType = attributeDict["keyboardType"]?.capitalizeFirst
-        textField.returnKeyType = attributeDict["returnKeyType"]?.capitalizeFirst
+        textField.autocapitalizationType = attributeDict["autocapitalizationType"]
+        textField.autocorrectionType = attributeDict["autocorrectionType"]
+        textField.spellCheckingType = attributeDict["spellCheckingType"]
+        textField.keyboardType = attributeDict["keyboardType"]
+        textField.returnKeyType = attributeDict["returnKeyType"]
         textField.enablesReturnKeyAutomatically = attributeDict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
         textField.secureTextEntry = attributeDict["secureTextEntry"].flatMap { $0 == "YES" }
       
@@ -103,6 +104,9 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     case "scrollView":
       let scrollView = ScrollView(dict: attributeDict)
       addView(scrollView)
+    case "tableView":
+      let tableView = TableView(dict: attributeDict)
+      tableViews.append(tableView)
     default:
       //      print("start: \(elementName)")
       break
@@ -257,103 +261,6 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   
   func parserDidEndDocument(_ parser: XMLParser) {
     makeConstraintsUsable()
-    
-//    constraints = constraints.map {
-//      var constraint = $0
-//      let firstItemName: String?
-//      
-//      if let firstItem = constraint.firstItem {
-//        firstItemName = viewDict[firstItem]?.userLabel
-//        if firstItemName == mainView?.userLabel {
-//          constraint.firstItemName = ""
-//        } else {
-//          constraint.firstItemName = viewDict[firstItem]?.userLabel
-//        }
-//      } else {
-//        firstItemName = mainView!.userLabel
-//      }
-//      var secondItemName: String? = nil
-//      if let secondItem = constraint.secondItem {
-//        secondItemName = viewDict[secondItem]?.userLabel
-//        if secondItemName == mainView?.userLabel {
-//          constraint.secondItemName = ""
-//        } else {
-//          constraint.secondItemName = viewDict[secondItem]?.userLabel
-//        }
-//      } else {
-//        //        print("constraint: \(constraint)")
-//      }
-//      
-//      if constraint.firstAttribute.hasSuffix("Margin") {
-//        var marginString = "let \(firstItemName!)Margins = "
-//        if firstItemName != mainView?.userLabel {
-//          marginString += "\(firstItemName!)."
-//        }
-//        marginString += "layoutMarginsGuide\n"
-//        viewMargins.insert(marginString)
-//        
-//        let firstAttribute = constraint.firstAttribute
-//        constraint.firstAttribute = firstAttribute.substringToIndex(firstAttribute.startIndex.advancedBy(firstAttribute.characters.count-6))
-//        constraint.firstItemName = "\(firstItemName!)Margins"
-//      }
-//      
-//      if let secondItemName = secondItemName, secondAttribute = constraint.secondAttribute {
-//        if secondAttribute.hasSuffix("Margin") {
-//          var marginString = "let \(secondItemName)Margins = "
-//          if secondItemName != mainView?.userLabel {
-//            marginString += "\(secondItemName)."
-//          }
-//          marginString += "layoutMarginsGuide\n"
-//          viewMargins.insert(marginString)
-//          
-//          if let secondAttribute = constraint.secondAttribute {
-//            constraint.secondAttribute = secondAttribute.substringToIndex(secondAttribute.startIndex.advancedBy(secondAttribute.characters.count-6))
-//            constraint.secondItemName = "\(secondItemName)Margins"
-//          }
-//        }
-//      }
-//      
-//      
-//      return constraint
-//    }
-//    
-//    controllerConstraints = constraints.filter {
-//      for guide in layoutGuides {
-//        if $0.firstItem == guide.id {
-//          return true
-//        }
-//        if $0.secondItem == guide.id {
-//          return true
-//        }
-//      }
-//      return false
-//    }
-//    
-//    controllerConstraints = controllerConstraints.map {
-//      var constraint = $0
-//      for guide in layoutGuides {
-//        if constraint.firstItem == guide.id {
-//          constraint.firstItemName = "\(guide.type)LayoutGuide"
-//        } else if constraint.secondItem == guide.id {
-//          constraint.secondItemName = "\(guide.type)LayoutGuide"
-//        }
-//      }
-//      return constraint
-//    }
-//    
-//    constraints = constraints.filter {
-//      //      return $0.secondItem != layoutGuides.first?.id
-//      
-//      for guide in layoutGuides {
-//        if $0.firstItem == guide.id {
-//          return false
-//        }
-//        if $0.secondItem == guide.id {
-//          return false
-//        }
-//      }
-//      return true
-//    }
     
   }
   

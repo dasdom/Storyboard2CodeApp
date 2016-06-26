@@ -25,8 +25,23 @@ class DynamicCellsTableViewTests: XCTestCase {
     print(codeString)
   }
   
-  func test_TableViewReturnsCorrectInitString() {
-    let expectedString = "fooTableView = FooTableView()\n"
+  func test_TableViewCodeString_HasImportStatement() {
+    let expectedString = "import UIKit\n\n"
+    XCTAssertTrue(codeString.contains(expectedString))
+  }
+  
+  func test_TableViewCodeString_HasClassStatement() {
+    let expectedString = "class FooTableView: UITableView {"
+    XCTAssertTrue(codeString.contains(expectedString))
+  }
+  
+  func test_TableViewCodeString_HasOverrideInitStatement() {
+    let expectedString = "override init(frame: CGRect, style: UITableViewStyle) {"
+    XCTAssertTrue(codeString.contains(expectedString))
+  }
+  
+  func test_TableViewCodeString_HasInitWithCoderStatement() {
+    let expectedString = "required init?(coder aDecoder: NSCoder) {\nfatalError(\"init(coder:) has not been implemented\")\n}"
     XCTAssertTrue(codeString.contains(expectedString))
   }
 }

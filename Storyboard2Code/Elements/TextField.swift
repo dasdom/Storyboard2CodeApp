@@ -2,15 +2,15 @@ import Foundation
 
 public class TextField: View {
   public let contentHorizontalAlignment: String
-  var contentHorizontalAlignmentDefault = "Left"
+  var contentHorizontalAlignmentDefault = "left"
   public let contentVerticalAlignment: String
-  var contentVerticalAlignmentDefault = "Center"
+  var contentVerticalAlignmentDefault = "center"
   public let borderStyle: String
-  var borderStyleDefault = "None"
+  var borderStyleDefault = "none"
   public let placeholder: String?
   public let text: String?
   public let textAlignment: String
-  var textAlignmentDefault = "Natural"
+  var textAlignmentDefault = "natural"
   public let minimumFontSize: Int
   public let clearsOnBeginEditing: Bool?
   public let clearButtonMode: String?
@@ -24,16 +24,15 @@ public class TextField: View {
   public var secureTextEntry: Bool?
   
   public required init(dict: [String : String]) {
-    contentHorizontalAlignment  = dict["contentHorizontalAlignment"]!.capitalizeFirst
-    contentVerticalAlignment    = dict["contentVerticalAlignment"]!.capitalizeFirst
-    borderStyle                 = dict["borderStyle"]!.capitalizeFirst
+    contentHorizontalAlignment  = dict["contentHorizontalAlignment"]!
+    contentVerticalAlignment    = dict["contentVerticalAlignment"]!
+    borderStyle                 = dict["borderStyle"]!
     placeholder                 = dict["placeholder"]
     text                        = dict["text"]
-    textAlignment               = dict["textAlignment"]!.capitalizeFirst
+    textAlignment               = dict["textAlignment"]!
     minimumFontSize             = Int(dict["minimumFontSize"]!)!
     clearsOnBeginEditing        = dict["clearsOnBeginEditing"].flatMap { $0 == "YES" }
-    clearButtonMode             = dict["clearButtonMode"]?.capitalizeFirst
-    
+    clearButtonMode             = dict["clearButtonMode"] 
     super.init(dict: dict)
     clipsSubviewsDefault = true
     

@@ -23,9 +23,9 @@ final public class Button: View {
   public var states: [ButtonState] = []
   
   public required init(dict: [String : String]) {
-    contentHorizontalAlignment          = dict["contentHorizontalAlignment"]!.capitalizeFirst
-    contentVerticalAlignment            = dict["contentVerticalAlignment"]!.capitalizeFirst
-    buttonType                          = dict["buttonType"]!.capitalizeFirst
+    contentHorizontalAlignment          = dict["contentHorizontalAlignment"]!
+    contentVerticalAlignment            = dict["contentVerticalAlignment"]!
+    buttonType                          = dict["buttonType"]!
     lineBreakMode                       = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
     enabled                             = dict["enabled"].flatMap { $0 == "YES" }
     highlighted                         = dict["highlighted"].flatMap { $0 == "YES" }
@@ -44,8 +44,8 @@ final public class Button: View {
   
   public override var initString: String {
     var string = "\(userLabel) = "
-    if buttonType == "RoundedRect" {
-      string += "\(type.rawValue)(type: .System)\n"
+    if buttonType == "roundedRect" {
+      string += "\(type.rawValue)(type: .system)\n"
     } else {
       assert(false, "Not supported yet")
       string += "Not supported yet"

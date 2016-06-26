@@ -71,7 +71,7 @@ class ScrollViewTests: XCTestCase {
   }
   
   func testScrollViewSetupString_HasIndicatorStyleString() {
-    let expectedString = "fooScrollView.indicatorStyle = .Black"
+    let expectedString = "fooScrollView.indicatorStyle = .black"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
@@ -101,7 +101,7 @@ class ScrollViewTests: XCTestCase {
   }
   
   func testScrollViewSetupString_HasKeyboardDismissModeString() {
-    let expectedString = "fooScrollView.keyboardDismissMode = .OnDrag"
+    let expectedString = "fooScrollView.keyboardDismissMode = .onDrag"
     XCTAssertTrue(codeString.contains(expectedString))
   }
 }
