@@ -42,7 +42,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     if let firstItemName = firstItemName {
       string += firstItemName
     }
-    if firstItemName?.characters.count > 0 {
+    if (firstItemName?.characters.count)! > 0 {
       string += "."
     }
     if firstAttribute == "baseline" {
@@ -51,7 +51,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       string += firstAttribute
     }
     string += "Anchor.constraintEqualTo"
-    if let secondItemName = secondItemName, secondAttribute = secondAttribute {
+    if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
       string += "Anchor(\(secondItemName)"
       if secondItemName.characters.count > 0 {
         string += "."

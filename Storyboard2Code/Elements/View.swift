@@ -54,11 +54,11 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
-    if let clips = clipsSubviews where clips != clipsSubviewsDefault {
+    if let clips = clipsSubviews, clips != clipsSubviewsDefault {
       string += setup("clipsToBounds", value: "\(clips)")
     }
     for color in colors {
-      if !(color.key == "textColor" && color.codeString == "UIColor.darkTextColor()") { // Defaults
+      if !(color.key == "textColor" && color.codeString == "UIColor.darkText()") { // Defaults
         string += "\(userLabel).\(color.key) = \(color.codeString)\n"
       }
     }
@@ -82,11 +82,15 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     return temp
   }
   
+  var selfNameForMessaging: String {
+    return "\(self.userLabel)."
+  }
+  
   var reflectedSetup: String {
     /// Get setup string from child in a mirror
     func stringFromChild(_ label: String?, value: Any, reflectable: [String]) -> String {
      
-      if let label = label where reflectable.contains(label) {
+      if let label = label, reflectable.contains(label) {
         let optionalMirror = Mirror(reflecting: value)
         if optionalMirror.children.count > 0 {
           for child in optionalMirror.children {
@@ -98,14 +102,14 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
           }
           /// add a '.' when the value seems to be an enum value
           let dotOrEmpty: String
-          if let stringValue = value as? String, _ = Float(stringValue) {
+          if let stringValue = value as? String, let _ = Float(stringValue) {
             dotOrEmpty = ""
           } else if let _ = value as? String {
             dotOrEmpty = "."
           } else {
             dotOrEmpty = ""
           }
-          return "\(self.userLabel).\(label) = \(dotOrEmpty)\(value)\n"
+          return "\(self.selfNameForMessaging)\(label) = \(dotOrEmpty)\(value)\n"
         }
       }
       return ""

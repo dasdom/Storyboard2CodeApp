@@ -17,27 +17,27 @@ public enum Color: AttributeCreatable {
   
   public init(dict: [String : String]) {
     if let redString = dict["red"],
-      greenString = dict["green"],
-      blueString = dict["blue"],
-      alphaString = dict["alpha"],
-      red = Float(redString),
-      green = Float(greenString),
-      blue = Float(blueString),
-      alpha = Float(alphaString) {
+      let greenString = dict["green"],
+      let blueString = dict["blue"],
+      let alphaString = dict["alpha"],
+      let red = Float(redString),
+      let green = Float(greenString),
+      let blue = Float(blueString),
+      let alpha = Float(alphaString) {
       
-      self = redGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+      self = .redGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
       
     } else if let whiteString = dict["white"],
-      alphaString = dict["alpha"],
-      white = Float(whiteString),
-      alpha = Float(alphaString) {
+      let alphaString = dict["alpha"],
+      let white = Float(whiteString),
+      let alpha = Float(alphaString) {
       
-      self = whiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
+      self = .whiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
       
     } else if let string = dict["cocoaTouchSystemColor"] {
-      self = stringRepresentation(key: dict["key"]!, string: string)
+      self = .stringRepresentation(key: dict["key"]!, string: string)
     } else {
-      self = notSupported
+      self = .notSupported
     }
   }
 }
@@ -46,7 +46,7 @@ extension Color: AttributeCodeGeneratable {
   public var codeString: String {
     switch self {
     case .redGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
-      return String(format: "UIColor(red: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
+      return String(format: "UIColor(colorLiteralRed: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
     case .whiteAlphaRepresentation(_, let white, let alpha):
       return String(format: "UIColor(white: %.3lf, alpha: %.3lf)", white, alpha)
     case .stringRepresentation(_, let string):

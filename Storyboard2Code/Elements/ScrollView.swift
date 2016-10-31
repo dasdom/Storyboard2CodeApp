@@ -12,6 +12,7 @@ public class ScrollView: View {
   let directionalLockEnabled: Bool?
   let bounces: Bool?
   let alwaysBounceVertical: Bool?
+  var alwaysBounceVerticalDefault = false
   let scrollEnabled: Bool?
   let pagingEnabled: Bool?
   let showsHorizontalScrollIndicator: Bool?
@@ -51,7 +52,7 @@ public class ScrollView: View {
     var temp = super.reflectable()
     temp.append("directionalLockEnabled")
     temp.append("bounces")
-    temp.append("alwaysBounceVertical")
+    if alwaysBounceVertical != alwaysBounceVerticalDefault { temp.append("alwaysBounceVertical") }
     temp.append("scrollEnabled")
     temp.append("pagingEnabled")
     temp.append("showsHorizontalScrollIndicator")

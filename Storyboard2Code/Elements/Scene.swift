@@ -34,7 +34,7 @@ struct Scene {
     }
     
     outputString += "super.init(frame: frame)\n\n"
-    outputString += "backgroundColor = UIColor.whiteColor()\n\n"
+    outputString += "backgroundColor = UIColor.white()\n\n"
     
     for view in viewDict.values {
       outputString += view.addToSuperString

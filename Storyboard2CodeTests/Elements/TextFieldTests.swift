@@ -61,7 +61,7 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasTextColorString() {
-    let expectedString = "fooTextField.textColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
+    let expectedString = "fooTextField.textColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   

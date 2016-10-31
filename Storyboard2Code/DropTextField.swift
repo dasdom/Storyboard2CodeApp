@@ -1,7 +1,3 @@
-//
-//  DropTextField.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 28.04.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -38,7 +34,7 @@ class DropTextField: NSTextField {
   }
   
   override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-    if let board = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], path = board.first {
+    if let board = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], let path = board.first {
       droppedFilePath = path
       return true
     }
@@ -46,11 +42,10 @@ class DropTextField: NSTextField {
   }
   
   func checkExtension(_ drag: NSDraggingInfo) -> Bool {
-    if let board = drag.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], path = board.first {
+    if let board = drag.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], let path = board.first {
       let url = URL(fileURLWithPath: path)
-      if let fileExtension = url.pathExtension?.lowercased() {
-        return fileTypes.contains(fileExtension)
-      }
+      let fileExtension = url.pathExtension.lowercased()
+      return fileTypes.contains(fileExtension)
     }
     return false
   }

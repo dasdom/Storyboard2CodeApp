@@ -1,7 +1,3 @@
-//
-//  StoryboardXMLParserDelegate.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 29.04.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -26,7 +22,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var tableViews: [TableView] = []
   
   func addView(_ view: View) {
-    if let lastView = tempViews.last where lastView !== mainView {
+    if let lastView = tempViews.last, lastView !== mainView {
       view.superViewName = lastView.userLabel
     }
     viewDict[view.id] = view
@@ -107,6 +103,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     case "tableView":
       let tableView = TableView(dict: attributeDict)
       tableViews.append(tableView)
+      tempViews.append(tableView)
     default:
       //      print("start: \(elementName)")
       break
@@ -121,7 +118,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label", "textField", "view", "button", "slider":
+    case "label", "textField", "view", "button", "slider", "tableView":
       _ = tempViews.popLast()
     case "state":
       if let button = tempViews.last as? Button {
@@ -200,7 +197,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         constraint.firstItemName = "\(firstItemName!)Margins"
       }
       
-      if let secondItemName = secondItemName, secondAttribute = constraint.secondAttribute {
+      if let secondItemName = secondItemName, let secondAttribute = constraint.secondAttribute {
         if secondAttribute.hasSuffix("Margin") {
           var marginString = "let \(secondItemName)Margins = "
           if secondItemName != mainView?.userLabel {

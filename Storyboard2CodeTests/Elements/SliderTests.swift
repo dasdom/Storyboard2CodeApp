@@ -56,17 +56,17 @@ class SliderTests: XCTestCase {
   }
   
   func testSliderSetupString_HasMinimumTrackTintColorString() {
-    let expectedString = "fooSlider.minimumTrackTintColor = UIColor(red: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)"
+    let expectedString = "fooSlider.minimumTrackTintColor = UIColor(colorLiteralRed: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSliderSetupString_HasMaximumTrackTintColorString() {
-    let expectedString = "fooSlider.maximumTrackTintColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
+    let expectedString = "fooSlider.maximumTrackTintColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSliderSetupString_HasThumbTintColorString() {
-    let expectedString = "fooSlider.thumbTintColor = UIColor(red: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)"
+    let expectedString = "fooSlider.thumbTintColor = UIColor(colorLiteralRed: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
 }

@@ -1,7 +1,3 @@
-//
-//  MainWindowController.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 28.04.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -37,13 +33,14 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     dropTextField.delegate = self
   }
   
-  override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+  
     if keyPath == "droppedFilePath" {
-      guard let path = change?["new" as NSKeyValueChangeKey] as? String else { return }
+      guard let path = change?[.newKey] as? String else { return }
       dropTextField.stringValue = path
       
       guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-        dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
+        let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
       
       xmlData = data
       
@@ -58,7 +55,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
       dropTextField.stringValue = path
       
       guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-        dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
+        let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
       
       xmlData = data
       
@@ -73,7 +70,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
       let outputPath = "\(paths.first!)/\(key).swift"
       do {
         try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
-      } catch NSCocoaError.fileWriteNoPermissionError {
+      } catch CocoaError.fileWriteNoPermission {
         print("FileWriteNoPermissionError")
       } catch {
         print("error")

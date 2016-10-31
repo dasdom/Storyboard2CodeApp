@@ -8,13 +8,33 @@
 
 import Foundation
 
-struct TableView: AttributeCreatable {
+class TableView: ScrollView {
   
-  let userLabel: String
+  let separatorStyle: String?
+  let sectionIndexMinimumDisplayRowCount: String?
+  let allowsSelectionDuringEditing: Bool?
+  let allowsMultipleSelection: Bool?
+  let rowHeight: String?
+  let sectionHeaderHeight: String?
+  let sectionFooterHeight: String?
   
-  init(dict: [String : String]) {
-    guard let temp = dict["userLabel"] else { print("userLabel missing in storyboard"); fatalError() }
-    userLabel = temp
+  required init(dict: [String : String]) {
+    
+    separatorStyle = dict["separatorStyle"]
+    sectionIndexMinimumDisplayRowCount = dict["sectionIndexMinimumDisplayRowCount"]
+    allowsSelectionDuringEditing = dict["allowsSelectionDuringEditing"].flatMap { $0 == "YES" }
+    allowsMultipleSelection = dict["allowsMultipleSelection"].flatMap { $0 == "YES" }
+    rowHeight = dict["rowHeight"]
+    sectionHeaderHeight = dict["sectionHeaderHeight"]
+    sectionFooterHeight = dict["sectionFooterHeight"]
+
+    super.init(dict: dict)
+
+    alwaysBounceVerticalDefault = true
+  }
+  
+  override var selfNameForMessaging: String {
+    return ""
   }
   
   var swiftCodeString: String {
@@ -22,8 +42,31 @@ struct TableView: AttributeCreatable {
     outputString += "class \(userLabel.capitalizeFirst): UITableView {\n\n"
     outputString += "override init(frame: CGRect, style: UITableViewStyle) {\n\n"
     
+    outputString += "super.init(frame: frame, style: style)\n"
     
+    outputString += reflectedSetup
+    
+    for color in colors {
+      if !(color.key == "textColor" && color.codeString == "UIColor.darkText()") { // Defaults
+        outputString += "\(color.key) = \(color.codeString)\n"
+      }
+    }
+    
+    outputString += "}\n\n"
+
     outputString += "required init?(coder aDecoder: NSCoder) {\nfatalError(\"init(coder:) has not been implemented\")\n}"
     return outputString
+  }
+  
+  override func reflectable() -> [String] {
+    var temp = super.reflectable()
+    temp.append("separatorStyle")
+    temp.append("sectionIndexMinimumDisplayRowCount")
+    temp.append("allowsSelectionDuringEditing")
+    temp.append("allowsMultipleSelection")
+    temp.append("rowHeight")
+    temp.append("sectionHeaderHeight")
+    temp.append("sectionFooterHeight")
+    return temp
   }
 }
