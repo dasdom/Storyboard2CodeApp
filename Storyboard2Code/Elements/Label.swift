@@ -61,9 +61,9 @@ public class Label: View {
     if let text = text {
       string += "\(userLabel).text = \"\(text)\"\n"
     }
-    string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), forAxis: .Horizontal)\n"
+    string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
     if let font = font {
-      if font.codeString != "UIFont.systemFontOfSize(17)" { // Default
+      if font.codeString != "UIFont.systemFont(ofSize: 17)" { // Default
         string += "\(userLabel).font = \(font.codeString)\n"
       }
     }

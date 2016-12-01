@@ -22,7 +22,7 @@ class ViewTests: XCTestCase {
     for (_, value) in strings {
       codeString += value
     }
-    //    print(codeString)
+        print(codeString)
   }
   
   func test_ViewReturnsCorrectInitString() {
@@ -41,7 +41,7 @@ class ViewTests: XCTestCase {
   }
   
   func testViewSetupString_HasOpaqueString() {
-    let expectedString = "fooView.opaque = false"
+    let expectedString = "fooView.isOpaque = false"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   

@@ -27,19 +27,22 @@ public class SegmentedControl: View {
   public override var setupString: String {
     var string = super.setupString
     for (index, segment) in segments.enumerated() {
-      string += "\(userLabel).insertSegmentWithTitle(\"\(segment.title)\", atIndex: \(index), animated: false)\n"
+      string += "\(userLabel).insertSegment(withTitle:\"\(segment.title)\", at: \(index), animated: false)\n"
     }
     for (index, segment) in segments.enumerated() {
       if let enabled = segment.enabled {
         string += "\(userLabel).setEnabled(\(enabled), forSegmentAtIndex: \(index))\n"
       }
     }
+    if let selectedSegmentIndex = selectedSegmentIndex {
+      string += setup("selectedSegmentIndex", value: "\(selectedSegmentIndex)", isEnumValue: false)
+    }
     return string
   }
   
   override func reflectable() -> [String] {
     var temp = super.reflectable()
-    temp.append("selectedSegmentIndex")
+//    temp.append("selectedSegmentIndex")
     temp.append("momentary")
     return temp
   }

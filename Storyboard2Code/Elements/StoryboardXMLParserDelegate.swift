@@ -21,12 +21,14 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var scenes: [Scene] = []
   var tableViews: [TableView] = []
   
-  func addView(_ view: View) {
+  func addView(_ view: View, addToTempViews: Bool = true) {
     if let lastView = tempViews.last, lastView !== mainView {
       view.superViewName = lastView.userLabel
     }
     viewDict[view.id] = view
-    tempViews.append(view)
+    if addToTempViews {
+      tempViews.append(view)
+    }
   }
   
   func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -60,8 +62,10 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       let color = Color(dict: attributeDict)
       if currentState != nil {
         currentState?.titleColor = color
+      } else if let currentSegmentedControl = currentSegmentedControl {
+        currentSegmentedControl.colors.append(color)
       } else {
-        //        print(tempViews.last, attributeDict)
+//        print(tempViews.last, attributeDict)
         tempViews.last?.colors.append(color)
       }
     case "fontDescription":
@@ -69,11 +73,13 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       tempViews.last?.font = font
     case "constraint":
       var constraintAttributeDict = attributeDict
-      if constraintAttributeDict["firstItem"] == nil
-        && (constraintAttributeDict["firstAttribute"] == "width"
-          || constraintAttributeDict["firstAttribute"] == "height")
-      {
-        constraintAttributeDict["firstItem"] = tempViews.last?.id
+      let firstAttribute = constraintAttributeDict["firstAttribute"]
+      if constraintAttributeDict["firstItem"] == nil && (firstAttribute == "width" || firstAttribute == "height") {
+        var firstItem = currentSegmentedControl?.id
+        if firstItem == nil {
+          firstItem = tempViews.last?.id
+        }
+        constraintAttributeDict["firstItem"] = firstItem
       }
       let constraint = Constraint(dict: constraintAttributeDict)
       constraints.append(constraint)
@@ -102,8 +108,9 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       addView(scrollView)
     case "tableView":
       let tableView = TableView(dict: attributeDict)
-      tableViews.append(tableView)
-      tempViews.append(tableView)
+//      tableViews.append(tableView)
+//      tempViews.append(tableView)
+      addView(tableView)
     default:
       //      print("start: \(elementName)")
       break
@@ -118,7 +125,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label", "textField", "view", "button", "slider", "tableView":
+    case "label", "textField", "view", "button", "slider", "tableView", "scrollView":
       _ = tempViews.popLast()
     case "state":
       if let button = tempViews.last as? Button {
@@ -129,7 +136,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       }
     case "segmentedControl":
       if let segmentedControl = currentSegmentedControl {
-        addView(segmentedControl)
+        addView(segmentedControl, addToTempViews: false)
       }
       currentSegmentedControl = nil
     case "string":

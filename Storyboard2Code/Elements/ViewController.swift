@@ -8,6 +8,11 @@ public struct ViewController: AttributeCreatable {
   public init(dict: [String : String]) {
     id = dict["id"]!
 //    userLabel = dict["userLabel"]!
-    customClass = dict["customClass"]!
+    if let theClass = dict["customClass"] {
+      customClass = theClass
+    } else {
+      customClass = ""
+      assert(false, "You need to set the class of the view controller in the scene.")
+    }
   }
 }

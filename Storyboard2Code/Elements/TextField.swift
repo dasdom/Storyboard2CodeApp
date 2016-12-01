@@ -5,11 +5,11 @@ public class TextField: View {
   var contentHorizontalAlignmentDefault = "left"
   public let contentVerticalAlignment: String
   var contentVerticalAlignmentDefault = "center"
-  public let borderStyle: String
+  public let borderStyle: String?
   var borderStyleDefault = "none"
   public let placeholder: String?
   public let text: String?
-  public let textAlignment: String
+  public let textAlignment: String?
   var textAlignmentDefault = "natural"
   public let minimumFontSize: Int
   public let clearsOnBeginEditing: Bool?
@@ -26,10 +26,10 @@ public class TextField: View {
   public required init(dict: [String : String]) {
     contentHorizontalAlignment  = dict["contentHorizontalAlignment"]!
     contentVerticalAlignment    = dict["contentVerticalAlignment"]!
-    borderStyle                 = dict["borderStyle"]!
+    borderStyle                 = dict["borderStyle"]
     placeholder                 = dict["placeholder"]
     text                        = dict["text"]
-    textAlignment               = dict["textAlignment"]!
+    textAlignment               = dict["textAlignment"]
     minimumFontSize             = Int(dict["minimumFontSize"]!)!
     clearsOnBeginEditing        = dict["clearsOnBeginEditing"].flatMap { $0 == "YES" }
     clearButtonMode             = dict["clearButtonMode"] 

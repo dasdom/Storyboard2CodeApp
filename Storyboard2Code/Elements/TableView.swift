@@ -1,7 +1,3 @@
-//
-//  TableView.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 25.06.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -11,6 +7,7 @@ import Foundation
 class TableView: ScrollView {
   
   let separatorStyle: String?
+  var separatorStyleDefault = "default"
   let sectionIndexMinimumDisplayRowCount: String?
   let allowsSelectionDuringEditing: Bool?
   let allowsMultipleSelection: Bool?
@@ -28,14 +25,17 @@ class TableView: ScrollView {
     sectionHeaderHeight = dict["sectionHeaderHeight"]
     sectionFooterHeight = dict["sectionFooterHeight"]
 
+    print(dict)
     super.init(dict: dict)
 
     alwaysBounceVerticalDefault = true
+    
+    type = ElementType.UITableView
   }
   
-  override var selfNameForMessaging: String {
-    return ""
-  }
+//  override var selfNameForMessaging: String {
+//    return ""
+//  }
   
   var swiftCodeString: String {
     var outputString = "import UIKit\n\n"
@@ -60,13 +60,14 @@ class TableView: ScrollView {
   
   override func reflectable() -> [String] {
     var temp = super.reflectable()
-    temp.append("separatorStyle")
+    if separatorStyle != separatorStyleDefault { temp.append("separatorStyle") }
     temp.append("sectionIndexMinimumDisplayRowCount")
     temp.append("allowsSelectionDuringEditing")
     temp.append("allowsMultipleSelection")
     temp.append("rowHeight")
     temp.append("sectionHeaderHeight")
     temp.append("sectionFooterHeight")
+    print(temp)
     return temp
   }
 }

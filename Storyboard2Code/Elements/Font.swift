@@ -16,9 +16,9 @@ extension Font: AttributeCodeGeneratable {
   public var codeString: String {
     if let type = type {
       if type == "system" {
-        return "UIFont.systemFontOfSize(\(size))"
+        return "UIFont.systemFont(ofSize: \(size))"
       } else if type == "boldSystem" {
-        return "UIFont.boldSystemFontOfSize(\(size))"
+        return "UIFont.boldSystemFont(ofSize: \(size))"
       } else {
         let message = "\(type) not yet supported"
         assert(false, message)

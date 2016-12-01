@@ -2,10 +2,10 @@ import Foundation
 
 final public class Button: View {
   public let contentHorizontalAlignment: String
-  let contentHorizontalAlignmentDefault = "Center"
+  let contentHorizontalAlignmentDefault = "center"
   
   public let contentVerticalAlignment: String
-  let contentVerticalAlignmentDefault = "Center"
+  let contentVerticalAlignmentDefault = "center"
   
   public let buttonType: String
   

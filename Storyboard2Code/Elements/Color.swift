@@ -50,7 +50,7 @@ extension Color: AttributeCodeGeneratable {
     case .whiteAlphaRepresentation(_, let white, let alpha):
       return String(format: "UIColor(white: %.3lf, alpha: %.3lf)", white, alpha)
     case .stringRepresentation(_, let string):
-      return "UIColor.\(string)()"
+      return "UIColor.\(string)"
     default:
       return "Not implemented yet"
     }

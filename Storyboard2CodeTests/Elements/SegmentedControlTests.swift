@@ -36,17 +36,17 @@ class SegmentedControlTests: XCTestCase {
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleFooString() {
-    let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Foo\", atIndex: 0, animated: false)"
+    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Foo\", at: 0, animated: false)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleBarString() {
-    let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Bar\", atIndex: 1, animated: false)"
+    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Bar\", at: 1, animated: false)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleHelloString() {
-    let expectedString = "fooSegmentedControl.insertSegmentWithTitle(\"Hello\", atIndex: 2, animated: false)"
+    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Hello\", at: 2, animated: false)"
     XCTAssertTrue(codeString.contains(expectedString))
   }
   

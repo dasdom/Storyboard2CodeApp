@@ -42,7 +42,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     if let firstItemName = firstItemName {
       string += firstItemName
     }
-    if (firstItemName?.characters.count)! > 0 {
+    if (firstItemName?.characters.count ?? 0) > 0 {
       string += "."
     }
     if firstAttribute == "baseline" {
@@ -50,9 +50,9 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     } else {
       string += firstAttribute
     }
-    string += "Anchor.constraintEqualTo"
+    string += "Anchor.constraint(equalTo"
     if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
-      string += "Anchor(\(secondItemName)"
+      string += ": \(secondItemName)"
       if secondItemName.characters.count > 0 {
         string += "."
       }
@@ -63,10 +63,11 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       }
       string += "Anchor"
     } else if secondItem != nil {
+      print(string)
       print(self)
       fatalError()
     } else {
-      string += "Constant("
+      string += "Constant: "
     }
     if let multiplier = multiplier {
       string += ", multiplier: \(multiplier)"
@@ -77,7 +78,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       }
       string += constant
     }
-    string += ").active = true\n"
+    string += ").isActive = true\n"
 //    string += "))\n"
     return string
   }

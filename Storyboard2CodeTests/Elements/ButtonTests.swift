@@ -87,7 +87,7 @@ class ButtonTests: XCTestCase {
   }
   
   func testButtonSetupString_HasTitleColorString() {
-    let expectedString = "button.setTitleColor(UIColor(colorLiteralRed: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), forState: .Normal)"
+    let expectedString = "button.setTitleColor(UIColor(colorLiteralRed: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)"
     print(codeString)
     XCTAssertTrue(codeString.contains(expectedString))
   }

@@ -1,7 +1,3 @@
-//
-//  Scene.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 13.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -34,7 +30,7 @@ struct Scene {
     }
     
     outputString += "super.init(frame: frame)\n\n"
-    outputString += "backgroundColor = UIColor.white()\n\n"
+    outputString += "backgroundColor = UIColor.white\n\n"
     
     for view in viewDict.values {
       outputString += view.addToSuperString

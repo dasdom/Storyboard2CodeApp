@@ -1,7 +1,3 @@
-//
-//  ScrollView.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 18.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //

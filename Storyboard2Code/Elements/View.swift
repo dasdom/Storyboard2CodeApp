@@ -8,7 +8,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   public var type = ElementType.UIView
   public var rect: CGRect? = nil
   public var colors: [Color] = []
-  public let opaque: Bool?
+  public let isOpaque: Bool?
   var opaqueDefault = true
   public let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
@@ -26,7 +26,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   
   required public init(dict: [String : String]) {
     translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"] == "YES"
-    opaque                      = dict["opaque"].flatMap { $0 == "YES" }
+    isOpaque                    = dict["opaque"].flatMap { $0 == "YES" }
     contentMode                 = dict["contentMode"]!
     clipsSubviews               = dict["clipsSubviews"].flatMap { $0 == "YES" }
     userInteractionEnabled      = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
@@ -58,7 +58,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
       string += setup("clipsToBounds", value: "\(clips)")
     }
     for color in colors {
-      if !(color.key == "textColor" && color.codeString == "UIColor.darkText()") { // Defaults
+      if !(color.key == "textColor" && color.codeString == "UIColor.darkText") { // Defaults
         string += "\(userLabel).\(color.key) = \(color.codeString)\n"
       }
     }
@@ -73,7 +73,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
    */
   func reflectable() -> [String] {
     var temp: [String] = ["translatesAutoresizingMaskIntoConstraints"]
-    if opaque != opaqueDefault { temp.append("opaque") }
+    if isOpaque != opaqueDefault { temp.append("isOpaque") }
     if contentMode != contentModeDefault { temp.append("contentMode") }
     if userInteractionEnabled != userInteractionEnabledDefault { temp.append("userInteractionEnabled") }
     temp.append("autoresizesSubviews")
@@ -119,6 +119,11 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     let mirror = Mirror(reflecting: self)
     var string = ""
     if let superclassMirror = mirror.superclassMirror {
+      if let superSuperClassMirror = superclassMirror.superclassMirror {
+        for child in superSuperClassMirror.children {
+          string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
+        }
+      }
       for child in superclassMirror.children {
         string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
       }

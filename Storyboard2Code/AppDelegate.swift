@@ -1,7 +1,3 @@
-//
-//  AppDelegate.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 28.04.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
