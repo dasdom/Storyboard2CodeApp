@@ -31,7 +31,7 @@ public extension ElementCodeGeneratable {
   var propertyString: String {
     guard isMainView == false else { return "" }
     
-    return "let \(userLabel): \(type.rawValue)\n"
+    return "let \(userLabel): \(type.rawValue)"
   }
   
   /// Default implementation of the addToSuperview string
@@ -42,7 +42,7 @@ public extension ElementCodeGeneratable {
     if let superViewName = superViewName {
       string += "\(superViewName)."
     }
-    string += "addSubview(\(userLabel))\n"
+    string += "addSubview(\(userLabel))"
     return string
   }
   
@@ -58,6 +58,31 @@ public extension ElementCodeGeneratable {
   func setup(_ property: String, value: String, isEnumValue: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
     return "\(userLabel).\(property) = \(dotOrEmpty)\(value)\n"
+  }
+}
+
+protocol CodeGeneratable {
+  func newLine(_ count: Int) -> String
+  func classDefinition(name: String, superclass: String) -> String
+  func startBlock() -> String
+  func endBlock() -> String
+}
+
+extension CodeGeneratable {
+  func newLine(_ count: Int = 1) -> String {
+    return Array(repeating: "\n", count: count).joined()
+  }
+  
+  func classDefinition(name: String, superclass: String) -> String {
+    return "class \(name): \(superclass)"
+  }
+  
+  func startBlock() -> String {
+    return " {\n"
+  }
+  
+  func endBlock() -> String {
+    return "\n}"
   }
 }
 

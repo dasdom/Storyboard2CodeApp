@@ -67,7 +67,7 @@
 		F210976C1CF972780056E90E /* DynamicCellsTableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCellsTableViewTests.swift; sourceTree = "<group>"; };
 		F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DynamicCellsTableViewTests.xml; sourceTree = "<group>"; };
 		F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScrollViewTests.xml; sourceTree = "<group>"; };
-		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewTests.swift; sourceTree = "<group>"; };
+		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewTests.swift; path = Storyboard2CodeTests/Elements/ScrollViewTests.swift; sourceTree = SOURCE_ROOT; };
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard2Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F230C4311CD2AD31000DBA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				F230C4521CD34A93000DBA33 /* Elements */,
 				F230C45C1CD34A93000DBA33 /* Helper */,
 				F230C4331CD2AD31000DBA33 /* Assets.xcassets */,
+				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F230C4351CD2AD31000DBA33 /* MainMenu.xib */,
 				F230C4381CD2AD31000DBA33 /* Info.plist */,
 			);
@@ -222,7 +223,6 @@
 				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
 				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
 				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
-				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F210976C1CF972780056E90E /* DynamicCellsTableViewTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);

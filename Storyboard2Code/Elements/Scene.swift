@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Scene {
+struct Scene: CodeGeneratable {
   let mainView: View
   let viewDict: [String: View]
   let viewMargins: Set<String>
@@ -13,51 +13,56 @@ struct Scene {
   let controllerConstraints: [Constraint]
   
   var swiftCodeString: String {
-    var outputString = "import UIKit\n\nclass "
-    outputString += (mainView.userLabel.capitalizeFirst)
-    outputString += ": UIView {\n"
+    var outputString = "import UIKit"
+    outputString += newLine(2)
+    outputString += classDefinition(name: mainView.userLabel.capitalizeFirst, superclass: "UIView")
+    outputString += startBlock()
     
-    for view in viewDict.values {
-      outputString += view.propertyString
-    }
+    let subviews: [View] = viewDict.values.filter { !$0.propertyString.isEmpty }
     
-    outputString += "\noverride init(frame: CGRect) {\n"
+    outputString += properties(for: subviews) + newLine()
     
-    for view in viewDict.values {
-      outputString += view.initString
-      outputString += view.setupString
-      outputString += "\n"
-    }
+    outputString += "override init(frame: CGRect)" + startBlock()
     
-    outputString += "super.init(frame: frame)\n\n"
-    outputString += "backgroundColor = UIColor.white\n\n"
+    outputString += setup(for: subviews)
     
-    for view in viewDict.values {
-      outputString += view.addToSuperString
-    }
+    outputString += "super.init(frame: frame)" + newLine(2)
+    outputString += "backgroundColor = UIColor.white" + newLine(2)
     
-    outputString += "\n"
+    outputString += addToSuperView(for: subviews) + newLine()
     
-    for string in viewMargins {
-      outputString += "\(string)\n"
-    }
+    viewMargins.forEach { outputString += $0 + newLine() }
     
     //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n"
-    for constraint in constraints {
-      outputString += constraint.codeString
-    }
+    constraints.forEach { outputString += $0.codeString }
     //outputString += "NSLayoutConstraint.activateConstraints(layoutConstraints)\n"
     
-    outputString += "}\n\nconvenience required init(coder aDecoder: NSCoder) {\nself.init()\n}\n\n}"
+    outputString += initWithCoder()
     
-    outputString += "\n\nextension \(viewController.customClass) {\noverride func loadView() {\nview = \(mainView.userLabel.capitalizeFirst)()\n}\n\nfunc setLayoutGuideConstraints() {\nlet contentView = view as! \(mainView.userLabel.capitalizeFirst)\ncontentView."
-    
-    for constraint in controllerConstraints {
-      outputString += constraint.codeString
-    }
-    
-    outputString += "}\n}"
+    outputString += viewController.extensionCodeString(for: mainView, constraints: controllerConstraints)
     
     return outputString
   }
+  
+  func properties(for subviews: [View]) -> String {
+    return subviews.reduce("") { $0 + $1.propertyString + newLine() }
+  }
+  
+  func setup(for subviews: [View]) -> String {
+    return subviews.reduce("") { $0 + $1.initString + $1.setupString + newLine() }
+  }
+  
+  func addToSuperView(for subviews: [View]) -> String {
+    return subviews.reduce("") { $0 + $1.addToSuperString + newLine() }
+  }
+  
+  func initWithCoder() -> String {
+    var string = endBlock() + newLine(2)
+    string += "convenience required init(coder aDecoder: NSCoder)"
+    string += startBlock()
+    string += "fatalError(\"init(coder:) has not been implemented\")"
+    string += endBlock() + endBlock() + newLine(2)
+    return string
+  }
+  
 }

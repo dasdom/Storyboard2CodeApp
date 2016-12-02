@@ -22,7 +22,7 @@ class ViewTests: XCTestCase {
     for (_, value) in strings {
       codeString += value
     }
-        print(codeString)
+    print(codeString)
   }
   
   func test_ViewReturnsCorrectInitString() {
