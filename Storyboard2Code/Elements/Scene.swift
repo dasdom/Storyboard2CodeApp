@@ -37,6 +37,8 @@ struct Scene: CodeGeneratable {
     constraints.forEach { outputString += $0.codeString }
     //outputString += "NSLayoutConstraint.activateConstraints(layoutConstraints)\n"
     
+    outputString += endBlock() + newLine(2)
+    
     outputString += initWithCoder()
     
     outputString += viewController.extensionCodeString(for: mainView, constraints: controllerConstraints)
@@ -54,15 +56,6 @@ struct Scene: CodeGeneratable {
   
   func addToSuperView(for subviews: [View]) -> String {
     return subviews.reduce("") { $0 + $1.addToSuperString + newLine() }
-  }
-  
-  func initWithCoder() -> String {
-    var string = endBlock() + newLine(2)
-    string += "convenience required init(coder aDecoder: NSCoder)"
-    string += startBlock()
-    string += "fatalError(\"init(coder:) has not been implemented\")"
-    string += endBlock() + endBlock() + newLine(2)
-    return string
   }
   
 }

@@ -66,6 +66,7 @@ protocol CodeGeneratable {
   func classDefinition(name: String, superclass: String) -> String
   func startBlock() -> String
   func endBlock() -> String
+  func initWithCoder() -> String
 }
 
 extension CodeGeneratable {
@@ -83,6 +84,14 @@ extension CodeGeneratable {
   
   func endBlock() -> String {
     return "\n}"
+  }
+  
+  func initWithCoder() -> String {
+    var string = "required init?(coder aDecoder: NSCoder)"
+    string += startBlock()
+    string += "fatalError(\"init(coder:) has not been implemented\")"
+    string += endBlock() + endBlock() + newLine(2)
+    return string
   }
 }
 

@@ -4,7 +4,7 @@
 
 import Foundation
 
-class TableView: ScrollView {
+class TableView: ScrollView, CodeGeneratable {
   
   let separatorStyle: String?
   var separatorStyleDefault = "default"
@@ -14,6 +14,7 @@ class TableView: ScrollView {
   let rowHeight: String?
   let sectionHeaderHeight: String?
   let sectionFooterHeight: String?
+  var isEmbeddedTableView = false
   
   required init(dict: [String : String]) {
     
@@ -25,7 +26,6 @@ class TableView: ScrollView {
     sectionHeaderHeight = dict["sectionHeaderHeight"]
     sectionFooterHeight = dict["sectionFooterHeight"]
 
-    print(dict)
     super.init(dict: dict)
 
     alwaysBounceVerticalDefault = true
@@ -33,16 +33,16 @@ class TableView: ScrollView {
     type = ElementType.UITableView
   }
   
-//  override var selfNameForMessaging: String {
-//    return ""
-//  }
+  override var selfNameForMessaging: String {
+    return isEmbeddedTableView ? super.selfNameForMessaging : ""
+  }
   
   var swiftCodeString: String {
-    var outputString = "import UIKit\n\n"
-    outputString += "class \(userLabel.capitalizeFirst): UITableView {\n\n"
-    outputString += "override init(frame: CGRect, style: UITableViewStyle) {\n\n"
+    var outputString = "import UIKit" + newLine(2)
+    outputString += classDefinition(name: userLabel.capitalizeFirst, superclass: "UITableView") + startBlock() + newLine()
+    outputString += "override init(frame: CGRect, style: UITableViewStyle)" + startBlock() + newLine()
     
-    outputString += "super.init(frame: frame, style: style)\n"
+    outputString += "super.init(frame: frame, style: style)" + newLine()
     
     outputString += reflectedSetup
     
@@ -52,9 +52,9 @@ class TableView: ScrollView {
       }
     }
     
-    outputString += "}\n\n"
+    outputString += endBlock() + newLine()
 
-    outputString += "required init?(coder aDecoder: NSCoder) {\nfatalError(\"init(coder:) has not been implemented\")\n}"
+    outputString += initWithCoder()
     return outputString
   }
   

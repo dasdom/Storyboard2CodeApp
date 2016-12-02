@@ -63,7 +63,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       }
       string += "Anchor"
     } else if secondItem != nil {
-      print(string)
+//      print(string)
       print(self)
       fatalError()
     } else {

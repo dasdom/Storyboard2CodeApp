@@ -108,9 +108,13 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       addView(scrollView)
     case "tableView":
       let tableView = TableView(dict: attributeDict)
-//      tableViews.append(tableView)
-//      tempViews.append(tableView)
-      addView(tableView)
+      if mainView == nil {      
+        tableViews.append(tableView)
+        tempViews.append(tableView)
+      } else {
+        addView(tableView)
+        tableView.isEmbeddedTableView = true
+      }
     default:
       //      print("start: \(elementName)")
       break
