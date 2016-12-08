@@ -69,6 +69,11 @@ class ViewTests: XCTestCase {
     let expectedString = "fooView.contentMode = .redraw"
     XCTAssertTrue(codeString.contains(expectedString))
   }
+  
+  func test_MainView_SetsBackgroundColor() {
+    let expectedString = "backgroundColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
+    XCTAssertTrue(codeString.contains(expectedString))
+  }
 }
 
 //MARK: - Default View

@@ -108,7 +108,8 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       addView(scrollView)
     case "tableView":
       let tableView = TableView(dict: attributeDict)
-      if mainView == nil {      
+      if mainView == nil {
+        assert(false, "Implement like it is implemented for views using scene")
         tableViews.append(tableView)
         tempViews.append(tableView)
       } else {

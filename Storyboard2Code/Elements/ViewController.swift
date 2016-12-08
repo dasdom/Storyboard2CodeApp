@@ -1,11 +1,11 @@
 import Foundation
 
-public struct ViewController: AttributeCreatable, CodeGeneratable {
+public class ViewController: AttributeCreatable, CodeGeneratable {
   let id: String
 //  let userLabel: String
   public let customClass: String
   
-  public init(dict: [String : String]) {
+  public required init(dict: [String : String]) {
     id = dict["id"]!
 //    userLabel = dict["userLabel"]!
     if let theClass = dict["customClass"] {
@@ -16,17 +16,21 @@ public struct ViewController: AttributeCreatable, CodeGeneratable {
     }
   }
   
-  func extensionCodeString(for view: View, constraints: [Constraint]) -> String {
+  func extensionCodeString(for view: View, constraints: [Constraint]?) -> String {
     var string = "extension \(customClass)" + startBlock()
     string += "override func loadView()" + startBlock()
     string += "view = \(view.userLabel.capitalizeFirst)()" + endBlock() + newLine(2)
-    string += "func setLayoutGuideConstraints()" + startBlock()
-    string += "let contentView = view as! \(view.userLabel.capitalizeFirst)" + newLine()
-    string += "contentView."
     
-    string += constraints.reduce("") { $0 + $1.codeString }
+    if let constraints = constraints {
+      string += "func setLayoutGuideConstraints()" + startBlock()
+      string += "let contentView = view as! \(view.userLabel.capitalizeFirst)" + newLine()
+      string += "contentView."
+      
+      string += constraints.reduce("") { $0 + $1.codeString }
+      string += "}"
+    }
     
-    string += "}" + endBlock()
+    string += endBlock()
     return string
   }
 }
