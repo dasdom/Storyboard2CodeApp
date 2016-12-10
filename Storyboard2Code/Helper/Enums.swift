@@ -16,6 +16,23 @@ public enum ElementType: String {
   case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView
 }
 
+public enum Element: String {
+  case view, label, textField, button, segmentedControl, slider, scrollView, tableView
+  
+  func create(from dict: [String:String]) -> View {
+    switch self {
+    case .view: return View(dict: dict)
+    case .label: return Label(dict: dict)
+    case .textField: return TextField(dict: dict)
+    case .button: return Button(dict: dict)
+    case .segmentedControl: return SegmentedControl(dict: dict)
+    case .slider: return Slider(dict: dict)
+    case .scrollView: return ScrollView(dict: dict)
+    case .tableView: return TableView(dict: dict)
+    }
+  }
+}
+
 /**
  * Enum to store a linebreak mode. It is needed because the string
  * in the storyboard is different to the string to be used in code.

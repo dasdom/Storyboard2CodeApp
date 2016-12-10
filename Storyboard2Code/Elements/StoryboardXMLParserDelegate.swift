@@ -17,9 +17,9 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   private var currentText: String?
   var viewMargins: Set<String> = []
   private var layoutGuides: [LayoutGuide] = []
-  private var currentSegmentedControl: SegmentedControl?
+//  private var currentSegmentedControl: SegmentedControl?
   var scenes: [Scene] = []
-  var tableViews: [TableView] = []
+//  var tableViews: [TableView] = []
   
   func addView(_ view: View, addToTempViews: Bool = true) {
     if let lastView = tempViews.last, lastView !== mainView {
@@ -33,94 +33,67 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   
   func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
     
-    switch elementName {
-    case "viewController":
-      viewController = ViewController(dict: attributeDict)
-    case "view":
-      let view = View(dict: attributeDict)
+    if let view = Element(rawValue: elementName)?.create(from: attributeDict) {
+      addView(view)
       if mainView == nil {
         view.isMainView = true
         mainView = view
       }
-      addView(view)
-    case "label":
-      let label = Label(dict: attributeDict)
-      addView(label)
-    case "textField":
-      let textField = TextField(dict: attributeDict)
-      addView(textField)
-    case "button":
-      let button = Button(dict: attributeDict)
-      addView(button)
-    case "segmentedControl":
-      currentSegmentedControl = SegmentedControl(dict: attributeDict)
-    case "segment":
-      currentSegmentedControl?.segments.append(Segment(dict: attributeDict))
-    case "slider":
-      addView(Slider(dict: attributeDict))
-    case "color":
-      let color = Color(dict: attributeDict)
-      if currentState != nil {
-        currentState?.titleColor = color
-      } else if let currentSegmentedControl = currentSegmentedControl {
-        currentSegmentedControl.colors.append(color)
-      } else {
-//        print(tempViews.last, attributeDict)
-        tempViews.last?.colors.append(color)
-      }
-    case "fontDescription":
-      font = Font(dict: attributeDict)
-      tempViews.last?.font = font
-    case "constraint":
-      var constraintAttributeDict = attributeDict
-      let firstAttribute = constraintAttributeDict["firstAttribute"]
-      if constraintAttributeDict["firstItem"] == nil && (firstAttribute == "width" || firstAttribute == "height") {
-        var firstItem = currentSegmentedControl?.id
-        if firstItem == nil {
-          firstItem = tempViews.last?.id
-        }
-        constraintAttributeDict["firstItem"] = firstItem
-      }
-      let constraint = Constraint(dict: constraintAttributeDict)
-      constraints.append(constraint)
-    case "state":
-      currentState = ButtonState(dict: attributeDict)
-    case "viewControllerLayoutGuide":
-      layoutGuides.append(LayoutGuide(dict: attributeDict))
-    case "string":
-      currentText = ""
-    case "textInputTraits":
-      if let textField = tempViews.last as? TextField {
-        textField.autocapitalizationType = attributeDict["autocapitalizationType"]
-        textField.autocorrectionType = attributeDict["autocorrectionType"]
-        textField.spellCheckingType = attributeDict["spellCheckingType"]
-        textField.keyboardType = attributeDict["keyboardType"]
-        textField.returnKeyType = attributeDict["returnKeyType"]
-        textField.enablesReturnKeyAutomatically = attributeDict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
-        textField.secureTextEntry = attributeDict["secureTextEntry"].flatMap { $0 == "YES" }
+    } else {
       
-        if let keyboardAppearanceString = attributeDict["keyboardAppearance"] {
-          textField.keyboardAppearance = KeyboardAppearance(rawValue: keyboardAppearanceString)?.codeString
+      switch elementName {
+      case "viewController":
+        viewController = ViewController(dict: attributeDict)
+      case "tableViewController":
+        viewController = TableViewController(dict: attributeDict)
+      case "segment":
+        if let segmentedControl = tempViews.last as? SegmentedControl {
+          segmentedControl.segments.append(Segment(dict: attributeDict))
         }
+      case "color":
+        let color = Color(dict: attributeDict)
+        if currentState != nil {
+          currentState?.titleColor = color
+        } else {
+          //        print(tempViews.last, attributeDict)
+          tempViews.last?.colors.append(color)
+        }
+      case "fontDescription":
+        font = Font(dict: attributeDict)
+        tempViews.last?.font = font
+      case "constraint":
+        var constraintAttributeDict = attributeDict
+        let firstAttribute = constraintAttributeDict["firstAttribute"]
+        if constraintAttributeDict["firstItem"] == nil && (firstAttribute == "width" || firstAttribute == "height") {
+          constraintAttributeDict["firstItem"] = tempViews.last?.id
+        }
+        let constraint = Constraint(dict: constraintAttributeDict)
+        constraints.append(constraint)
+      case "state":
+        currentState = ButtonState(dict: attributeDict)
+      case "viewControllerLayoutGuide":
+        layoutGuides.append(LayoutGuide(dict: attributeDict))
+      case "string":
+        currentText = ""
+      case "textInputTraits":
+        if let textField = tempViews.last as? TextField {
+          textField.autocapitalizationType = attributeDict["autocapitalizationType"]
+          textField.autocorrectionType = attributeDict["autocorrectionType"]
+          textField.spellCheckingType = attributeDict["spellCheckingType"]
+          textField.keyboardType = attributeDict["keyboardType"]
+          textField.returnKeyType = attributeDict["returnKeyType"]
+          textField.enablesReturnKeyAutomatically = attributeDict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
+          textField.secureTextEntry = attributeDict["secureTextEntry"].flatMap { $0 == "YES" }
+          
+          if let keyboardAppearanceString = attributeDict["keyboardAppearance"] {
+            textField.keyboardAppearance = KeyboardAppearance(rawValue: keyboardAppearanceString)?.codeString
+          }
+        }
+      default:
+        //      print("start: \(elementName)")
+        break
       }
-    case "scrollView":
-      let scrollView = ScrollView(dict: attributeDict)
-      addView(scrollView)
-    case "tableView":
-      let tableView = TableView(dict: attributeDict)
-      if mainView == nil {
-        assert(false, "Implement like it is implemented for views using scene")
-        tableViews.append(tableView)
-        tempViews.append(tableView)
-      } else {
-        addView(tableView)
-        tableView.isEmbeddedTableView = true
-      }
-    default:
-      //      print("start: \(elementName)")
-      break
     }
-    
   }
   
   func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -130,7 +103,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label", "textField", "view", "button", "slider", "tableView", "scrollView":
+    case "label", "textField", "view", "button", "segmentedControl", "slider", "tableView", "scrollView":
       _ = tempViews.popLast()
     case "state":
       if let button = tempViews.last as? Button {
@@ -139,11 +112,6 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       } else {
         fatalError("not supported yet")
       }
-    case "segmentedControl":
-      if let segmentedControl = currentSegmentedControl {
-        addView(segmentedControl, addToTempViews: false)
-      }
-      currentSegmentedControl = nil
     case "string":
       if let label = tempViews.last as? Label {
         label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")

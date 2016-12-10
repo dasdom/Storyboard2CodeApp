@@ -15,19 +15,21 @@ struct Scene: CodeGeneratable {
   var swiftCodeString: String {
     var outputString = "import UIKit"
     outputString += newLine(2)
-    outputString += classDefinition(name: mainView.userLabel.capitalizeFirst, superclass: "UIView")
+    outputString += classDefinition(name: mainView.userLabel.capitalizeFirst, superclass: mainView.type.rawValue)
     outputString += startBlock()
     
-    let subviews: [View] = viewDict.values.filter { !$0.propertyString.isEmpty }
+    let subviews: [View] = viewDict.values.filter { !$0.isMainView }
     
     outputString += properties(for: subviews) + newLine()
     
-    outputString += "override init(frame: CGRect)" + startBlock()
+    outputString += mainView.overrideInit + startBlock()
     
     outputString += setup(for: subviews)
     
-    outputString += "super.init(frame: frame)" + newLine(2)
-    outputString += "backgroundColor = UIColor.white" + newLine(2)
+    outputString += mainView.superInit + newLine(2)
+//    outputString += "backgroundColor = UIColor.white" + newLine(2)
+    
+    outputString += setup(for: [mainView])
     
     outputString += addToSuperView(for: subviews) + newLine()
     

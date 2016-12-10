@@ -37,6 +37,14 @@ class TableView: ScrollView, CodeGeneratable {
     return isEmbeddedTableView ? super.selfNameForMessaging : ""
   }
   
+  public override var superInit: String {
+    return "super.init(frame: frame, style: style)"
+  }
+  
+  public override var overrideInit: String {
+    return "override init(frame: CGRect, style: UITableViewStyle) {"
+  }
+  
   var swiftCodeString: String {
     var outputString = "import UIKit" + newLine(2)
     outputString += classDefinition(name: userLabel.capitalizeFirst, superclass: "UITableView") + startBlock() + newLine()

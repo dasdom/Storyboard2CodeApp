@@ -45,13 +45,21 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     userLabel = temp
   }
   
+  public var superInit: String {
+    return "super.init(frame: frame)"
+  }
+  
+  public var overrideInit: String {
+    return "override init(frame: CGRect)"
+  }
+  
   public var initString: String {
     guard isMainView == false else { return "" }
     return "\(userLabel) = \(type.rawValue)()\n"
   }
   
   public var setupString: String {
-    guard isMainView == false else { return "" }
+//    guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup
     if let clips = clipsSubviews, clips != clipsSubviewsDefault {
@@ -83,7 +91,7 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   }
   
   var selfNameForMessaging: String {
-    return "\(self.userLabel)."
+    return isMainView ? "" : "\(self.userLabel)."
   }
   
   var reflectedSetup: String {

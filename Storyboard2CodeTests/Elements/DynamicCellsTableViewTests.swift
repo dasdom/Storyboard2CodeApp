@@ -1,7 +1,3 @@
-//
-//  TableViewTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 28.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //

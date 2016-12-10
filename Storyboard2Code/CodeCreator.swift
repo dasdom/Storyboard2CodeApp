@@ -19,9 +19,9 @@ struct CodeCreator {
       outputDict[scene.mainView.userLabel.capitalizeFirst] = scene.swiftCodeString
     }
     
-    for tableView in parserDelegate.tableViews {
-      outputDict[tableView.userLabel.capitalizeFirst] = tableView.swiftCodeString
-    }
+//    for tableView in parserDelegate.tableViews {
+//      outputDict[tableView.userLabel.capitalizeFirst] = tableView.swiftCodeString
+//    }
     
     return outputDict
   }
