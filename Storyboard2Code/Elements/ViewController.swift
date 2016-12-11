@@ -6,9 +6,9 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
   public let customClass: String
   
   public required init(dict: [String : String]) {
-    id = dict["id"]!
+    id = dict[Key.id.rawValue]!
 //    userLabel = dict["userLabel"]!
-    if let theClass = dict["customClass"] {
+    if let theClass = dict[Key.customClass.rawValue] {
       customClass = theClass
     } else {
       customClass = ""
@@ -32,5 +32,11 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
     
     string += endBlock()
     return string
+  }
+}
+
+extension ViewController {
+  fileprivate enum Key: String {
+    case id, customClass
   }
 }

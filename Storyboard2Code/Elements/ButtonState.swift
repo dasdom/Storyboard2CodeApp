@@ -10,8 +10,8 @@ public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
   public var titleColor: Color? = nil
   
   public init(dict: [String : String]) {
-    key = dict["key"]!
-    title = dict["title"]
+    key = dict[Key.key.rawValue]!
+    title = dict[Key.title.rawValue]
   }
   
   public func codeString(_ userLabel: String) -> String {
@@ -23,5 +23,11 @@ public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
       string += "\(userLabel).setTitleColor(\(titleColor.codeString), for: .\(key))\n"
     }
     return string
+  }
+}
+
+extension ButtonState {
+  fileprivate enum Key: String {
+    case key, title
   }
 }

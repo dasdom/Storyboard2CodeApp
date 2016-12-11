@@ -24,13 +24,13 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
    - returns: initialized instance
    */
   public init(dict: [String : String]) {
-    firstItem = dict["firstItem"]
-    firstAttribute = dict["firstAttribute"]!
-    id = dict["id"]!
-    secondItem = dict["secondItem"]
-    secondAttribute = dict["secondAttribute"]
-    multiplier = dict["multiplier"]
-    constant = dict["constant"]
+    firstItem = dict[Key.firstItem.rawValue]
+    firstAttribute = dict[Key.firstAttribute.rawValue]!
+    id = dict[Key.id.rawValue]!
+    secondItem = dict[Key.secondItem.rawValue]
+    secondAttribute = dict[Key.secondAttribute.rawValue]
+    multiplier = dict[Key.multiplier.rawValue]
+    constant = dict[Key.constant.rawValue]
   }
   
   /// The string to generate code.
@@ -82,5 +82,12 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
 //    string += "))\n"
     return string
   }
-  
+}
+
+extension Constraint {
+  fileprivate enum Key: String {
+    case firstItem, firstAttribute, id
+    case secondItem, secondAttribute, multiplier
+    case constant
+  }
 }

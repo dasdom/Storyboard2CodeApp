@@ -5,8 +5,14 @@ public struct Segment: AttributeCreatable  {
   let enabled: Bool?
   
   public init(dict: [String : String]) {
-    title = dict["title"]!
-    enabled = dict["enabled"].flatMap { $0 == "YES" }
+    title = dict[Key.title.rawValue]!
+    enabled = dict[Key.enabled.rawValue].flatMap { $0 == "YES" }
+  }
+}
+
+extension Segment {
+  fileprivate enum Key: String {
+    case title, enabled
   }
 }
 

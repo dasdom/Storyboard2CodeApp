@@ -11,10 +11,10 @@ public class Slider: View {
   let continuous: Bool?
   
   public required init(dict: [String : String]) {
-    minimumValue = Float(dict["minValue"]!)!
-    maximumValue = Float(dict["maxValue"]!)!
-    value = Float(dict["value"]!)!
-    continuous = dict["continuous"].flatMap { $0 == "YES" }
+    minimumValue = Float(dict[Key.minValue.rawValue]!)!
+    maximumValue = Float(dict[Key.maxValue.rawValue]!)!
+    value = Float(dict[Key.value.rawValue]!)!
+    continuous = dict[Key.continuous.rawValue].flatMap { $0 == "YES" }
     
     super.init(dict: dict)
     
@@ -25,11 +25,17 @@ public class Slider: View {
     var temp = super.reflectable()
     temp.append("minimumValue")
     temp.append("maximumValue")
-    temp.append("value")
-    temp.append("continuous")
+    temp.append(Key.value.rawValue)
+    temp.append(Key.continuous.rawValue)
     
     /// From the docs: "The opaque property has no effect in system-provided classes such as UIButton, UILabel, UITableViewCell, and so on."
     temp = temp.filter { $0 != "opaque" }
     return temp
+  }
+}
+
+extension Slider {
+  fileprivate enum Key: String {
+    case minValue, maxValue, value, continuous
   }
 }

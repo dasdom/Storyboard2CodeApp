@@ -22,20 +22,21 @@ public class ScrollView: View {
   let keyboardDismissMode: String?
   
   required public init(dict: [String : String]) {
-    directionalLockEnabled = dict["directionalLockEnabled"].flatMap { $0 == "YES" }
-    bounces = dict["bounces"].flatMap { $0 == "YES" }
-    alwaysBounceVertical = dict["alwaysBounceVertical"].flatMap { $0 == "YES" }
-    scrollEnabled = dict["scrollEnabled"].flatMap { $0 == "YES" }
-    pagingEnabled = dict["pagingEnabled"].flatMap { $0 == "YES" }
-    showsHorizontalScrollIndicator = dict["showsHorizontalScrollIndicator"].flatMap { $0 == "YES" }
-    showsVerticalScrollIndicator = dict["showsVerticalScrollIndicator"].flatMap { $0 == "YES" }
-    indicatorStyle = dict["indicatorStyle"]
-    delaysContentTouches = dict["delaysContentTouches"].flatMap { $0 == "YES" }
-    canCancelContentTouches = dict["canCancelContentTouches"].flatMap { $0 == "YES" }
-    minimumZoomScale = dict["minimumZoomScale"]
-    maximumZoomScale = dict["maximumZoomScale"]
-    bouncesZoom = dict["bouncesZoom"].flatMap { $0 == "YES" }
-    keyboardDismissMode = dict["keyboardDismissMode"]
+    let YES: String = "YES"
+    directionalLockEnabled = dict[Key.directionalLockEnabled.rawValue].flatMap { $0 == YES }
+    bounces = dict[Key.bounces.rawValue].flatMap { $0 == YES }
+    alwaysBounceVertical = dict[Key.alwaysBounceVertical.rawValue].flatMap { $0 == YES }
+    scrollEnabled = dict[Key.scrollEnabled.rawValue].flatMap { $0 == YES }
+    pagingEnabled = dict[Key.pagingEnabled.rawValue].flatMap { $0 == YES }
+    showsHorizontalScrollIndicator = dict[Key.showsHorizontalScrollIndicator.rawValue].flatMap { $0 == YES }
+    showsVerticalScrollIndicator = dict[Key.showsVerticalScrollIndicator.rawValue].flatMap { $0 == YES }
+    indicatorStyle = dict[Key.indicatorStyle.rawValue]
+    delaysContentTouches = dict[Key.delaysContentTouches.rawValue].flatMap { $0 == YES }
+    canCancelContentTouches = dict[Key.canCancelContentTouches.rawValue].flatMap { $0 == YES }
+    minimumZoomScale = dict[Key.minimumZoomScale.rawValue]
+    maximumZoomScale = dict[Key.maximumZoomScale.rawValue]
+    bouncesZoom = dict[Key.bouncesZoom.rawValue].flatMap { $0 == YES }
+    keyboardDismissMode = dict[Key.keyboardDismissMode.rawValue]
     
     super.init(dict: dict)
     
@@ -61,5 +62,15 @@ public class ScrollView: View {
     temp.append("bouncesZoom")
     temp.append("keyboardDismissMode")
     return temp
+  }
+}
+
+extension ScrollView {
+  fileprivate enum Key: String {
+    case directionalLockEnabled, bounces, alwaysBounceVertical
+    case scrollEnabled, pagingEnabled, showsHorizontalScrollIndicator
+    case showsVerticalScrollIndicator, indicatorStyle, delaysContentTouches
+    case canCancelContentTouches, minimumZoomScale, maximumZoomScale
+    case bouncesZoom, keyboardDismissMode
   }
 }

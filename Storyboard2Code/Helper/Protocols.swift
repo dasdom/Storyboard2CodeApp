@@ -29,7 +29,7 @@ public protocol ElementCodeGeneratable {
 public extension ElementCodeGeneratable {
   /// Default implementation of the property declaration string
   var propertyString: String {
-    guard isMainView == false else { return "" }
+    guard !isMainView else { return "" }
     
     return "let \(userLabel): \(type.rawValue)"
   }

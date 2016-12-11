@@ -16,29 +16,35 @@ public enum Color: AttributeCreatable {
   }
   
   public init(dict: [String : String]) {
-    if let redString = dict["red"],
-      let greenString = dict["green"],
-      let blueString = dict["blue"],
-      let alphaString = dict["alpha"],
+    if let redString = dict[Key.red.rawValue],
+      let greenString = dict[Key.green.rawValue],
+      let blueString = dict[Key.blue.rawValue],
+      let alphaString = dict[Key.alpha.rawValue],
       let red = Float(redString),
       let green = Float(greenString),
       let blue = Float(blueString),
       let alpha = Float(alphaString) {
       
-      self = .redGreenBlueRepresentation(key: dict["key"]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+      self = .redGreenBlueRepresentation(key: dict[Key.key.rawValue]!, red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
       
-    } else if let whiteString = dict["white"],
-      let alphaString = dict["alpha"],
+    } else if let whiteString = dict[Key.white.rawValue],
+      let alphaString = dict[Key.alpha.rawValue],
       let white = Float(whiteString),
       let alpha = Float(alphaString) {
       
-      self = .whiteAlphaRepresentation(key: dict["key"]!, white: CGFloat(white), alpha: CGFloat(alpha))
+      self = .whiteAlphaRepresentation(key: dict[Key.key.rawValue]!, white: CGFloat(white), alpha: CGFloat(alpha))
       
-    } else if let string = dict["cocoaTouchSystemColor"] {
-      self = .stringRepresentation(key: dict["key"]!, string: string)
+    } else if let string = dict[Key.cocoaTouchSystemColor.rawValue] {
+      self = .stringRepresentation(key: dict[Key.key.rawValue]!, string: string)
     } else {
       self = .notSupported
     }
+  }
+}
+
+extension Color {
+  fileprivate enum Key: String {
+    case red, green, blue, alpha, key, white, cocoaTouchSystemColor
   }
 }
 

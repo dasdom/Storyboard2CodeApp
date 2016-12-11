@@ -5,7 +5,13 @@ public struct LayoutGuide: AttributeCreatable {
   public let id: String
   
   public init(dict: [String : String]) {
-    type = dict["type"]!
-    id = dict["id"]!
+    type = dict[Key.type.rawValue]!
+    id = dict[Key.id.rawValue]!
+  }
+}
+
+extension LayoutGuide {
+  fileprivate enum Key: String {
+    case type, id
   }
 }

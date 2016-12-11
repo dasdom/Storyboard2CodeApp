@@ -6,9 +6,15 @@ public struct Font: AttributeCreatable, Equatable {
   let type: String?
   
   public init(dict: [String : String]) {
-    name = dict["name"]
-    size = Int(dict["pointSize"]!)!
-    type = dict["type"]
+    name = dict[Key.name.rawValue]
+    size = Int(dict[Key.pointSize.rawValue]!)!
+    type = dict[Key.type.rawValue]
+  }
+}
+
+extension Font {
+  fileprivate enum Key: String {
+    case name, pointSize, type
   }
 }
 
