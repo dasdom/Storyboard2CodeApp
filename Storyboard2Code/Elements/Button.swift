@@ -1,15 +1,15 @@
 import Foundation
 
 final public class Button: View {
-  public let contentHorizontalAlignment: String
+  public let contentHorizontalAlignment: String?
   let contentHorizontalAlignmentDefault = "center"
   
-  public let contentVerticalAlignment: String
+  public let contentVerticalAlignment: String?
   let contentVerticalAlignmentDefault = "center"
   
-  public let buttonType: String
+  public let buttonType: String?
   
-  public let lineBreakMode: LineBreakMode
+  public let lineBreakMode: LineBreakMode?
   let lineBreakModeDefault = LineBreakMode.ByTruncatingMiddle
   
   public let enabled: Bool?
@@ -23,10 +23,10 @@ final public class Button: View {
   public var states: [ButtonState] = []
   
   public required init(dict: [String : String]) {
-    contentHorizontalAlignment          = dict["contentHorizontalAlignment"]!
-    contentVerticalAlignment            = dict["contentVerticalAlignment"]!
-    buttonType                          = dict["buttonType"]!
-    lineBreakMode                       = LineBreakMode(rawValue: dict["lineBreakMode"]!)!
+    contentHorizontalAlignment          = dict["contentHorizontalAlignment"]
+    contentVerticalAlignment            = dict["contentVerticalAlignment"]
+    buttonType                          = dict["buttonType"]
+    lineBreakMode                       = LineBreakMode(rawValue: dict["lineBreakMode"] ?? "foo")
     enabled                             = dict["enabled"].flatMap { $0 == "YES" }
     highlighted                         = dict["highlighted"].flatMap { $0 == "YES" }
     selected                            = dict["selected"].flatMap { $0 == "YES" }
@@ -55,7 +55,7 @@ final public class Button: View {
   
   public override var setupString: String {
     var string = super.setupString
-    if lineBreakMode != lineBreakModeDefault {
+    if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
       string += "\(userLabel).titleLabel?.lineBreakMode = .\(lineBreakMode.codeString)\n"
     }
     string += stateString(fromStates: states)

@@ -1,40 +1,43 @@
 import Foundation
 
-public class TextField: View {
-  public let contentHorizontalAlignment: String
+class TextField: View {
+  let contentHorizontalAlignment: String?
   var contentHorizontalAlignmentDefault = "left"
-  public let contentVerticalAlignment: String
+  let contentVerticalAlignment: String?
   var contentVerticalAlignmentDefault = "center"
-  public let borderStyle: String?
+  let borderStyle: String?
   var borderStyleDefault = "none"
-  public let placeholder: String?
-  public let text: String?
-  public let textAlignment: String?
+  let placeholder: String?
+  let text: String?
+  let textAlignment: String?
   var textAlignmentDefault = "natural"
-  public let minimumFontSize: Int
-  public let clearsOnBeginEditing: Bool?
-  public let clearButtonMode: String?
-  public var autocapitalizationType: String?
-  public var autocorrectionType: String?
-  public var spellCheckingType: String?
-  public var keyboardType: String?
-  public var keyboardAppearance: String?
-  public var returnKeyType: String?
-  public var enablesReturnKeyAutomatically: Bool?
-  public var secureTextEntry: Bool?
+  let minimumFontSize: Int?
+  let clearsOnBeginEditing: Bool?
+  let clearButtonMode: String?
+//  public var autocapitalizationType: String?
+  var autocorrectionType: String?
+  var spellCheckingType: String?
+  var keyboardType: String?
+  var keyboardAppearance: String?
+  var returnKeyType: String?
+  var enablesReturnKeyAutomatically: Bool?
+  var secureTextEntry: Bool?
+  var textInputTraits: TextInputTraits?
   
   public required init(dict: [String : String]) {
-    contentHorizontalAlignment  = dict["contentHorizontalAlignment"]!
-    contentVerticalAlignment    = dict["contentVerticalAlignment"]!
+    contentHorizontalAlignment  = dict["contentHorizontalAlignment"]
+    contentVerticalAlignment    = dict["contentVerticalAlignment"]
     borderStyle                 = dict["borderStyle"]
     placeholder                 = dict["placeholder"]
     text                        = dict["text"]
     textAlignment               = dict["textAlignment"]
-    minimumFontSize             = Int(dict["minimumFontSize"]!)!
+    minimumFontSize             = dict["minimumFontSize"] != nil ? Int(dict["minimumFontSize"]!) : nil
     clearsOnBeginEditing        = dict["clearsOnBeginEditing"].flatMap { $0 == "YES" }
     clearButtonMode             = dict["clearButtonMode"] 
+   
     super.init(dict: dict)
-    clipsSubviewsDefault = true
+   
+//    clipsSubviewsDefault = true
     
     type = ElementType.UITextField
   }
@@ -47,7 +50,7 @@ public class TextField: View {
     if textAlignment != textAlignmentDefault { temp.append("textAlignment") }
     temp.append("clearsOnBeginEditing")
     temp.append("clearButtonMode")
-    temp.append("autocapitalizationType")
+//    temp.append("autocapitalizationType")
     temp.append("autocorrectionType")
     temp.append("spellCheckingType")
     temp.append("keyboardType")
@@ -58,12 +61,17 @@ public class TextField: View {
     temp.append("minimumFontSize")
     
     /// From the docs: "The opaque property has no effect in system-provided classes such as UIButton, UILabel, UITableViewCell, and so on."
-    temp = temp.filter { $0 != "opaque" }
+    temp = temp.filter { $0 != "isOpaque" }
     return temp
   }
   
-  public override var initString: String {
-    var string = super.initString
+//  public override var initString: String {
+//    var string = super.initString
+//    return string
+//  }
+  
+  public override var setupString: String {
+    var string = super.setupString
     if let placeholder = placeholder {
       string += "\(userLabel).placeholder = \"\(placeholder)\"\n"
     }
@@ -71,9 +79,12 @@ public class TextField: View {
       string += "\(userLabel).text = \"\(text)\"\n"
     }
     if let font = font {
-//      if font.codeString != "UIFont.systemFontOfSize(14)" { // Default
-        string += "\(userLabel).font = \(font.codeString)\n"
-//      }
+      //      if font.codeString != "UIFont.systemFontOfSize(14)" { // Default
+      string += "\(userLabel).font = \(font.codeString)\n"
+      //      }
+    }
+    if let textInputTraits = textInputTraits {
+      string += textInputTraits.setupString(for: userLabel)
     }
     return string
   }

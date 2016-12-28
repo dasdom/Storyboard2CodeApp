@@ -1,7 +1,3 @@
-//
-//  LabelTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 02.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -11,50 +7,87 @@ import XCTest
 
 class LabelTests: XCTestCase {
   
-  var codeString = ""
-  let codeCreator = CodeCreator()
-  
-  override func setUp() {
-    super.setUp()
-    guard let data = dataFromResource(withName: "LabelTests", andType: "xml") else { fatalError() }
-    let strings = codeCreator.codeStringsFrom(XMLdata: data)
-    codeString = ""
-    for (_, value) in strings {
-      codeString += value
-    }
-    print(codeString)
+  func test_labelPropertyString_HasExpectedOutput() {
+    let attributesDict = ["id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "let fooLabel: UILabel"
+    XCTAssertEqual(sut.propertyString, expectedOutput)
   }
   
-  func test_LabelReturnsCorrectInitString() {
-    let expectedString = "fooLabel = UILabel()\n"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelInitString_HasExpectedOutput() {
+    let attributesDict = ["id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel = UILabel()\n"
+    XCTAssertEqual(sut.initString, expectedOutput)
   }
   
-  func testLabelSetupString_HasTranslatesAutoresizingString() {
-    let expectedString = "fooLabel.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelSetupString_HasExpectedOutputFor_textAlignment() {
+    let attributesDict = ["textAlignment": "justified", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.textAlignment = .justified\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testLabelSetupString_HasLineBreakModeString() {
-    let expectedString = "fooLabel.lineBreakMode = .byTruncatingHead"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelSetupString_HasExpectedOutputFor_lineBreakMode() {
+    let attributesDict = ["lineBreakMode": "headTruncation", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.lineBreakMode = .byTruncatingHead\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testLabelSetupString_HasTextAlignmentString() {
-    let expectedString = "fooLabel.textAlignment = .justified"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelSetupString_HasExpectedOutputFor_numberOfLines() {
+    let attributesDict = ["numberOfLines": "0", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.numberOfLines = 0\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testLabelSetupString_HasNumberOfLinesString() {
-    let expectedString = "fooLabel.numberOfLines = 0"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelSetupString_HasExpectedOutputFor_minimumScaleFactor() {
+    let attributesDict = ["minimumScaleFactor": "0.5", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.minimumScaleFactor = 0.5\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testLabelSetupString_HasMinimumScaleFactorString() {
-    let expectedString = "fooLabel.minimumScaleFactor = 0.5"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_labelSetupString_HasExpectedOutputFor_enabled() {
+    let attributesDict = ["enabled": "NO", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.enabled = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
+  }
+  
+  func test_labelSetupString_HasExpectedOutputFor_highlighted() {
+    let attributesDict = ["highlighted": "YES", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.highlighted = true\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
+  }
+  
+  func test_labelSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
+    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = "fooLabel.translatesAutoresizingMaskIntoConstraints = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
 
+  func test_labelSetupString_HasExpectedOutputFor_Text() {
+    let attributesDict = ["id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    sut.text = "Foo"
+    
+    let expectedOutput = "fooLabel.text = \"Foo\"\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
+  }
+  
 //  // Check if this is needed when minimumScaleFactor is set
 //  func testLabelSetupString_HasAdjustsFontSizeToFitWidthString() {
 //    assert(false, "Check if this is needed when minimumScaleFactor is set")
@@ -62,56 +95,22 @@ class LabelTests: XCTestCase {
 //    XCTAssertTrue(codeString.containsString(expectedString))
 //  }
   
-  func testLabelSetupString_HasEnabledString() {
-    let expectedString = "fooLabel.enabled = false"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-  
-  func testLabelSetupString_HasHighlightedString() {
-    let expectedString = "fooLabel.highlighted = true"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-  
-  func testLabelSetupString_HasTextString() {
-    let expectedString = "fooLabel.text = \"foo\\nLabel\""
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-  
-  func testLabelSetupString_HasNotOpaqueString() {
-    let expectedString = "fooLabel.opaque"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
+  // Ignored because not in the currect documentation:
+  // - adjustsLetterSpacingToFitWidth="YES"
 }
 
-//MARK: - Default Label
 extension LabelTests {
-  func testDefaultLabelSetupString_HasNotUserInteractionEnabledString() {
-    let expectedString = "defaultLabel.userInteractionEnabled"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultLabelSetupString_HasNotTextAlignmentString() {
-    let expectedString = "defaultLabel.textAlignment"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultLabelSetupString_HasNotLineBreakModeString() {
-    let expectedString = "defaultLabel.lineBreakMode"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultLabelSetupString_HasNotBaselineAdjustmentString() {
-    let expectedString = "defaultLabel.baselineAdjustment"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultLabelSetupString_HasNotAdjustsFontSizeToFitWidthString() {
-    let expectedString = "defaultLabel.adjustsFontSizeToFitWidth"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultLabelSetupString_HasNotOpaqueString() {
-    let expectedString = "defaultLabel.opaque"
-    XCTAssertFalse(codeString.contains(expectedString))
+  func test_labelSetupString_HasNoOutputForDefaultValues() {
+    let attributesDict = ["horizontalHuggingPriority": "251",
+                          "verticalHuggingPriority": "251",
+                          "opaque": "NO",
+                          "userInteractionEnabled": "NO",
+                          "contentMode": "left",
+                          "id": "42",
+                          "userLabel": "fooLabel"]
+    let sut = Label(dict: attributesDict)
+    
+    let expectedOutput = ""
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }

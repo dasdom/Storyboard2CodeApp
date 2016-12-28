@@ -1,7 +1,7 @@
 import Foundation
 
 /// Class to store everything needed to generate UIView code
-public class View: AttributeCreatable, ElementCodeGeneratable {
+public class View: AttributeCreatable, ElementCodeGeneratable, Reflectable {
   public let clipsSubviews: Bool?
   var clipsSubviewsDefault = false
   public var font: Font? = nil
@@ -12,9 +12,10 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   var opaqueDefault = true
   public let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
-  public let contentMode: String
+  public let contentMode: String?
   var contentModeDefault = "scaleToFill"
-  public let translatesAutoresizingMaskIntoConstraints: Bool
+  public let translatesAutoresizingMaskIntoConstraints: Bool?
+  var translatesAutoresizingMaskIntoConstraintsDefault = true
   public let autoresizesSubviews: Bool?
   public let clearsContextBeforeDrawing: Bool?
   public let tag: Int?
@@ -25,9 +26,9 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   public var isMainView: Bool = false
   
   required public init(dict: [String : String]) {
-    translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"] == "YES"
+    translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"].flatMap  { $0 == "YES" }
     isOpaque                    = dict["opaque"].flatMap { $0 == "YES" }
-    contentMode                 = dict["contentMode"]!
+    contentMode                 = dict["contentMode"]
     clipsSubviews               = dict["clipsSubviews"].flatMap { $0 == "YES" }
     userInteractionEnabled      = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
     autoresizesSubviews         = dict["autoresizesSubviews"].flatMap { $0 == "YES" }
@@ -80,7 +81,8 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
    - returns: array of property names
    */
   func reflectable() -> [String] {
-    var temp: [String] = ["translatesAutoresizingMaskIntoConstraints"]
+    var temp: [String] = []
+    if translatesAutoresizingMaskIntoConstraints != translatesAutoresizingMaskIntoConstraintsDefault { temp.append("translatesAutoresizingMaskIntoConstraints") }
     if isOpaque != opaqueDefault { temp.append("isOpaque") }
     if contentMode != contentModeDefault { temp.append("contentMode") }
     if userInteractionEnabled != userInteractionEnabledDefault { temp.append("userInteractionEnabled") }
@@ -91,37 +93,37 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
   }
   
   var selfNameForMessaging: String {
-    return isMainView ? "" : "\(self.userLabel)."
+    return isMainView ? "" : "\(self.userLabel)"
   }
   
   var reflectedSetup: String {
     /// Get setup string from child in a mirror
-    func stringFromChild(_ label: String?, value: Any, reflectable: [String]) -> String {
-     
-      if let label = label, reflectable.contains(label) {
-        let optionalMirror = Mirror(reflecting: value)
-        if optionalMirror.children.count > 0 {
-          for child in optionalMirror.children {
-            return stringFromChild(label, value: child.value, reflectable: reflectable)
-          }
-        } else {
-          if "\(value)" == "nil" {
-            return ""
-          }
-          /// add a '.' when the value seems to be an enum value
-          let dotOrEmpty: String
-          if let stringValue = value as? String, let _ = Float(stringValue) {
-            dotOrEmpty = ""
-          } else if let _ = value as? String {
-            dotOrEmpty = "."
-          } else {
-            dotOrEmpty = ""
-          }
-          return "\(self.selfNameForMessaging)\(label) = \(dotOrEmpty)\(value)\n"
-        }
-      }
-      return ""
-    }
+//    func stringFromChild(_ label: String?, value: Any, reflectable: [String]) -> String {
+//     
+//      if let label = label, reflectable.contains(label) {
+//        let optionalMirror = Mirror(reflecting: value)
+//        if optionalMirror.children.count > 0 {
+//          for child in optionalMirror.children {
+//            return stringFromChild(label, value: child.value, reflectable: reflectable)
+//          }
+//        } else {
+//          if "\(value)" == "nil" {
+//            return ""
+//          }
+//          /// add a '.' when the value seems to be an enum value
+//          let dotOrEmpty: String
+//          if let stringValue = value as? String, let _ = Float(stringValue) {
+//            dotOrEmpty = ""
+//          } else if let _ = value as? String {
+//            dotOrEmpty = "."
+//          } else {
+//            dotOrEmpty = ""
+//          }
+//          return "\(self.selfNameForMessaging)\(label) = \(dotOrEmpty)\(value)\n"
+//        }
+//      }
+//      return ""
+//    }
     
     let reflectableNames = reflectable()
     let mirror = Mirror(reflecting: self)
@@ -129,15 +131,15 @@ public class View: AttributeCreatable, ElementCodeGeneratable {
     if let superclassMirror = mirror.superclassMirror {
       if let superSuperClassMirror = superclassMirror.superclassMirror {
         for child in superSuperClassMirror.children {
-          string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
+          string += stringFromChild(target: selfNameForMessaging, label: child.label, value: child.value, reflectable: reflectableNames)
         }
       }
       for child in superclassMirror.children {
-        string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
+        string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames)
       }
     }
     for child in mirror.children {
-      string += stringFromChild(child.label, value: child.value, reflectable: reflectableNames)
+      string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames)
     }
     return string
   }

@@ -11,128 +11,119 @@ import XCTest
 
 class ButtonTests: XCTestCase {
   
-  var codeString = ""
-  let codeCreator = CodeCreator()
-  
-  override func setUp() {
-    super.setUp()
+  func test_buttonPropertyString_HasExpectedOutput() {
+    let attributesDict = ["id": "cfU-u7-b0P", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
     
-    guard let data = dataFromResource(withName: "ButtonTests", andType: "xml") else { fatalError() }
-    let strings = codeCreator.codeStringsFrom(XMLdata: data)
-    codeString = ""
-    for (_, value) in strings {
-      codeString += value
-    }
-//    print(codeString)
+    let expectedOutput = "let fooButton: UIButton"
+    XCTAssertEqual(sut.propertyString, expectedOutput)
   }
   
-  func test_ButtonReturnsCorrectInitString() {
-    let expectedString = "button = UIButton(type: .system)\n"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonInitString_HasExpectedOutput() {
+    let attributesDict = ["buttonType": "roundedRect", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton = UIButton(type: .system)\n"
+    XCTAssertEqual(sut.initString, expectedOutput)
   }
   
-  func testButtonSetupString_HasTranslatesAutoresizingString() {
-    let expectedString = "button.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_enabled() {
+    let attributesDict = ["enabled": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.enabled = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasContentHorizontalAlignmentString() {
-    let expectedString = "button.contentHorizontalAlignment = .left"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_highlighted() {
+    let attributesDict = ["highlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.highlighted = true\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasContentVerticalAlignmentString() {
-    let expectedString = "button.contentVerticalAlignment = .top"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_selected() {
+    let attributesDict = ["selected": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.selected = true\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasLineBreakModeString() {
-    let expectedString = "button.titleLabel?.lineBreakMode = .byClipping"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_contentHorizontalAlignment() {
+    let attributesDict = ["contentHorizontalAlignment": "left", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.contentHorizontalAlignment = .left\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasEnabledString() {
-    let expectedString = "button.enabled = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_contentVerticalAlignment() {
+    let attributesDict = ["contentVerticalAlignment": "top", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.contentVerticalAlignment = .top\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasHighlightedString() {
-    let expectedString = "button.highlighted = true"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_reversesTitleShadowWhenHighlighted() {
+    let attributesDict = ["reversesTitleShadowWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.reversesTitleShadowWhenHighlighted = true\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasSelectedString() {
-    let expectedString = "button.selected = true"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_showsTouchWhenHighlighted() {
+    let attributesDict = ["showsTouchWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.showsTouchWhenHighlighted = true\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasReversesTitleShadowWhenHighlightedString() {
-    let expectedString = "button.reversesTitleShadowWhenHighlighted = true"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenHighlighted() {
+    let attributesDict = ["adjustsImageWhenHighlighted": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.adjustsImageWhenHighlighted = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasShowsTouchWhenHighlightedString() {
-    let expectedString = "button.showsTouchWhenHighlighted = true"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-
-  func testButtonSetupString_HasAdjustsImageWhenHighlightedString() {
-    let expectedString = "button.adjustsImageWhenHighlighted = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenDisabled() {
+    let attributesDict = ["adjustsImageWhenDisabled": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.adjustsImageWhenDisabled = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasAdjustsImageWhenDisabledString() {
-    let expectedString = "button.adjustsImageWhenDisabled = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode() {
+    let attributesDict = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.titleLabel?.lineBreakMode = .byClipping\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testButtonSetupString_HasTitleColorString() {
-    let expectedString = "button.setTitleColor(UIColor(colorLiteralRed: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)"
-    print(codeString)
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-}
-
-
-//MARK: - Default Button
-extension ButtonTests {
-  func testDefaultButtonSetupString_HasNotUserInteractionEnabledString() {
-    let expectedString = "button.userInteractionEnabled"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
- 
-  func testDefaultButtonSetupString_HasNotEnabledString() {
-    let expectedString = "defaultButton.enabled"
-    XCTAssertFalse(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
+    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    
+    let expectedOutput = "fooButton.translatesAutoresizingMaskIntoConstraints = false\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testDefaultButtonSetupString_HasNotHighlightedString() {
-    let expectedString = "defaultButton.highlighted"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultButtonSetupString_HasNotSelectedString() {
-    let expectedString = "defaultButton.selected"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultButtonSetupString_HasNotReversesTitleShadowWhenHighlightedString() {
-    let expectedString = "defaultButton.reversesTitleShadowWhenHighlighted"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultButtonSetupString_HasNotShowsTouchWhenHighlightedString() {
-    let expectedString = "defaultButton.showsTouchWhenHighlighted"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultButtonSetupString_HasNotAdjustsImageWhenHighlightedString() {
-    let expectedString = "defaultButton.adjustsImageWhenHighlighted"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultButtonSetupString_HasNotAdjustsImageWhenDisabledString() {
-    let expectedString = "defaultButton.adjustsImageWhenDisabled"
-    XCTAssertFalse(codeString.contains(expectedString))
+  func test_buttonSetupString_HasExpectedOutputFor_textColor() {
+    let attributesDict = ["id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attributesDict)
+    let color = Color(dict: ["key": "titleColor", "red": "1", "green": "1", "blue": "0.400", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
+    var state = ButtonState(dict: ["key": "normal", "title": "Button 1"])
+    state.titleColor = color
+    sut.states.append(state)
+    
+    let expectedOutput = "fooButton.setTitle(\"Button 1\", for: .normal)\nfooButton.setTitleColor(UIColor(colorLiteralRed: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }

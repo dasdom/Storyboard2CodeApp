@@ -39,15 +39,12 @@
 		F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */; };
 		F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F23DF4C41CE274DA00D9939E /* SegmentedControlTests.xml */; };
 		F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */; };
-		F25078591DFA04490053BC3B /* LabelTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */; };
-		F250785A1DFA044D0053BC3B /* TextFieldTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */; };
 		F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8B1CD500BC00505DD3 /* ButtonState.swift */; };
 		F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */; };
-		F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED931CD5495600505DD3 /* ButtonTests.xml */; };
 		F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254ED991CD5DDCF00505DD3 /* ViewTests.swift */; };
-		F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F254ED951CD5499000505DD3 /* ViewTests.xml */; };
 		F2662DCC1D1EDFE8000D6449 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2662DCB1D1EDFE8000D6449 /* TableView.swift */; };
 		F28E6A5E1DF2189C007D0114 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E6A5D1DF2189C007D0114 /* TableViewController.swift */; };
+		F2B3CEF01E11543000FA8AC7 /* TextInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */; };
 		F2BF46911CE62E1A0031B663 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF46901CE62E1A0031B663 /* Scene.swift */; };
 		F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F2D9A2461CDD36B700F59171 /* SliderTests.xml */; };
 		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
@@ -112,16 +109,14 @@
 		F250785F1DFA05490053BC3B /* DynamicCellsTableViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DynamicCellsTableViewTests.storyboard; sourceTree = "<group>"; };
 		F254ED8B1CD500BC00505DD3 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
-		F254ED931CD5495600505DD3 /* ButtonTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonTests.xml; sourceTree = "<group>"; };
-		F254ED951CD5499000505DD3 /* ViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ViewTests.xml; sourceTree = "<group>"; };
 		F254ED991CD5DDCF00505DD3 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TableViewCellTests.storyboard; sourceTree = "<group>"; };
 		F2662DCB1D1EDFE8000D6449 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		F28E6A5D1DF2189C007D0114 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTraits.swift; sourceTree = "<group>"; };
 		F2BF46901CE62E1A0031B663 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		F2D9A2461CDD36B700F59171 /* SliderTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SliderTests.xml; sourceTree = "<group>"; };
-		F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LabelTests.xml; sourceTree = "<group>"; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
-		F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TextFieldTests.xml; sourceTree = "<group>"; };
 		F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +215,7 @@
 				F230C45E1CD34A93000DBA33 /* Enums.swift */,
 				F230C45F1CD34A93000DBA33 /* Extensions.swift */,
 				F230C4601CD34A93000DBA33 /* Protocols.swift */,
+				F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -244,13 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				F250784F1DFA01A70053BC3B /* ButtonTests.storyboard */,
-				F254ED931CD5495600505DD3 /* ButtonTests.xml */,
 				F25078511DFA024D0053BC3B /* ViewTests.storyboard */,
-				F254ED951CD5499000505DD3 /* ViewTests.xml */,
 				F25078531DFA02BE0053BC3B /* LabelTests.storyboard */,
-				F2E2EF801CD7E5D800079EB8 /* LabelTests.xml */,
 				F25078551DFA03DC0053BC3B /* TextFieldTests.storyboard */,
-				F2F7BB6E1CDBDFBA0002BAFF /* TextFieldTests.xml */,
 				F25078571DFA04410053BC3B /* SliderTests.storyboard */,
 				F2D9A2461CDD36B700F59171 /* SliderTests.xml */,
 				F250785B1DFA048E0053BC3B /* SegmentedControlTests.storyboard */,
@@ -259,6 +251,7 @@
 				F21895E01CEA5DBC0077960F /* ScrollViewTests.xml */,
 				F250785F1DFA05490053BC3B /* DynamicCellsTableViewTests.storyboard */,
 				F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */,
+				F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -356,12 +349,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F250785A1DFA044D0053BC3B /* TextFieldTests.xml in Resources */,
-				F25078591DFA04490053BC3B /* LabelTests.xml in Resources */,
 				F21895DF1CE8A6700077960F /* DynamicCellsTableViewTests.xml in Resources */,
 				F23DF4C51CE274DA00D9939E /* SegmentedControlTests.xml in Resources */,
-				F254ED9B1CD6945800505DD3 /* ViewTests.xml in Resources */,
-				F254ED971CD54AC800505DD3 /* ButtonTests.xml in Resources */,
 				F21895E11CEA5DBC0077960F /* ScrollViewTests.xml in Resources */,
 				F2D9A2471CDD36B700F59171 /* SliderTests.xml in Resources */,
 			);
@@ -395,6 +384,7 @@
 				F230C4681CD34A93000DBA33 /* View.swift in Sources */,
 				F28E6A5E1DF2189C007D0114 /* TableViewController.swift in Sources */,
 				F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */,
+				F2B3CEF01E11543000FA8AC7 /* TextInputTraits.swift in Sources */,
 				F230C4611CD34A93000DBA33 /* Button.swift in Sources */,
 				F230C46A1CD34A93000DBA33 /* Constraint.swift in Sources */,
 				F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */,
