@@ -11,88 +11,116 @@ import XCTest
 
 class SliderTests: XCTestCase {
   
-  var codeString = ""
-  let codeCreator = CodeCreator()
+  var sut: Slider!
   
   override func setUp() {
     super.setUp()
-    guard let data = dataFromResource(withName: "SliderTests", andType: "xml") else { fatalError() }
-    let strings = codeCreator.codeStringsFrom(XMLdata: data)
-    codeString = ""
-    for (_, value) in strings {
-      codeString += value
-    }
-    //    print(codeString)
+    
+    sut = Slider(dict: ["id": "L8L-a5-BCh", "userLabel": "fooSlider"])
   }
   
-  func test_SliderdReturnsCorrectInitString() {
-    let expectedString = "fooSlider = UISlider()\n"
-    XCTAssertTrue(codeString.contains(expectedString))
+  override func tearDown() {
+    sut = nil
+    
+    super.tearDown()
   }
   
-  func testSliderSetupString_HasTranslatesAutoresizingString() {
-    let expectedString = "fooSlider.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-
-  func testSliderSetupString_HasValueString() {
-    let expectedString = "fooSlider.value = 5"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderPropertyString_HasExpectedOutput() {
+    let expectedOutput = "let fooSlider: UISlider"
+    XCTAssertEqual(sut.propertyString, expectedOutput)
   }
   
-  func testSliderSetupString_HasMinimumValueString() {
-    let expectedString = "fooSlider.minimumValue = -7"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderInitString_HasExpectedOutput() {
+    let expectedOutput = "fooSlider = UISlider()\n"
+    XCTAssertEqual(sut.initString, expectedOutput)
   }
   
-  func testSliderSetupString_HasMaximumValueString() {
-    let expectedString = "fooSlider.maximumValue = 33"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
+    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let localSUT = Slider(dict: attributesDict)
+    
+    let expectedOutput = "fooSlider.translatesAutoresizingMaskIntoConstraints = false\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSliderSetupString_HasContinuousString() {
-    let expectedString = "fooSlider.continuous = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderSetupString_HasExpectedOutputFor_value() {
+    let attributesDict = ["value": "5",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let localSUT = Slider(dict: attributesDict)
+    
+    let expectedOutput = "fooSlider.value = 5.0\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSliderSetupString_HasMinimumTrackTintColorString() {
-    let expectedString = "fooSlider.minimumTrackTintColor = UIColor(colorLiteralRed: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderSetupString_HasExpectedOutputFor_minValue() {
+    let attributesDict = ["minValue": "-7",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let localSUT = Slider(dict: attributesDict)
+    
+    let expectedOutput = "fooSlider.minimumValue = -7.0\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSliderSetupString_HasMaximumTrackTintColorString() {
-    let expectedString = "fooSlider.maximumTrackTintColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderSetupString_HasExpectedOutputFor_maxValue() {
+    let attributesDict = ["maxValue": "33",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let localSUT = Slider(dict: attributesDict)
+    
+    let expectedOutput = "fooSlider.maximumValue = 33.0\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSliderSetupString_HasThumbTintColorString() {
-    let expectedString = "fooSlider.thumbTintColor = UIColor(colorLiteralRed: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_sliderSetupString_HasExpectedOutputFor_continuous() {
+    let attributesDict = ["continuous": "NO",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let localSUT = Slider(dict: attributesDict)
+    
+    let expectedOutput = "fooSlider.continuous = false\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
+  }
+  
+  func test_sliderSetupString_HasExpectedOutputFor_minimumTrackTintColor() {
+    let color = Color(dict: ["key": "minimumTrackTintColor", "red": "0.0", "green": "0.50196081400000003", "blue": "0.0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
+    sut.colors.append(color)
+    
+    let expectedOutput = "fooSlider.minimumTrackTintColor = UIColor(colorLiteralRed: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
+  }
+  
+  func test_sliderSetupString_HasExpectedOutputFor_maximumTrackTintColor() {
+    let color = Color(dict: ["key": "maximumTrackTintColor", "red": "1", "green": "0.0", "blue": "0.0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
+    sut.colors.append(color)
+    
+    let expectedOutput = "fooSlider.maximumTrackTintColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
+  }
+  
+  func test_sliderSetupString_HasExpectedOutputFor_thumbTintColor() {
+    let color = Color(dict: ["key": "thumbTintColor", "red": "0.0", "green": "0.25098040700000002", "blue": "0.50196081400000003", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
+    sut.colors.append(color)
+    
+    let expectedOutput = "fooSlider.thumbTintColor = UIColor(colorLiteralRed: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }
 
 extension SliderTests {
-  func testDefaultSliderSetupString_HasNotContinuousString() {
-    XCTAssert(codeString.contains("defaultSlider"))
-    let expectedString = "defaultSlider.continuous"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultSliderSetupString_HasNotMinimumTrackTintColorString() {
-    XCTAssert(codeString.contains("defaultSlider"))
-    let expectedString = "defaultSlider.minimumTrackTintColor"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultSliderSetupString_HasNotMaximumTrackTintColorString() {
-    XCTAssert(codeString.contains("defaultSlider"))
-    let expectedString = "defaultSlider.maximumTrackTintColor"
-    XCTAssertFalse(codeString.contains(expectedString))
-  }
-  
-  func testDefaultSliderSetupString_HasNotThumbTintColorString() {
-    XCTAssert(codeString.contains("defaultSlider"))
-    let expectedString = "defaultSlider.thumbTintColor"
-    XCTAssertFalse(codeString.contains(expectedString))
+  func test_sliderSetupString_HasNoOutputForDefaultValues() {
+    let attributesDict = ["opaque": "NO",
+                          "contentMode": "scaleToFill",
+                          "contentHorizontalAlignment": "center",
+                          "contentVerticalAlignment": "center",
+                          "id": "42",
+                          "userLabel": "fooSlider"]
+    let sut = Slider(dict: attributesDict)
+    
+    let expectedOutput = ""
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }
