@@ -14,7 +14,7 @@ class TableView: ScrollView, CodeGeneratable {
   let rowHeight: String?
   let sectionHeaderHeight: String?
   let sectionFooterHeight: String?
-  var isEmbeddedTableView = false
+//  var isEmbeddedTableView = false
   
   required init(dict: [String : String]) {
     
@@ -33,9 +33,9 @@ class TableView: ScrollView, CodeGeneratable {
     type = ElementType.UITableView
   }
   
-  override var selfNameForMessaging: String {
-    return isEmbeddedTableView ? super.selfNameForMessaging : ""
-  }
+//  override var selfNameForMessaging: String {
+//    return isEmbeddedTableView ? super.selfNameForMessaging : ""
+//  }
   
   public override var superInit: String {
     return "super.init(frame: frame, style: style)"

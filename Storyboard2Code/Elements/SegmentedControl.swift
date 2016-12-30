@@ -22,7 +22,7 @@ public class SegmentedControl: View {
   public var momentary: Bool?
   
   public required init(dict: [String : String]) {
-    selectedSegmentIndex = Int(dict["selectedSegmentIndex"]!)!
+    selectedSegmentIndex = dict["selectedSegmentIndex"] != nil ? Int(dict["selectedSegmentIndex"]!) : nil
     momentary = dict["momentary"].flatMap { $0 == "YES" }
     
     super.init(dict: dict)

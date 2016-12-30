@@ -2,10 +2,4 @@
 
 import UIKit
 
-let textField = UITextField()
-textField.clipsToBounds
-textField.contentMode == .scaleToFill
-textField.contentHorizontalAlignment == .left
-textField.contentVerticalAlignment == .center
-textField.clearsOnBeginEditing
-textField.keyboardAppearance = .alert
+let segmentedControl = UISegmentedControl()

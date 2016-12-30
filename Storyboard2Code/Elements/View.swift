@@ -97,33 +97,6 @@ public class View: AttributeCreatable, ElementCodeGeneratable, Reflectable {
   }
   
   var reflectedSetup: String {
-    /// Get setup string from child in a mirror
-//    func stringFromChild(_ label: String?, value: Any, reflectable: [String]) -> String {
-//     
-//      if let label = label, reflectable.contains(label) {
-//        let optionalMirror = Mirror(reflecting: value)
-//        if optionalMirror.children.count > 0 {
-//          for child in optionalMirror.children {
-//            return stringFromChild(label, value: child.value, reflectable: reflectable)
-//          }
-//        } else {
-//          if "\(value)" == "nil" {
-//            return ""
-//          }
-//          /// add a '.' when the value seems to be an enum value
-//          let dotOrEmpty: String
-//          if let stringValue = value as? String, let _ = Float(stringValue) {
-//            dotOrEmpty = ""
-//          } else if let _ = value as? String {
-//            dotOrEmpty = "."
-//          } else {
-//            dotOrEmpty = ""
-//          }
-//          return "\(self.selfNameForMessaging)\(label) = \(dotOrEmpty)\(value)\n"
-//        }
-//      }
-//      return ""
-//    }
     
     let reflectableNames = reflectable()
     let mirror = Mirror(reflecting: self)

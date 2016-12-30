@@ -11,64 +11,71 @@ import XCTest
 
 class SegmentedControlTests: XCTestCase {
   
-  var codeString = ""
-  let codeCreator = CodeCreator()
+  var sut: SegmentedControl!
   
   override func setUp() {
     super.setUp()
-    guard let data = dataFromResource(withName: "SegmentedControlTests", andType: "xml") else { fatalError() }
-    let strings = codeCreator.codeStringsFrom(XMLdata: data)
-    codeString = ""
-    for (_, value) in strings {
-      codeString += value
-    }
-//    print(codeString)
+    
+    sut = SegmentedControl(dict: ["id": "42", "userLabel": "fooSegmentedControl"])
   }
   
-  func test_SegmentedControlReturnsCorrectInitString() {
-    let expectedString = "fooSegmentedControl = UISegmentedControl()\n"
-    XCTAssertTrue(codeString.contains(expectedString))
+  override func tearDown() {
+    sut = nil
+    
+    super.tearDown()
   }
   
-  func testSegmentedControlSetupString_HasTranslatesAutoresizingString() {
-    let expectedString = "fooSegmentedControl.translatesAutoresizingMaskIntoConstraints = false"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_segmentedControlPropertyString_HasExpectedOutput() {
+    let expectedOutput = "let fooSegmentedControl: UISegmentedControl"
+    XCTAssertEqual(sut.propertyString, expectedOutput)
   }
   
-  func testSegmentedControlSetupString_HasInsertSegmentWithTitleFooString() {
-    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Foo\", at: 0, animated: false)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_segmentedControlInitString_HasExpectedOutput() {
+    let expectedOutput = "fooSegmentedControl = UISegmentedControl()\n"
+    XCTAssertEqual(sut.initString, expectedOutput)
   }
   
-  func testSegmentedControlSetupString_HasInsertSegmentWithTitleBarString() {
-    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Bar\", at: 1, animated: false)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_segmentedControlSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
+    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO",
+                          "id": "42",
+                          "userLabel": "fooSegmentedControl"]
+    let localSUT = SegmentedControl(dict: attributesDict)
+    
+    let expectedOutput = "fooSegmentedControl.translatesAutoresizingMaskIntoConstraints = false\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSegmentedControlSetupString_HasInsertSegmentWithTitleHelloString() {
-    let expectedString = "fooSegmentedControl.insertSegment(withTitle:\"Hello\", at: 2, animated: false)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func testSegmentedControlSetupString_HasInsertSegmentWithTitleString() {
+    sut.segments.append(Segment(dict: ["title": "Foo"]))
+    sut.segments.append(Segment(dict: ["title": "Bar"]))
+    sut.segments.append(Segment(dict: ["title": "Hello"]))
+    sut.segments.append(Segment(dict: ["title": "World", "enabled": "NO"]))
+    
+    var expectedOutput = "fooSegmentedControl.insertSegment(withTitle:\"Foo\", at: 0, animated: false)\n"
+    expectedOutput += "fooSegmentedControl.insertSegment(withTitle:\"Bar\", at: 1, animated: false)\n"
+    expectedOutput += "fooSegmentedControl.insertSegment(withTitle:\"Hello\", at: 2, animated: false)\n"
+    expectedOutput += "fooSegmentedControl.insertSegment(withTitle:\"World\", at: 3, animated: false)\n"
+    expectedOutput += "fooSegmentedControl.setEnabled(false, forSegmentAtIndex: 3)\n"
+    XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
-  func testSegmentedControlSetupString_HasSetEnabledString() {
-    let expectedString = "fooSegmentedControl.setEnabled(false, forSegmentAtIndex: 3)"
-    XCTAssertTrue(codeString.contains(expectedString))
+  func test_segmentedControlSetupString_HasExpectedOutputFor_selectedSegmentIndex() {
+    let attributesDict = ["selectedSegmentIndex": "1",
+                          "id": "42",
+                          "userLabel": "fooSegmentedControl"]
+    let localSUT = SegmentedControl(dict: attributesDict)
+    
+    let expectedOutput = "fooSegmentedControl.selectedSegmentIndex = 1\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
   
-  func testSegmentedControlSetupString_HasSelectedSegmentIndexString() {
-    let expectedString = "fooSegmentedControl.selectedSegmentIndex = 1"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-  
-  func testSegmentedControlSetupString_HasMomentaryString() {
-    let expectedString = "fooSegmentedControl.momentary = true"
-    XCTAssertTrue(codeString.contains(expectedString))
-  }
-}
-
-extension SegmentedControlTests {
-  func testDefaultSegmentedControlSetupString_HasSetEnabled() {
-    let expectedString = "defaultSegmentedControl.setEnabled"
-    XCTAssertFalse(codeString.contains(expectedString))
+  func test_segmentedControlSetupString_HasExpectedOutputFor_momentary() {
+    let attributesDict = ["momentary": "YES",
+                          "id": "42",
+                          "userLabel": "fooSegmentedControl"]
+    let localSUT = SegmentedControl(dict: attributesDict)
+    
+    let expectedOutput = "fooSegmentedControl.momentary = true\n"
+    XCTAssertEqual(localSUT.setupString, expectedOutput)
   }
 }
