@@ -11,9 +11,10 @@ import Foundation
  - UISlider:           UISlider
  - UIScrollView:       UIScrollView
  - UITableView:        UITableView
+ - UIImageView:        UIImageView
  */
 public enum ElementType: String {
-  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView
+  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView
 }
 
 public enum Element: String {

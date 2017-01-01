@@ -1,24 +1,24 @@
 import Foundation
 
-public class Label: View {
-  public let horizontalHuggingPriority: Int?
+class Label: View {
+  let horizontalHuggingPriority: Int?
   var horizontalHuggingPriorityDefault = 251
-  public let verticalHuggingPriority: Int?
+  let verticalHuggingPriority: Int?
   var verticalHuggingPriorityDefault = 251
-  public var text: String?
-  public var textAlignment: String?
+  var text: String?
+  var textAlignment: String?
   var textAlignmentDefault = "natural"
-  public let lineBreakMode: LineBreakMode?
+  let lineBreakMode: LineBreakMode?
   var lineBreakModeDefault = LineBreakMode.ByTruncatingTail
-  public let baselineAdjustment: String?
+  let baselineAdjustment: String?
   var baseLineAdjustmentDefault = "alignBaselines"
 //  public let adjustsFontSizeToFitWidth: Bool
-  public let numberOfLines: String?
-  public let minimumScaleFactor: String?
-  public let enabled: Bool?
-  public let highlighted: Bool?
+  let numberOfLines: String?
+  let minimumScaleFactor: String?
+  let enabled: Bool?
+  let highlighted: Bool?
   
-  public required init(dict: [String : String]) {
+  required init(dict: [String : String]) {
 
     horizontalHuggingPriority = dict["horizontalHuggingPriority"] != nil ? Int(dict["horizontalHuggingPriority"]!) : nil
     verticalHuggingPriority   = dict["verticalHuggingPriority"] != nil ? Int(dict["verticalHuggingPriority"]!) : nil
@@ -58,7 +58,7 @@ public class Label: View {
 //    return super.initString
 //  }
   
-  public override var setupString: String {
+  override var setupString: String {
     var string = super.setupString
     if let text = text {
       string += "\(userLabel).text = \"\(text)\"\n"

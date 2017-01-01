@@ -45,6 +45,9 @@
 		F2B3CEF01E11543000FA8AC7 /* TextInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */; };
 		F2BF46911CE62E1A0031B663 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF46901CE62E1A0031B663 /* Scene.swift */; };
 		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
+		F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */; };
+		F2E925311E16F7DC009BCA86 /* TestImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E925301E16F7DC009BCA86 /* TestImages.xcassets */; };
+		F2E925331E16FA05009BCA86 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E925321E16FA05009BCA86 /* ImageView.swift */; };
 		F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +114,10 @@
 		F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTraits.swift; sourceTree = "<group>"; };
 		F2BF46901CE62E1A0031B663 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
+		F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewTests.swift; sourceTree = "<group>"; };
+		F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewTests.storyboard; sourceTree = "<group>"; };
+		F2E925301E16F7DC009BCA86 /* TestImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestImages.xcassets; sourceTree = "<group>"; };
+		F2E925321E16FA05009BCA86 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +181,7 @@
 				F230C4721CD38B58000DBA33 /* Elements */,
 				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
 				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
+				F2E925301E16F7DC009BCA86 /* TestImages.xcassets */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
 			path = Storyboard2CodeTests;
@@ -186,6 +194,7 @@
 				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
 				F230C4541CD34A93000DBA33 /* Color.swift */,
 				F230C4551CD34A93000DBA33 /* Font.swift */,
+				F2E925321E16FA05009BCA86 /* ImageView.swift */,
 				F230C4561CD34A93000DBA33 /* Label.swift */,
 				F230C4571CD34A93000DBA33 /* LayoutGuide.swift */,
 				F2BF46901CE62E1A0031B663 /* Scene.swift */,
@@ -218,13 +227,14 @@
 			isa = PBXGroup;
 			children = (
 				F230C4731CD38B70000DBA33 /* ButtonTests.swift */,
-				F254ED991CD5DDCF00505DD3 /* ViewTests.swift */,
-				F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */,
-				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
-				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
-				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
-				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F210976C1CF972780056E90E /* DynamicCellsTableViewTests.swift */,
+				F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */,
+				F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */,
+				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
+				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
+				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
+				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
+				F254ED991CD5DDCF00505DD3 /* ViewTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
@@ -234,15 +244,16 @@
 			isa = PBXGroup;
 			children = (
 				F250784F1DFA01A70053BC3B /* ButtonTests.storyboard */,
-				F25078511DFA024D0053BC3B /* ViewTests.storyboard */,
-				F25078531DFA02BE0053BC3B /* LabelTests.storyboard */,
-				F25078551DFA03DC0053BC3B /* TextFieldTests.storyboard */,
-				F25078571DFA04410053BC3B /* SliderTests.storyboard */,
-				F250785B1DFA048E0053BC3B /* SegmentedControlTests.storyboard */,
-				F250785D1DFA04D30053BC3B /* ScrollViewTests.storyboard */,
 				F250785F1DFA05490053BC3B /* DynamicCellsTableViewTests.storyboard */,
 				F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */,
+				F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */,
+				F25078531DFA02BE0053BC3B /* LabelTests.storyboard */,
+				F250785D1DFA04D30053BC3B /* ScrollViewTests.storyboard */,
+				F250785B1DFA048E0053BC3B /* SegmentedControlTests.storyboard */,
+				F25078571DFA04410053BC3B /* SliderTests.storyboard */,
 				F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */,
+				F25078551DFA03DC0053BC3B /* TextFieldTests.storyboard */,
+				F25078511DFA024D0053BC3B /* ViewTests.storyboard */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";
@@ -341,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F21895DF1CE8A6700077960F /* DynamicCellsTableViewTests.xml in Resources */,
+				F2E925311E16F7DC009BCA86 /* TestImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +367,7 @@
 				F21895E51CECFA730077960F /* ScrollView.swift in Sources */,
 				F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */,
 				F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */,
+				F2E925331E16FA05009BCA86 /* ImageView.swift in Sources */,
 				F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */,
 				F230C4671CD34A93000DBA33 /* TextField.swift in Sources */,
 				F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */,
@@ -385,6 +398,7 @@
 			files = (
 				F254ED9A1CD5DDCF00505DD3 /* ViewTests.swift in Sources */,
 				F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */,
+				F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */,
 				F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */,
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
