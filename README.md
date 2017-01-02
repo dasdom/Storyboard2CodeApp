@@ -11,12 +11,18 @@ Mac app that converts an iOS storyboard into code. Work in progress.
 - [x] UILabel
 - [x] UISlider
 - [x] UITextField
+- [x] UISegmentedControl (images not supported yet)
+- [x] UIScrollView
+- [x] UITableView 
+- [x] UIImageView
 
-## Rudimentary support
-- [x] UISegmentedControl
+## Next planed elements
+- UITableViewCell
+- UICollectionView
+- UICollectionViewCell
 
 # Example output
-```
+```swift
 import UIKit
 
 class View: UIView {
