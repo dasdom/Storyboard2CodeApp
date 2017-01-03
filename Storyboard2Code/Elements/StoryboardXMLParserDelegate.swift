@@ -77,17 +77,6 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         currentText = ""
       case "textInputTraits":
         if let textField = tempViews.last as? TextField {
-//          textField.autocapitalizationType = attributeDict["autocapitalizationType"]
-//          textField.autocorrectionType = attributeDict["autocorrectionType"]
-//          textField.spellCheckingType = attributeDict["spellCheckingType"]
-//          textField.keyboardType = attributeDict["keyboardType"]
-//          textField.returnKeyType = attributeDict["returnKeyType"]
-//          textField.enablesReturnKeyAutomatically = attributeDict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
-//          textField.secureTextEntry = attributeDict["secureTextEntry"].flatMap { $0 == "YES" }
-//          
-//          if let keyboardAppearanceString = attributeDict["keyboardAppearance"] {
-//            textField.keyboardAppearance = KeyboardAppearance(rawValue: keyboardAppearanceString)?.codeString
-//          }
           textField.textInputTraits = TextInputTraits(dict: attributeDict)
         }
       default:

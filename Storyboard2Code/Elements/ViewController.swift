@@ -19,9 +19,10 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
   func extensionCodeString(for view: View, constraints: [Constraint]?) -> String {
     var string = "extension \(customClass)" + startBlock()
     string += "override func loadView()" + startBlock()
-    string += "view = \(view.userLabel.capitalizeFirst)()" + endBlock() + newLine(2)
+    string += "view = \(view.userLabel.capitalizeFirst)()" + endBlock()
     
     if let constraints = constraints {
+      string += newLine(2)
       string += "func setLayoutGuideConstraints()" + startBlock()
       string += "let contentView = view as! \(view.userLabel.capitalizeFirst)" + newLine()
       string += "contentView."

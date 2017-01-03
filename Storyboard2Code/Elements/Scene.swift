@@ -10,7 +10,7 @@ struct Scene: CodeGeneratable {
   let viewMargins: Set<String>
   let constraints: [Constraint]
   let viewController: ViewController
-  let controllerConstraints: [Constraint]
+  let controllerConstraints: [Constraint]?
   
   var swiftCodeString: String {
     var outputString = "import UIKit"
@@ -27,11 +27,11 @@ struct Scene: CodeGeneratable {
     outputString += setup(for: subviews)
     
     outputString += mainView.superInit + newLine(2)
-//    outputString += "backgroundColor = UIColor.white" + newLine(2)
     
     outputString += setup(for: [mainView])
     
-    outputString += addToSuperView(for: subviews) + newLine()
+    let addString = addToSuperView(for: subviews)
+    outputString += addString.isEmpty ? "" : addString + newLine()
     
     viewMargins.forEach { outputString += $0 + newLine() }
     
@@ -53,7 +53,10 @@ struct Scene: CodeGeneratable {
   }
   
   func setup(for subviews: [View]) -> String {
-    return subviews.reduce("") { $0 + $1.initString + $1.setupString + newLine() }
+    return subviews.reduce("") { result, element in
+      let elementString = element.initString + element.setupString
+      return result + (elementString.isEmpty ? "" : elementString + newLine())
+    }
   }
   
   func addToSuperView(for subviews: [View]) -> String {

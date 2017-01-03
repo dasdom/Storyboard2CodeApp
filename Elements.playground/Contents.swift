@@ -2,10 +2,24 @@
 
 import UIKit
 
-let sut = UIImageView()
-sut.clipsToBounds
-sut.isUserInteractionEnabled
-sut.contentMode == .scaleAspectFill
-sut.setContentHuggingPriority(251, for: .vertical)
-sut.image = UIImage(named: "fire")
-sut.highlightedImage = UIImage(named: "see")
+class FooCell: UITableViewCell {
+  
+  let fooImageView: UIImageView
+  let fooLabel: UILabel
+  
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    
+    fooImageView = UIImageView()
+    fooLabel = UILabel()
+    
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    contentView.addSubview(fooImageView)
+    contentView.addSubview(fooLabel)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+}

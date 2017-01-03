@@ -48,6 +48,7 @@
 		F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */; };
 		F2E925311E16F7DC009BCA86 /* TestImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E925301E16F7DC009BCA86 /* TestImages.xcassets */; };
 		F2E925331E16FA05009BCA86 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E925321E16FA05009BCA86 /* ImageView.swift */; };
+		F2E925351E1C427A009BCA86 /* SceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E925341E1C427A009BCA86 /* SceneTests.swift */; };
 		F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewTests.storyboard; sourceTree = "<group>"; };
 		F2E925301E16F7DC009BCA86 /* TestImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestImages.xcassets; sourceTree = "<group>"; };
 		F2E925321E16FA05009BCA86 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		F2E925341E1C427A009BCA86 /* SceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneTests.swift; sourceTree = "<group>"; };
 		F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +232,7 @@
 				F210976C1CF972780056E90E /* DynamicCellsTableViewTests.swift */,
 				F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */,
 				F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */,
+				F2E925341E1C427A009BCA86 /* SceneTests.swift */,
 				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
 				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
@@ -404,6 +407,7 @@
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
 				F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */,
 				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,
+				F2E925351E1C427A009BCA86 /* SceneTests.swift in Sources */,
 				F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */,
 				F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */,
 				F210976D1CF972780056E90E /* DynamicCellsTableViewTests.swift in Sources */,
@@ -526,9 +530,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Storyboard2Code/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=100";
+				OTHER_SWIFT_FLAGS = "-Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2Code;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -554,8 +559,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Storyboard2CodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard2Code.app/Contents/MacOS/Storyboard2Code";
 			};
@@ -568,6 +575,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Storyboard2CodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
