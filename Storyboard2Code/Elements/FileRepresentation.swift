@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Scene: CodeGeneratable {
+struct FileRepresentation: CodeGeneratable {
   let mainView: View
   let viewDict: [String: View]
   let viewMargins: Set<String>

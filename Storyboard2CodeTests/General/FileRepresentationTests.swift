@@ -5,13 +5,13 @@
 import XCTest
 @testable import Storyboard2Code
 
-class SceneTests: XCTestCase {
+class FileRepresentationTests: XCTestCase {
   
   func test_simpleCodeGeneration() {
     let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let secene = Scene(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
+    let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
     
     let expectedOutput = ["import UIKit",
                           "",
@@ -33,6 +33,6 @@ class SceneTests: XCTestCase {
                           "view = FooView()",
                           "}",
                           "}"].joined(separator: "\n")
-    XCTAssertEqual(secene.swiftCodeString, expectedOutput)
+    XCTAssertEqual(scene.swiftCodeString, expectedOutput)
   }
 }

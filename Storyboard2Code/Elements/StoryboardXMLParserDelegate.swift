@@ -6,7 +6,7 @@ import Foundation
 
 class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var viewDict: [String:View] = [:]
-  private var tempViews: [View] = []
+  var tempViews: [View] = []
   var mainView: View?
   var viewController: ViewController?
   var constraints: [Constraint] = []
@@ -18,7 +18,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var viewMargins: Set<String> = []
   private var layoutGuides: [LayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
-  var scenes: [Scene] = []
+  var scenes: [FileRepresentation] = []
 //  var tableViews: [TableView] = []
   
   func addView(_ view: View, addToTempViews: Bool = true) {
@@ -93,7 +93,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label", "textField", "view", "button", "segmentedControl", "slider", "tableView", "scrollView":
+    case "label", "textField", "view", "button", "segmentedControl", "slider", "tableView", "scrollView", "imageView":
       _ = tempViews.popLast()
     case "state":
       if let button = tempViews.last as? Button {
@@ -111,7 +111,7 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     case "scene":
       makeConstraintsUsable()
       if let mainView = mainView {
-        let scene = Scene(mainView: mainView, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
+        let scene = FileRepresentation(mainView: mainView, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
         scenes.append(scene)
       }
       mainView = nil

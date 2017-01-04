@@ -18,7 +18,7 @@ public enum ElementType: String {
 }
 
 public enum Element: String {
-  case view, label, textField, button, segmentedControl, slider, scrollView, tableView
+  case view, label, textField, button, segmentedControl, slider, scrollView, tableView, imageView
   
   func create(from dict: [String:String]) -> View {
     switch self {
@@ -30,6 +30,7 @@ public enum Element: String {
     case .slider: return Slider(dict: dict)
     case .scrollView: return ScrollView(dict: dict)
     case .tableView: return TableView(dict: dict)
+    case .imageView: return ImageView(dict: dict)
     }
   }
 }
