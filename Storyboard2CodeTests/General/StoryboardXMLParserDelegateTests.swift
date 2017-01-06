@@ -46,6 +46,49 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     XCTAssertTrue(sut.viewDict.values.first is Label)
   }
   
+  func test_ParsesScrollView() {
+    let xmlString = ["<subviews>", "<scrollView id=\"42\" userLabel=\"foo\">", "</scrollView>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+    XCTAssertTrue(sut.viewDict.values.first is ScrollView)
+  }
+  
+  func test_ParsesSegmentedControl() {
+    let xmlString = ["<subviews>", "<segmentedControl id=\"42\" userLabel=\"foo\">", "</segmentedControl>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+    XCTAssertTrue(sut.viewDict.values.first is SegmentedControl)
+  }
+  
+  func test_ParsesSlider() {
+    let xmlString = ["<subviews>", "<slider id=\"42\" userLabel=\"foo\">", "</slider>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+    XCTAssertTrue(sut.viewDict.values.first is Slider)
+  }
+  
+  func test_ParsesTableView() {
+    let xmlString = ["<subviews>", "<tableView id=\"42\" userLabel=\"foo\">", "</tableView>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+    XCTAssertTrue(sut.viewDict.values.first is TableView)
+  }
+  
+  func test_ParsesTextField() {
+    let xmlString = ["<subviews>", "<textField id=\"42\" userLabel=\"foo\">", "</textField>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+    XCTAssertTrue(sut.viewDict.values.first is TextField)
+  }
+  
+  func test_ParsesView() {
+    let xmlString = ["<subviews>", "<view id=\"42\" userLabel=\"foo\">", "</view>", "</subviews>"].joined(separator: "\n")
+    
+    parseAndCheckArrays(for: xmlString)
+  }
+}
+
+extension StoryboardXMLParserDelegateTests {
   func parseAndCheckArrays(for string: String, file: StaticString = #file, line: UInt = #line) {
     guard let xmlData = string.data(using: .utf8)
       else {
