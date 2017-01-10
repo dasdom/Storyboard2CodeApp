@@ -1,6 +1,6 @@
 import Foundation
 
-class Label: View {
+final class Label: View {
   let horizontalHuggingPriority: Int?
   var horizontalHuggingPriorityDefault = 251
   let verticalHuggingPriority: Int?

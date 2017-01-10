@@ -1,31 +1,31 @@
 import Foundation
 
 /// Class to store everything needed to generate UIView code
-public class View: AttributeCreatable, ElementCodeGeneratable, Reflectable {
-  public let clipsSubviews: Bool?
+class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGeneratable {
+  let clipsSubviews: Bool?
   var clipsSubviewsDefault = false
-  public var font: Font? = nil
-  public var type = ElementType.UIView
-  public var rect: CGRect? = nil
-  public var colors: [Color] = []
-  public let isOpaque: Bool?
+  var font: Font? = nil
+  var type = ElementType.UIView
+  var rect: CGRect? = nil
+  var colors: [Color] = []
+  let isOpaque: Bool?
   var opaqueDefault = true
-  public let userInteractionEnabled: Bool?
+  let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
-  public let contentMode: String?
+  let contentMode: String?
   var contentModeDefault = "scaleToFill"
-  public let translatesAutoresizingMaskIntoConstraints: Bool?
+  let translatesAutoresizingMaskIntoConstraints: Bool?
   var translatesAutoresizingMaskIntoConstraintsDefault = true
-  public let autoresizesSubviews: Bool?
-  public let clearsContextBeforeDrawing: Bool?
-  public let tag: Int?
+  let autoresizesSubviews: Bool?
+  let clearsContextBeforeDrawing: Bool?
+  let tag: Int?
   
-  public let id: String
-  public let userLabel: String
-  public var superViewName: String?
-  public var isMainView: Bool = false
+  let id: String
+  let userLabel: String
+  var superViewName: String?
+  var isMainView: Bool = false
   
-  required public init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"].flatMap  { $0 == "YES" }
     isOpaque                    = dict["opaque"].flatMap { $0 == "YES" }
     contentMode                 = dict["contentMode"]
@@ -46,20 +46,26 @@ public class View: AttributeCreatable, ElementCodeGeneratable, Reflectable {
     userLabel = temp
   }
   
-  public var superInit: String {
+  var superInit: String {
     return "super.init(frame: frame)"
   }
   
-  public var overrideInit: String {
+  var overrideInit: String {
     return "override init(frame: CGRect)"
   }
   
-  public var initString: String {
+  var viewControllerExtension: String {
+    var string = "override func loadView()" + startBlock()
+    string += "view = \(userLabel.capitalizeFirst)()" + endBlock()
+    return string
+  }
+  
+  var initString: String {
     guard isMainView == false else { return "" }
     return "\(userLabel) = \(type.rawValue)()\n"
   }
   
-  public var setupString: String {
+  var setupString: String {
 //    guard isMainView == false else { return "" }
     var string = ""
     string += reflectedSetup

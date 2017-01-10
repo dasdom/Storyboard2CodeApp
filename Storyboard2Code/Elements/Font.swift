@@ -1,11 +1,11 @@
 import Foundation
 
-public struct Font: AttributeCreatable, Equatable {
+struct Font: AttributeCreatable, Equatable {
   let name: String?
   let size: Int
   let type: String?
   
-  public init(dict: [String : String]) {
+  init(dict: [String : String]) {
     name = dict[Key.name.rawValue]
     size = Int(dict[Key.pointSize.rawValue]!)!
     type = dict[Key.type.rawValue]
@@ -19,7 +19,7 @@ extension Font {
 }
 
 extension Font: AttributeCodeGeneratable {
-  public var codeString: String {
+  var codeString: String {
     if let type = type {
       if type == "system" {
         return "UIFont.systemFont(ofSize: \(size))"
@@ -40,7 +40,7 @@ extension Font: AttributeCodeGeneratable {
   }
 }
 
-public func ==(lhs: Font, rhs: Font) -> Bool {
+func ==(lhs: Font, rhs: Font) -> Bool {
   if lhs.name != rhs.name {
     return false
   }

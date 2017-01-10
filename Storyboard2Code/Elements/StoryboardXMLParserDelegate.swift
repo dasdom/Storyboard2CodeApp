@@ -4,11 +4,12 @@
 
 import Foundation
 
-class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
+final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var viewDict: [String:View] = [:]
   var tempViews: [View] = []
   var mainView: View?
   var viewController: ViewController?
+  var tableViewCell: TableViewCell?
   var constraints: [Constraint] = []
   var controllerConstraints: [Constraint] = []
   private var color: Color?
@@ -46,6 +47,10 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         viewController = ViewController(dict: attributeDict)
       case "tableViewController":
         viewController = TableViewController(dict: attributeDict)
+      case "tableViewCell":
+        tableViewCell = TableViewCell(dict: attributeDict)
+        guard let tableViewCell = tableViewCell else { fatalError() }
+        addView(tableViewCell)
       case "segment":
         if let segmentedControl = tempViews.last as? SegmentedControl {
           segmentedControl.segments.append(Segment(dict: attributeDict))
@@ -102,6 +107,17 @@ class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       } else {
         fatalError("not supported yet")
       }
+    case "tableViewCell":
+      if let tableViewCell = tableViewCell {
+        let scene = FileRepresentation(mainView: tableViewCell, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
+        scenes.append(scene)
+      }
+      tableViewCell = nil
+      viewDict.removeAll()
+      viewMargins.removeAll()
+      constraints.removeAll()
+//      viewController = nil
+      controllerConstraints.removeAll()
     case "string":
       if let label = tempViews.last as? Label {
         label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")

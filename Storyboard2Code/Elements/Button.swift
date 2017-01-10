@@ -1,28 +1,28 @@
 import Foundation
 
-final public class Button: View {
-  public let contentHorizontalAlignment: String?
+final class Button: View {
+  let contentHorizontalAlignment: String?
   let contentHorizontalAlignmentDefault = "center"
   
-  public let contentVerticalAlignment: String?
+  let contentVerticalAlignment: String?
   let contentVerticalAlignmentDefault = "center"
   
-  public let buttonType: String?
+  let buttonType: String?
   
-  public let lineBreakMode: LineBreakMode?
+  let lineBreakMode: LineBreakMode?
   let lineBreakModeDefault = LineBreakMode.ByTruncatingMiddle
   
-  public let enabled: Bool?
-  public let highlighted: Bool?
-  public let selected: Bool?
-  public let reversesTitleShadowWhenHighlighted: Bool?
-  public let showsTouchWhenHighlighted: Bool?
-  public let adjustsImageWhenHighlighted: Bool?
-  public let adjustsImageWhenDisabled: Bool?
+  let enabled: Bool?
+  let highlighted: Bool?
+  let selected: Bool?
+  let reversesTitleShadowWhenHighlighted: Bool?
+  let showsTouchWhenHighlighted: Bool?
+  let adjustsImageWhenHighlighted: Bool?
+  let adjustsImageWhenDisabled: Bool?
   
-  public var states: [ButtonState] = []
+  var states: [ButtonState] = []
   
-  public required init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     contentHorizontalAlignment          = dict["contentHorizontalAlignment"]
     contentVerticalAlignment            = dict["contentVerticalAlignment"]
     buttonType                          = dict["buttonType"]
@@ -39,10 +39,10 @@ final public class Button: View {
     
     opaqueDefault = false
     
-    type = ElementType.UIButton
+    type = .UIButton
   }
   
-  public override var initString: String {
+  override var initString: String {
     var string = "\(userLabel) = "
     if buttonType == "roundedRect" {
       string += "\(type.rawValue)(type: .system)\n"
@@ -53,7 +53,7 @@ final public class Button: View {
     return string
   }
   
-  public override var setupString: String {
+  override var setupString: String {
     var string = super.setupString
     if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
       string += "\(userLabel).titleLabel?.lineBreakMode = .\(lineBreakMode.codeString)\n"
@@ -62,15 +62,7 @@ final public class Button: View {
     return string
   }
   
-//  public func colorString(fromColors colors: [Color]) -> String {
-//    var string = ""
-//    for color in colors {
-//      string += "\(userLabel).\(color.key) = \(color.codeString)\n"
-//    }
-//    return string
-//  }
-  
-  public func stateString(fromStates states: [ButtonState]) -> String {
+   func stateString(fromStates states: [ButtonState]) -> String {
     var string = ""
     for state in states {
       string += state.codeString(userLabel)

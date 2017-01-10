@@ -4,17 +4,17 @@
 
 import Foundation
 
-public struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
-  public let key: String
-  public let title: String?
-  public var titleColor: Color? = nil
+struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
+  let key: String
+  let title: String?
+  var titleColor: Color? = nil
   
-  public init(dict: [String : String]) {
+  init(dict: [String : String]) {
     key = dict[Key.key.rawValue]!
     title = dict[Key.title.rawValue]
   }
   
-  public func codeString(_ userLabel: String) -> String {
+  func codeString(_ userLabel: String) -> String {
     var string = ""
     if let title = title {
       string += "\(userLabel).setTitle(\"\(title)\", for: .\(key))\n"

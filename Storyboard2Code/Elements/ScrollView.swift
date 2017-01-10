@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class ScrollView: View {
+class ScrollView: View {
   let directionalLockEnabled: Bool?
   let bounces: Bool?
   let alwaysBounceVertical: Bool?
@@ -21,7 +21,7 @@ public class ScrollView: View {
   let bouncesZoom: Bool?
   let keyboardDismissMode: String?
   
-  required public init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     let YES: String = "YES"
     directionalLockEnabled = dict[Key.directionalLockEnabled.rawValue].flatMap { $0 == YES }
     bounces = dict[Key.bounces.rawValue].flatMap { $0 == YES }

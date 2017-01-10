@@ -1,6 +1,6 @@
 import Foundation
 
-class TextField: View {
+final class TextField: View {
   let contentHorizontalAlignment: String?
   var contentHorizontalAlignmentDefault = "left"
   let contentVerticalAlignment: String?
@@ -24,7 +24,7 @@ class TextField: View {
   var secureTextEntry: Bool?
   var textInputTraits: TextInputTraits?
   
-  public required init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     contentHorizontalAlignment  = dict["contentHorizontalAlignment"]
     contentVerticalAlignment    = dict["contentVerticalAlignment"]
     borderStyle                 = dict["borderStyle"]
@@ -70,7 +70,7 @@ class TextField: View {
 //    return string
 //  }
   
-  public override var setupString: String {
+  override var setupString: String {
     var string = super.setupString
     if let placeholder = placeholder {
       string += "\(userLabel).placeholder = \"\(placeholder)\"\n"

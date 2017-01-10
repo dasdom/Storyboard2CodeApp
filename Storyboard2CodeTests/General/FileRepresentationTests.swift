@@ -35,4 +35,37 @@ class FileRepresentationTests: XCTestCase {
                           "}"].joined(separator: "\n")
     XCTAssertEqual(scene.swiftCodeString, expectedOutput)
   }
+  
+  func test_tableViewCellCodeGeneration() {
+    let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
+    mainView.isMainView = true
+    let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
+    
+    let expectedOutput = ["import UIKit",
+                          "",
+                          "class FooCell: UITableViewCell {",
+                          "",
+                          "override init(style: UITableViewCellStyle, reuseIdentifier: String?) {",
+                          "super.init(style: style, reuseIdentifier: reuseIdentifier)",
+                          "",
+                          "",
+                          "}",
+                          "",
+                          "required init?(coder aDecoder: NSCoder) {",
+                          "fatalError(\"init(coder:) has not been implemented\")",
+                          "}",
+                          "}",
+                          "",
+                          "extension Foo {",
+                          "override func viewDidLoad() {",
+                          "super.viewDidLoad()",
+                          "",
+                          "tableView.register(FooCell.self, forCellReuseIdentifier: \"FooCell\")",
+                          "}",
+                          "}"].joined(separator: "\n")
+    
+    XCTAssertEqual(scene.swiftCodeString, expectedOutput)
+
+  }
 }

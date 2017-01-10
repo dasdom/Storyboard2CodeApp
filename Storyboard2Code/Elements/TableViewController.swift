@@ -4,6 +4,6 @@
 
 import Foundation
 
-class TableViewController: ViewController {
+final class TableViewController: ViewController {
   
 }

@@ -23,3 +23,12 @@ class FooCell: UITableViewCell {
   }
   
 }
+
+class TableViewController: UITableViewController {
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    tableView.register(FooCell.self, forCellReuseIdentifier: "Foo")
+  }
+}

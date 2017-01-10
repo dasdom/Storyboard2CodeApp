@@ -4,7 +4,7 @@
 
 import Foundation
 
-class ImageView: View {
+final class ImageView: View {
   
   let horizontalHuggingPriority: Int?
   var horizontalHuggingPriorityDefault = 250

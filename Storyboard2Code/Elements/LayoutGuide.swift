@@ -1,10 +1,10 @@
 import Foundation
 
-public struct LayoutGuide: AttributeCreatable {
-  public let type: String
-  public let id: String
+struct LayoutGuide: AttributeCreatable {
+  let type: String
+  let id: String
   
-  public init(dict: [String : String]) {
+  init(dict: [String : String]) {
     type = dict[Key.type.rawValue]!
     id = dict[Key.id.rawValue]!
   }

@@ -4,13 +4,13 @@
 
 import Foundation
 
-public class Slider: View {
+final class Slider: View {
   let minimumValue: Float?
   let maximumValue: Float?
   let value: Float?
   let continuous: Bool?
   
-  public required init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     minimumValue = dict[Key.minValue.rawValue] != nil ? Float(dict[Key.minValue.rawValue]!) : nil
     maximumValue = dict[Key.maxValue.rawValue] != nil ? Float(dict[Key.maxValue.rawValue]!) : nil
     value = dict[Key.value.rawValue] != nil ? Float(dict[Key.value.rawValue]!) : nil

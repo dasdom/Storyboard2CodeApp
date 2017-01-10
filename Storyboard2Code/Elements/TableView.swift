@@ -4,7 +4,7 @@
 
 import Foundation
 
-class TableView: ScrollView, CodeGeneratable {
+final class TableView: ScrollView {
   
   let separatorStyle: String?
   var separatorStyleDefault = "default"

@@ -1,10 +1,10 @@
 import Foundation
 
-public struct Segment: AttributeCreatable  {
+struct Segment: AttributeCreatable  {
   let title: String
   let enabled: Bool?
   
-  public init(dict: [String : String]) {
+  init(dict: [String : String]) {
     title = dict[Key.title.rawValue]!
     enabled = dict[Key.enabled.rawValue].flatMap { $0 == "YES" }
   }
@@ -16,12 +16,12 @@ extension Segment {
   }
 }
 
-public class SegmentedControl: View {
-  public var selectedSegmentIndex: Int?
-  public var segments = [Segment]()
-  public var momentary: Bool?
+class SegmentedControl: View {
+  var selectedSegmentIndex: Int?
+  var segments = [Segment]()
+  var momentary: Bool?
   
-  public required init(dict: [String : String]) {
+  required init(dict: [String : String]) {
     selectedSegmentIndex = dict["selectedSegmentIndex"] != nil ? Int(dict["selectedSegmentIndex"]!) : nil
     momentary = dict["momentary"].flatMap { $0 == "YES" }
     
@@ -30,7 +30,7 @@ public class SegmentedControl: View {
     type = ElementType.UISegmentedControl
   }
   
-  public override var setupString: String {
+  override var setupString: String {
     var string = super.setupString
     for (index, segment) in segments.enumerated() {
       string += "\(userLabel).insertSegment(withTitle:\"\(segment.title)\", at: \(index), animated: false)\n"

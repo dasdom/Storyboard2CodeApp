@@ -74,6 +74,21 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     XCTAssertTrue(sut.viewDict.values.first is TableView)
   }
   
+  func test_ParsesTableViewCell() {
+    let xmlString = ["<tableViewController id=\"23\" customClass=\"bar\">, <tableViewCell id=\"42\" userLabel=\"foo\">", "</tableViewCell>", "</tableViewController>"].joined(separator: "\n")
+    guard let xmlData = xmlString.data(using: .utf8)
+      else {
+        
+        return XCTFail()
+    }
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    XCTAssertEqual(sut.scenes.count, 1)
+  }
+  
   func test_ParsesTextField() {
     let xmlString = ["<subviews>", "<textField id=\"42\" userLabel=\"foo\">", "</textField>", "</subviews>"].joined(separator: "\n")
     

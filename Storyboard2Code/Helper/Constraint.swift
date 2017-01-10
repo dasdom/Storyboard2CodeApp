@@ -3,17 +3,16 @@ import Foundation
 /**
  *  Struct to store everything needed to create code for constraints.
  */
-public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
-  public let firstItem: String?
-  public var firstAttribute: String
-  public let id: String
-  public let secondItem: String?
-  public var secondAttribute: String?
-  public let multiplier: String?
-  public let constant: String?
-//  public var mainViewName: String? = nil
-  public var firstItemName: String? = nil
-  public var secondItemName: String? = nil
+struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
+  let firstItem: String?
+  var firstAttribute: String
+  let id: String
+  let secondItem: String?
+  var secondAttribute: String?
+  let multiplier: String?
+  let constant: String?
+  var firstItemName: String? = nil
+  var secondItemName: String? = nil
   
   /**
    Init with dictionary from an attributesDict from the 
@@ -23,7 +22,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
    
    - returns: initialized instance
    */
-  public init(dict: [String : String]) {
+  init(dict: [String : String]) {
     firstItem = dict[Key.firstItem.rawValue]
     firstAttribute = dict[Key.firstAttribute.rawValue]!
     id = dict[Key.id.rawValue]!
@@ -34,7 +33,7 @@ public struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   }
   
   /// The string to generate code.
-  public var codeString: String {
+  var codeString: String {
 //    guard let firstItemName = firstItemName else { fatalError() }
     
 //    var string = "layoutConstraints.append(\(firstItemName)"

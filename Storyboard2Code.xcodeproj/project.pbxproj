@@ -50,6 +50,7 @@
 		F2E925331E16FA05009BCA86 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E925321E16FA05009BCA86 /* ImageView.swift */; };
 		F2E9255E1E1DA10B009BCA86 /* FileRepresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9255C1E1DA10B009BCA86 /* FileRepresentationTests.swift */; };
 		F2E9255F1E1DA10B009BCA86 /* StoryboardXMLParserDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9255D1E1DA10B009BCA86 /* StoryboardXMLParserDelegateTests.swift */; };
+		F2E925631E2124B3009BCA86 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E925621E2124B3009BCA86 /* TableViewCell.swift */; };
 		F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +123,7 @@
 		F2E925321E16FA05009BCA86 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F2E9255C1E1DA10B009BCA86 /* FileRepresentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRepresentationTests.swift; sourceTree = "<group>"; };
 		F2E9255D1E1DA10B009BCA86 /* StoryboardXMLParserDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegateTests.swift; sourceTree = "<group>"; };
+		F2E925621E2124B3009BCA86 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,16 +200,17 @@
 				F230C4531CD34A93000DBA33 /* Button.swift */,
 				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
 				F230C4541CD34A93000DBA33 /* Color.swift */,
+				F2BF46901CE62E1A0031B663 /* FileRepresentation.swift */,
 				F230C4551CD34A93000DBA33 /* Font.swift */,
 				F2E925321E16FA05009BCA86 /* ImageView.swift */,
 				F230C4561CD34A93000DBA33 /* Label.swift */,
 				F230C4571CD34A93000DBA33 /* LayoutGuide.swift */,
-				F2BF46901CE62E1A0031B663 /* FileRepresentation.swift */,
 				F21895E41CECFA730077960F /* ScrollView.swift */,
 				F230C4581CD34A93000DBA33 /* SegmentedControl.swift */,
 				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
 				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
 				F2662DCB1D1EDFE8000D6449 /* TableView.swift */,
+				F2E925621E2124B3009BCA86 /* TableViewCell.swift */,
 				F28E6A5D1DF2189C007D0114 /* TableViewController.swift */,
 				F230C4591CD34A93000DBA33 /* TextField.swift */,
 				F230C45A1CD34A93000DBA33 /* View.swift */,
@@ -389,6 +392,7 @@
 				F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */,
 				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
 				F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */,
+				F2E925631E2124B3009BCA86 /* TableViewCell.swift in Sources */,
 				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
 				F2662DCC1D1EDFE8000D6449 /* TableView.swift in Sources */,
 				F2BF46911CE62E1A0031B663 /* FileRepresentation.swift in Sources */,

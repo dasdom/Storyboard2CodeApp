@@ -4,7 +4,7 @@ import Foundation
  *  Conforming types can be initialized with a [String:String]
  *  dictionary from the XML representation of a storyboard.
  */
-public protocol AttributeCreatable {
+protocol AttributeCreatable {
   init(dict: [String:String])
 }
 
@@ -14,7 +14,7 @@ public protocol AttributeCreatable {
  *  Each element that should be convertable from the storyboard representation
  *  to the code representation hast to implement this protocol.
  */
-public protocol ElementCodeGeneratable {
+protocol ElementCodeGeneratable {
   var userLabel: String { get }
   var type: ElementType { get }
   var propertyString: String { get }
@@ -26,7 +26,7 @@ public protocol ElementCodeGeneratable {
   func setup(_ property: String, value: String, isEnumValue: Bool) -> String
 }
 
-public extension ElementCodeGeneratable {
+extension ElementCodeGeneratable {
   /// Default implementation of the property declaration string
   var propertyString: String {
     guard !isMainView else { return "" }
@@ -133,27 +133,27 @@ extension CodeGeneratable {
 /**
  *  Conforming types provide attribute code generation.
  */
-public protocol AttributeCodeGeneratable {
+protocol AttributeCodeGeneratable {
   var codeString: String { get }
 }
 
 /**
  *  Conforming types provide control state code generation.
  */
-public protocol ControlStateCodeGeneratable {
+protocol ControlStateCodeGeneratable {
   func codeString(_ userLabel: String) -> String
 }
 
 /**
  *  Conforming types provide constraint code generation.
  */
-public protocol ConstraintCodeGeneratable {
+protocol ConstraintCodeGeneratable {
   var codeString: String { get }
 }
 
 /**
  *  Conforming types provide generated code for classes.
  */
-public protocol ClassCodeCreatable {
+protocol ClassCodeCreatable {
   var swiftCodeString: String { get }
 }

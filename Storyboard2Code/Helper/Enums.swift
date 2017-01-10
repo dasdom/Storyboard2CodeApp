@@ -12,12 +12,13 @@ import Foundation
  - UIScrollView:       UIScrollView
  - UITableView:        UITableView
  - UIImageView:        UIImageView
+ - UITableViewCell:    UITableViewCell
  */
-public enum ElementType: String {
-  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView
+enum ElementType: String {
+  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView, UITableViewCell
 }
 
-public enum Element: String {
+enum Element: String {
   case view, label, textField, button, segmentedControl, slider, scrollView, tableView, imageView
   
   func create(from dict: [String:String]) -> View {
@@ -39,14 +40,14 @@ public enum Element: String {
  * Enum to store a linebreak mode. It is needed because the string
  * in the storyboard is different to the string to be used in code.
  */
-public enum LineBreakMode: String {
+enum LineBreakMode: String {
   case ByTruncatingTail = "tailTruncation"
   case ByCharWrapping = "charWrapping"
   case ByClipping = "clip"
   case ByTruncatingHead = "headTruncation"
   case ByTruncatingMiddle = "middleTruncation"
   
-  public var codeString: String {
+  var codeString: String {
     switch self {
     case .ByTruncatingTail: return "byTruncatingTail"
     case .ByCharWrapping: return "byCharWrapping"
@@ -61,10 +62,10 @@ public enum LineBreakMode: String {
  * Enum to store the keyboard appearance. It is needed because the string
  * in the storyboard is different to the string to be used in code.
  */
-public enum KeyboardAppearance: String {
+enum KeyboardAppearance: String {
   case dark = "alert"
   
-  public var codeString: String {
+  var codeString: String {
     switch self {
     case .dark: return "dark"
     }
@@ -75,6 +76,6 @@ public enum KeyboardAppearance: String {
  * Enum to store the content mode. It is needed because the string
  * in the storyboard is different to the string to be used in code.
  */
-public enum ContentMode: String {
+enum ContentMode: String {
   case ScaleAspectFill = "scaleToFill"
 }
