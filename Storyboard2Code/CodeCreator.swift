@@ -15,8 +15,8 @@ struct CodeCreator {
     
     var outputDict: [String: String] = [:]
     
-    for scene in parserDelegate.scenes {
-      outputDict[scene.mainView.userLabel.capitalizeFirst] = scene.swiftCodeString
+    for fileRepresentation in parserDelegate.fileRepresentations {
+      outputDict[fileRepresentation.mainView.userLabel.capitalizeFirst] = fileRepresentation.swiftCodeString
     }
     
 //    for tableView in parserDelegate.tableViews {

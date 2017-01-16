@@ -14,26 +14,23 @@ class FileRepresentationTests: XCTestCase {
     let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
     
     let expectedOutput = ["import UIKit",
-                          "",
                           "class FooView: UIView {",
-                          "",
                           "override init(frame: CGRect) {",
                           "super.init(frame: frame)",
-                          "",
-                          "",
                           "}",
-                          "",
                           "required init?(coder aDecoder: NSCoder) {",
                           "fatalError(\"init(coder:) has not been implemented\")",
                           "}",
                           "}",
-                          "",
                           "extension Foo {",
                           "override func loadView() {",
                           "view = FooView()",
                           "}",
-                          "}"].joined(separator: "\n")
-    XCTAssertEqual(scene.swiftCodeString, expectedOutput)
+                          "}"]
+    
+    let lines = scene.swiftCodeString.components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.characters.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
   }
   
   func test_tableViewCellCodeGeneration() {
@@ -43,29 +40,24 @@ class FileRepresentationTests: XCTestCase {
     let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
     
     let expectedOutput = ["import UIKit",
-                          "",
                           "class FooCell: UITableViewCell {",
-                          "",
                           "override init(style: UITableViewCellStyle, reuseIdentifier: String?) {",
                           "super.init(style: style, reuseIdentifier: reuseIdentifier)",
-                          "",
-                          "",
                           "}",
-                          "",
                           "required init?(coder aDecoder: NSCoder) {",
                           "fatalError(\"init(coder:) has not been implemented\")",
                           "}",
                           "}",
-                          "",
                           "extension Foo {",
                           "override func viewDidLoad() {",
                           "super.viewDidLoad()",
-                          "",
                           "tableView.register(FooCell.self, forCellReuseIdentifier: \"FooCell\")",
                           "}",
-                          "}"].joined(separator: "\n")
+                          "}"]
     
-    XCTAssertEqual(scene.swiftCodeString, expectedOutput)
+    let lines = scene.swiftCodeString.components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.characters.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
 
   }
 }

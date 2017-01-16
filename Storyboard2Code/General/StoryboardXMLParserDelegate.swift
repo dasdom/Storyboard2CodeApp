@@ -5,7 +5,9 @@
 import Foundation
 
 final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
-  var viewDict: [String:View] = [:]
+  var viewDictForConstraints: [String:View] = [:]
+  var tableViewSubviewDict: [String:View] = [:]
+  var subviewDict: [String:View] = [:]
   var tempViews: [View] = []
   var mainView: View?
   var viewController: ViewController?
@@ -19,14 +21,22 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var viewMargins: Set<String> = []
   private var layoutGuides: [LayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
-  var scenes: [FileRepresentation] = []
+  var fileRepresentations: [FileRepresentation] = []
 //  var tableViews: [TableView] = []
   
   func addView(_ view: View, addToTempViews: Bool = true) {
-    if let lastView = tempViews.last, lastView !== mainView {
+    if let lastView = tempViews.last, lastView !== mainView, !(lastView is TableViewCell) {
       view.superViewName = lastView.userLabel
     }
-    viewDict[view.id] = view
+    viewDictForConstraints[view.id] = view
+    if !(view is TableViewCell) {
+      if tableViewCell != nil {
+        view.superViewName = "contentView"
+        tableViewSubviewDict[view.id] = view
+      } else {
+        subviewDict[view.id] = view
+      }
+    }
     if addToTempViews {
       tempViews.append(view)
     }
@@ -51,6 +61,11 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         tableViewCell = TableViewCell(dict: attributeDict)
         guard let tableViewCell = tableViewCell else { fatalError() }
         addView(tableViewCell)
+      case "tableViewCellContentView":
+        var mutableAttributeDict = attributeDict
+        mutableAttributeDict["userLabel"] = "conentView"
+        let tableViewCellContentView = TableViewCellContentView(dict: mutableAttributeDict)
+        viewDictForConstraints[tableViewCellContentView.id] = tableViewCellContentView
       case "segment":
         if let segmentedControl = tempViews.last as? SegmentedControl {
           segmentedControl.segments.append(Segment(dict: attributeDict))
@@ -109,15 +124,12 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       }
     case "tableViewCell":
       if let tableViewCell = tableViewCell {
-        let scene = FileRepresentation(mainView: tableViewCell, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
-        scenes.append(scene)
+        let scene = FileRepresentation(mainView: tableViewCell, viewDict: tableViewSubviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: nil)
+        fileRepresentations.append(scene)
       }
       tableViewCell = nil
-      viewDict.removeAll()
-      viewMargins.removeAll()
-      constraints.removeAll()
+      tableViewSubviewDict = [:]
 //      viewController = nil
-      controllerConstraints.removeAll()
     case "string":
       if let label = tempViews.last as? Label {
         label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")
@@ -127,11 +139,12 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     case "scene":
       makeConstraintsUsable()
       if let mainView = mainView {
-        let scene = FileRepresentation(mainView: mainView, viewDict: viewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
-        scenes.append(scene)
+        let scene = FileRepresentation(mainView: mainView, viewDict: subviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
+        fileRepresentations.append(scene)
       }
       mainView = nil
-      viewDict.removeAll()
+      viewDictForConstraints.removeAll()
+      subviewDict.removeAll()
       viewMargins.removeAll()
       constraints.removeAll()
       viewController = nil
@@ -149,22 +162,22 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       let firstItemName: String?
       
       if let firstItem = constraint.firstItem {
-        firstItemName = viewDict[firstItem]?.userLabel
+        firstItemName = viewDictForConstraints[firstItem]?.userLabel
         if firstItemName == mainView?.userLabel {
           constraint.firstItemName = ""
         } else {
-          constraint.firstItemName = viewDict[firstItem]?.userLabel
+          constraint.firstItemName = viewDictForConstraints[firstItem]?.userLabel
         }
       } else {
         firstItemName = mainView!.userLabel
       }
       var secondItemName: String? = nil
       if let secondItem = constraint.secondItem {
-        secondItemName = viewDict[secondItem]?.userLabel
+        secondItemName = viewDictForConstraints[secondItem]?.userLabel
         if secondItemName == mainView?.userLabel {
           constraint.secondItemName = ""
         } else {
-          constraint.secondItemName = viewDict[secondItem]?.userLabel
+          constraint.secondItemName = viewDictForConstraints[secondItem]?.userLabel
         }
       } else {
         //        print("constraint: \(constraint)")

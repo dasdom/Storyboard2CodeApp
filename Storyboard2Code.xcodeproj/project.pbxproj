@@ -31,7 +31,6 @@
 		F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C45F1CD34A93000DBA33 /* Extensions.swift */; };
 		F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4601CD34A93000DBA33 /* Protocols.swift */; };
 		F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C46E1CD34AEC000DBA33 /* Slider.swift */; };
-		F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */; };
 		F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4731CD38B70000DBA33 /* ButtonTests.swift */; };
 		F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */; };
 		F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4791CD38F81000DBA33 /* DataLoader.swift */; };
@@ -43,7 +42,9 @@
 		F2662DCC1D1EDFE8000D6449 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2662DCB1D1EDFE8000D6449 /* TableView.swift */; };
 		F28E6A5E1DF2189C007D0114 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E6A5D1DF2189C007D0114 /* TableViewController.swift */; };
 		F2B3CEF01E11543000FA8AC7 /* TextInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */; };
-		F2BF46911CE62E1A0031B663 /* FileRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF46901CE62E1A0031B663 /* FileRepresentation.swift */; };
+		F2BE60881E2A87D400AC307B /* FileRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE60861E2A87D400AC307B /* FileRepresentation.swift */; };
+		F2BE60891E2A87D400AC307B /* StoryboardXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE60871E2A87D400AC307B /* StoryboardXMLParserDelegate.swift */; };
+		F2BE608B1E2C178600AC307B /* TableViewCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */; };
 		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
 		F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */; };
 		F2E925311E16F7DC009BCA86 /* TestImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E925301E16F7DC009BCA86 /* TestImages.xcassets */; };
@@ -93,7 +94,6 @@
 		F230C45F1CD34A93000DBA33 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F230C4601CD34A93000DBA33 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F230C46E1CD34AEC000DBA33 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegate.swift; sourceTree = "<group>"; };
 		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
@@ -115,7 +115,10 @@
 		F2662DCB1D1EDFE8000D6449 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		F28E6A5D1DF2189C007D0114 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTraits.swift; sourceTree = "<group>"; };
-		F2BF46901CE62E1A0031B663 /* FileRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRepresentation.swift; sourceTree = "<group>"; };
+		F2BE60831E297E0A00AC307B /* SubSubViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubSubViewTests.storyboard; sourceTree = "<group>"; };
+		F2BE60861E2A87D400AC307B /* FileRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileRepresentation.swift; sourceTree = "<group>"; };
+		F2BE60871E2A87D400AC307B /* StoryboardXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLParserDelegate.swift; sourceTree = "<group>"; };
+		F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellContentView.swift; sourceTree = "<group>"; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
 		F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewTests.swift; sourceTree = "<group>"; };
 		F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewTests.storyboard; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 				F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */,
 				F230C44D1CD2AD89000DBA33 /* MainWindowController.xib */,
 				F230C4501CD2B066000DBA33 /* DropTextField.swift */,
+				F2BE60851E2A87D400AC307B /* General */,
 				F230C4521CD34A93000DBA33 /* Elements */,
 				F230C45C1CD34A93000DBA33 /* Helper */,
 				F230C4331CD2AD31000DBA33 /* Assets.xcassets */,
@@ -200,7 +204,6 @@
 				F230C4531CD34A93000DBA33 /* Button.swift */,
 				F254ED8B1CD500BC00505DD3 /* ButtonState.swift */,
 				F230C4541CD34A93000DBA33 /* Color.swift */,
-				F2BF46901CE62E1A0031B663 /* FileRepresentation.swift */,
 				F230C4551CD34A93000DBA33 /* Font.swift */,
 				F2E925321E16FA05009BCA86 /* ImageView.swift */,
 				F230C4561CD34A93000DBA33 /* Label.swift */,
@@ -208,13 +211,13 @@
 				F21895E41CECFA730077960F /* ScrollView.swift */,
 				F230C4581CD34A93000DBA33 /* SegmentedControl.swift */,
 				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
-				F230C4701CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift */,
 				F2662DCB1D1EDFE8000D6449 /* TableView.swift */,
 				F2E925621E2124B3009BCA86 /* TableViewCell.swift */,
 				F28E6A5D1DF2189C007D0114 /* TableViewController.swift */,
 				F230C4591CD34A93000DBA33 /* TextField.swift */,
 				F230C45A1CD34A93000DBA33 /* View.swift */,
 				F230C45B1CD34A93000DBA33 /* ViewController.swift */,
+				F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -259,11 +262,21 @@
 				F250785D1DFA04D30053BC3B /* ScrollViewTests.storyboard */,
 				F250785B1DFA048E0053BC3B /* SegmentedControlTests.storyboard */,
 				F25078571DFA04410053BC3B /* SliderTests.storyboard */,
+				F2BE60831E297E0A00AC307B /* SubSubViewTests.storyboard */,
 				F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */,
 				F25078551DFA03DC0053BC3B /* TextFieldTests.storyboard */,
 				F25078511DFA024D0053BC3B /* ViewTests.storyboard */,
 			);
 			path = XMLs;
+			sourceTree = "<group>";
+		};
+		F2BE60851E2A87D400AC307B /* General */ = {
+			isa = PBXGroup;
+			children = (
+				F2BE60861E2A87D400AC307B /* FileRepresentation.swift */,
+				F2BE60871E2A87D400AC307B /* StoryboardXMLParserDelegate.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		F2E9255B1E1DA10B009BCA86 /* General */ = {
@@ -384,10 +397,10 @@
 				F21895E51CECFA730077960F /* ScrollView.swift in Sources */,
 				F254ED8C1CD500BC00505DD3 /* ButtonState.swift in Sources */,
 				F230C4661CD34A93000DBA33 /* SegmentedControl.swift in Sources */,
+				F2BE60891E2A87D400AC307B /* StoryboardXMLParserDelegate.swift in Sources */,
 				F2E925331E16FA05009BCA86 /* ImageView.swift in Sources */,
 				F230C44E1CD2AD89000DBA33 /* MainWindowController.swift in Sources */,
 				F230C4671CD34A93000DBA33 /* TextField.swift in Sources */,
-				F230C4711CD34B44000DBA33 /* StoryboardXMLParserDelegate.swift in Sources */,
 				F230C46B1CD34A93000DBA33 /* Enums.swift in Sources */,
 				F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */,
 				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
@@ -395,17 +408,18 @@
 				F2E925631E2124B3009BCA86 /* TableViewCell.swift in Sources */,
 				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
 				F2662DCC1D1EDFE8000D6449 /* TableView.swift in Sources */,
-				F2BF46911CE62E1A0031B663 /* FileRepresentation.swift in Sources */,
 				F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */,
 				F230C4621CD34A93000DBA33 /* Color.swift in Sources */,
 				F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */,
 				F230C4641CD34A93000DBA33 /* Label.swift in Sources */,
+				F2BE60881E2A87D400AC307B /* FileRepresentation.swift in Sources */,
 				F230C4681CD34A93000DBA33 /* View.swift in Sources */,
 				F28E6A5E1DF2189C007D0114 /* TableViewController.swift in Sources */,
 				F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */,
 				F2B3CEF01E11543000FA8AC7 /* TextInputTraits.swift in Sources */,
 				F230C4611CD34A93000DBA33 /* Button.swift in Sources */,
 				F230C46A1CD34A93000DBA33 /* Constraint.swift in Sources */,
+				F2BE608B1E2C178600AC307B /* TableViewCellContentView.swift in Sources */,
 				F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
