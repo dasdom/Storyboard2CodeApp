@@ -2,33 +2,6 @@
 
 import UIKit
 
-class FooCell: UITableViewCell {
-  
-  let fooImageView: UIImageView
-  let fooLabel: UILabel
-  
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    
-    fooImageView = UIImageView()
-    fooLabel = UILabel()
-    
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-    contentView.addSubview(fooImageView)
-    contentView.addSubview(fooLabel)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-}
-
-class TableViewController: UITableViewController {
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    tableView.register(FooCell.self, forCellReuseIdentifier: "Foo")
-  }
-}
+let textField = UITextField()
+textField.font = UIFont.systemFont(ofSize: 14)
+textField.font?.pointSize

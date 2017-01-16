@@ -74,7 +74,10 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     }
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkText") { // Defaults
-        string += "\(userLabel).\(color.key) = \(color.codeString)\n"
+        if !isMainView {
+          string += userLabel + "."
+        }
+        string += "\(color.key) = \(color.codeString)\n"
       }
     }
     return string
