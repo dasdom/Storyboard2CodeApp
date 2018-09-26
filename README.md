@@ -1,5 +1,5 @@
 # Storybard2CodeApp
-[![Build Status](https://travis-ci.org/dasdom/Storybard2CodeApp.svg?branch=master)](https://travis-ci.org/dasdom/Storybard2CodeApp)
+[![Build Status](https://travis-ci.org/dasdom/Storyboard2CodeApp.svg?branch=master)](https://travis-ci.org/dasdom/Storybard2CodeApp)
 ![](https://img.shields.io/badge/platform-osx-lightgrey.svg)
 
 Mac app that converts an iOS storyboard into code. Work in progress.
