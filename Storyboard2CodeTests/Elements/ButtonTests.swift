@@ -123,7 +123,7 @@ class ButtonTests: XCTestCase {
     state.titleColor = color
     sut.states.append(state)
     
-    let expectedOutput = "fooButton.setTitle(\"Button 1\", for: .normal)\nfooButton.setTitleColor(UIColor(colorLiteralRed: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)\n"
+    let expectedOutput = "fooButton.setTitle(\"Button 1\", for: .normal)\nfooButton.setTitleColor(UIColor(red: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }

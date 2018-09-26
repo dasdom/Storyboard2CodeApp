@@ -52,7 +52,7 @@ extension Color: AttributeCodeGeneratable {
   public var codeString: String {
     switch self {
     case .redGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
-      return String(format: "UIColor(colorLiteralRed: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
+      return String(format: "UIColor(red: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
     case .whiteAlphaRepresentation(_, let white, let alpha):
       return String(format: "UIColor(white: %.3lf, alpha: %.3lf)", white, alpha)
     case .stringRepresentation(_, let string):

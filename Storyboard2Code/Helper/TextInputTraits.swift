@@ -13,7 +13,7 @@ struct TextInputTraits: AttributeCreatable, Reflectable {
   let keyboardAppearance: String?
   let returnKeyType: String?
   let enablesReturnKeyAutomatically: Bool?
-  let secureTextEntry: Bool?
+  let isSecureTextEntry: Bool?
   
   init(dict: [String : String]) {
     
@@ -24,7 +24,7 @@ struct TextInputTraits: AttributeCreatable, Reflectable {
     keyboardAppearance = dict["keyboardAppearance"]
     returnKeyType = dict["returnKeyType"]
     enablesReturnKeyAutomatically = dict["enablesReturnKeyAutomatically"].flatMap { $0 == "YES" }
-    secureTextEntry = dict["secureTextEntry"].flatMap { $0 == "YES" }
+    isSecureTextEntry = dict["secureTextEntry"].flatMap { $0 == "YES" }
   }
   
   func reflectable() -> [String] {
@@ -36,7 +36,7 @@ struct TextInputTraits: AttributeCreatable, Reflectable {
     temp.append("keyboardAppearance")
     temp.append("returnKeyType")
     temp.append("enablesReturnKeyAutomatically")
-    temp.append("secureTextEntry")
+    temp.append("isSecureTextEntry")
     return temp
   }
   

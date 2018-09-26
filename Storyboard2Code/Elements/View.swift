@@ -42,8 +42,8 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     
     id = dict["id"]!
     
-    guard let temp = dict["userLabel"] else { print("userLabel missing in storyboard"); fatalError() }
-    userLabel = temp
+    guard let userLabelFromDict = dict["userLabel"] else { print("userLabel missing in storyboard"); fatalError() }
+    userLabel = userLabelFromDict
   }
   
   var superInit: String {

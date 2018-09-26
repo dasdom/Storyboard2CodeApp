@@ -97,7 +97,7 @@
 		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
-		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; };
+		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTests.swift; sourceTree = "<group>"; };
 		F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTests.swift; sourceTree = "<group>"; };
 		F250784F1DFA01A70053BC3B /* ButtonTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ButtonTests.storyboard; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		F254ED8D1CD50CFA00505DD3 /* CodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCreator.swift; sourceTree = "<group>"; };
 		F254ED991CD5DDCF00505DD3 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
 		F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TableViewCellTests.storyboard; sourceTree = "<group>"; };
+		F25CE4C32156E2FC008B6710 /* Foo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Foo.storyboard; sourceTree = "<group>"; };
 		F2662DCB1D1EDFE8000D6449 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		F28E6A5D1DF2189C007D0114 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTraits.swift; sourceTree = "<group>"; };
@@ -266,6 +267,7 @@
 				F25907C31DFDF03400D742E0 /* TableViewCellTests.storyboard */,
 				F25078551DFA03DC0053BC3B /* TextFieldTests.storyboard */,
 				F25078511DFA024D0053BC3B /* ViewTests.storyboard */,
+				F25CE4C32156E2FC008B6710 /* Foo.storyboard */,
 			);
 			path = XMLs;
 			sourceTree = "<group>";

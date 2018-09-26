@@ -3,7 +3,7 @@ import Foundation
 /**
  *  Struct to store everything needed to create code for constraints.
  */
-struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
+struct Constraint: AttributeCreatable, ConstraintCodeGeneratable, Equatable {
   let firstItem: String?
   var firstAttribute: String
   let id: String
@@ -84,9 +84,13 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
 }
 
 extension Constraint {
-  fileprivate enum Key: String {
+  enum Key: String {
     case firstItem, firstAttribute, id
     case secondItem, secondAttribute, multiplier
     case constant
   }
 }
+
+//extension Constraint {
+//  
+//}

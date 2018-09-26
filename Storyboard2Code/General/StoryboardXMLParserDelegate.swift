@@ -19,7 +19,7 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   private var currentState: ButtonState?
   private var currentText: String?
   var viewMargins: Set<String> = []
-  private var layoutGuides: [LayoutGuide] = []
+  var layoutGuides: [LayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
   var fileRepresentations: [FileRepresentation] = []
 //  var tableViews: [TableView] = []
@@ -137,7 +137,7 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         fatalError("not supported yet")
       }
     case "scene":
-      makeConstraintsUsable()
+      configureConstraints()
       if let mainView = mainView {
         let scene = FileRepresentation(mainView: mainView, viewDict: subviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: controllerConstraints)
         fileRepresentations.append(scene)
@@ -156,72 +156,81 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     }
   }
   
-  func makeConstraintsUsable() {
-    constraints = constraints.map {
-      var constraint = $0
+  func constraintsWithReplacedItemName(from input: [Constraint], mainUserLabel: String?, viewNameForId: (String) -> String?) -> [Constraint] {
+    
+    let constraints = input.map { constraint -> Constraint in
+      
+      var mutableConstraint: Constraint = constraint
+
       let firstItemName: String?
       
       if let firstItem = constraint.firstItem {
-        firstItemName = viewDictForConstraints[firstItem]?.userLabel
-        if firstItemName == mainView?.userLabel {
-          constraint.firstItemName = ""
-        } else {
-          constraint.firstItemName = viewDictForConstraints[firstItem]?.userLabel
-        }
+        firstItemName = viewNameForId(firstItem)
+        mutableConstraint.firstItemName = firstItemName == mainUserLabel ? "" : firstItemName
       } else {
-        firstItemName = mainView!.userLabel
+        firstItemName = mainUserLabel
       }
+      let firstAttribute = constraint.firstAttribute
+      if firstAttribute.hasSuffix("Margin"), let firstItemName = firstItemName  {
+        mutableConstraint.firstItemName = "\(firstItemName)Margins"
+        mutableConstraint.firstAttribute = firstAttribute.substring(to: String.Index(encodedOffset: firstAttribute.count-6))
+      }
+
       var secondItemName: String? = nil
+      
       if let secondItem = constraint.secondItem {
-        secondItemName = viewDictForConstraints[secondItem]?.userLabel
-        if secondItemName == mainView?.userLabel {
-          constraint.secondItemName = ""
-        } else {
-          constraint.secondItemName = viewDictForConstraints[secondItem]?.userLabel
-        }
-      } else {
-        //        print("constraint: \(constraint)")
+        secondItemName = viewNameForId(secondItem)
+        mutableConstraint.secondItemName = secondItemName == mainUserLabel ? "" : secondItemName
       }
-      
-      if constraint.firstAttribute.hasSuffix("Margin") {
-        var marginString = "let \(firstItemName!)Margins = "
-        if firstItemName != mainView?.userLabel {
-          marginString += "\(firstItemName!)."
-        }
-        marginString += "layoutMarginsGuide\n"
-        viewMargins.insert(marginString)
-        
-        let firstAttribute = constraint.firstAttribute
-        constraint.firstAttribute = firstAttribute.substring(to: firstAttribute.characters.index(firstAttribute.startIndex, offsetBy: firstAttribute.characters.count-6))
-        constraint.firstItemName = "\(firstItemName!)Margins"
+      if let secondAttribute = constraint.secondAttribute, secondAttribute.hasSuffix("Margin")  {
+        mutableConstraint.secondItemName = "\(secondItemName!)Margins"
+        mutableConstraint.secondAttribute = secondAttribute.substring(to: String.Index(encodedOffset: secondAttribute.count-6))
       }
-      
-      if let secondItemName = secondItemName, let secondAttribute = constraint.secondAttribute {
-        if secondAttribute.hasSuffix("Margin") {
-          var marginString = "let \(secondItemName)Margins = "
-          if secondItemName != mainView?.userLabel {
-            marginString += "\(secondItemName)."
-          }
-          marginString += "layoutMarginsGuide\n"
-          viewMargins.insert(marginString)
-          
-          if let secondAttribute = constraint.secondAttribute {
-            constraint.secondAttribute = secondAttribute.substring(to: secondAttribute.characters.index(secondAttribute.startIndex, offsetBy: secondAttribute.characters.count-6))
-            constraint.secondItemName = "\(secondItemName)Margins"
-          }
-        }
-      }
-      
-      
-      return constraint
+      return mutableConstraint
     }
+    return constraints
+  }
+  
+  func viewMargins(from input: [Constraint], mainUserLabel: String?) -> Set<String> {
+    
+    var marginStrings: Set<String> = []
+    
+    let marginStringFrom: (String) -> String = { itemName in
+      var string = "let \(itemName)Margins = "
+      if itemName != mainUserLabel {
+        string += "\(itemName)."
+      }
+      string += "layoutMarginsGuide\n"
+      return string
+    }
+    
+    for constraint in input {
+      if constraint.firstAttribute.hasSuffix("Margin"), let firstItemName = constraint.firstItemName  {
+        
+        marginStrings.insert(marginStringFrom(firstItemName))
+      }
+      
+      if constraint.secondAttribute?.hasSuffix("Margin") ?? false, let secondItemName = constraint.secondItemName {
+        
+        marginStrings.insert(marginStringFrom(secondItemName))
+      }
+    }
+    return marginStrings
+  }
+  
+  func configureConstraints() {
+    
+    let mainUserLabel = mainView?.userLabel
+    
+    constraints = constraintsWithReplacedItemName(from: constraints, mainUserLabel: mainUserLabel, viewNameForId: { id in
+      viewDictForConstraints[id]?.userLabel
+    })
+    
+    viewMargins = viewMargins(from: constraints, mainUserLabel: mainUserLabel)
     
     controllerConstraints = constraints.filter {
       for guide in layoutGuides {
-        if $0.firstItem == guide.id {
-          return true
-        }
-        if $0.secondItem == guide.id {
+        if $0.firstItem == guide.id || $0.secondItem == guide.id {
           return true
         }
       }
@@ -241,13 +250,8 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     }
     
     constraints = constraints.filter {
-      //      return $0.secondItem != layoutGuides.first?.id
-      
       for guide in layoutGuides {
-        if $0.firstItem == guide.id {
-          return false
-        }
-        if $0.secondItem == guide.id {
+        if $0.firstItem == guide.id || $0.secondItem == guide.id {
           return false
         }
       }
@@ -256,8 +260,7 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   }
   
   func parserDidEndDocument(_ parser: XMLParser) {
-    makeConstraintsUsable()
-    
+    configureConstraints()
   }
   
 }

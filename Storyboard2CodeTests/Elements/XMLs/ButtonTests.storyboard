@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,10 +17,11 @@
                         <viewControllerLayoutGuide type="bottom" id="f5n-ya-oLs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UAX-U5-col" userLabel="view">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-u7-b0P" userLabel="button">
+                                <rect key="frame" x="16" y="28" width="87" height="48"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="20" maxX="10" maxY="10"/>
                                 <size key="titleShadowOffset" width="1" height="2"/>
                                 <state key="normal" title="Button 1">
@@ -27,13 +29,14 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96T-5U-hpa" userLabel="defaultButton">
+                                <rect key="frame" x="16" y="84" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="96T-5U-hpa" firstAttribute="leading" secondItem="UAX-U5-col" secondAttribute="leadingMargin" id="3VM-0r-Rr8"/>
-                            <constraint firstItem="cfU-u7-b0P" firstAttribute="top" secondItem="gR7-4C-xnc" secondAttribute="bottom" constant="8" id="BgY-Ch-Kac"/>
+                            <constraint firstItem="cfU-u7-b0P" firstAttribute="top" secondItem="gR7-4C-xnc" secondAttribute="bottom" constant="8" id="Xya-IN-2k1"/>
                             <constraint firstItem="cfU-u7-b0P" firstAttribute="leading" secondItem="UAX-U5-col" secondAttribute="leadingMargin" id="cVB-3k-9QD"/>
                             <constraint firstItem="96T-5U-hpa" firstAttribute="top" secondItem="cfU-u7-b0P" secondAttribute="bottom" constant="8" id="edp-tG-VeU"/>
                         </constraints>

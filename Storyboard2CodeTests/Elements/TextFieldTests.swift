@@ -166,7 +166,7 @@ class TextFieldTests: XCTestCase {
     let attributesDict = ["secureTextEntry": "YES"]
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
-    let expectedOutput = "fooTextField.secureTextEntry = true\n"
+    let expectedOutput = "fooTextField.isSecureTextEntry = true\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
@@ -174,7 +174,7 @@ class TextFieldTests: XCTestCase {
     let color = Color(dict: ["key": "textColor", "red": "1", "green": "0", "blue": "0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     sut.colors.append(color)
     
-    let expectedOutput = "fooTextField.textColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
+    let expectedOutput = "fooTextField.textColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
   

@@ -89,7 +89,7 @@ class SliderTests: XCTestCase {
     let color = Color(dict: ["key": "minimumTrackTintColor", "red": "0.0", "green": "0.50196081400000003", "blue": "0.0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     sut.colors.append(color)
     
-    let expectedOutput = "fooSlider.minimumTrackTintColor = UIColor(colorLiteralRed: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)\n"
+    let expectedOutput = "fooSlider.minimumTrackTintColor = UIColor(red: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
@@ -97,7 +97,7 @@ class SliderTests: XCTestCase {
     let color = Color(dict: ["key": "maximumTrackTintColor", "red": "1", "green": "0.0", "blue": "0.0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     sut.colors.append(color)
     
-    let expectedOutput = "fooSlider.maximumTrackTintColor = UIColor(colorLiteralRed: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
+    let expectedOutput = "fooSlider.maximumTrackTintColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
   
@@ -105,7 +105,7 @@ class SliderTests: XCTestCase {
     let color = Color(dict: ["key": "thumbTintColor", "red": "0.0", "green": "0.25098040700000002", "blue": "0.50196081400000003", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     sut.colors.append(color)
     
-    let expectedOutput = "fooSlider.thumbTintColor = UIColor(colorLiteralRed: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)\n"
+    let expectedOutput = "fooSlider.thumbTintColor = UIColor(red: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)\n"
     XCTAssertEqual(sut.setupString, expectedOutput)
   }
 }
