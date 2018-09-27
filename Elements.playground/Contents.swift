@@ -2,6 +2,4 @@
 
 import UIKit
 
-let textField = UITextField()
-textField.font = UIFont.systemFont(ofSize: 14)
-textField.font?.pointSize
+let tableViewCell = UITableViewCell(style: .subtitle, reuseIdentifier: "foo")

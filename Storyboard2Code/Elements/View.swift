@@ -22,6 +22,8 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   
   let id: String
   let userLabel: String
+  
+  /// Used to generate code like `fooView.addSubview(barView)`
   var superViewName: String?
   var isMainView: Bool = false
   
@@ -42,7 +44,11 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     
     id = dict["id"]!
     
-    guard let userLabelFromDict = dict["userLabel"] else { print("userLabel missing in storyboard"); fatalError() }
+    guard let userLabelFromDict = dict["userLabel"] else {
+      print("userLabel missing in storyboard")
+      print("init dict: \(dict)")
+      fatalError()
+    }
     userLabel = userLabelFromDict
   }
   

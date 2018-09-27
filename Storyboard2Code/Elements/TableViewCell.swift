@@ -6,15 +6,28 @@ import Foundation
 
 final class TableViewCell: View {
   
+  let style: Style?
+  
   required init(dict: [String : String]) {
+    
+    if let styleName = dict[Key.style.rawValue] {
+      style = Style(stringLiteral: styleName)
+    } else {
+      style = nil
+    }
     
     super.init(dict: dict)
     
     type = ElementType.UITableViewCell
+    isMainView = true
   }
   
   override var superInit: String {
-    return "super.init(style: style, reuseIdentifier: reuseIdentifier)"
+    if let style = style {
+      return "super.init(style: .\(style), reuseIdentifier: reuseIdentifier)"
+    } else {
+      return "super.init(style: style, reuseIdentifier: reuseIdentifier)"
+    }
   }
   
   override var overrideInit: String {
@@ -26,5 +39,32 @@ final class TableViewCell: View {
     string += "super.viewDidLoad()" + newLine(2)
     string += "tableView.register(\(userLabel.capitalizeFirst).self, forCellReuseIdentifier: \"\(userLabel.capitalizeFirst)\")" + endBlock()
     return string
+  }
+}
+
+extension TableViewCell {
+  enum Key: String {
+    case style
+  }
+  
+  enum Style: ExpressibleByStringLiteral {
+    case `default`
+    case value1
+    case value2
+    case subtitle
+    
+    typealias StringLiteralType = String
+    init(stringLiteral value: TableViewCell.Style.StringLiteralType) {
+      switch value {
+      case "IBUITableViewCellStyleValue1":
+        self = .value1
+      case "IBUITableViewCellStyleValue2":
+        self = .value2
+      case "IBUITableViewCellStyleSubtitle":
+        self = .subtitle
+      default:
+        self = .default
+      }
+    }
   }
 }

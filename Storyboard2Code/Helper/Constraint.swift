@@ -3,7 +3,7 @@ import Foundation
 /**
  *  Struct to store everything needed to create code for constraints.
  */
-struct Constraint: AttributeCreatable, ConstraintCodeGeneratable, Equatable {
+struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   let firstItem: String?
   var firstAttribute: String
   let id: String
@@ -41,7 +41,7 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable, Equatable {
     if let firstItemName = firstItemName {
       string += firstItemName
     }
-    if (firstItemName?.characters.count ?? 0) > 0 {
+    if (firstItemName?.count ?? 0) > 0 {
       string += "."
     }
     if firstAttribute == "baseline" {
@@ -52,7 +52,7 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable, Equatable {
     string += "Anchor.constraint(equalTo"
     if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
       string += ": \(secondItemName)"
-      if secondItemName.characters.count > 0 {
+      if secondItemName.count > 0 {
         string += "."
       }
       if secondAttribute == "baseline" {

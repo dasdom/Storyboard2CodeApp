@@ -1,7 +1,3 @@
-//
-//  StoryboardXMLParserDelegateTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 04/01/2017.
 //  Copyright © 2017 dasdom. All rights reserved.
 //
@@ -28,97 +24,95 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
   func test_ParsesButton() {
     let xmlString = """
       <subviews>\n
-        <button id=\"42\" userLabel=\"foo\">\n
+        <button id="42" userLabel="foo">\n
         </button>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is Button)
+    XCTAssertTrue(sut.viewDict.values.first is Button)
   }
   
   func test_ParsesImageView() {
     let xmlString = """
       <subviews>\n
-        <imageView id=\"42\" userLabel=\"foo\">\n
+        <imageView id="42" userLabel="foo">\n
         </imageView>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is ImageView)
+    XCTAssertTrue(sut.viewDict.values.first is ImageView)
   }
   
   func test_ParsesLabel() {
     let xmlString = """
       <subviews>\n
-        <label id=\"42\" userLabel=\"foo\">\n
+        <label id="42" userLabel="foo">\n
         </label>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is Label)
+    XCTAssertTrue(sut.viewDict.values.first is Label)
   }
   
   func test_ParsesScrollView() {
     let xmlString = """
       <subviews>\n
-        <scrollView id=\"42\" userLabel=\"foo\">\n
+        <scrollView id="42" userLabel="foo">\n
         </scrollView>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is ScrollView)
+    XCTAssertTrue(sut.viewDict.values.first is ScrollView)
   }
   
   func test_ParsesSegmentedControl() {
     let xmlString = """
       <subviews>\n
-        <segmentedControl id=\"42\" userLabel=\"foo\">\n
+        <segmentedControl id="42" userLabel="foo">\n
         </segmentedControl>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is SegmentedControl)
+    XCTAssertTrue(sut.viewDict.values.first is SegmentedControl)
   }
   
   func test_ParsesSlider() {
     let xmlString = """
       <subviews>\n
-        <slider id=\"42\" userLabel=\"foo\">\n
+        <slider id="42" userLabel="foo">\n
         </slider>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is Slider)
+    XCTAssertTrue(sut.viewDict.values.first is Slider)
   }
   
   func test_ParsesTableView() {
     let xmlString = """
       <subviews>\n
-        <tableView id=\"42\" userLabel=\"foo\">\n
+        <tableView id="42" userLabel="foo">\n
         </tableView>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is TableView)
+    XCTAssertTrue(sut.viewDict.values.first is TableView)
   }
   
   func test_ParsesTableViewCell() {
     let xmlString = """
-      <tableViewController id=\"23\" customClass=\"bar\">\n
-        <tableViewCell id=\"42\" userLabel=\"foo\">\n
+      <tableViewController id="23" customClass="bar">\n
+        <tableViewCell id="42" userLabel="foo">\n
         </tableViewCell>\n
       </tableViewController>
       """
-    guard let xmlData = xmlString.data(using: .utf8) else {
-        return XCTFail()
-    }
+    let xmlData = xmlString.data(using: .utf8)!
     
     let parser = XMLParser(data: xmlData)
     parser.delegate = sut
@@ -130,19 +124,19 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
   func test_ParsesTextField() {
     let xmlString = """
       <subviews>\n
-        <textField id=\"42\" userLabel=\"foo\">\n
+        <textField id="42" userLabel="foo">\n
         </textField>\n
       </subviews>
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDictForConstraints.values.first is TextField)
+    XCTAssertTrue(sut.viewDict.values.first is TextField)
   }
   
   func test_ParsesView() {
     let xmlString = """
       <subviews>\n
-        <view id=\"42\" userLabel=\"foo\">\n
+        <view id="42" userLabel="foo">\n
         </view>\n
       </subviews>
       """
@@ -152,13 +146,13 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
   
   func test_ParsesSubView() {
     let xmlString = """
-      <view id=\"mainId\" userLabel=\"mainLabel\">\n
+      <view id="mainId" userLabel="mainLabel">\n
         <subviews>\n
-          <view id=\"subViewId\" userLabel=\"subViewLabel\">\n
+          <view id="subViewId" userLabel="subViewLabel">\n
             <subviews>\n
-              <view id=\"firstSubSubViewId\" userLabel=\"firstSubSubViewLabel\">\n
+              <view id="firstSubSubViewId" userLabel="firstSubSubViewLabel">\n
               </view>\n
-              <view id=\"secondSubSubViewId\" userLabel=\"secondSubSubViewLabel\">\n
+              <view id="secondSubSubViewId" userLabel="secondSubSubViewLabel">\n
               </view>\n
             </subviews>\n
           </view>\n
@@ -166,37 +160,37 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
       </view>"]
       """
     
-    guard let xmlData = xmlString.data(using: .utf8) else { return XCTFail() }
+    let xmlData = xmlString.data(using: .utf8)!
     
     let parser = XMLParser(data: xmlData)
     parser.delegate = sut
     parser.parse()
     
-    let subView = sut.viewDictForConstraints["subViewId"]
+    let subView = sut.viewDict["subViewId"]
     XCTAssertEqual(subView?.addToSuperString, "addSubview(subViewLabel)")
-    let firstSubSubView = sut.viewDictForConstraints["firstSubSubViewId"]
+    let firstSubSubView = sut.viewDict["firstSubSubViewId"]
     XCTAssertEqual(firstSubSubView?.addToSuperString, "subViewLabel.addSubview(firstSubSubViewLabel)")
-    let secondSubSubView = sut.viewDictForConstraints["secondSubSubViewId"]
+    let secondSubSubView = sut.viewDict["secondSubSubViewId"]
     XCTAssertEqual(secondSubSubView?.addToSuperString, "subViewLabel.addSubview(secondSubSubViewLabel)")
   }
   
   func test_ParsesTableViewCellSubViews() {
     let xmlString = """
-      <tableViewController id=\"tableViewControllerId\" customClass=\"TableViewControllerClass\">\n
-        <tableView id=\"tableViewId\" userLabel=\"tableViewLabel\">\n
+      <tableViewController id="tableViewControllerId" customClass="TableViewControllerClass">\n
+        <tableView id="tableViewId" userLabel="tableViewLabel">\n
           <prototypes>\n
-            <tableViewCell id=\"firstTableViewCellId\" userLabel=\"firstTableViewCellLabel\">\n
-              <tableViewCellContentView id=\"firstTableViewCellContentViewId\">\n
+            <tableViewCell id="firstTableViewCellId" userLabel="firstTableViewCellLabel">\n
+              <tableViewCellContentView id="firstTableViewCellContentViewId">\n
                 <subviews>\n
-                  <imageView id=\"imageViewId\" userLabel=\"imageViewLabel\">\n
+                  <imageView id="imageViewId" userLabel="imageViewLabel">\n
                   </imageView>\n
                 </subviews>\n
               </tableViewCellContentView>\n
             </tableViewCell>\n
-            <tableViewCell id=\"secondTableViewCellId\" userLabel=\"SecondTableViewCellLabel\">\n
-              <tableViewCellContentView id=\"secondTableViewCellContentViewId\">\n
+            <tableViewCell id="secondTableViewCellId" userLabel="SecondTableViewCellLabel">\n
+              <tableViewCellContentView id="secondTableViewCellContentViewId">\n
                 <subviews>\n
-                  <label id=\"labelId\" userLabel=\"labelLabel\">\n
+                  <label id="labelId" userLabel="labelLabel">\n
                   </label>\n
                 </subviews>\n
               </tableViewCellContentView>\n
@@ -205,21 +199,22 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
         </tableView>\n
       </tableViewController>
       """
-    
-    guard let xmlData = xmlString.data(using: .utf8) else { return XCTFail() }
+    let xmlData = xmlString.data(using: .utf8)!
     
     let parser = XMLParser(data: xmlData)
     parser.delegate = sut
     parser.parse()
     
-    let subView = sut.viewDictForConstraints["imageViewId"]
+    let subView = sut.viewDict["imageViewId"]
     XCTAssertEqual(subView?.addToSuperString, "contentView.addSubview(imageViewLabel)")
     
-    guard let firstFileRepresentation = sut.fileRepresentations.first else { return XCTFail() }
+    // The table view is not in fileRepresentations becaust the xml does not
+    // containt the tag <scene>.
+    let firstFileRepresentation = sut.fileRepresentations.first!
     XCTAssertTrue(firstFileRepresentation.mainView is TableViewCell)
     XCTAssertEqual(firstFileRepresentation.viewDict.count, 1)
     
-    guard let lastFileRepresentation = sut.fileRepresentations.last else { return XCTFail() }
+    let lastFileRepresentation = sut.fileRepresentations.last!
     XCTAssertTrue(lastFileRepresentation.mainView is TableViewCell)
     XCTAssertEqual(lastFileRepresentation.viewDict.count, 1)
   }
@@ -227,11 +222,11 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
   func test_ParsingTableView_DoesNotAddCellsAsSubview() {
     let xmlString = """
       <scene>\n
-        <tableViewController id=\"tableViewControllerId\" customClass=\"TableViewControllerClass\">\n
-          <tableView id=\"tableViewId\" userLabel=\"tableViewLabel\">\n
+        <tableViewController id="tableViewControllerId" customClass="TableViewControllerClass">\n
+          <tableView id="tableViewId" userLabel="tableViewLabel">\n
             <prototypes>\n
-              <tableViewCell id=\"firstTableViewCellId\" userLabel=\"firstTableViewCellLabel\">\n
-                <tableViewCellContentView id=\"firstTableViewCellContentViewId\">\n
+              <tableViewCell id="firstTableViewCellId" userLabel="firstTableViewCellLabel">\n
+                <tableViewCellContentView id="firstTableViewCellContentViewId">\n
                 </tableViewCellContentView>\n
               </tableViewCell>\n
             </prototypes>\n
@@ -240,15 +235,44 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
       </scene>
       """
     
-    guard let xmlData = xmlString.data(using: .utf8) else { return XCTFail() }
+    let xmlData = xmlString.data(using: .utf8)!
     
     let parser = XMLParser(data: xmlData)
     parser.delegate = sut
     parser.parse()
     
-    guard let lastFileRepresentation = sut.fileRepresentations.last else { return XCTFail() }
+    let lastFileRepresentation = sut.fileRepresentations.last!
     XCTAssertTrue(lastFileRepresentation.mainView is TableView)
     XCTAssertNil(lastFileRepresentation.viewDict["firstTableViewCellId"])
+  }
+  
+  func test_parsingTableViewCells_whenCellStyleIsSet_doesNotAddSubviews() {
+    let xmlString = """
+      <tableViewController id="tableViewControllerId" customClass="TableViewControllerClass">
+        <tableView id="tableViewId" userLabel="tableViewLabel">
+          <prototypes>
+            <tableViewCell style="IBUITableViewCellStyleDefault" id="24q-Hh-TrU" userLabel="defaultCell">
+              <tableViewCellContentView id="lAt-7Y-nOG">
+                <subviews>
+                  <label id="MeK-Ua-LQL">
+                  </label>
+                </subviews>
+              </tableViewCellContentView>
+            </tableViewCell>
+          </prototypes>
+        </tableView>
+      </tableViewController>
+      """
+    
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+
+    let lastFileRepresentation = sut.fileRepresentations.last!
+    XCTAssertTrue(lastFileRepresentation.mainView is TableViewCell)
+    XCTAssertEqual(lastFileRepresentation.viewDict.count, 0)
   }
   
   func test_constraints_whenItemIsNotMainUserLabel_setsFirstItemName() {
@@ -406,7 +430,7 @@ extension StoryboardXMLParserDelegateTests {
     parser.delegate = sut
     parser.parse()
     
-    XCTAssertEqual(sut.viewDictForConstraints.count, 1, file: file, line: line)
+    XCTAssertEqual(sut.viewDict.count, 1, file: file, line: line)
     XCTAssertEqual(sut.tempViews.count, 0, file: file, line: line)
   }
 }

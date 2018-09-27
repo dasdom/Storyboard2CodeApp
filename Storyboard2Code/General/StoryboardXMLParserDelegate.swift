@@ -4,8 +4,10 @@
 
 import Foundation
 
-final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
-  var viewDictForConstraints: [String:View] = [:]
+final class StoryboardXMLParserDelegate: NSObject {
+  
+  /// views for ids
+  var viewDict: [String:View] = [:]
   var tableViewSubviewDict: [String:View] = [:]
   var subviewDict: [String:View] = [:]
   var tempViews: [View] = []
@@ -15,35 +17,25 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   var constraints: [Constraint] = []
   var controllerConstraints: [Constraint] = []
   private var color: Color?
-  private var font: Font?
-  private var currentState: ButtonState?
-  private var currentText: String?
+  fileprivate var font: Font?
+  fileprivate var currentState: ButtonState?
+  fileprivate var currentText: String?
   var viewMargins: Set<String> = []
   var layoutGuides: [LayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
   var fileRepresentations: [FileRepresentation] = []
 //  var tableViews: [TableView] = []
   
-  func addView(_ view: View, addToTempViews: Bool = true) {
-    if let lastView = tempViews.last, lastView !== mainView, !(lastView is TableViewCell) {
-      view.superViewName = lastView.userLabel
-    }
-    viewDictForConstraints[view.id] = view
-    if !(view is TableViewCell) {
-      if tableViewCell != nil {
-        view.superViewName = "contentView"
-        tableViewSubviewDict[view.id] = view
-      } else {
-        subviewDict[view.id] = view
-      }
-    }
-    if addToTempViews {
-      tempViews.append(view)
-    }
-  }
+}
+
+// MARK: - XMLParserDelegate
+extension StoryboardXMLParserDelegate: XMLParserDelegate {
   
   func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-    
+
+    if let lastView = tempViews.last as? TableViewCell, let _ = lastView.style  {
+      return
+    }
     if let view = Element(rawValue: elementName)?.create(from: attributeDict) {
       addView(view)
       if mainView == nil {
@@ -65,7 +57,7 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         var mutableAttributeDict = attributeDict
         mutableAttributeDict["userLabel"] = "conentView"
         let tableViewCellContentView = TableViewCellContentView(dict: mutableAttributeDict)
-        viewDictForConstraints[tableViewCellContentView.id] = tableViewCellContentView
+        viewDict[tableViewCellContentView.id] = tableViewCellContentView
       case "segment":
         if let segmentedControl = tempViews.last as? SegmentedControl {
           segmentedControl.segments.append(Segment(dict: attributeDict))
@@ -113,8 +105,42 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label", "textField", "view", "button", "segmentedControl", "slider", "tableView", "scrollView", "imageView":
-      _ = tempViews.popLast()
+    case "label":
+      if tempViews.last?.type == .UILabel {
+        _ = tempViews.popLast()
+      }
+    case "textField":
+      if tempViews.last?.type == .UITextField {
+        _ = tempViews.popLast()
+      }
+    case "view":
+      if tempViews.last?.type == .UIView {
+        _ = tempViews.popLast()
+      }
+    case "button":
+      if tempViews.last?.type == .UIButton {
+        _ = tempViews.popLast()
+      }
+    case "segmentedControl":
+      if tempViews.last?.type == .UISegmentedControl {
+        _ = tempViews.popLast()
+      }
+    case "slider":
+      if tempViews.last?.type == .UISlider {
+        _ = tempViews.popLast()
+      }
+    case "tableView":
+      if tempViews.last?.type == .UITableView {
+        _ = tempViews.popLast()
+      }
+    case "scrollView":
+      if tempViews.last?.type == .UIScrollView {
+        _ = tempViews.popLast()
+      }
+    case "imageView":
+      if tempViews.last?.type == .UIImageView {
+        _ = tempViews.popLast()
+      }
     case "state":
       if let button = tempViews.last as? Button {
         button.states.append(currentState!)
@@ -143,7 +169,7 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
         fileRepresentations.append(scene)
       }
       mainView = nil
-      viewDictForConstraints.removeAll()
+      viewDict.removeAll()
       subviewDict.removeAll()
       viewMargins.removeAll()
       constraints.removeAll()
@@ -156,6 +182,42 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     }
   }
   
+  func parserDidEndDocument(_ parser: XMLParser) {
+    configureConstraints()
+  }
+  
+}
+
+// MARK: - Helper
+extension StoryboardXMLParserDelegate {
+  
+  /// Sets superViewName and adds the view to collections for later use.
+  ///
+  /// - Parameter view: the view to be added
+  func addView(_ view: View) {
+    if let lastView = tempViews.last, lastView !== mainView, !(lastView is TableViewCell) {
+      view.superViewName = lastView.userLabel
+    }
+    viewDict[view.id] = view
+    if !(view is TableViewCell) {
+      if tableViewCell != nil {
+        view.superViewName = "contentView"
+        tableViewSubviewDict[view.id] = view
+      } else {
+        subviewDict[view.id] = view
+      }
+    }
+    
+    tempViews.append(view)
+  }
+  
+  /// Set item name of constraints and configure them form margins
+  ///
+  /// - Parameters:
+  ///   - input: the constraints to be altered
+  ///   - mainUserLabel: the user label of the main view
+  ///   - viewNameForId: a closure to get the name of a view from its id
+  /// - Returns: constraints with filled in item names
   func constraintsWithReplacedItemName(from input: [Constraint], mainUserLabel: String?, viewNameForId: (String) -> String?) -> [Constraint] {
     
     let constraints = input.map { constraint -> Constraint in
@@ -191,6 +253,12 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     return constraints
   }
   
+  /// Generate and return view margin strings
+  ///
+  /// - Parameters:
+  ///   - input: the constraints
+  ///   - mainUserLabel: the name of the main view
+  /// - Returns: set with view margin strings
   func viewMargins(from input: [Constraint], mainUserLabel: String?) -> Set<String> {
     
     var marginStrings: Set<String> = []
@@ -218,12 +286,16 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
     return marginStrings
   }
   
+  
+  /// Configure the constraints
+  ///
+  /// This needs to be done before the constraint code can be generated
   func configureConstraints() {
     
     let mainUserLabel = mainView?.userLabel
     
     constraints = constraintsWithReplacedItemName(from: constraints, mainUserLabel: mainUserLabel, viewNameForId: { id in
-      viewDictForConstraints[id]?.userLabel
+      viewDict[id]?.userLabel
     })
     
     viewMargins = viewMargins(from: constraints, mainUserLabel: mainUserLabel)
@@ -257,10 +329,6 @@ final class StoryboardXMLParserDelegate: NSObject, XMLParserDelegate {
       }
       return true
     }
-  }
-  
-  func parserDidEndDocument(_ parser: XMLParser) {
-    configureConstraints()
   }
   
 }
