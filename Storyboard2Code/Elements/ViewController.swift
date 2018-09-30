@@ -17,10 +17,17 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
   }
   
   func extensionCodeString(for view: View, constraints: [Constraint]?) -> String {
-    var string = "extension \(customClass)" + startBlock()
-    string += view.viewControllerExtension
+    
+    var string = ""
+    if view.viewControllerExtension.count > 0 {
+      string += "extension \(customClass)" + startBlock()
+      string += view.viewControllerExtension
+    }
     
     if let constraints = constraints {
+      if string.count < 1 {
+        string += "extension \(customClass)" + startBlock()
+      }
       string += newLine(2)
       string += "func setLayoutGuideConstraints()" + startBlock()
       string += "let contentView = view as! \(view.userLabel.capitalizeFirst)" + newLine()
@@ -30,7 +37,10 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
       string += "}"
     }
     
-    string += endBlock()
+    if string.count > 0 {
+      string += endBlock()
+    }
+    
     return string
   }
 }

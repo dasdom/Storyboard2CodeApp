@@ -44,12 +44,19 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     
     id = dict["id"]!
     
-    guard let userLabelFromDict = dict["userLabel"] else {
-      print("userLabel missing in storyboard")
-      print("init dict: \(dict)")
-      fatalError()
+    let userLabel: String
+    if let userLabelFromDict = dict["userLabel"] {
+      userLabel = userLabelFromDict
+    } else {
+      userLabel = "id_" + id.replacingOccurrences(of: "-", with: "")
+
+      print("#########################################################")
+      print("# userLabel missing in storyboard")
+      print("# found attributes: \(dict)")
+      print("# Using id as userLabel: \(userLabel)")
+      print("#########################################################")
     }
-    userLabel = userLabelFromDict
+    self.userLabel = userLabel
   }
   
   var superInit: String {

@@ -35,10 +35,7 @@ final class TableViewCell: View {
   }
   
   override var viewControllerExtension: String {
-    var string = "override func viewDidLoad()" + startBlock()
-    string += "super.viewDidLoad()" + newLine(2)
-    string += "tableView.register(\(userLabel.capitalizeFirst).self, forCellReuseIdentifier: \"\(userLabel.capitalizeFirst)\")" + endBlock()
-    return string
+    return ""
   }
 }
 

@@ -149,13 +149,22 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
         fatalError("not supported yet")
       }
     case "tableViewCell":
+      configureConstraints()
       if let tableViewCell = tableViewCell {
         let scene = FileRepresentation(mainView: tableViewCell, viewDict: tableViewSubviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: nil)
         fileRepresentations.append(scene)
       }
       tableViewCell = nil
       tableViewSubviewDict = [:]
+      if tempViews.last?.type == .UITableViewCell {
+        _ = tempViews.popLast()
+      }
 //      viewController = nil
+      viewDict.removeAll()
+      subviewDict.removeAll()
+      viewMargins.removeAll()
+      constraints.removeAll()
+      controllerConstraints.removeAll()
     case "string":
       if let label = tempViews.last as? Label {
         label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")

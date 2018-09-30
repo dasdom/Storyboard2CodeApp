@@ -14,6 +14,7 @@ final class TableView: ScrollView {
   let rowHeight: String?
   let sectionHeaderHeight: String?
   let sectionFooterHeight: String?
+  var cells: [TableViewCell]?
 //  var isEmbeddedTableView = false
   
   required init(dict: [String : String]) {
@@ -25,6 +26,8 @@ final class TableView: ScrollView {
     rowHeight = dict["rowHeight"]
     sectionHeaderHeight = dict["sectionHeaderHeight"]
     sectionFooterHeight = dict["sectionFooterHeight"]
+    
+    cells = nil
 
     super.init(dict: dict)
 
@@ -77,5 +80,19 @@ final class TableView: ScrollView {
     temp.append("sectionFooterHeight")
     print(temp)
     return temp
+  }
+  
+  override var viewControllerExtension: String {
+    var string = "override func loadView()" + startBlock()
+    string += "view = \(userLabel.capitalizeFirst)()"
+    if let cells = cells {
+      string += "\n"
+      for cell in cells {
+        let cellClassName = cell.userLabel.capitalizeFirst
+        string += "\ntableView.register(\(cellClassName).self, forCellReuseIdentifier: \"\(cellClassName)\")"
+      }
+    }
+    string += endBlock()
+    return string
   }
 }

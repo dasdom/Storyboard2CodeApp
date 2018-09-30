@@ -29,7 +29,7 @@ class FileRepresentationTests: XCTestCase {
                           "}"]
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
-    let linesWithoutEmptyLines = lines.filter { $0.characters.count > 0 }
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
   }
   
@@ -48,15 +48,16 @@ class FileRepresentationTests: XCTestCase {
                           "fatalError(\"init(coder:) has not been implemented\")",
                           "}",
                           "}",
-                          "extension Foo {",
-                          "override func viewDidLoad() {",
-                          "super.viewDidLoad()",
-                          "tableView.register(FooCell.self, forCellReuseIdentifier: \"FooCell\")",
-                          "}",
-                          "}"]
+//                          "extension Foo {",
+//                          "override func viewDidLoad() {",
+//                          "super.viewDidLoad()",
+//                          "tableView.register(FooCell.self, forCellReuseIdentifier: \"FooCell\")",
+//                          "}",
+//                          "}"
+    ]
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
-    let linesWithoutEmptyLines = lines.filter { $0.characters.count > 0 }
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
 
   }
