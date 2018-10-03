@@ -34,6 +34,8 @@ The following gifs show examples. The presentation switches between the view cre
 
 ![](https://raw.githubusercontent.com/dasdom/Storybard2CodeApp/master/comparison/buttons.gif)
 
+![](https://raw.githubusercontent.com/dasdom/Storybard2CodeApp/master/comparison/labels.gif)
+
 # Usage
 The generated code looks best if all the elements in the storyboard have a label because this is used for the name of the element. You can set the label in the identity inspector:
 
