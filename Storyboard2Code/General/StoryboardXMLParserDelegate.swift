@@ -153,13 +153,19 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
       if let tableViewCell = tableViewCell {
         let scene = FileRepresentation(mainView: tableViewCell, viewDict: tableViewSubviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: nil)
         fileRepresentations.append(scene)
+       
+        if tempViews.last?.type == .UITableViewCell {
+          _ = tempViews.popLast()
+        }
+        
+        if let lastView = tempViews.last as? TableView {
+          lastView.cells.append(tableViewCell)
+        }
       }
+      
+//      viewController = nil
       tableViewCell = nil
       tableViewSubviewDict = [:]
-      if tempViews.last?.type == .UITableViewCell {
-        _ = tempViews.popLast()
-      }
-//      viewController = nil
       viewDict.removeAll()
       subviewDict.removeAll()
       viewMargins.removeAll()
@@ -237,26 +243,56 @@ extension StoryboardXMLParserDelegate {
       
       if let firstItem = constraint.firstItem {
         firstItemName = viewNameForId(firstItem)
-        mutableConstraint.firstItemName = firstItemName == mainUserLabel ? "" : firstItemName
+        mutableConstraint.firstItemName = firstItemName
       } else {
-        firstItemName = mainUserLabel
+        mutableConstraint.firstItemName = mainUserLabel
       }
-      let firstAttribute = constraint.firstAttribute
-      if firstAttribute.hasSuffix("Margin"), let firstItemName = firstItemName  {
-        mutableConstraint.firstItemName = "\(firstItemName)Margins"
-        mutableConstraint.firstAttribute = firstAttribute.substring(to: String.Index(encodedOffset: firstAttribute.count-6))
-      }
+//      let firstAttribute = constraint.firstAttribute
+//      if firstAttribute.hasSuffix("Margin"), let firstItemName = firstItemName  {
+//        mutableConstraint.firstItemName = "\(firstItemName)Margins"
+//        mutableConstraint.firstAttribute = firstAttribute.substring(to: String.Index(encodedOffset: firstAttribute.count-6))
+//      }
 
       var secondItemName: String? = nil
       
       if let secondItem = constraint.secondItem {
         secondItemName = viewNameForId(secondItem)
-        mutableConstraint.secondItemName = secondItemName == mainUserLabel ? "" : secondItemName
+        mutableConstraint.secondItemName = secondItemName
       }
-      if let secondAttribute = constraint.secondAttribute, secondAttribute.hasSuffix("Margin")  {
-        mutableConstraint.secondItemName = "\(secondItemName!)Margins"
+//      if let secondAttribute = constraint.secondAttribute, secondAttribute.hasSuffix("Margin")  {
+//        mutableConstraint.secondItemName = "\(secondItemName!)Margins"
+//        mutableConstraint.secondAttribute = secondAttribute.substring(to: String.Index(encodedOffset: secondAttribute.count-6))
+//      }
+      return mutableConstraint
+    }
+    return constraints
+  }
+  
+  func constraintsWithRemovedMarginPostfix(from input: [Constraint], mainUserLabel: String?) -> [Constraint] {
+    
+    let constraints = input.map { constraint -> Constraint in
+
+      var mutableConstraint: Constraint = constraint
+      
+      if let _ = constraint.firstItem {
+        mutableConstraint.firstItemName = mutableConstraint.firstItemName == mainUserLabel ? "" : mutableConstraint.firstItemName
+      }
+      
+      let firstAttribute = constraint.firstAttribute
+      if firstAttribute.hasSuffix("Margin"), let firstItemName = constraint.firstItemName  {
+          mutableConstraint.firstItemName = "\(firstItemName)Margins"
+          mutableConstraint.firstAttribute = firstAttribute.substring(to: String.Index(encodedOffset: firstAttribute.count-6))
+      }
+      
+      if let _ = constraint.secondItem {
+        mutableConstraint.secondItemName = mutableConstraint.secondItemName == mainUserLabel ? "" : mutableConstraint.secondItemName
+      }
+      
+      if let secondAttribute = constraint.secondAttribute, secondAttribute.hasSuffix("Margin"), let secondItemName = constraint.secondItemName {
+        mutableConstraint.secondItemName = "\(secondItemName)Margins"
         mutableConstraint.secondAttribute = secondAttribute.substring(to: String.Index(encodedOffset: secondAttribute.count-6))
       }
+      
       return mutableConstraint
     }
     return constraints
@@ -308,6 +344,8 @@ extension StoryboardXMLParserDelegate {
     })
     
     viewMargins = viewMargins(from: constraints, mainUserLabel: mainUserLabel)
+    
+    constraints = constraintsWithRemovedMarginPostfix(from: constraints, mainUserLabel: mainUserLabel)
     
     controllerConstraints = constraints.filter {
       for guide in layoutGuides {

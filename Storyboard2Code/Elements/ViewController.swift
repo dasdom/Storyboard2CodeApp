@@ -24,7 +24,7 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
       string += view.viewControllerExtension
     }
     
-    if let constraints = constraints {
+    if let constraints = constraints, constraints.count > 0 {
       if string.count < 1 {
         string += "extension \(customClass)" + startBlock()
       }

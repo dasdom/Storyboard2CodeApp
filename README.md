@@ -4,8 +4,13 @@
 
 Mac app that converts an iOS storyboard into code. Work in progress.
 
+# Goal
+The ultimate goal is to be able to convert any iOS storyboard and convert it to code that is usable as a replacement of that storyboard without modification. 
+
 # Progress
-## Support (== most properties supported)
+The project is in pre-alpha status. If I had to give a number of the progress, I would say it's about 50% done. But keep in mind, the last 20% of any project consume 80% of the total time. ;)
+
+## Supported (== most properties supported)
 - [x] UIView
 - [x] UIButton
 - [x] UILabel
@@ -15,81 +20,31 @@ Mac app that converts an iOS storyboard into code. Work in progress.
 - [x] UIScrollView
 - [x] UITableView 
 - [x] UIImageView
+- [x] UITableViewCell
+- [ ] SaveAreaGuides
+- [ ] IBActions
+- [ ] Segues
+- [ ] Size Classes
+- [ ] UIStackView
+- [ ] UICollectionView
+- [ ] UICollectionViewCell
 
-## Next planed elements
-- UITableViewCell
-- UICollectionView
-- UICollectionViewCell
+# Examples
+The following gifs show examples. The presentation switches between the view created from a storyboard and the view created from the generated code. You can see the switch because right now the colours aren't not perfect. So further down the road those gifs will become images. :)
 
-# Example output
-```swift
-import UIKit
-
-class View: UIView {
-  let defaultButton: UIButton
-  let button: UIButton
-  
-  override init(frame: CGRect) {
-    
-    defaultButton = UIButton(type: .System)
-    defaultButton.userInteractionEnabled = false
-    defaultButton.translatesAutoresizingMaskIntoConstraints = false
-    defaultButton.setTitle("Button", forState: .Normal)
-    
-    button = UIButton(type: .System)
-    button.userInteractionEnabled = false
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.contentHorizontalAlignment = .Left
-    button.contentVerticalAlignment = .Top
-    button.enabled = false
-    button.highlighted = true
-    button.selected = true
-    button.reversesTitleShadowWhenHighlighted = true
-    button.showsTouchWhenHighlighted = true
-    button.adjustsImageWhenHighlighted = false
-    button.adjustsImageWhenDisabled = false
-    button.titleLabel?.lineBreakMode = .ByClipping
-    button.setTitle("Button 1", forState: .Normal)
-    button.setTitleColor(UIColor(red: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), forState: .Normal)
-    
-    super.init(frame: frame)
-    
-    backgroundColor = UIColor.whiteColor()
-    
-    addSubview(defaultButton)
-    addSubview(button)
-    
-    let viewMargins = layoutMarginsGuide
-    
-    defaultButton.leadingAnchor.constraintEqualToAnchor(viewMargins.leadingAnchor).active = true
-    button.leadingAnchor.constraintEqualToAnchor(viewMargins.leadingAnchor).active = true
-    defaultButton.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 8).active = true
-  }
-  
-  convenience required init(coder aDecoder: NSCoder) {
-    self.init()
-  }
-  
-}
-
-extension Foo {
-  override func loadView() {
-    view = View()
-  }
-  
-  func setLayoutGuideConstraints() {
-    let contentView = view as! View
-    contentView.button.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8).active = true
-  }
-}
-```
+![](https://raw.githubusercontent.com/dasdom/Storybard2CodeApp/master/comparison/buttons.gif)
 
 # Usage
-At the moment, all the elements in the storyboard need a label because this is used for the name of the element. You can set the label in the identity inspector:
+The generated code looks best if all the elements in the storyboard have a label because this is used for the name of the element. You can set the label in the identity inspector:
 
 ![](https://raw.githubusercontent.com/dasdom/Storybard2CodeApp/master/screenshots/setting_label.png)
 
-At the moment, the app will crash when a label is missing. But you will see an error output on the console.
+If the label is missing, the internal id in the storyboard of that element is used.
 
 # Author
 [@dasdom](https://twitter.com/dasdom)
+
+# Licence
+MIT
+
+See LICENCE.md

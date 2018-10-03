@@ -14,7 +14,7 @@ final class TableView: ScrollView {
   let rowHeight: String?
   let sectionHeaderHeight: String?
   let sectionFooterHeight: String?
-  var cells: [TableViewCell]?
+  var cells: [TableViewCell]  
 //  var isEmbeddedTableView = false
   
   required init(dict: [String : String]) {
@@ -27,8 +27,8 @@ final class TableView: ScrollView {
     sectionHeaderHeight = dict["sectionHeaderHeight"]
     sectionFooterHeight = dict["sectionFooterHeight"]
     
-    cells = nil
-
+    cells = []
+    
     super.init(dict: dict)
 
     alwaysBounceVerticalDefault = true
@@ -85,7 +85,7 @@ final class TableView: ScrollView {
   override var viewControllerExtension: String {
     var string = "override func loadView()" + startBlock()
     string += "view = \(userLabel.capitalizeFirst)()"
-    if let cells = cells {
+    if cells.count > 0 {
       string += "\n"
       for cell in cells {
         let cellClassName = cell.userLabel.capitalizeFirst
