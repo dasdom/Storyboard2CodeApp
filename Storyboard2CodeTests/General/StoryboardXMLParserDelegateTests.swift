@@ -374,8 +374,8 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo: topScrollView.trailingAnchor, constant: 52).isActive = true\n"
-    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString, expectedString)
+    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo: topScrollView.trailingAnchor, constant: 52),\n"
+    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(), expectedString)
   }
   
   func test_constraints_whenItemIsNotMainUserLabel_setsFirstItemName() {

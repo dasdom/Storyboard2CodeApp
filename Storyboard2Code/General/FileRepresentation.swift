@@ -35,10 +35,15 @@ struct FileRepresentation: CodeGeneratable {
     
     viewMargins.forEach { outputString += $0 + newLine() }
     
+    var constraintsString = ""
     //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n
-    outputString += "NSLayoutConstraint.activate([\n"
-    constraints.forEach { outputString += $0.codeString() }
-    outputString += "])"
+    constraints.forEach { constraintsString += $0.codeString() }
+    
+    if constraintsString.count > 0 {
+      outputString += "NSLayoutConstraint.activate([\n"
+      outputString += constraintsString
+      outputString += "])"
+    }
     //outputString += "NSLayoutConstraint.activateConstraints(layoutConstraints)\n"
     
     outputString += endBlock() + newLine(2)
