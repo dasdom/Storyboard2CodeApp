@@ -33,7 +33,7 @@ public class ViewController: AttributeCreatable, CodeGeneratable {
       string += "let contentView = view as! \(view.userLabel.capitalizeFirst)" + newLine()
       string += "contentView."
       
-      string += constraints.reduce("") { $0 + $1.codeString }
+      string += constraints.reduce("") { $0 + $1.codeString(useForController: true) }
       string += "}"
     }
     

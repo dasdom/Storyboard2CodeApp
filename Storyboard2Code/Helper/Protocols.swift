@@ -148,7 +148,7 @@ protocol ControlStateCodeGeneratable {
  *  Conforming types provide constraint code generation.
  */
 protocol ConstraintCodeGeneratable {
-  var codeString: String { get }
+  func codeString(useForController: Bool) -> String
 }
 
 /**

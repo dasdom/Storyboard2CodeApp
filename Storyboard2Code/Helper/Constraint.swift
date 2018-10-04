@@ -32,8 +32,8 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     constant = dict[Key.constant.rawValue]
   }
   
-  /// The string to generate code.
-  var codeString: String {
+  func codeString(useForController: Bool = false) -> String {
+//  var codeString: String {
 //    guard let firstItemName = firstItemName else { fatalError() }
     
 //    var string = "layoutConstraints.append(\(firstItemName)"
@@ -77,7 +77,11 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       }
       string += constant
     }
-    string += ").isActive = true\n"
+    if useForController {
+      string += ").isActive = true\n"
+    } else {
+      string += "),\n"
+    }
 //    string += "))\n"
     return string
   }
