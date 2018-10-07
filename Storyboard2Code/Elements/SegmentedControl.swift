@@ -30,8 +30,8 @@ class SegmentedControl: View {
     type = ElementType.UISegmentedControl
   }
   
-  override var setupString: String {
-    var string = super.setupString
+  override func setupString(objC: Bool = false) -> String {
+    var string = super.setupString(objC: objC)
     for (index, segment) in segments.enumerated() {
       string += "\(userLabel).insertSegment(withTitle:\"\(segment.title)\", at: \(index), animated: false)\n"
     }

@@ -20,7 +20,7 @@ final class StoryboardXMLParserDelegate: NSObject {
   fileprivate var font: Font?
   fileprivate var currentState: ButtonState?
   fileprivate var currentText: String?
-  var viewMargins: Set<String> = []
+  var viewMargins: Set<ViewMargin> = []
   var layoutGuides: [LayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
   var fileRepresentations: [FileRepresentation] = []
@@ -304,28 +304,29 @@ extension StoryboardXMLParserDelegate {
   ///   - input: the constraints
   ///   - mainUserLabel: the name of the main view
   /// - Returns: set with view margin strings
-  func viewMargins(from input: [Constraint], mainUserLabel: String?) -> Set<String> {
+  func viewMargins(from input: [Constraint], mainUserLabel: String?) -> Set<ViewMargin> {
     
-    var marginStrings: Set<String> = []
+    var marginStrings: Set<ViewMargin> = []
     
-    let marginStringFrom: (String) -> String = { itemName in
-      var string = "let \(itemName)Margins = "
-      if itemName != mainUserLabel {
-        string += "\(itemName)."
-      }
-      string += "layoutMarginsGuide\n"
-      return string
-    }
+//    let marginStringFrom: (String) -> String = { itemName in
+//      var string = "let \(itemName)Margins = "
+//      if itemName != mainUserLabel {
+//        string += "\(itemName)."
+//      }
+//      string += "layoutMarginsGuide\n"
+//      return string
+//    }
     
     for constraint in input {
       if constraint.firstAttribute.hasSuffix("Margin"), let firstItemName = constraint.firstItemName  {
         
-        marginStrings.insert(marginStringFrom(firstItemName))
+        marginStrings.insert(ViewMargin(marginPrefix: firstItemName, mainUserLabel: mainUserLabel))
       }
       
       if constraint.secondAttribute?.hasSuffix("Margin") ?? false, let secondItemName = constraint.secondItemName {
         
-        marginStrings.insert(marginStringFrom(secondItemName))
+        marginStrings.insert(ViewMargin(marginPrefix: secondItemName, mainUserLabel: mainUserLabel))
+
       }
     }
     return marginStrings

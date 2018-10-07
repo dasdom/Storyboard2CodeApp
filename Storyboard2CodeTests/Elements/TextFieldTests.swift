@@ -26,12 +26,12 @@ class TextFieldTests: XCTestCase {
   
   func test_textFieldPropertyString_HasExpectedOutput() {
     let expectedOutput = "let fooTextField: UITextField"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_textFieldInitString_HasExpectedOutput() {
     let expectedOutput = "fooTextField = UITextField()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
 
   func test_textFieldSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -41,7 +41,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clipsSubviews() {
@@ -51,7 +51,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.clipsToBounds = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_borderStyle() {
@@ -61,7 +61,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.borderStyle = .line\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_placeholder() {
@@ -71,7 +71,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.placeholder = \"foo\"\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_textAlignment() {
@@ -81,7 +81,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.textAlignment = .center\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clearsOnBeginEditing() {
@@ -91,7 +91,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.clearsOnBeginEditing = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clearButtonMode() {
@@ -101,7 +101,7 @@ class TextFieldTests: XCTestCase {
     let localSUT = TextField(dict: attributesDict)
     
     let expectedOutput = "fooTextField.clearButtonMode = .whileEditing\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
 //  minimumFontSize="17"
@@ -111,7 +111,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.autocapitalizationType = .allCharacters\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocorrectionType() {
@@ -119,7 +119,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.autocorrectionType = .no\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_spellCheckingType() {
@@ -127,7 +127,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.spellCheckingType = .no\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardType() {
@@ -135,7 +135,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.keyboardType = .twitter\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardAppearance() {
@@ -143,7 +143,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.keyboardAppearance = .alert\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_returnKeyType() {
@@ -151,7 +151,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.returnKeyType = .send\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_enablesReturnKeyAutomatically() {
@@ -159,7 +159,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.enablesReturnKeyAutomatically = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_secureTextEntry() {
@@ -167,7 +167,7 @@ class TextFieldTests: XCTestCase {
     sut.textInputTraits = TextInputTraits(dict: attributesDict)
     
     let expectedOutput = "fooTextField.isSecureTextEntry = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func testTextFieldSetupString_HasTextColorString() {
@@ -175,7 +175,7 @@ class TextFieldTests: XCTestCase {
     sut.colors.append(color)
     
     let expectedOutput = "fooTextField.textColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func testTextFieldSetupString_HasFontString() {
@@ -184,7 +184,7 @@ class TextFieldTests: XCTestCase {
     sut.font = font
     
     let expectedOutput = "fooTextField.font = UIFont(name: \"AvenirNext-Regular\", size: 20)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }
 
@@ -198,6 +198,6 @@ extension TextFieldTests {
     let sut = TextField(dict: attributesDict)
     
     let expectedOutput = ""
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }

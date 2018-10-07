@@ -12,7 +12,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "let fooLabel: UILabel"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_labelInitString_HasExpectedOutput() {
@@ -20,7 +20,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel = UILabel()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_textAlignment() {
@@ -28,7 +28,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.textAlignment = .justified\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_lineBreakMode() {
@@ -36,7 +36,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.lineBreakMode = .byTruncatingHead\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_numberOfLines() {
@@ -44,7 +44,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.numberOfLines = 0\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_minimumScaleFactor() {
@@ -52,7 +52,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.minimumScaleFactor = 0.5\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_enabled() {
@@ -60,7 +60,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.enabled = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_highlighted() {
@@ -68,7 +68,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.highlighted = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_labelSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -76,7 +76,7 @@ class LabelTests: XCTestCase {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = "fooLabel.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 
   func test_labelSetupString_HasExpectedOutputFor_Text() {
@@ -85,7 +85,7 @@ class LabelTests: XCTestCase {
     sut.text = "Foo"
     
     let expectedOutput = "fooLabel.text = \"Foo\"\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
 //  // Check if this is needed when minimumScaleFactor is set
@@ -111,6 +111,6 @@ extension LabelTests {
     let sut = Label(dict: attributesDict)
     
     let expectedOutput = ""
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }

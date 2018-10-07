@@ -7,7 +7,7 @@ import Foundation
 struct FileRepresentation: CodeGeneratable {
   let mainView: View
   let viewDict: [String: View]
-  let viewMargins: Set<String>
+  let viewMargins: Set<ViewMargin>
   let constraints: [Constraint]
   let viewController: ViewController
   let controllerConstraints: [Constraint]?
@@ -37,7 +37,7 @@ struct FileRepresentation: CodeGeneratable {
     let addString = addToSuperView(for: subviews)
     outputString += addString.isEmpty ? "" : addString + newLine()
     
-    viewMargins.forEach { outputString += $0 + newLine() }
+    viewMargins.forEach { outputString += $0.codeString() + newLine() }
     
     var constraintsString = ""
     //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n
@@ -60,12 +60,12 @@ struct FileRepresentation: CodeGeneratable {
   }
   
   func properties(for subviews: [View]) -> String {
-    return subviews.reduce("") { $0 + $1.propertyString + newLine() }
+    return subviews.reduce("") { $0 + $1.propertyString() + newLine() }
   }
   
   func setup(for subviews: [View]) -> String {
     return subviews.reduce("") { result, element in
-      let elementString = element.initString + element.setupString
+      let elementString = element.initString() + element.setupString()
       return result + (elementString.isEmpty ? "" : elementString + newLine())
     }
   }

@@ -27,12 +27,12 @@ class SegmentedControlTests: XCTestCase {
   
   func test_segmentedControlPropertyString_HasExpectedOutput() {
     let expectedOutput = "let fooSegmentedControl: UISegmentedControl"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {
     let expectedOutput = "fooSegmentedControl = UISegmentedControl()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_segmentedControlSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -42,7 +42,7 @@ class SegmentedControlTests: XCTestCase {
     let localSUT = SegmentedControl(dict: attributesDict)
     
     let expectedOutput = "fooSegmentedControl.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func testSegmentedControlSetupString_HasInsertSegmentWithTitleString() {
@@ -56,7 +56,7 @@ class SegmentedControlTests: XCTestCase {
     expectedOutput += "fooSegmentedControl.insertSegment(withTitle:\"Hello\", at: 2, animated: false)\n"
     expectedOutput += "fooSegmentedControl.insertSegment(withTitle:\"World\", at: 3, animated: false)\n"
     expectedOutput += "fooSegmentedControl.setEnabled(false, forSegmentAtIndex: 3)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_segmentedControlSetupString_HasExpectedOutputFor_selectedSegmentIndex() {
@@ -66,7 +66,7 @@ class SegmentedControlTests: XCTestCase {
     let localSUT = SegmentedControl(dict: attributesDict)
     
     let expectedOutput = "fooSegmentedControl.selectedSegmentIndex = 1\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_segmentedControlSetupString_HasExpectedOutputFor_momentary() {
@@ -76,6 +76,6 @@ class SegmentedControlTests: XCTestCase {
     let localSUT = SegmentedControl(dict: attributesDict)
     
     let expectedOutput = "fooSegmentedControl.momentary = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
 }

@@ -58,8 +58,8 @@ final class Label: View {
 //    return super.initString
 //  }
   
-  override var setupString: String {
-    var string = super.setupString
+  override func setupString(objC: Bool = false) -> String {
+    var string = super.setupString(objC: objC)
     if let text = text {
       string += "\(userLabel).text = \"\(text)\"\n"
     }

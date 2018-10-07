@@ -27,12 +27,12 @@ class SliderTests: XCTestCase {
   
   func test_sliderPropertyString_HasExpectedOutput() {
     let expectedOutput = "let fooSlider: UISlider"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_sliderInitString_HasExpectedOutput() {
     let expectedOutput = "fooSlider = UISlider()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -42,7 +42,7 @@ class SliderTests: XCTestCase {
     let localSUT = Slider(dict: attributesDict)
     
     let expectedOutput = "fooSlider.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_value() {
@@ -52,7 +52,7 @@ class SliderTests: XCTestCase {
     let localSUT = Slider(dict: attributesDict)
     
     let expectedOutput = "fooSlider.value = 5.0\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_minValue() {
@@ -62,7 +62,7 @@ class SliderTests: XCTestCase {
     let localSUT = Slider(dict: attributesDict)
     
     let expectedOutput = "fooSlider.minimumValue = -7.0\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_maxValue() {
@@ -72,7 +72,7 @@ class SliderTests: XCTestCase {
     let localSUT = Slider(dict: attributesDict)
     
     let expectedOutput = "fooSlider.maximumValue = 33.0\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_continuous() {
@@ -82,7 +82,7 @@ class SliderTests: XCTestCase {
     let localSUT = Slider(dict: attributesDict)
     
     let expectedOutput = "fooSlider.continuous = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_minimumTrackTintColor() {
@@ -90,7 +90,7 @@ class SliderTests: XCTestCase {
     sut.colors.append(color)
     
     let expectedOutput = "fooSlider.minimumTrackTintColor = UIColor(red: 0.000, green: 0.502, blue: 0.000, alpha: 1.000)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_maximumTrackTintColor() {
@@ -98,7 +98,7 @@ class SliderTests: XCTestCase {
     sut.colors.append(color)
     
     let expectedOutput = "fooSlider.maximumTrackTintColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_sliderSetupString_HasExpectedOutputFor_thumbTintColor() {
@@ -106,7 +106,7 @@ class SliderTests: XCTestCase {
     sut.colors.append(color)
     
     let expectedOutput = "fooSlider.thumbTintColor = UIColor(red: 0.000, green: 0.251, blue: 0.502, alpha: 1.000)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }
 
@@ -121,6 +121,6 @@ extension SliderTests {
     let sut = Slider(dict: attributesDict)
     
     let expectedOutput = ""
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }

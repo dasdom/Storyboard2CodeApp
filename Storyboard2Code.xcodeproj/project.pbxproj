@@ -11,6 +11,7 @@
 		F21895DF1CE8A6700077960F /* DynamicCellsTableViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */; };
 		F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E21CECF9D60077960F /* ScrollViewTests.swift */; };
 		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
+		F221E3F82169ED4C00BAF162 /* ViewMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F72169ED4C00BAF162 /* ViewMargin.swift */; };
 		F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4311CD2AD31000DBA33 /* AppDelegate.swift */; };
 		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
 		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
@@ -72,6 +73,7 @@
 		F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DynamicCellsTableViewTests.xml; sourceTree = "<group>"; };
 		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewTests.swift; path = Storyboard2CodeTests/Elements/ScrollViewTests.swift; sourceTree = SOURCE_ROOT; };
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		F221E3F72169ED4C00BAF162 /* ViewMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMargin.swift; sourceTree = "<group>"; };
 		F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard2Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F230C4311CD2AD31000DBA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F230C4331CD2AD31000DBA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				F230C45F1CD34A93000DBA33 /* Extensions.swift */,
 				F230C4601CD34A93000DBA33 /* Protocols.swift */,
 				F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */,
+				F221E3F72169ED4C00BAF162 /* ViewMargin.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				F230C46C1CD34A93000DBA33 /* Extensions.swift in Sources */,
 				F230C4641CD34A93000DBA33 /* Label.swift in Sources */,
 				F2BE60881E2A87D400AC307B /* FileRepresentation.swift in Sources */,
+				F221E3F82169ED4C00BAF162 /* ViewMargin.swift in Sources */,
 				F230C4681CD34A93000DBA33 /* View.swift in Sources */,
 				F28E6A5E1DF2189C007D0114 /* TableViewController.swift in Sources */,
 				F230C46F1CD34AEC000DBA33 /* Slider.swift in Sources */,

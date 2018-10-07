@@ -32,12 +32,15 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     constant = dict[Key.constant.rawValue]
   }
   
-  func codeString(useForController: Bool = false) -> String {
+  func codeString(useForController: Bool = false, objC: Bool = false) -> String {
 //  var codeString: String {
 //    guard let firstItemName = firstItemName else { fatalError() }
     
 //    var string = "layoutConstraints.append(\(firstItemName)"
     var string = ""
+    if objC {
+      string += "["
+    }
     if let firstItemName = firstItemName {
       string += firstItemName
     }
@@ -49,11 +52,18 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     } else {
       string += firstAttribute
     }
-    string += "Anchor.constraint(equalTo"
+    string += "Anchor"
+    if objC {
+      string += " constraintEqualToAnchor:"
+    } else {
+      string += ".constraint(equalTo:"
+    }
     if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
-      string += ": \(secondItemName)"
+      string += "\(secondItemName)"
       if secondItemName.count > 0 {
         string += "."
+      } else {
+        string += "self."
       }
       if secondAttribute == "baseline" {
         string += "first\(secondAttribute.capitalizeFirst)"
@@ -69,18 +79,33 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       string += "Constant: "
     }
     if let multiplier = multiplier {
-      string += ", multiplier: \(multiplier)"
+      if objC == false {
+        string += ","
+      }
+      string += " multiplier:\(multiplier)"
     }
     if let constant = constant {
       if let _ = secondItemName {
-        string += ", constant: "
+        if objC == false {
+          string += ","
+        }
+        string += " constant:"
       }
       string += constant
     }
     if useForController {
-      string += ").isActive = true\n"
+      if objC {
+        string += "].active = YES\n"
+      } else {
+        string += ").isActive = true\n"
+      }
     } else {
-      string += "),\n"
+      if objC {
+        string += "]"
+      } else {
+        string += ")"
+      }
+      string += ",\n"
     }
 //    string += "))\n"
     return string

@@ -12,7 +12,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   var opaqueDefault = true
   let userInteractionEnabled: Bool?
   var userInteractionEnabledDefault = true
-  let contentMode: String?
+  var contentMode: String?
   var contentModeDefault = "scaleToFill"
   let translatesAutoresizingMaskIntoConstraints: Bool?
   var translatesAutoresizingMaskIntoConstraintsDefault = true
@@ -81,17 +81,25 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     return string
   }
   
-  var initString: String {
+  func initString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
-    return "\(userLabel) = \(type.rawValue)()\n"
+    if objC {
+      return "_\(userLabel) = [[\(type.rawValue) alloc] init];\n"
+    } else {
+      return "\(userLabel) = \(type.rawValue)()\n"
+    }
   }
   
-  var setupString: String {
+  func setupString(objC: Bool = false) -> String {
 //    guard isMainView == false else { return "" }
+    if objC {
+      configureForObjC()
+    }
+    
     var string = ""
-    string += reflectedSetup
+    string += reflectedSetup(objC: objC)
     if let clips = clipsSubviews, clips != clipsSubviewsDefault {
-      string += setup("clipsToBounds", value: "\(clips)")
+      string += setup("clipsToBounds", value: "\(clips)", objC: objC)
     }
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkText") { // Defaults
@@ -104,6 +112,12 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     return string
   }
   
+  func configureForObjC() {
+    if let contentMode = contentMode {
+      self.contentMode = "UIViewContentMode\(contentMode.capitalizeFirst)"
+    }
+  }
+  
   /**
    Retuns an array of property names of properties that can be used to
    generate code using reflection.
@@ -113,7 +127,10 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   func reflectable() -> [String] {
     var temp: [String] = []
     if translatesAutoresizingMaskIntoConstraints != translatesAutoresizingMaskIntoConstraintsDefault { temp.append("translatesAutoresizingMaskIntoConstraints") }
-    if isOpaque != opaqueDefault { temp.append("isOpaque") }
+    if isOpaque != opaqueDefault {
+      temp.append("isOpaque")
+      temp.append("opaque")
+    }
     if contentMode != contentModeDefault { temp.append("contentMode") }
     if userInteractionEnabled != userInteractionEnabledDefault { temp.append("userInteractionEnabled") }
     temp.append("autoresizesSubviews")
@@ -126,7 +143,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     return isMainView ? "" : "\(self.userLabel)"
   }
   
-  var reflectedSetup: String {
+  func reflectedSetup(objC: Bool = false) -> String {
     
     let reflectableNames = reflectable()
     let mirror = Mirror(reflecting: self)
@@ -134,15 +151,21 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     if let superclassMirror = mirror.superclassMirror {
       if let superSuperClassMirror = superclassMirror.superclassMirror {
         for child in superSuperClassMirror.children {
-          string += stringFromChild(target: selfNameForMessaging, label: child.label, value: child.value, reflectable: reflectableNames)
+          string += stringFromChild(target: selfNameForMessaging, label: child.label, value: child.value, reflectable: reflectableNames, objC: objC)
         }
       }
       for child in superclassMirror.children {
-        string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames)
+        string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames, objC: objC)
       }
     }
     for child in mirror.children {
-      string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames)
+      let childLabel: String?
+      if child.label == "isOpaque", objC {
+        childLabel = "opaque"
+      } else {
+        childLabel = child.label
+      }
+      string += stringFromChild(target: selfNameForMessaging, label:childLabel, value: child.value, reflectable: reflectableNames, objC: objC)
     }
     return string
   }

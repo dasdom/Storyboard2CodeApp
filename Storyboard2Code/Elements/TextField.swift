@@ -70,8 +70,8 @@ final class TextField: View {
 //    return string
 //  }
   
-  override var setupString: String {
-    var string = super.setupString
+  override func setupString(objC: Bool = false) -> String {
+    var string = super.setupString(objC: objC)
     if let placeholder = placeholder {
       string += "\(userLabel).placeholder = \"\(placeholder)\"\n"
     }

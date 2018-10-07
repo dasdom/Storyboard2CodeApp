@@ -42,7 +42,7 @@ final class Button: View {
     type = .UIButton
   }
   
-  override var initString: String {
+  override func initString(objC: Bool = false) -> String {
     var string = "\(userLabel) = "
     if buttonType == "roundedRect" {
       string += "\(type.rawValue)(type: .system)\n"
@@ -53,8 +53,8 @@ final class Button: View {
     return string
   }
   
-  override var setupString: String {
-    var string = super.setupString
+  override func setupString(objC: Bool = false) -> String {
+    var string = super.setupString(objC: objC)
     if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
       string += "\(userLabel).titleLabel?.lineBreakMode = .\(lineBreakMode.codeString)\n"
     }

@@ -27,12 +27,12 @@ class ScrollViewTests: XCTestCase {
   
   func test_segmentedControlPropertyString_HasExpectedOutput() {
     let expectedOutput = "let fooScrollView: UIScrollView"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {
     let expectedOutput = "fooScrollView = UIScrollView()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -42,7 +42,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_directionalLockEnabled() {
@@ -52,7 +52,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.directionalLockEnabled = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_bounces() {
@@ -62,7 +62,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.bounces = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_alwaysBounceVertical() {
@@ -72,7 +72,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.alwaysBounceVertical = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_scrollEnabled() {
@@ -82,7 +82,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.scrollEnabled = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_pagingEnabled() {
@@ -92,7 +92,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.pagingEnabled = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_showsHorizontalScrollIndicator() {
@@ -102,7 +102,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.showsHorizontalScrollIndicator = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_showsVerticalScrollIndicator() {
@@ -112,7 +112,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.showsVerticalScrollIndicator = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_indicatorStyle() {
@@ -122,7 +122,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.indicatorStyle = .black\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_delaysContentTouches() {
@@ -132,7 +132,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.delaysContentTouches = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_canCancelContentTouches() {
@@ -142,7 +142,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.canCancelContentTouches = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_minimumZoomScale() {
@@ -152,7 +152,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.minimumZoomScale = 5\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_maximumZoomScale() {
@@ -162,7 +162,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.maximumZoomScale = 3\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_bouncesZoom() {
@@ -172,7 +172,7 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.bouncesZoom = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_keyboardDismissMode() {
@@ -182,6 +182,6 @@ class ScrollViewTests: XCTestCase {
     let localSUT = ScrollView(dict: attributesDict)
     
     let expectedOutput = "fooScrollView.keyboardDismissMode = .onDrag\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
 }

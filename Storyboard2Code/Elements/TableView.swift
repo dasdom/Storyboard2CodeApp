@@ -55,7 +55,7 @@ final class TableView: ScrollView {
     
     outputString += "super.init(frame: frame, style: style)" + newLine()
     
-    outputString += reflectedSetup
+    outputString += reflectedSetup()
     
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkText()") { // Defaults

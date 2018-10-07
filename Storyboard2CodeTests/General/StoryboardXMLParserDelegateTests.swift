@@ -344,7 +344,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    XCTAssertEqual(lastFileRepresentation.viewMargins.first, "let viewMargins = layoutMarginsGuide\n")
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString(), "let viewMargins = layoutMarginsGuide\n")
   }
   
   func test_parsingView_whenFirstItemIsMissing_addsConstraint() {
@@ -373,7 +373,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo: topScrollView.trailingAnchor, constant: 52),\n"
+    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo:topScrollView.trailingAnchor, constant:52),\n"
     XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(), expectedString)
   }
   
@@ -437,7 +437,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
 
     let margins = sut.viewMargins(from: [constraint], mainUserLabel: "bar")
 
-    XCTAssertEqual(margins.first, "let foobarMargins = foobar.layoutMarginsGuide\n")
+    XCTAssertEqual(margins.first?.codeString(), "let foobarMargins = foobar.layoutMarginsGuide\n")
   }
   
   func test_viewMargins_whenSecondItemAttributeHasSuffixMargin_returnsMarginStrings() {
@@ -446,7 +446,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     
     let margins = sut.viewMargins(from: [constraint], mainUserLabel: "bar")
     
-    XCTAssertEqual(margins.first, "let foobarMargins = foobar.layoutMarginsGuide\n")
+    XCTAssertEqual(margins.first?.codeString(), "let foobarMargins = foobar.layoutMarginsGuide\n")
   }
   
   func test_configureConstraints_fillsControllerConstraints_1() {
@@ -545,7 +545,37 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    XCTAssertEqual(lastFileRepresentation.viewMargins.first, "UILayoutGuide *viewMargins = self.layoutMarginsGuide;\n")
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString(objC: true), "UILayoutGuide *viewMargins = self.layoutMarginsGuide;\n")
+  }
+  
+  func test_parsingView_whenFirstItemIsMissing_addsConstraint_objC() {
+    let xmlString = """
+        <scene sceneID="Kme-PY-tzu">
+          <objects>
+            <viewController id="kbr-KS-wKI" customClass="Foo" customModule="TestUIs" customModuleProvider="target" sceneMemberID="viewController">
+              <view key="view" id="PKe-l8-vIZ" userLabel="scrollView">
+                <subviews>
+                  <scrollView translatesAutoresizingMaskIntoConstraints="NO" id="R05-13-ghk" userLabel="topScrollView">
+                  </scrollView>
+                </subviews>
+                <constraints>
+                  <constraint firstAttribute="trailingMargin" secondItem="R05-13-ghk" secondAttribute="trailing" constant="52" id="sOF-ga-Sji"/>
+                </constraints>
+              </view>
+            </viewController>
+          </objects>
+        </scene>
+        """
+    
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    let lastFileRepresentation = sut.fileRepresentations.last!
+    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:topScrollView.trailingAnchor constant:52],\n"
+    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(objC: true), expectedString)
   }
 }
 

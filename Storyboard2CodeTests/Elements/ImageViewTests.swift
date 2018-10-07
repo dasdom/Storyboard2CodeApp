@@ -23,12 +23,12 @@ class ImageViewTests: XCTestCase {
   
   func test_imageViewPropertyString_HasExpectedOutput() {
     let expectedOutput = "let fooImageView: UIImageView"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_imageViewInitString_HasExpectedOutput() {
     let expectedOutput = "fooImageView = UIImageView()\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -38,7 +38,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_clipsSubviews() {
@@ -48,7 +48,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.clipsToBounds = true\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_scaleAspectFill() {
@@ -58,7 +58,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.contentMode = .scaleAspectFill\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_horizontalHuggingPriority() {
@@ -68,7 +68,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.setContentHuggingPriority(251, for: .horizontal)\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_verticalHuggingPriority() {
@@ -78,7 +78,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.setContentHuggingPriority(251, for: .vertical)\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_image() {
@@ -88,7 +88,7 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.image = UIImage(named: \"fire\")\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
 
   func test_imageViewSetupString_HasExpectedOutputFor_highlightedImage() {
@@ -98,6 +98,6 @@ class ImageViewTests: XCTestCase {
     let localSUT = ImageView(dict: attributesDict)
     
     let expectedOutput = "fooImageView.highlightedImage = UIImage(named: \"see\")\n"
-    XCTAssertEqual(localSUT.setupString, expectedOutput)
+    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
   }
 }

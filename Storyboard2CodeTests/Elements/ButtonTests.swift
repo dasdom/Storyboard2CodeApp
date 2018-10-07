@@ -16,7 +16,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "let fooButton: UIButton"
-    XCTAssertEqual(sut.propertyString, expectedOutput)
+    XCTAssertEqual(sut.propertyString(), expectedOutput)
   }
   
   func test_buttonInitString_HasExpectedOutput() {
@@ -24,7 +24,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton = UIButton(type: .system)\n"
-    XCTAssertEqual(sut.initString, expectedOutput)
+    XCTAssertEqual(sut.initString(), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_enabled() {
@@ -32,7 +32,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.enabled = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_highlighted() {
@@ -40,7 +40,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.highlighted = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_selected() {
@@ -48,7 +48,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.selected = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_contentHorizontalAlignment() {
@@ -56,7 +56,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.contentHorizontalAlignment = .left\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_contentVerticalAlignment() {
@@ -64,7 +64,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.contentVerticalAlignment = .top\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_reversesTitleShadowWhenHighlighted() {
@@ -72,7 +72,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.reversesTitleShadowWhenHighlighted = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_showsTouchWhenHighlighted() {
@@ -80,7 +80,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.showsTouchWhenHighlighted = true\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenHighlighted() {
@@ -88,7 +88,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.adjustsImageWhenHighlighted = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenDisabled() {
@@ -96,7 +96,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.adjustsImageWhenDisabled = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode() {
@@ -104,7 +104,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.titleLabel?.lineBreakMode = .byClipping\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
@@ -112,7 +112,7 @@ class ButtonTests: XCTestCase {
     let sut = Button(dict: attributesDict)
     
     let expectedOutput = "fooButton.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_textColor() {
@@ -124,6 +124,6 @@ class ButtonTests: XCTestCase {
     sut.states.append(state)
     
     let expectedOutput = "fooButton.setTitle(\"Button 1\", for: .normal)\nfooButton.setTitleColor(UIColor(red: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)\n"
-    XCTAssertEqual(sut.setupString, expectedOutput)
+    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }

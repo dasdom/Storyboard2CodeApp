@@ -29,8 +29,8 @@ final class ImageView: View {
     type = ElementType.UIImageView
   }
   
-  override var setupString: String {
-    var string = super.setupString
+  override func setupString(objC: Bool = false) -> String {
+    var string = super.setupString(objC: objC)
     if let horizontalHuggingPriority = horizontalHuggingPriority, horizontalHuggingPriority != horizontalHuggingPriorityDefault {
       string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
     }

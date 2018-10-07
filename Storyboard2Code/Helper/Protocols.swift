@@ -17,21 +17,25 @@ protocol AttributeCreatable {
 protocol ElementCodeGeneratable {
   var userLabel: String { get }
   var type: ElementType { get }
-  var propertyString: String { get }
-  var initString: String { get }
-  var setupString: String { get }
+  func propertyString(objC: Bool) -> String
+  func initString(objC: Bool) -> String
+  func setupString(objC: Bool) -> String
   func addToSuperString(objC: Bool) -> String
   var superViewName: String? { get }
   var isMainView: Bool { get set }
-  func setup(_ property: String, value: String, isEnumValue: Bool) -> String
+  func setup(_ property: String, value: String, isEnumValue: Bool, objC: Bool) -> String
 }
 
 extension ElementCodeGeneratable {
   /// Default implementation of the property declaration string
-  var propertyString: String {
+  func propertyString(objC: Bool = false) -> String {
     guard !isMainView else { return "" }
     
-    return "let \(userLabel): \(type.rawValue)"
+    if objC {
+      return "@property (nonatomic) \(type.rawValue) *\(userLabel);"
+    } else {
+      return "let \(userLabel): \(type.rawValue)"
+    }
   }
   
   /// Default implementation of the addToSuperview string
@@ -66,20 +70,25 @@ extension ElementCodeGeneratable {
    
    - returns: setup string
    */
-  func setup(_ property: String, value: String, isEnumValue: Bool = false) -> String {
+  func setup(_ property: String, value: String, isEnumValue: Bool = false, objC: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
-    return "\(userLabel).\(property) = \(dotOrEmpty)\(value)\n"
+    var result = "\(userLabel).\(property) = \(dotOrEmpty)\(value)"
+    if objC {
+      result += ";"
+    }
+    result += "\n"
+    return result
   }
   
 }
 
 protocol Reflectable {
   func reflectable() -> [String]
-  func stringFromChild(target: String, label: String?, value: Any, reflectable: [String]) -> String
+  func stringFromChild(target: String, label: String?, value: Any, reflectable: [String], objC: Bool) -> String
 }
 
 extension Reflectable {
-  func stringFromChild(target: String, label: String?, value: Any, reflectable: [String]) -> String {
+  func stringFromChild(target: String, label: String?, value: Any, reflectable: [String], objC: Bool = false) -> String {
     
     guard let label = label, reflectable.contains(label), "\(value)" != "nil" else {
       return ""
@@ -88,7 +97,7 @@ extension Reflectable {
     let optionalMirror = Mirror(reflecting: value)
     if optionalMirror.children.count > 0 {
       for child in optionalMirror.children {
-        return stringFromChild(target: target, label: label, value: child.value, reflectable: reflectable)
+        return stringFromChild(target: target, label: label, value: child.value, reflectable: reflectable, objC: objC)
       }
     } else {
       
@@ -96,12 +105,17 @@ extension Reflectable {
       let dotOrEmpty: String
       if let stringValue = value as? String, let _ = Float(stringValue) {
         dotOrEmpty = ""
-      } else if let _ = value as? String {
+      } else if let _ = value as? String, objC == false {
         dotOrEmpty = "."
       } else {
         dotOrEmpty = ""
       }
-      return "\(target).\(label) = \(dotOrEmpty)\(value)\n"
+      var result = "\(target).\(label) = \(dotOrEmpty)\(value)"
+      if objC {
+        result += ";"
+      }
+      result += "\n"
+      return result
     }
     return ""
   }
@@ -169,7 +183,7 @@ protocol ControlStateCodeGeneratable {
  *  Conforming types provide constraint code generation.
  */
 protocol ConstraintCodeGeneratable {
-  func codeString(useForController: Bool) -> String
+  func codeString(useForController: Bool, objC: Bool) -> String
 }
 
 /**
