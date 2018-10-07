@@ -22,15 +22,23 @@ final class TableViewCell: View {
     isMainView = true
   }
   
-  override var superInit: String {
+  override func superInit(objC: Bool = false) -> String {
     if let style = style {
-      return "super.init(style: .\(style), reuseIdentifier: reuseIdentifier)"
+      if objC {
+        return "self = [super initWithStyle:\(style.objCString()) reuseIdentifier:reuseIdentifier];"
+      } else {
+        return "super.init(style: .\(style), reuseIdentifier: reuseIdentifier)"
+      }
     } else {
-      return "super.init(style: style, reuseIdentifier: reuseIdentifier)"
+      if objC {
+        return "self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];"
+      } else {
+        return "super.init(style: style, reuseIdentifier: reuseIdentifier)"
+      }
     }
   }
   
-  override var overrideInit: String {
+  override func overrideInit(objC: Bool = false) -> String {
     return "override init(style: UITableViewCellStyle, reuseIdentifier: String?)"
   }
   
@@ -61,6 +69,19 @@ extension TableViewCell {
         self = .subtitle
       default:
         self = .default
+      }
+    }
+    
+    func objCString() -> String {
+      switch self {
+      case .default:
+        return "UITableViewCellStyleDefault"
+      case .value1:
+        return "UITableViewCellStyleValue1"
+      case .value2:
+        return "UITableViewCellStyleValue2"
+      case .subtitle:
+        return "UITableViewCellStyleSubtitle"
       }
     }
   }

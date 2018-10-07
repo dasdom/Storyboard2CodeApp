@@ -148,16 +148,16 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     let xmlString = """
       <view id="mainId" userLabel="mainLabel">
         <subviews>
-          <view id="subViewId" userLabel="subViewLabel">
+          <view id="subViewId" userLabel="subView">
             <subviews>
-              <view id="firstSubSubViewId" userLabel="firstSubSubViewLabel">
+              <view id="firstSubSubViewId" userLabel="firstSubSubView">
               </view>
-              <view id="secondSubSubViewId" userLabel="secondSubSubViewLabel">
+              <view id="secondSubSubViewId" userLabel="secondSubSubView">
               </view>
             </subviews>
           </view>
         </subviews>
-      </view>"]
+      </view>"
       """
     
     let xmlData = xmlString.data(using: .utf8)!
@@ -167,11 +167,11 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let subView = sut.viewDict["subViewId"]
-    XCTAssertEqual(subView?.addToSuperString, "addSubview(subViewLabel)")
+    XCTAssertEqual(subView?.addToSuperString(), "addSubview(subView)")
     let firstSubSubView = sut.viewDict["firstSubSubViewId"]
-    XCTAssertEqual(firstSubSubView?.addToSuperString, "subViewLabel.addSubview(firstSubSubViewLabel)")
+    XCTAssertEqual(firstSubSubView?.addToSuperString(), "subView.addSubview(firstSubSubView)")
     let secondSubSubView = sut.viewDict["secondSubSubViewId"]
-    XCTAssertEqual(secondSubSubView?.addToSuperString, "subViewLabel.addSubview(secondSubSubViewLabel)")
+    XCTAssertEqual(secondSubSubView?.addToSuperString(), "subView.addSubview(secondSubSubView)")
   }
   
   func test_parsesTableViewCellSubViews() {
@@ -329,7 +329,6 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
                   <button buttonType="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-u7-b0P" userLabel="button">
                   </button>
                 </subviews>
-              <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
               <constraints>
                 <constraint firstItem="cfU-u7-b0P" firstAttribute="leading" secondItem="UAX-U5-col" secondAttribute="leadingMargin" id="cVB-3k-9QD"/>
               </constraints>
@@ -345,7 +344,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    XCTAssertTrue(lastFileRepresentation.swiftCodeString.contains("let viewMargins = layoutMarginsGuide"))
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first, "let viewMargins = layoutMarginsGuide\n")
   }
   
   func test_parsingView_whenFirstItemIsMissing_addsConstraint() {
@@ -376,6 +375,10 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     let lastFileRepresentation = sut.fileRepresentations.last!
     let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo: topScrollView.trailingAnchor, constant: 52),\n"
     XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(), expectedString)
+  }
+  
+  func test_parsingScene_generatesActionCode() {
+    
   }
   
   func test_constraints_whenItemIsNotMainUserLabel_setsFirstItemName() {
@@ -482,6 +485,67 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     sut.configureConstraints()
     
     XCTAssertEqual(sut.controllerConstraints.first?.secondItemName, "topLayoutGuide")
+  }
+}
+
+// MARK: - ObjC
+extension StoryboardXMLParserDelegateTests {
+  func test_parsesSubView_objC() {
+    let xmlString = """
+      <view id="mainId" userLabel="mainLabel">
+        <subviews>
+          <view id="subViewId" userLabel="subView">
+            <subviews>
+              <view id="firstSubSubViewId" userLabel="firstSubSubView">
+              </view>
+              <view id="secondSubSubViewId" userLabel="secondSubSubView">
+              </view>
+            </subviews>
+          </view>
+        </subviews>
+      </view>"
+      """
+    
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    let subView = sut.viewDict["subViewId"]
+    XCTAssertEqual(subView?.addToSuperString(objC: true), "[self addSubview:subView];")
+    let firstSubSubView = sut.viewDict["firstSubSubViewId"]
+    XCTAssertEqual(firstSubSubView?.addToSuperString(objC: true), "[subView addSubview:firstSubSubView];")
+    let secondSubSubView = sut.viewDict["secondSubSubViewId"]
+    XCTAssertEqual(secondSubSubView?.addToSuperString(objC: true), "[subView addSubview:secondSubSubView];")
+  }
+  
+  func test_parsingView_resultsInCorrectMargins_objC() {
+    let xmlString = """
+        <scene sceneID="sNi-fi-rHy">
+          <objects>
+            <viewController id="EI8-wh-viY" userLabel="viewController" customClass="Foo" sceneMemberID="viewController">
+              <view key="view" contentMode="scaleToFill" id="UAX-U5-col" userLabel="view">
+                <subviews>
+                  <button buttonType="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-u7-b0P" userLabel="button">
+                  </button>
+                </subviews>
+              <constraints>
+                <constraint firstItem="cfU-u7-b0P" firstAttribute="leading" secondItem="UAX-U5-col" secondAttribute="leadingMargin" id="cVB-3k-9QD"/>
+              </constraints>
+            </view>
+          </viewController>
+        </objects>
+      </scene>
+      """
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    let lastFileRepresentation = sut.fileRepresentations.last!
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first, "UILayoutGuide *viewMargins = self.layoutMarginsGuide;\n")
   }
 }
 

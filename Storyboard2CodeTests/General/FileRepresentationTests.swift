@@ -30,7 +30,51 @@ class FileRepresentationTests: XCTestCase {
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
-    XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
+    for (index, line) in linesWithoutEmptyLines.enumerated() {
+      XCTAssertEqual(line, expectedOutput[index])
+    }
+  }
+  
+  func test_simpleCodeGeneration_objCHeader() {
+    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    mainView.isMainView = true
+    let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
+    
+    let expectedOutput = ["#import <UIKit/UIKit.h>",
+                          "@interface FooView : UIView",
+                          "@end"]
+    
+    let lines = scene.objCHeaderCode().components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
+    for (index, outputLine) in expectedOutput.enumerated() {
+      XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+    }
+  }
+  
+  func test_simpleCodeGeneration_objCImplementation() {
+    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    mainView.isMainView = true
+    let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
+    
+    let expectedOutput = ["#import \"FooView.h\"",
+                          "@implementation FooView",
+                          "- (instancetype)initWithFrame:(CGRect)frame {",
+                          "self = [super initWithFrame:frame];",
+                          "if (self) {",
+                          "}",
+                          "return self;",
+                          "}",
+                          "@end"]
+    
+    let lines = scene.objCImplementationCode().components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
+    for (index, outputLine) in expectedOutput.enumerated() {
+      XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+    }
   }
   
   func test_tableViewCellCodeGeneration() {
@@ -48,17 +92,13 @@ class FileRepresentationTests: XCTestCase {
                           "fatalError(\"init(coder:) has not been implemented\")",
                           "}",
                           "}",
-//                          "extension Foo {",
-//                          "override func viewDidLoad() {",
-//                          "super.viewDidLoad()",
-//                          "tableView.register(FooCell.self, forCellReuseIdentifier: \"FooCell\")",
-//                          "}",
-//                          "}"
     ]
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
-    XCTAssertEqual(linesWithoutEmptyLines, expectedOutput)
+    for (index, line) in linesWithoutEmptyLines.enumerated() {
+      XCTAssertEqual(line, expectedOutput[index])
+    }
 
   }
 }

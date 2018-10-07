@@ -40,11 +40,11 @@ final class TableView: ScrollView {
 //    return isEmbeddedTableView ? super.selfNameForMessaging : ""
 //  }
   
-  public override var superInit: String {
+  public override func superInit(objC: Bool = false) -> String {
     return "super.init(frame: frame, style: style)"
   }
   
-  public override var overrideInit: String {
+  public override func overrideInit(objC: Bool = false) -> String {
     return "override init(frame: CGRect, style: UITableViewStyle) {"
   }
   

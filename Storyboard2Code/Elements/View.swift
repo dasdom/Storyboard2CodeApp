@@ -59,12 +59,20 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     self.userLabel = userLabel
   }
   
-  var superInit: String {
-    return "super.init(frame: frame)"
+  func superInit(objC: Bool = false) -> String {
+    if objC {
+      return "self = [super initWithFrame:frame];"
+    } else {
+      return "super.init(frame: frame)"
+    }
   }
   
-  var overrideInit: String {
-    return "override init(frame: CGRect)"
+  func overrideInit(objC: Bool = false) -> String {
+    if objC {
+      return "- (instancetype)initWithFrame:(CGRect)frame {"
+    } else {
+      return "override init(frame: CGRect)"
+    }
   }
   
   var viewControllerExtension: String {

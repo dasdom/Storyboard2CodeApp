@@ -92,6 +92,6 @@ class ViewTests: XCTestCase {
     let sut = View(dict: attributesDict)
     
     let expectedOutput = "addSubview(fooView)"
-    XCTAssertEqual(sut.addToSuperString, expectedOutput)
+    XCTAssertEqual(sut.addToSuperString(), expectedOutput)
   }
 }

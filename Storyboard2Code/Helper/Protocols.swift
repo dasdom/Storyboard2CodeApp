@@ -20,7 +20,7 @@ protocol ElementCodeGeneratable {
   var propertyString: String { get }
   var initString: String { get }
   var setupString: String { get }
-  var addToSuperString: String { get }
+  func addToSuperString(objC: Bool) -> String
   var superViewName: String? { get }
   var isMainView: Bool { get set }
   func setup(_ property: String, value: String, isEnumValue: Bool) -> String
@@ -35,14 +35,25 @@ extension ElementCodeGeneratable {
   }
   
   /// Default implementation of the addToSuperview string
-  var addToSuperString: String {
+  func addToSuperString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
     
     var string = ""
     if let superViewName = superViewName {
-      string += "\(superViewName)."
+      if objC {
+        string += "[\(superViewName) "
+      } else {
+        string += "\(superViewName)."
+      }
     }
-    string += "addSubview(\(userLabel))"
+    if objC {
+      if string.count < 1 {
+        string += "[self "
+      }
+      string += "addSubview:\(userLabel)];"
+    } else {
+      string += "addSubview(\(userLabel))"
+    }
     return string
   }
   
@@ -102,6 +113,8 @@ protocol CodeGeneratable {
   func startBlock() -> String
   func endBlock() -> String
   func initWithCoder() -> String
+  func interface(name: String, superclass: String) -> String
+  func end() -> String
 }
 
 extension CodeGeneratable {
@@ -127,6 +140,14 @@ extension CodeGeneratable {
     string += "fatalError(\"init(coder:) has not been implemented\")"
     string += endBlock() + endBlock() + newLine(2)
     return string
+  }
+  
+  func interface(name: String, superclass: String) -> String {
+    return "@interface \(name) : \(superclass)"
+  }
+  
+  func end() -> String {
+    return "@end"
   }
 }
 

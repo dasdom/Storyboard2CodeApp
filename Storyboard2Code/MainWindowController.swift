@@ -9,6 +9,8 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   @IBOutlet weak var dropTextField: DropTextField!
   @IBOutlet var storyboardTextView: NSTextView!
   @IBOutlet var codeTextView: NSTextView!
+  @IBOutlet var objCButton: NSButton!
+  
   var swiftCodeStrings: [String: String] = [:] {
     didSet {
       var outputString = ""

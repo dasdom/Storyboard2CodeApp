@@ -12,21 +12,25 @@ struct FileRepresentation: CodeGeneratable {
   let viewController: ViewController
   let controllerConstraints: [Constraint]?
   
+  var className: String {
+    return mainView.userLabel.capitalizeFirst
+  }
+  
   var swiftCodeString: String {
     var outputString = "import UIKit"
     outputString += newLine(2)
-    outputString += classDefinition(name: mainView.userLabel.capitalizeFirst, superclass: mainView.type.rawValue)
+    outputString += classDefinition(name: className, superclass: mainView.type.rawValue)
     outputString += startBlock()
     
     let subviews: [View] = viewDict.values.filter { !$0.isMainView }
     
     outputString += properties(for: subviews) + newLine()
     
-    outputString += mainView.overrideInit + startBlock()
+    outputString += mainView.overrideInit() + startBlock()
     
     outputString += setup(for: subviews)
     
-    outputString += mainView.superInit + newLine(2)
+    outputString += mainView.superInit() + newLine(2)
     
     outputString += setup(for: [mainView])
     
@@ -67,7 +71,32 @@ struct FileRepresentation: CodeGeneratable {
   }
   
   func addToSuperView(for subviews: [View]) -> String {
-    return subviews.reduce("") { $0 + $1.addToSuperString + newLine() }
+    return subviews.reduce("") { $0 + $1.addToSuperString() + newLine() }
   }
   
+}
+
+extension FileRepresentation {
+  func objCImplementationCode() -> String {
+    var output = "#import \"\(className).h\""
+    output += newLine(2)
+    output += "@implementation \(className)" + newLine()
+    output += mainView.overrideInit(objC: true) + newLine()
+    output += mainView.superInit(objC: true) + newLine()
+    output += "if (self) {" + newLine()
+    output += "}" + newLine()
+    output += "return self;" + newLine()
+    output += "}" + newLine()
+    output += end()
+    return output
+  }
+  
+  func objCHeaderCode() -> String {
+    var output = "#import <UIKit/UIKit.h>"
+    output += newLine(2)
+    output += interface(name: mainView.userLabel.capitalizeFirst, superclass: mainView.type.rawValue)
+    output += newLine()
+    output += end()
+    return output
+  }
 }
