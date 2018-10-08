@@ -513,11 +513,11 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let subView = sut.viewDict["subViewId"]
-    XCTAssertEqual(subView?.addToSuperString(objC: true), "[self addSubview:subView];")
+    XCTAssertEqual(subView?.addToSuperString(objC: true), "[self addSubview:_subView];")
     let firstSubSubView = sut.viewDict["firstSubSubViewId"]
-    XCTAssertEqual(firstSubSubView?.addToSuperString(objC: true), "[subView addSubview:firstSubSubView];")
+    XCTAssertEqual(firstSubSubView?.addToSuperString(objC: true), "[subView addSubview:_firstSubSubView];")
     let secondSubSubView = sut.viewDict["secondSubSubViewId"]
-    XCTAssertEqual(secondSubSubView?.addToSuperString(objC: true), "[subView addSubview:secondSubSubView];")
+    XCTAssertEqual(secondSubSubView?.addToSuperString(objC: true), "[subView addSubview:_secondSubSubView];")
   }
   
   func test_parsingView_resultsInCorrectMargins_objC() {

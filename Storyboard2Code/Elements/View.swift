@@ -69,7 +69,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   
   func overrideInit(objC: Bool = false) -> String {
     if objC {
-      return "- (instancetype)initWithFrame:(CGRect)frame {"
+      return "- (instancetype)initWithFrame:(CGRect)frame"
     } else {
       return "override init(frame: CGRect)"
     }

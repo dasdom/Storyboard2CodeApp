@@ -54,7 +54,7 @@ extension ElementCodeGeneratable {
       if string.count < 1 {
         string += "[self "
       }
-      string += "addSubview:\(userLabel)];"
+      string += "addSubview:_\(userLabel)];"
     } else {
       string += "addSubview(\(userLabel))"
     }

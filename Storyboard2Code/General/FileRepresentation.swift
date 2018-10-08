@@ -63,15 +63,15 @@ struct FileRepresentation: CodeGeneratable {
     return subviews.reduce("") { $0 + $1.propertyString() + newLine() }
   }
   
-  func setup(for subviews: [View]) -> String {
+  func setup(for subviews: [View], objC: Bool = false) -> String {
     return subviews.reduce("") { result, element in
-      let elementString = element.initString() + element.setupString()
+      let elementString = element.initString(objC: objC) + element.setupString(objC: objC)
       return result + (elementString.isEmpty ? "" : elementString + newLine())
     }
   }
   
-  func addToSuperView(for subviews: [View]) -> String {
-    return subviews.reduce("") { $0 + $1.addToSuperString() + newLine() }
+  func addToSuperView(for subviews: [View], objC: Bool = false) -> String {
+    return subviews.reduce("") { $0 + $1.addToSuperString(objC: objC) + newLine() }
   }
   
 }
@@ -81,9 +81,19 @@ extension FileRepresentation {
     var output = "#import \"\(className).h\""
     output += newLine(2)
     output += "@implementation \(className)" + newLine()
-    output += mainView.overrideInit(objC: true) + newLine()
+    output += mainView.overrideInit(objC: true) + startBlock()
     output += mainView.superInit(objC: true) + newLine()
     output += "if (self) {" + newLine()
+    
+    let subviews: [View] = viewDict.values.filter { !$0.isMainView }
+
+    output += setup(for: subviews, objC: true)
+
+    output += setup(for: [mainView], objC: true)
+
+    let addString = addToSuperView(for: subviews, objC: true)
+    output += addString.isEmpty ? "" : addString + newLine()
+    
     output += "}" + newLine()
     output += "return self;" + newLine()
     output += "}" + newLine()

@@ -182,7 +182,7 @@ extension ViewTests {
     let attributesDict = ["id": "42", "userLabel": "fooView"]
     let sut = View(dict: attributesDict)
     
-    let expectedOutput = "[self addSubview:fooView];"
+    let expectedOutput = "[self addSubview:_fooView];"
     XCTAssertEqual(sut.addToSuperString(objC: true), expectedOutput)
   }
 }

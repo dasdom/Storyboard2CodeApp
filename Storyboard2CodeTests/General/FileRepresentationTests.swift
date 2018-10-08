@@ -81,12 +81,16 @@ class FileRepresentationTests: XCTestCase {
     let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
     mainView.isMainView = true
     let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
+    let label = Label(dict: ["id" : "42", "userLabel": "blaLabel"])
+    let scene = FileRepresentation(mainView: mainView, viewDict: ["42":label], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
     
     let expectedOutput = ["import UIKit",
                           "class FooCell: UITableViewCell {",
+                          "let blaLabel: UILabel",
                           "override init(style: UITableViewCellStyle, reuseIdentifier: String?) {",
+                          "blaLabel = UILabel()",
                           "super.init(style: style, reuseIdentifier: reuseIdentifier)",
+                          "addSubview(blaLabel)",
                           "}",
                           "required init?(coder aDecoder: NSCoder) {",
                           "fatalError(\"init(coder:) has not been implemented\")",
@@ -96,9 +100,39 @@ class FileRepresentationTests: XCTestCase {
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
     for (index, line) in linesWithoutEmptyLines.enumerated() {
       XCTAssertEqual(line, expectedOutput[index])
     }
 
+  }
+  
+  func test_tableViewCellCodeGeneration_objC() {
+    let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
+    mainView.isMainView = true
+    let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let label = Label(dict: ["id" : "12345", "userLabel": "blaLabel"])
+    label.superViewName = "self.contentView"
+    let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
+    
+    let expectedOutput = ["#import \"FooCell.h\"",
+                          "@implementation FooCell",
+                          "- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {",
+                          "self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];",
+                          "if (self) {",
+                          "_blaLabel = [[UILabel alloc] init];",
+                          "[self.contentView addSubview:_blaLabel];",
+                          "}",
+                          "return self;",
+                          "}",
+                          "@end"]
+    
+    let lines = scene.objCImplementationCode().components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
+    for (index, outputLine) in expectedOutput.enumerated() {
+      XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+    }
+    
   }
 }

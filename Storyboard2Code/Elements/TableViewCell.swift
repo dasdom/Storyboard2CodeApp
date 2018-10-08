@@ -39,7 +39,11 @@ final class TableViewCell: View {
   }
   
   override func overrideInit(objC: Bool = false) -> String {
-    return "override init(style: UITableViewCellStyle, reuseIdentifier: String?)"
+    if objC {
+      return "- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier"
+    } else {
+      return "override init(style: UITableViewCellStyle, reuseIdentifier: String?)"
+    }
   }
   
   override var viewControllerExtension: String {
