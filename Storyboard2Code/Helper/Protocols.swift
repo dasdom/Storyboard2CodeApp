@@ -35,7 +35,7 @@ extension ElementCodeGeneratable {
     if objC {
       return "@property (nonatomic) \(type.rawValue) *\(userLabel);"
     } else {
-      return "let \(userLabel): \(type.rawValue)"
+      return "  let \(userLabel): \(type.rawValue)"
     }
   }
   
