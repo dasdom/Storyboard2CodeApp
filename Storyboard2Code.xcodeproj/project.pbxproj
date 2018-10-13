@@ -12,6 +12,8 @@
 		F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E21CECF9D60077960F /* ScrollViewTests.swift */; };
 		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
 		F221E3F82169ED4C00BAF162 /* ViewMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F72169ED4C00BAF162 /* ViewMargin.swift */; };
+		F221E3FA216FE41D00BAF162 /* ConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */; };
+		F221E3FC2171CAE500BAF162 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3FB2171CAE400BAF162 /* StringExtension.swift */; };
 		F230C4321CD2AD31000DBA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230C4311CD2AD31000DBA33 /* AppDelegate.swift */; };
 		F230C4341CD2AD31000DBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F230C4331CD2AD31000DBA33 /* Assets.xcassets */; };
 		F230C4371CD2AD31000DBA33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230C4351CD2AD31000DBA33 /* MainMenu.xib */; };
@@ -74,6 +76,8 @@
 		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewTests.swift; path = Storyboard2CodeTests/Elements/ScrollViewTests.swift; sourceTree = SOURCE_ROOT; };
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		F221E3F72169ED4C00BAF162 /* ViewMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMargin.swift; sourceTree = "<group>"; };
+		F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintTests.swift; sourceTree = "<group>"; };
+		F221E3FB2171CAE400BAF162 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F230C42E1CD2AD31000DBA33 /* Storyboard2Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard2Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F230C4311CD2AD31000DBA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F230C4331CD2AD31000DBA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				F230C4721CD38B58000DBA33 /* Elements */,
 				F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */,
 				F230C4791CD38F81000DBA33 /* DataLoader.swift */,
+				F221E3FB2171CAE400BAF162 /* StringExtension.swift */,
 				F2E925301E16F7DC009BCA86 /* TestImages.xcassets */,
 				F230C4431CD2AD32000DBA33 /* Info.plist */,
 			);
@@ -256,6 +261,7 @@
 				F2CD138F2160C126001792D2 /* TableViewCellTests.swift */,
 				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
 				F254ED991CD5DDCF00505DD3 /* ViewTests.swift */,
+				F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */,
 				F254ED921CD5495600505DD3 /* XMLs */,
 			);
 			path = Elements;
@@ -448,6 +454,8 @@
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,
 				F2E9255E1E1DA10B009BCA86 /* FileRepresentationTests.swift in Sources */,
+				F221E3FC2171CAE500BAF162 /* StringExtension.swift in Sources */,
+				F221E3FA216FE41D00BAF162 /* ConstraintTests.swift in Sources */,
 				F23DF4C31CDFD2DE00D9939E /* SliderTests.swift in Sources */,
 				F230C4741CD38B70000DBA33 /* ButtonTests.swift in Sources */,
 				F23DF4C71CE2763300D9939E /* SegmentedControlTests.swift in Sources */,

@@ -5,7 +5,10 @@
 import Foundation
 
 struct CodeCreator {
-  func codeStringsFrom(XMLdata data: Data) -> [String: String] {
+  
+  var fileRepresentations: [FileRepresentation] = []
+  
+  mutating func generateFileRepresentations(from data: Data) {
     
     let parser = XMLParser(data: data)
     let parserDelegate = StoryboardXMLParserDelegate()
@@ -13,15 +16,38 @@ struct CodeCreator {
     
     parser.parse()
     
+    fileRepresentations = parserDelegate.fileRepresentations
+  }
+  
+  func swiftCodeStrings() -> [String: String] {
+    
     var outputDict: [String: String] = [:]
     
-    for fileRepresentation in parserDelegate.fileRepresentations {
+    for fileRepresentation in fileRepresentations {
       outputDict[fileRepresentation.mainView.userLabel.capitalizeFirst] = fileRepresentation.swiftCodeString
     }
     
-//    for tableView in parserDelegate.tableViews {
-//      outputDict[tableView.userLabel.capitalizeFirst] = tableView.swiftCodeString
-//    }
+    return outputDict
+  }
+  
+  func objCImplementationCodeStrings() -> [String: String] {
+    var outputDict: [String: String] = [:]
+    
+    for fileRepresentation in fileRepresentations {
+      let key = "\(fileRepresentation.mainView.userLabel.capitalizeFirst).m"
+      outputDict[key] = fileRepresentation.objCImplementationCode()
+    }
+    
+    return outputDict
+  }
+  
+  func objCHeaderCodeStrings() -> [String: String] {
+    var outputDict: [String: String] = [:]
+    
+    for fileRepresentation in fileRepresentations {
+      let key = "\(fileRepresentation.mainView.userLabel.capitalizeFirst).h"
+      outputDict[key] = fileRepresentation.objCHeaderCode()
+    }
     
     return outputDict
   }

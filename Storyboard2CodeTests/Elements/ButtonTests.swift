@@ -14,25 +14,31 @@ class ButtonTests: XCTestCase {
   func test_buttonPropertyString_HasExpectedOutput() {
     let attributesDict = ["id": "cfU-u7-b0P", "userLabel": "fooButton"]
     let sut = Button(dict: attributesDict)
+
+    let result = sut.propertyString()
     
     let expectedOutput = "let fooButton: UIButton"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_buttonInitString_HasExpectedOutput() {
     let attributesDict = ["buttonType": "roundedRect", "id": "42", "userLabel": "fooButton"]
     let sut = Button(dict: attributesDict)
     
-    let expectedOutput = "fooButton = UIButton(type: .system)\n"
-    XCTAssertEqual(sut.initString(), expectedOutput)
+    let result = sut.initString()
+    
+    let expectedOutput = "fooButton = UIButton(type: .system)"
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_enabled() {
     let attributesDict = ["enabled": "NO", "id": "42", "userLabel": "fooButton"]
     let sut = Button(dict: attributesDict)
     
-    let expectedOutput = "fooButton.enabled = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expectedOutput = "fooButton.enabled = false"
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_highlighted() {

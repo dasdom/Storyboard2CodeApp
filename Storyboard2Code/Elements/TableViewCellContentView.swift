@@ -9,5 +9,7 @@
 import Foundation
 
 class TableViewCellContentView: View {
-  
+  override func initString(objC: Bool) -> String {
+    return ""
+  }
 }

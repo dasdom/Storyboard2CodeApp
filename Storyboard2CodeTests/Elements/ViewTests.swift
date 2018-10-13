@@ -11,8 +11,10 @@ class ViewTests: XCTestCase {
     let attributesDict = ["id": "42", "userLabel": "fooView"]
     let sut = View(dict: attributesDict)
     
-    let expectedOutput = "let fooView: UIView"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    let result = sut.propertyString()
+
+    let expected = "let fooView: UIView"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewInitString_HasExpectedOutput() {
@@ -93,6 +95,14 @@ class ViewTests: XCTestCase {
     
     let expectedOutput = "addSubview(fooView)"
     XCTAssertEqual(sut.addToSuperString(), expectedOutput)
+  }
+  
+  func test_reflectableString_withEmptyTarget() {
+    let attributesDict = ["id": "42", "userLabel": "fooView", "userInteractionEnabled": "NO"]
+    let sut = View(dict: attributesDict)
+    
+    let expectedOutput = "userInteractionEnabled = false\n"
+    XCTAssertEqual(sut.stringFromChild(target: "", label: "userInteractionEnabled", value: false, reflectable: ["userInteractionEnabled"]), expectedOutput)
   }
 }
 

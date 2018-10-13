@@ -11,6 +11,7 @@
                 <outlet property="codeTextView" destination="xks-5P-Xcl" id="w0Y-SK-bTU"/>
                 <outlet property="dropTextField" destination="fW1-Gp-47g" id="1Vg-c2-jrt"/>
                 <outlet property="objCButton" destination="CiQ-yU-wds" id="7s2-qe-wyR"/>
+                <outlet property="objCCheckButton" destination="CiQ-yU-wds" id="gVb-RG-TqV"/>
                 <outlet property="storyboardTextView" destination="Pb0-21-XHQ" id="bgQ-kl-9cs"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -121,6 +122,9 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="objCCheckButtonChanged:" target="-2" id="KvB-J7-XHn"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

@@ -26,8 +26,11 @@ class SegmentedControlTests: XCTestCase {
   }
   
   func test_segmentedControlPropertyString_HasExpectedOutput() {
-    let expectedOutput = "let fooSegmentedControl: UISegmentedControl"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    
+    let result = sut.propertyString()
+    
+    let expected = "let fooSegmentedControl: UISegmentedControl"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {

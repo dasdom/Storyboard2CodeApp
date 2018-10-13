@@ -33,44 +33,29 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   }
   
   func codeString(useForController: Bool = false, objC: Bool = false) -> String {
-//  var codeString: String {
-//    guard let firstItemName = firstItemName else { fatalError() }
-    
-//    var string = "layoutConstraints.append(\(firstItemName)"
+
     var string = ""
     if objC {
       string += "["
     }
-    if let firstItemName = firstItemName {
-      string += firstItemName
-    }
-    if (firstItemName?.count ?? 0) > 0 {
-      string += "."
-    }
-    if firstAttribute == "baseline" {
-      string += "first\(firstAttribute.capitalizeFirst)"
-    } else {
-      string += firstAttribute
-    }
-    string += "Anchor"
+
+    string += itemName(from: firstItemName, objC: objC)
+    
+    string += attribute(firstAttribute, objC: objC)
+    
     if objC {
       string += " constraintEqualToAnchor:"
     } else {
       string += ".constraint(equalTo:"
     }
+    
     if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
-      string += "\(secondItemName)"
-      if secondItemName.count > 0 {
-        string += "."
-      } else {
-        string += "self."
-      }
-      if secondAttribute == "baseline" {
-        string += "first\(secondAttribute.capitalizeFirst)"
-      } else {
-        string += secondAttribute
-      }
-      string += "Anchor"
+
+      string += itemName(from: secondItemName, objC: objC)
+      
+      string += attribute(secondAttribute, objC: objC)
+      
+      
     } else if secondItem != nil {
 //      print(string)
       print(self)
@@ -107,7 +92,40 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       }
       string += ",\n"
     }
-//    string += "))\n"
+    return string
+  }
+  
+  func itemName(from name: String?, objC: Bool) -> String {
+    var string = ""
+    if let itemName = name {
+      if itemName == "contentView_of_a_tableviewcell" {
+        if objC {
+          string += "self."
+        }
+        string += "contentView"
+      } else {
+        if objC, itemName.count > 0, !itemName.hasSuffix("Margins") {
+          string += "_"
+        }
+        string += itemName
+      }
+      if itemName.count > 0 {
+        string += "."
+      } else if objC {
+        string += "self."
+      }
+    }
+    return string
+  }
+  
+  func attribute(_ attribute: String, objC: Bool) -> String {
+    var string = ""
+    if attribute == "baseline" {
+      string += "first\(attribute.capitalizeFirst)"
+    } else {
+      string += attribute
+    }
+    string += "Anchor"
     return string
   }
 }

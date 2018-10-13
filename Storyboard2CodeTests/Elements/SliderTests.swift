@@ -26,8 +26,11 @@ class SliderTests: XCTestCase {
   }
   
   func test_sliderPropertyString_HasExpectedOutput() {
-    let expectedOutput = "let fooSlider: UISlider"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    
+    let result = sut.propertyString()
+
+    let expected = "let fooSlider: UISlider"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_sliderInitString_HasExpectedOutput() {

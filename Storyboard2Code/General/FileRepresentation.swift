@@ -59,8 +59,8 @@ struct FileRepresentation: CodeGeneratable {
     return outputString
   }
   
-  func properties(for subviews: [View]) -> String {
-    return subviews.reduce("") { $0 + $1.propertyString() + newLine() }
+  func properties(for subviews: [View], objC: Bool = false) -> String {
+    return subviews.reduce("") { $0 + $1.propertyString(objC: objC) + newLine() }
   }
   
   func setup(for subviews: [View], objC: Bool = false) -> String {
@@ -71,7 +71,8 @@ struct FileRepresentation: CodeGeneratable {
   }
   
   func addToSuperView(for subviews: [View], objC: Bool = false) -> String {
-    return subviews.reduce("") { $0 + $1.addToSuperString(objC: objC) + newLine() }
+    let views = subviews.filter { $0.userLabel != "contentView_of_a_tableviewcell" }
+    return views.reduce("") { $0 + $1.addToSuperString(objC: objC) + newLine() }
   }
   
 }
@@ -106,6 +107,8 @@ extension FileRepresentation {
     output += newLine(2)
     output += interface(name: mainView.userLabel.capitalizeFirst, superclass: mainView.type.rawValue)
     output += newLine()
+    let subviews: [View] = viewDict.values.filter { !$0.isMainView }
+    output += properties(for: subviews, objC: true) + newLine()
     output += end()
     return output
   }

@@ -30,6 +30,7 @@ extension ElementCodeGeneratable {
   /// Default implementation of the property declaration string
   func propertyString(objC: Bool = false) -> String {
     guard !isMainView else { return "" }
+    guard userLabel != "contentView_of_a_tableviewcell" else { return "" }
     
     if objC {
       return "@property (nonatomic) \(type.rawValue) *\(userLabel);"
@@ -42,11 +43,18 @@ extension ElementCodeGeneratable {
   func addToSuperString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
     
+    
+    
     var string = ""
     if let superViewName = superViewName {
-      if objC {
+      switch (objC, superViewName) {
+      case (true, "contentView_of_a_tableviewcell"):
+        string += "[self.contentView "
+      case (true, _):
         string += "[\(superViewName) "
-      } else {
+      case (false, "contentView_of_a_tableviewcell"):
+        string += "self.contentView."
+      case (false, _):
         string += "\(superViewName)."
       }
     }
@@ -72,7 +80,11 @@ extension ElementCodeGeneratable {
    */
   func setup(_ property: String, value: String, isEnumValue: Bool = false, objC: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
-    var result = "\(userLabel).\(property) = \(dotOrEmpty)\(value)"
+    var result = ""
+    if userLabel.count > 0 {
+      result += "\(userLabel)."
+    }
+    result += "\(property) = \(dotOrEmpty)\(value)"
     if objC {
       result += ";"
     }
@@ -110,7 +122,11 @@ extension Reflectable {
       } else {
         dotOrEmpty = ""
       }
-      var result = "\(target).\(label) = \(dotOrEmpty)\(value)"
+      var result = ""
+      if target.count > 0 {
+        result += "\(target)."
+      }
+      result += "\(label) = \(dotOrEmpty)\(value)"
       if objC {
         result += ";"
       }

@@ -26,8 +26,11 @@ class ScrollViewTests: XCTestCase {
   }
   
   func test_segmentedControlPropertyString_HasExpectedOutput() {
+    
+    let result = sut.propertyString()
+    
     let expectedOutput = "let fooScrollView: UIScrollView"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {

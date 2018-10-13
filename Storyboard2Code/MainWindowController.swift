@@ -10,6 +10,9 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   @IBOutlet var storyboardTextView: NSTextView!
   @IBOutlet var codeTextView: NSTextView!
   @IBOutlet var objCButton: NSButton!
+  @IBOutlet var objCCheckButton: NSButton!
+  var codeCreator = CodeCreator()
+  var objC = false
   
   var swiftCodeStrings: [String: String] = [:] {
     didSet {
@@ -20,10 +23,21 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
       codeTextView.string = outputString
     }
   }
+  var objCImplementationCodeStrings: [String: String] = [:] {
+    didSet {var outputString = ""
+      for (_, value) in objCImplementationCodeStrings {
+        outputString += value
+      }
+      codeTextView.string = outputString
+    }
+  }
+  var objCHeaderCodeStrings: [String: String] = [:]
+  
   var xmlData: Data? {
     didSet {
       if let data = xmlData {
-        swiftCodeStrings = CodeCreator().codeStringsFrom(XMLdata: data)
+        codeCreator.generateFileRepresentations(from: data)
+        updateUI()
       }
     }
   }
@@ -65,19 +79,56 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     }
   }
   
+  func updateUI() {
+    if objC {
+      objCImplementationCodeStrings = codeCreator.objCImplementationCodeStrings()
+      objCHeaderCodeStrings = codeCreator.objCHeaderCodeStrings()
+    } else {
+      swiftCodeStrings = codeCreator.swiftCodeStrings()
+    }
+  }
+  
   @IBAction func export(_ sender: AnyObject) {
     let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
     
-    for (key, value) in swiftCodeStrings {
-      let outputPath = "\(paths.first!)/\(key).swift"
-      do {
-        try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
-      } catch CocoaError.fileWriteNoPermission {
-        print("FileWriteNoPermissionError")
-      } catch {
-        print("error")
+    if objC {
+      for (key, value) in swiftCodeStrings {
+        let outputPath = "\(paths.first!)/\(key).swift"
+        do {
+          try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
+        } catch CocoaError.fileWriteNoPermission {
+          print("FileWriteNoPermissionError")
+        } catch {
+          print("error")
+        }
+      }
+    } else {
+      for (key, value) in objCHeaderCodeStrings {
+        let outputPath = "\(paths.first!)/\(key)"
+        do {
+          try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
+        } catch CocoaError.fileWriteNoPermission {
+          print("FileWriteNoPermissionError")
+        } catch {
+          print("error")
+        }
+      }
+      for (key, value) in objCImplementationCodeStrings {
+        let outputPath = "\(paths.first!)/\(key)"
+        do {
+          try value.write(toFile: outputPath, atomically: true, encoding: String.Encoding.utf8)
+        } catch CocoaError.fileWriteNoPermission {
+          print("FileWriteNoPermissionError")
+        } catch {
+          print("error")
+        }
       }
     }
   }
   
+  @IBAction func objCCheckButtonChanged(_ sender: NSButton) {
+    
+    objC = sender.state == NSOnState
+    updateUI()
+  }
 }

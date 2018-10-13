@@ -31,7 +31,7 @@ class FileRepresentationTests: XCTestCase {
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     for (index, line) in linesWithoutEmptyLines.enumerated() {
-      XCTAssertEqual(line, expectedOutput[index])
+      XCTAssertEqual(line.trimmed, expectedOutput[index])
     }
   }
   
@@ -50,6 +50,26 @@ class FileRepresentationTests: XCTestCase {
     XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
     for (index, outputLine) in expectedOutput.enumerated() {
       XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+    }
+  }
+  
+  func test_codeGenerationWithProperties_objCHeader() {
+    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    mainView.isMainView = true
+    let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let label = Label(dict: ["id": "123", "userLabel": "123Label"])
+    let scene = FileRepresentation(mainView: mainView, viewDict: ["123":label], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
+    
+    let expectedOutput = ["#import <UIKit/UIKit.h>",
+                          "@interface FooView : UIView",
+                          "@property (nonatomic) UILabel *123Label;",
+                          "@end"]
+    
+    let lines = scene.objCHeaderCode().components(separatedBy: "\n")
+    let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
+    for (index, outputLine) in expectedOutput.enumerated() {
+      XCTAssertEqual(linesWithoutEmptyLines[index].trimmed, outputLine)
     }
   }
   
@@ -81,16 +101,18 @@ class FileRepresentationTests: XCTestCase {
     let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
     mainView.isMainView = true
     let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label = Label(dict: ["id" : "42", "userLabel": "blaLabel"])
-    let scene = FileRepresentation(mainView: mainView, viewDict: ["42":label], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
-    
+    let cellContentView = TableViewCellContentView(dict: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
+    let label = Label(dict: ["id" : "12345", "userLabel": "blaLabel"])
+    label.superViewName = "contentView_of_a_tableviewcell"
+    let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label, "34": cellContentView], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
+
     let expectedOutput = ["import UIKit",
                           "class FooCell: UITableViewCell {",
                           "let blaLabel: UILabel",
                           "override init(style: UITableViewCellStyle, reuseIdentifier: String?) {",
                           "blaLabel = UILabel()",
                           "super.init(style: style, reuseIdentifier: reuseIdentifier)",
-                          "addSubview(blaLabel)",
+                          "self.contentView.addSubview(blaLabel)",
                           "}",
                           "required init?(coder aDecoder: NSCoder) {",
                           "fatalError(\"init(coder:) has not been implemented\")",
@@ -102,7 +124,7 @@ class FileRepresentationTests: XCTestCase {
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
     for (index, line) in linesWithoutEmptyLines.enumerated() {
-      XCTAssertEqual(line, expectedOutput[index])
+      XCTAssertEqual(line.trimmed, expectedOutput[index])
     }
 
   }
@@ -111,9 +133,10 @@ class FileRepresentationTests: XCTestCase {
     let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
     mainView.isMainView = true
     let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
+    let cellContentView = TableViewCellContentView(dict: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
     let label = Label(dict: ["id" : "12345", "userLabel": "blaLabel"])
-    label.superViewName = "self.contentView"
-    let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
+    label.superViewName = "contentView_of_a_tableviewcell"
+    let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label, "34": cellContentView], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
     
     let expectedOutput = ["#import \"FooCell.h\"",
                           "@implementation FooCell",

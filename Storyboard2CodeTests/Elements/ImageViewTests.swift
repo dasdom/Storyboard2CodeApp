@@ -22,8 +22,11 @@ class ImageViewTests: XCTestCase {
   }
   
   func test_imageViewPropertyString_HasExpectedOutput() {
+    
+    let result = sut.propertyString()
+    
     let expectedOutput = "let fooImageView: UIImageView"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_imageViewInitString_HasExpectedOutput() {

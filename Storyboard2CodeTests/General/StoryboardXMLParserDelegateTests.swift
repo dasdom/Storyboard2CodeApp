@@ -213,11 +213,11 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     // containt the tag <scene>.
     let firstFileRepresentation = sut.fileRepresentations.first!
     XCTAssertTrue(firstFileRepresentation.mainView is TableViewCell)
-    XCTAssertEqual(firstFileRepresentation.viewDict.count, 1)
+    XCTAssertEqual(firstFileRepresentation.viewDict.count, 2)
     
     let lastFileRepresentation = sut.fileRepresentations.last!
     XCTAssertTrue(lastFileRepresentation.mainView is TableViewCell)
-    XCTAssertEqual(lastFileRepresentation.viewDict.count, 1)
+    XCTAssertEqual(lastFileRepresentation.viewDict.count, 2)
   }
   
   func test_parsingTableView_doesNotAddCellsAsSubview() {
@@ -574,7 +574,7 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:topScrollView.trailingAnchor constant:52],\n"
+    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:_topScrollView.trailingAnchor constant:52],\n"
     XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(objC: true), expectedString)
   }
 }

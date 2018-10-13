@@ -55,9 +55,10 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
         addView(tableViewCell)
       case "tableViewCellContentView":
         var mutableAttributeDict = attributeDict
-        mutableAttributeDict["userLabel"] = "conentView"
+        mutableAttributeDict["userLabel"] = "contentView_of_a_tableviewcell"
         let tableViewCellContentView = TableViewCellContentView(dict: mutableAttributeDict)
-        viewDict[tableViewCellContentView.id] = tableViewCellContentView
+//        viewDict[tableViewCellContentView.id] = tableViewCellContentView
+        addView(tableViewCellContentView)
       case "segment":
         if let segmentedControl = tempViews.last as? SegmentedControl {
           segmentedControl.segments.append(Segment(dict: attributeDict))
@@ -148,6 +149,10 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
       } else {
         fatalError("not supported yet")
       }
+    case "tableViewCellContentView":
+      if tempViews.last is TableViewCellContentView {
+        _ = tempViews.popLast()
+      }
     case "tableViewCell":
       configureConstraints()
       if let tableViewCell = tableViewCell {
@@ -216,7 +221,7 @@ extension StoryboardXMLParserDelegate {
     viewDict[view.id] = view
     if !(view is TableViewCell) {
       if tableViewCell != nil {
-        view.superViewName = "contentView"
+//        view.superViewName = "contentView"
         tableViewSubviewDict[view.id] = view
       } else {
         subviewDict[view.id] = view

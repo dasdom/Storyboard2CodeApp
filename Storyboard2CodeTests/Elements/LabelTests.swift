@@ -11,8 +11,10 @@ class LabelTests: XCTestCase {
     let attributesDict = ["id": "42", "userLabel": "fooLabel"]
     let sut = Label(dict: attributesDict)
     
+    let result = sut.propertyString()
+    
     let expectedOutput = "let fooLabel: UILabel"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_labelInitString_HasExpectedOutput() {

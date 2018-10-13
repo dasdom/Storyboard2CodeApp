@@ -8,12 +8,13 @@ import XCTest
 class DynamicCellsTableViewTests: XCTestCase {
   
   var codeString = ""
-  let codeCreator = CodeCreator()
+  var codeCreator = CodeCreator()
   
   override func setUp() {
     super.setUp()
     guard let data = dataFromResource(withName: "DynamicCellsTableViewTests", andType: "xml") else { fatalError() }
-    let strings = codeCreator.codeStringsFrom(XMLdata: data)
+    codeCreator.generateFileRepresentations(from: data)
+    let strings = codeCreator.swiftCodeStrings()
     codeString = ""
     for (_, value) in strings {
       codeString += value

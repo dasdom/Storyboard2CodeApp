@@ -25,8 +25,11 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_textFieldPropertyString_HasExpectedOutput() {
-    let expectedOutput = "let fooTextField: UITextField"
-    XCTAssertEqual(sut.propertyString(), expectedOutput)
+    
+    let result = sut.propertyString()
+    
+    let expected = "let fooTextField: UITextField"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldInitString_HasExpectedOutput() {
