@@ -32,16 +32,16 @@ final class ImageView: View {
   override func setupString(objC: Bool = false) -> String {
     var string = super.setupString(objC: objC)
     if let horizontalHuggingPriority = horizontalHuggingPriority, horizontalHuggingPriority != horizontalHuggingPriorityDefault {
-      string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
+      string += "    \(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
     }
     if let verticalHuggingPriority = verticalHuggingPriority, verticalHuggingPriority != verticalHuggingPriorityDefault {
-      string += "\(userLabel).setContentHuggingPriority(\(verticalHuggingPriority), for: .vertical)\n"
+      string += "    \(userLabel).setContentHuggingPriority(\(verticalHuggingPriority), for: .vertical)\n"
     }
     if let imageName = imageName {
-      string += "\(userLabel).image = UIImage(named: \"\(imageName)\")\n"
+      string += "    \(userLabel).image = UIImage(named: \"\(imageName)\")\n"
     }
     if let highlightedImageName = highlightedImageName {
-      string += "\(userLabel).highlightedImage = UIImage(named: \"\(highlightedImageName)\")\n"
+      string += "    \(userLabel).highlightedImage = UIImage(named: \"\(highlightedImageName)\")\n"
     }
     return string
   }

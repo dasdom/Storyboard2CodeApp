@@ -42,83 +42,103 @@ class ButtonTests: XCTestCase {
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_highlighted() {
-    let attributesDict = ["highlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["highlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.highlighted = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooButton.highlighted = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_selected() {
-    let attributesDict = ["selected": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["selected": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.selected = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooButton.selected = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_contentHorizontalAlignment() {
-    let attributesDict = ["contentHorizontalAlignment": "left", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["contentHorizontalAlignment": "left", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.contentHorizontalAlignment = .left\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooButton.contentHorizontalAlignment = .left"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_contentVerticalAlignment() {
-    let attributesDict = ["contentVerticalAlignment": "top", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["contentVerticalAlignment": "top", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.contentVerticalAlignment = .top\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooButton.contentVerticalAlignment = .top"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_reversesTitleShadowWhenHighlighted() {
-    let attributesDict = ["reversesTitleShadowWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["reversesTitleShadowWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.reversesTitleShadowWhenHighlighted = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooButton.reversesTitleShadowWhenHighlighted = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_showsTouchWhenHighlighted() {
-    let attributesDict = ["showsTouchWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["showsTouchWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.showsTouchWhenHighlighted = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooButton.showsTouchWhenHighlighted = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenHighlighted() {
-    let attributesDict = ["adjustsImageWhenHighlighted": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["adjustsImageWhenHighlighted": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.adjustsImageWhenHighlighted = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooButton.adjustsImageWhenHighlighted = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenDisabled() {
-    let attributesDict = ["adjustsImageWhenDisabled": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["adjustsImageWhenDisabled": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.adjustsImageWhenDisabled = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooButton.adjustsImageWhenDisabled = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode() {
-    let attributesDict = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.titleLabel?.lineBreakMode = .byClipping\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooButton.titleLabel?.lineBreakMode = .byClipping"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
     
-    let expectedOutput = "fooButton.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooButton.translatesAutoresizingMaskIntoConstraints = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_textColor() {

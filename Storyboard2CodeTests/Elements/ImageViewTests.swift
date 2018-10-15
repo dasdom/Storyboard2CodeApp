@@ -30,77 +30,80 @@ class ImageViewTests: XCTestCase {
   }
   
   func test_imageViewInitString_HasExpectedOutput() {
-    let expectedOutput = "fooImageView = UIImageView()\n"
-    XCTAssertEqual(sut.initString(), expectedOutput)
+    
+    let result = sut.initString()
+    
+    let expected = "fooImageView = UIImageView()"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.translatesAutoresizingMaskIntoConstraints = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_clipsSubviews() {
-    let attributesDict = ["clipsSubviews": "YES",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["clipsSubviews": "YES", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.clipsToBounds = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+ 
+    let expected = "fooImageView.clipsToBounds = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_scaleAspectFill() {
-    let attributesDict = ["contentMode": "scaleAspectFill",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["contentMode": "scaleAspectFill", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.contentMode = .scaleAspectFill\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.contentMode = .scaleAspectFill"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_horizontalHuggingPriority() {
-    let attributesDict = ["horizontalHuggingPriority": "251",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["horizontalHuggingPriority": "251", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.setContentHuggingPriority(251, for: .horizontal)\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.setContentHuggingPriority(251, for: .horizontal)"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_verticalHuggingPriority() {
-    let attributesDict = ["verticalHuggingPriority": "251",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["verticalHuggingPriority": "251", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.setContentHuggingPriority(251, for: .vertical)\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.setContentHuggingPriority(251, for: .vertical)"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_imageViewSetupString_HasExpectedOutputFor_image() {
-    let attributesDict = ["image": "fire",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["image": "fire", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.image = UIImage(named: \"fire\")\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.image = UIImage(named: \"fire\")"
+    XCTAssertEqual(result.trimmed, expected)
   }
 
   func test_imageViewSetupString_HasExpectedOutputFor_highlightedImage() {
-    let attributesDict = ["highlightedImage": "see",
-                          "id": "42",
-                          "userLabel": "fooImageView"]
-    let localSUT = ImageView(dict: attributesDict)
+    let attr = ["highlightedImage": "see", "id": "42", "userLabel": "fooImageView"]
+    let sut = ImageView(dict: attr)
     
-    let expectedOutput = "fooImageView.highlightedImage = UIImage(named: \"see\")\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+
+    let expected = "fooImageView.highlightedImage = UIImage(named: \"see\")"
+    XCTAssertEqual(result.trimmed, expected)
   }
 }

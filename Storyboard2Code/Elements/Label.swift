@@ -61,10 +61,17 @@ final class Label: View {
   override func setupString(objC: Bool = false) -> String {
     var string = super.setupString(objC: objC)
     if let text = text {
+      if objC {
+        string += "_"
+      }
       string += "\(userLabel).text = \"\(text)\"\n"
     }
     if let horizontalHuggingPriority = horizontalHuggingPriority, horizontalHuggingPriority != horizontalHuggingPriorityDefault {
-      string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
+      if objC {
+        string += "[_\(userLabel) setContentHuggingPriority:\(horizontalHuggingPriority) forOrientation:NSLayoutConstraintOrientationHorizontal];\n"
+      } else {
+        string += "\(userLabel).setContentHuggingPriority(\(horizontalHuggingPriority), for: .horizontal)\n"
+      }
     }
     if let font = font {
       if font.codeString != "UIFont.systemFont(ofSize: 17)" { // Default

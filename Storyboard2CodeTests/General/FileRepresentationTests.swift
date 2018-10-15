@@ -93,7 +93,7 @@ class FileRepresentationTests: XCTestCase {
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
     for (index, outputLine) in expectedOutput.enumerated() {
-      XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+      XCTAssertEqual(linesWithoutEmptyLines[index].trimmed, outputLine)
     }
   }
   
@@ -154,7 +154,7 @@ class FileRepresentationTests: XCTestCase {
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
     for (index, outputLine) in expectedOutput.enumerated() {
-      XCTAssertEqual(linesWithoutEmptyLines[index], outputLine)
+      XCTAssertEqual(linesWithoutEmptyLines[index].trimmed, outputLine)
     }
     
   }

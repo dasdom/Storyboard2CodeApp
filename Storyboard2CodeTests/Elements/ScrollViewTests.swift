@@ -29,162 +29,195 @@ class ScrollViewTests: XCTestCase {
     
     let result = sut.propertyString()
     
-    let expectedOutput = "let fooScrollView: UIScrollView"
-    XCTAssertEqual(result.trimmed, expectedOutput)
+    let expected = "let fooScrollView: UIScrollView"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {
-    let expectedOutput = "fooScrollView = UIScrollView()\n"
-    XCTAssertEqual(sut.initString(), expectedOutput)
+    
+    let result = sut.initString()
+    
+    let expected = "fooScrollView = UIScrollView()"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.translatesAutoresizingMaskIntoConstraints = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_directionalLockEnabled() {
-    let attributesDict = ["directionalLockEnabled": "YES",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["directionalLockEnabled": "YES",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.directionalLockEnabled = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.directionalLockEnabled = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_bounces() {
-    let attributesDict = ["bounces": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["bounces": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.bounces = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.bounces = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_alwaysBounceVertical() {
-    let attributesDict = ["alwaysBounceVertical": "YES",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["alwaysBounceVertical": "YES",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.alwaysBounceVertical = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.alwaysBounceVertical = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_scrollEnabled() {
-    let attributesDict = ["scrollEnabled": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["scrollEnabled": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.scrollEnabled = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.scrollEnabled = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_pagingEnabled() {
-    let attributesDict = ["pagingEnabled": "YES",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["pagingEnabled": "YES",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.pagingEnabled = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.pagingEnabled = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_showsHorizontalScrollIndicator() {
-    let attributesDict = ["showsHorizontalScrollIndicator": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["showsHorizontalScrollIndicator": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.showsHorizontalScrollIndicator = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.showsHorizontalScrollIndicator = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_showsVerticalScrollIndicator() {
-    let attributesDict = ["showsVerticalScrollIndicator": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["showsVerticalScrollIndicator": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.showsVerticalScrollIndicator = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.showsVerticalScrollIndicator = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_indicatorStyle() {
-    let attributesDict = ["indicatorStyle": "black",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["indicatorStyle": "black",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.indicatorStyle = .black\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.indicatorStyle = .black"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_delaysContentTouches() {
-    let attributesDict = ["delaysContentTouches": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["delaysContentTouches": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.delaysContentTouches = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.delaysContentTouches = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_canCancelContentTouches() {
-    let attributesDict = ["canCancelContentTouches": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["canCancelContentTouches": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.canCancelContentTouches = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.canCancelContentTouches = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_minimumZoomScale() {
-    let attributesDict = ["minimumZoomScale": "5",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["minimumZoomScale": "5",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.minimumZoomScale = 5\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.minimumZoomScale = 5"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_maximumZoomScale() {
-    let attributesDict = ["maximumZoomScale": "3",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["maximumZoomScale": "3",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.maximumZoomScale = 3\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.maximumZoomScale = 3"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_bouncesZoom() {
-    let attributesDict = ["bouncesZoom": "NO",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["bouncesZoom": "NO",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.bouncesZoom = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.bouncesZoom = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_scrollViewSetupString_HasExpectedOutputFor_keyboardDismissMode() {
-    let attributesDict = ["keyboardDismissMode": "onDrag",
-                          "id": "42",
-                          "userLabel": "fooScrollView"]
-    let localSUT = ScrollView(dict: attributesDict)
+    let attr = ["keyboardDismissMode": "onDrag",
+                "id": "42",
+                "userLabel": "fooScrollView"]
+    let sut = ScrollView(dict: attr)
     
-    let expectedOutput = "fooScrollView.keyboardDismissMode = .onDrag\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooScrollView.keyboardDismissMode = .onDrag"
+    XCTAssertEqual(result.trimmed, expected)
   }
 }

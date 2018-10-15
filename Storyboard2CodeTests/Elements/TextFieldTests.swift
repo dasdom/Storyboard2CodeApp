@@ -1,7 +1,3 @@
-//
-//  TextFieldTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 05.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -33,174 +29,213 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_textFieldInitString_HasExpectedOutput() {
-    let expectedOutput = "fooTextField = UITextField()\n"
-    XCTAssertEqual(sut.initString(), expectedOutput)
+    
+    let result = sut.initString()
+
+    let expected = "fooTextField = UITextField()"
+    XCTAssertEqual(result.trimmed, expected)
   }
 
   func test_textFieldSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO",
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.translatesAutoresizingMaskIntoConstraints = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clipsSubviews() {
-    let attributesDict = ["clipsSubviews": "YES",
+    let attr = ["clipsSubviews": "YES",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.clipsToBounds = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.clipsToBounds = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_borderStyle() {
-    let attributesDict = ["borderStyle": "line",
+    let attr = ["borderStyle": "line",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.borderStyle = .line\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.borderStyle = .line"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_placeholder() {
-    let attributesDict = ["placeholder": "foo",
+    let attr = ["placeholder": "foo",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.placeholder = \"foo\"\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.placeholder = \"foo\""
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_textAlignment() {
-    let attributesDict = ["textAlignment": "center",
+    let attr = ["textAlignment": "center",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.textAlignment = .center\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.textAlignment = .center"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clearsOnBeginEditing() {
-    let attributesDict = ["clearsOnBeginEditing": "YES",
+    let attr = ["clearsOnBeginEditing": "YES",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.clearsOnBeginEditing = true\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.clearsOnBeginEditing = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_textFieldSetupString_HasExpectedOutputFor_clearButtonMode() {
-    let attributesDict = ["clearButtonMode": "whileEditing",
+    let attr = ["clearButtonMode": "whileEditing",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let localSUT = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = "fooTextField.clearButtonMode = .whileEditing\n"
-    XCTAssertEqual(localSUT.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.clearButtonMode = .whileEditing"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
 //  minimumFontSize="17"
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocapitalizationType() {
-    let attributesDict = ["autocapitalizationType": "allCharacters"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["autocapitalizationType": "allCharacters"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.autocapitalizationType = .allCharacters\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.autocapitalizationType = .allCharacters"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocorrectionType() {
-    let attributesDict = ["autocorrectionType": "no"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["autocorrectionType": "no"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.autocorrectionType = .no\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.autocorrectionType = .no"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_spellCheckingType() {
-    let attributesDict = ["spellCheckingType": "no"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["spellCheckingType": "no"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.spellCheckingType = .no\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.spellCheckingType = .no"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardType() {
-    let attributesDict = ["keyboardType": "twitter"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["keyboardType": "twitter"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.keyboardType = .twitter\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.keyboardType = .twitter"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardAppearance() {
-    let attributesDict = ["keyboardAppearance": "alert"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["keyboardAppearance": "alert"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.keyboardAppearance = .alert\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.keyboardAppearance = .alert"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_returnKeyType() {
-    let attributesDict = ["returnKeyType": "send"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["returnKeyType": "send"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.returnKeyType = .send\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.returnKeyType = .send"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_enablesReturnKeyAutomatically() {
-    let attributesDict = ["enablesReturnKeyAutomatically": "YES"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["enablesReturnKeyAutomatically": "YES"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.enablesReturnKeyAutomatically = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.enablesReturnKeyAutomatically = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_secureTextEntry() {
-    let attributesDict = ["secureTextEntry": "YES"]
-    sut.textInputTraits = TextInputTraits(dict: attributesDict)
+    let attr = ["secureTextEntry": "YES"]
+    sut.textInputTraits = TextInputTraits(dict: attr)
     
-    let expectedOutput = "fooTextField.isSecureTextEntry = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.isSecureTextEntry = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func testTextFieldSetupString_HasTextColorString() {
     let color = Color(dict: ["key": "textColor", "red": "1", "green": "0", "blue": "0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     sut.colors.append(color)
     
-    let expectedOutput = "fooTextField.textColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.textColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func testTextFieldSetupString_HasFontString() {
-    let attributesDict = ["key": "fontDescription", "name": "AvenirNext-Regular", "family": "Avenir Next", "pointSize":"20"]
-    let font = Font(dict: attributesDict)
+    let attr = ["key": "fontDescription", "name": "AvenirNext-Regular", "family": "Avenir Next", "pointSize":"20"]
+    let font = Font(dict: attr)
     sut.font = font
     
-    let expectedOutput = "fooTextField.font = UIFont(name: \"AvenirNext-Regular\", size: 20)\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.font = UIFont(name: \"AvenirNext-Regular\", size: 20)"
+    XCTAssertEqual(result.trimmed, expected)
   }
 }
 
 extension TextFieldTests {
   func test_textFieldSetupString_HasNoOutputForDefaultValues() {
-    let attributesDict = ["opaque": "NO",
+    let attr = ["opaque": "NO",
                           "contentHorizontalAlignment": "left",
                           "contentVerticalAlignment": "center",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attributesDict)
+    let sut = TextField(dict: attr)
     
-    let expectedOutput = ""
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = ""
+    XCTAssertEqual(result.trimmed, expected)
   }
 }

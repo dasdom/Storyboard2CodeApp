@@ -43,9 +43,7 @@ extension ElementCodeGeneratable {
   func addToSuperString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
     
-    
-    
-    var string = ""
+    var string = "    "
     if let superViewName = superViewName {
       switch (objC, superViewName) {
       case (true, "contentView_of_a_tableviewcell"):
@@ -59,7 +57,7 @@ extension ElementCodeGeneratable {
       }
     }
     if objC {
-      if string.count < 1 {
+      if string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count < 1 {
         string += "[self "
       }
       string += "addSubview:_\(userLabel)];"
@@ -80,8 +78,11 @@ extension ElementCodeGeneratable {
    */
   func setup(_ property: String, value: String, isEnumValue: Bool = false, objC: Bool = false) -> String {
     let dotOrEmpty = isEnumValue ? "." : ""
-    var result = ""
+    var result = "    "
     if userLabel.count > 0 {
+      if objC {
+        result += "_"
+      }
       result += "\(userLabel)."
     }
     result += "\(property) = \(dotOrEmpty)\(value)"
@@ -122,9 +123,14 @@ extension Reflectable {
       } else {
         dotOrEmpty = ""
       }
-      var result = ""
+      var result = "    "
       if target.count > 0 {
+        if objC {
+          result += "_"
+        }
         result += "\(target)."
+      } else if objC {
+        result += "self."
       }
       result += "\(label) = \(dotOrEmpty)\(value)"
       if objC {

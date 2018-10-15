@@ -44,9 +44,9 @@ struct FileRepresentation: CodeGeneratable {
     constraints.forEach { constraintsString += $0.codeString() }
     
     if constraintsString.count > 0 {
-      outputString += "NSLayoutConstraint.activate([\n"
+      outputString += "    NSLayoutConstraint.activate([\n"
       outputString += constraintsString
-      outputString += "])"
+      outputString += "      ])"
     }
     //outputString += "NSLayoutConstraint.activateConstraints(layoutConstraints)\n"
     
@@ -94,6 +94,19 @@ extension FileRepresentation {
 
     let addString = addToSuperView(for: subviews, objC: true)
     output += addString.isEmpty ? "" : addString + newLine()
+    
+    viewMargins.forEach { output += $0.codeString(objC: true) + newLine() }
+    
+    var constraintsString = ""
+    //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n
+    constraints.forEach { constraintsString += $0.codeString(objC: true) }
+    
+    if constraintsString.count > 0 {
+      output += "    [NSLayoutConstraint activateConstraints:\n@[\n"
+      output += constraintsString
+      output += "      ]];"
+    }
+    output += newLine()
     
     output += "}" + newLine()
     output += "return self;" + newLine()

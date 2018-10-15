@@ -18,7 +18,7 @@ class ConstraintTests: XCTestCase {
     
     let constraintString = sut.codeString()
     
-    XCTAssertEqual(constraintString, "foo.topAnchor.constraint(equalTo:bar.bottomAnchor),\n")
+    XCTAssertEqual(constraintString.trimmed, "foo.topAnchor.constraint(equalTo:bar.bottomAnchor),")
   }
   
   func test_constraintWithContentView() {
@@ -32,7 +32,7 @@ class ConstraintTests: XCTestCase {
     
     let constraintString = sut.codeString()
     
-    XCTAssertEqual(constraintString, "contentView.topAnchor.constraint(equalTo:bar.bottomAnchor),\n")
+    XCTAssertEqual(constraintString.trimmed, "contentView.topAnchor.constraint(equalTo:bar.bottomAnchor),")
   }
   
   func test_constraintWithEmptyFirstItemName() {
@@ -46,7 +46,7 @@ class ConstraintTests: XCTestCase {
     
     let constraintString = sut.codeString()
     
-    XCTAssertEqual(constraintString, "topAnchor.constraint(equalTo:bar.bottomAnchor),\n")
+    XCTAssertEqual(constraintString.trimmed, "topAnchor.constraint(equalTo:bar.bottomAnchor),")
   }
 }
 
@@ -64,7 +64,7 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString, "[_foo.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],\n")
+    XCTAssertEqual(constraintString.trimmed, "[_foo.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
   }
   
   func test_constraintWithContentView_objC() {
@@ -78,7 +78,7 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString, "[self.contentView.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],\n")
+    XCTAssertEqual(constraintString.trimmed, "[self.contentView.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
   }
   
   func test_constraintWithEmptyFirstItemName_objC() {
@@ -92,6 +92,6 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString, "[self.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],\n")
+    XCTAssertEqual(constraintString.trimmed, "[self.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
   }
 }

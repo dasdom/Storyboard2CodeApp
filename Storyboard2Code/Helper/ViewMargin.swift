@@ -9,7 +9,7 @@ struct ViewMargin : Hashable, Equatable {
   let mainUserLabel: String?
   
   func codeString(objC: Bool = false) -> String {
-    var string = ""
+    var string = "    "
     if objC {
       string += "UILayoutGuide *\(marginPrefix)Margins = "
       if marginPrefix != mainUserLabel {

@@ -34,7 +34,10 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
   
   func codeString(useForController: Bool = false, objC: Bool = false) -> String {
 
-    var string = ""
+    var string = "    "
+    if !useForController {
+      string += "  "
+    }
     if objC {
       string += "["
     }

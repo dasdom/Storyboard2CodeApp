@@ -61,9 +61,9 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   
   func superInit(objC: Bool = false) -> String {
     if objC {
-      return "self = [super initWithFrame:frame];"
+      return "  self = [super initWithFrame:frame];"
     } else {
-      return "super.init(frame: frame)"
+      return "    super.init(frame: frame)"
     }
   }
   
@@ -71,7 +71,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     if objC {
       return "- (instancetype)initWithFrame:(CGRect)frame"
     } else {
-      return "override init(frame: CGRect)"
+      return "  override init(frame: CGRect)"
     }
   }
   
@@ -84,9 +84,9 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   func initString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
     if objC {
-      return "_\(userLabel) = [[\(type.rawValue) alloc] init];\n"
+      return "    _\(userLabel) = [[\(type.rawValue) alloc] init];\n"
     } else {
-      return "\(userLabel) = \(type.rawValue)()\n"
+      return "    \(userLabel) = \(type.rawValue)()\n"
     }
   }
   
@@ -103,6 +103,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
     }
     for color in colors {
       if !(color.key == "textColor" && color.codeString == "UIColor.darkText") { // Defaults
+        string += "    "
         if !isMainView {
           string += userLabel + "."
         }

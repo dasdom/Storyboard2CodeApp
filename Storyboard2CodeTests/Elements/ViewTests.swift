@@ -8,8 +8,8 @@ import XCTest
 class ViewTests: XCTestCase {
 
   func test_viewPropertyString_HasExpectedOutput() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
     let result = sut.propertyString()
 
@@ -18,181 +18,235 @@ class ViewTests: XCTestCase {
   }
   
   func test_viewInitString_HasExpectedOutput() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView = UIView()\n"
-    XCTAssertEqual(sut.initString(), expectedOutput)
+    let result = sut.initString()
+
+    let expected = "fooView = UIView()"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_autoresizesSubviews() {
-    let attributesDict = ["autoresizesSubviews": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["autoresizesSubviews": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.autoresizesSubviews = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.autoresizesSubviews = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_opaque() {
-    let attributesDict = ["opaque": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["opaque": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.isOpaque = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.isOpaque = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_clipsSubviews() {
-    let attributesDict = ["clipsSubviews": "YES", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["clipsSubviews": "YES", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.clipsToBounds = true\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.clipsToBounds = true"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_clearsContextBeforeDrawing() {
-    let attributesDict = ["clearsContextBeforeDrawing": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["clearsContextBeforeDrawing": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.clearsContextBeforeDrawing = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.clearsContextBeforeDrawing = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_userInteractionEnabled() {
-    let attributesDict = ["userInteractionEnabled": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["userInteractionEnabled": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.userInteractionEnabled = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.userInteractionEnabled = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_tag() {
-    let attributesDict = ["tag": "22", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["tag": "22", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.tag = 22\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.tag = 22"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_contentMode() {
-    let attributesDict = ["contentMode": "redraw", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["contentMode": "redraw", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.contentMode = .redraw\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.contentMode = .redraw"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.translatesAutoresizingMaskIntoConstraints = false\n"
-    XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooView.translatesAutoresizingMaskIntoConstraints = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewAddToSuperString_HasExpectedOutput() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "addSubview(fooView)"
-    XCTAssertEqual(sut.addToSuperString(), expectedOutput)
+    let result = sut.addToSuperString()
+    
+    let expected = "addSubview(fooView)"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_reflectableString_withEmptyTarget() {
-    let attributesDict = ["id": "42", "userLabel": "fooView", "userInteractionEnabled": "NO"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView", "userInteractionEnabled": "NO"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "userInteractionEnabled = false\n"
-    XCTAssertEqual(sut.stringFromChild(target: "", label: "userInteractionEnabled", value: false, reflectable: ["userInteractionEnabled"]), expectedOutput)
+    let result = sut.stringFromChild(target: "", label: "userInteractionEnabled", value: false, reflectable: ["userInteractionEnabled"])
+    
+    let expected = "userInteractionEnabled = false"
+    XCTAssertEqual(result.trimmed, expected)
   }
 }
 
 // MARK: - ObjC
 extension ViewTests {
   func test_viewPropertyString_HasExpectedOutput_OjbC() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "@property (nonatomic) UIView *fooView;"
-    XCTAssertEqual(sut.propertyString(objC: true), expectedOutput)
+    let result = sut.propertyString(objC: true)
+
+    let expected = "@property (nonatomic) UIView *fooView;"
+    XCTAssertEqual(result, expected)
   }
   
   func test_viewInitString_HasExpectedOutput_OjbC() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "_fooView = [[UIView alloc] init];\n"
-    XCTAssertEqual(sut.initString(objC: true), expectedOutput)
+    let result = sut.initString(objC: true)
+
+    let expected = "_fooView = [[UIView alloc] init];"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_autoresizesSubviews_OjbC() {
-    let attributesDict = ["autoresizesSubviews": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["autoresizesSubviews": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.autoresizesSubviews = false;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.autoresizesSubviews = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_opaque_OjbC() {
-    let attributesDict = ["opaque": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["opaque": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.opaque = false;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.opaque = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_clipsSubviews_OjbC() {
-    let attributesDict = ["clipsSubviews": "YES", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["clipsSubviews": "YES", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.clipsToBounds = true;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.clipsToBounds = true;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_clearsContextBeforeDrawing_OjbC() {
-    let attributesDict = ["clearsContextBeforeDrawing": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["clearsContextBeforeDrawing": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.clearsContextBeforeDrawing = false;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.clearsContextBeforeDrawing = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_userInteractionEnabled_OjbC() {
-    let attributesDict = ["userInteractionEnabled": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["userInteractionEnabled": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.userInteractionEnabled = false;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.userInteractionEnabled = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_viewSetupString_HasExpectedOutputFor_tag_OjbC() {
-    let attributesDict = ["tag": "22", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+    let attr = ["tag": "22", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.tag = 22;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.tag = 22;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
-  func test_viewSetupString_HasExpectedOutputFor_contentMode_OjbC() {
-    let attributesDict = ["contentMode": "redraw", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+  func test_viewSetupString_HasExpectedOutputFor_contentMode_objC() {
+    let attr = ["contentMode": "redraw", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.contentMode = UIViewContentModeRedraw;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.contentMode = UIViewContentModeRedraw;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
-  func test_viewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints_OjbC() {
-    let attributesDict = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+  func test_viewSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints_objC() {
+    let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "fooView.translatesAutoresizingMaskIntoConstraints = false;\n"
-    XCTAssertEqual(sut.setupString(objC: true), expectedOutput)
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooView.translatesAutoresizingMaskIntoConstraints = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
   
-  func test_viewAddToSuperString_HasExpectedOutput_OjbC() {
-    let attributesDict = ["id": "42", "userLabel": "fooView"]
-    let sut = View(dict: attributesDict)
+  func test_viewAddToSuperString_HasExpectedOutput_objC() {
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let sut = View(dict: attr)
     
-    let expectedOutput = "[self addSubview:_fooView];"
-    XCTAssertEqual(sut.addToSuperString(objC: true), expectedOutput)
+    let result = sut.addToSuperString(objC: true)
+    
+    let expected = "[self addSubview:_fooView];"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
+  func test_reflectableString_withEmptyTarget_objC() {
+    let attr = ["id": "42", "userLabel": "fooView", "userInteractionEnabled": "NO"]
+    let sut = View(dict: attr)
+    
+    let result = sut.stringFromChild(target: "", label: "userInteractionEnabled", value: false, reflectable: ["userInteractionEnabled"], objC: true)
+    
+    let expected = "self.userInteractionEnabled = false;"
+    XCTAssertEqual(result.trimmed, expected)
   }
 }

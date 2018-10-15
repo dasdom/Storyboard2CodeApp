@@ -167,11 +167,11 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let subView = sut.viewDict["subViewId"]
-    XCTAssertEqual(subView?.addToSuperString(), "addSubview(subView)")
+    XCTAssertEqual(subView?.addToSuperString().trimmed, "addSubview(subView)")
     let firstSubSubView = sut.viewDict["firstSubSubViewId"]
-    XCTAssertEqual(firstSubSubView?.addToSuperString(), "subView.addSubview(firstSubSubView)")
+    XCTAssertEqual(firstSubSubView?.addToSuperString().trimmed, "subView.addSubview(firstSubSubView)")
     let secondSubSubView = sut.viewDict["secondSubSubViewId"]
-    XCTAssertEqual(secondSubSubView?.addToSuperString(), "subView.addSubview(secondSubSubView)")
+    XCTAssertEqual(secondSubSubView?.addToSuperString().trimmed, "subView.addSubview(secondSubSubView)")
   }
   
   func test_parsesTableViewCellSubViews() {
@@ -344,7 +344,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString(), "let viewMargins = layoutMarginsGuide\n")
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString().trimmed, "let viewMargins = layoutMarginsGuide")
   }
   
   func test_parsingView_whenFirstItemIsMissing_addsConstraint() {
@@ -373,8 +373,8 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo:topScrollView.trailingAnchor, constant:52),\n"
-    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(), expectedString)
+    let expectedString = "scrollViewMargins.trailingAnchor.constraint(equalTo:topScrollView.trailingAnchor, constant:52),"
+    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString().trimmed, expectedString)
   }
   
   func test_parsingScene_generatesActionCode() {
@@ -437,7 +437,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
 
     let margins = sut.viewMargins(from: [constraint], mainUserLabel: "bar")
 
-    XCTAssertEqual(margins.first?.codeString(), "let foobarMargins = foobar.layoutMarginsGuide\n")
+    XCTAssertEqual(margins.first?.codeString().trimmed, "let foobarMargins = foobar.layoutMarginsGuide")
   }
   
   func test_viewMargins_whenSecondItemAttributeHasSuffixMargin_returnsMarginStrings() {
@@ -446,7 +446,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
     
     let margins = sut.viewMargins(from: [constraint], mainUserLabel: "bar")
     
-    XCTAssertEqual(margins.first?.codeString(), "let foobarMargins = foobar.layoutMarginsGuide\n")
+    XCTAssertEqual(margins.first?.codeString().trimmed, "let foobarMargins = foobar.layoutMarginsGuide")
   }
   
   func test_configureConstraints_fillsControllerConstraints_1() {
@@ -513,11 +513,11 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let subView = sut.viewDict["subViewId"]
-    XCTAssertEqual(subView?.addToSuperString(objC: true), "[self addSubview:_subView];")
+    XCTAssertEqual(subView?.addToSuperString(objC: true).trimmed, "[self addSubview:_subView];")
     let firstSubSubView = sut.viewDict["firstSubSubViewId"]
-    XCTAssertEqual(firstSubSubView?.addToSuperString(objC: true), "[subView addSubview:_firstSubSubView];")
+    XCTAssertEqual(firstSubSubView?.addToSuperString(objC: true).trimmed, "[subView addSubview:_firstSubSubView];")
     let secondSubSubView = sut.viewDict["secondSubSubViewId"]
-    XCTAssertEqual(secondSubSubView?.addToSuperString(objC: true), "[subView addSubview:_secondSubSubView];")
+    XCTAssertEqual(secondSubSubView?.addToSuperString(objC: true).trimmed, "[subView addSubview:_secondSubSubView];")
   }
   
   func test_parsingView_resultsInCorrectMargins_objC() {
@@ -545,7 +545,7 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString(objC: true), "UILayoutGuide *viewMargins = self.layoutMarginsGuide;\n")
+    XCTAssertEqual(lastFileRepresentation.viewMargins.first?.codeString(objC: true).trimmed, "UILayoutGuide *viewMargins = self.layoutMarginsGuide;")
   }
   
   func test_parsingView_whenFirstItemIsMissing_addsConstraint_objC() {
@@ -574,8 +574,8 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:_topScrollView.trailingAnchor constant:52],\n"
-    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(objC: true), expectedString)
+    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:_topScrollView.trailingAnchor constant:52],"
+    XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(objC: true).trimmed, expectedString)
   }
 }
 
