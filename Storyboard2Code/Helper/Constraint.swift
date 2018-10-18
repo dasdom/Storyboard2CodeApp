@@ -47,13 +47,17 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
     string += attribute(firstAttribute, objC: objC)
     
     if objC {
-      string += " constraintEqualToAnchor:"
+      string += " constraintEqualTo"
     } else {
       string += ".constraint(equalTo:"
     }
     
     if let secondItemName = secondItemName, let secondAttribute = secondAttribute {
 
+      if objC {
+        string += "Anchor:"
+      }
+      
       string += itemName(from: secondItemName, objC: objC)
       
       string += attribute(secondAttribute, objC: objC)
@@ -64,7 +68,7 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
       print(self)
       fatalError()
     } else {
-      string += "Constant: "
+      string += "Constant:"
     }
     if let multiplier = multiplier {
       if objC == false {

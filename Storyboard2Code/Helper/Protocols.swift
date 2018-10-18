@@ -125,10 +125,14 @@ extension Reflectable {
       }
       var result = "    "
       if target.count > 0 {
+        if target == "contentView_of_a_tableviewcell" {
+          result += "self.contentView."
+        } else {
         if objC {
           result += "_"
         }
         result += "\(target)."
+        }
       } else if objC {
         result += "self."
       }

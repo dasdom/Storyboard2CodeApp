@@ -94,4 +94,16 @@ extension ConstraintTests {
     
     XCTAssertEqual(constraintString.trimmed, "[self.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
   }
+  
+  func test_constraintEqualToConstant_objC() {
+    var sut = Constraint(dict: ["id": "1",
+                                "firstItem": "12",
+                                "firstAttribute": "width",
+                                "constant": "23"])
+    sut.firstItemName = "foo"
+    
+    let constraintString = sut.codeString(objC: true)
+    
+    XCTAssertEqual(constraintString.trimmed, "[_foo.widthAnchor constraintEqualToConstant:23],")
+  }
 }
