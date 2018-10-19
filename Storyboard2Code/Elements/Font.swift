@@ -19,12 +19,20 @@ extension Font {
 }
 
 extension Font: AttributeCodeGeneratable {
-  var codeString: String {
+  func codeString(objC: Bool = false) -> String {
     if let type = type {
       if type == "system" {
-        return "UIFont.systemFont(ofSize: \(size))"
+        if objC {
+          return "[UIFont systemFontOfSize:\(size)];"
+        } else {
+          return "UIFont.systemFont(ofSize: \(size))"
+        }
       } else if type == "boldSystem" {
-        return "UIFont.boldSystemFont(ofSize: \(size))"
+        if objC {
+          return "[UIFont boldSystemFontOfSize:\(size)];"
+        } else {
+          return "UIFont.boldSystemFont(ofSize: \(size))"
+        }
       } else {
         let message = "\(type) not yet supported"
         assert(false, message)
@@ -32,7 +40,11 @@ extension Font: AttributeCodeGeneratable {
       }
     } else {
       if let name = name {
-        return "UIFont(name: \"\(name)\", size: \(size))"
+        if objC {
+          return "[UIFont fontWithName:@\"\(name)\" size:\(size)];"
+        } else {
+          return "UIFont(name: \"\(name)\", size: \(size))"
+        }
       }
       assert(false, "Not yet supported")
       return "Not yet supported"

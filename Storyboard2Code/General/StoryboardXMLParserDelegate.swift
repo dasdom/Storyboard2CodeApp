@@ -92,6 +92,16 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
         if let textField = tempViews.last as? TextField {
           textField.textInputTraits = TextInputTraits(dict: attributeDict)
         }
+      case "rect":
+        if let xString = attributeDict["x"], let yString = attributeDict["y"], let widthString = attributeDict["width"], let heightString = attributeDict["height"],
+          let x = Double(xString), let y = Double(yString), let width = Double(widthString), let height = Double(heightString) {
+          
+          let rect = CGRect(x: x, y: y, width: width, height: height)
+          if attributeDict["key"] == "frame" {
+            
+            tempViews.last?.frame = rect
+          }
+        }
       default:
         //      print("start: \(elementName)")
         break

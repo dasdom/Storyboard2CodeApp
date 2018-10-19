@@ -195,7 +195,7 @@ extension CodeGeneratable {
  *  Conforming types provide attribute code generation.
  */
 protocol AttributeCodeGeneratable {
-  var codeString: String { get }
+  func codeString(objC: Bool) -> String
 }
 
 /**

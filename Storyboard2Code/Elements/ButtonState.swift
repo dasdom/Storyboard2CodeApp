@@ -20,7 +20,7 @@ struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
       string += "\(userLabel).setTitle(\"\(title)\", for: .\(key))\n"
     }
     if let titleColor = titleColor {
-      string += "\(userLabel).setTitleColor(\(titleColor.codeString), for: .\(key))\n"
+      string += "\(userLabel).setTitleColor(\(titleColor.codeString()), for: .\(key))\n"
     }
     return string
   }

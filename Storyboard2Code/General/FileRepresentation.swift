@@ -22,7 +22,7 @@ struct FileRepresentation: CodeGeneratable {
     outputString += classDefinition(name: className, superclass: mainView.type.rawValue)
     outputString += startBlock()
     
-    let subviews: [View] = viewDict.values.filter { !$0.isMainView }
+    let subviews = filteredAndSortedSubviews(from: viewDict)
     
     outputString += properties(for: subviews) + newLine()
     
@@ -41,7 +41,12 @@ struct FileRepresentation: CodeGeneratable {
     
     var constraintsString = ""
     //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n
-    constraints.forEach { constraintsString += $0.codeString() }
+    constraints
+      .sorted { a, b in
+        guard let firstItemNameA = a.firstItemName, let firstItemNameB = b.firstItemName else { return true }
+        return firstItemNameA < firstItemNameB
+      }
+      .forEach { constraintsString += $0.codeString() }
     
     if constraintsString.count > 0 {
       outputString += "    NSLayoutConstraint.activate([\n"
@@ -75,6 +80,15 @@ struct FileRepresentation: CodeGeneratable {
     return views.reduce("") { $0 + $1.addToSuperString(objC: objC) + newLine() }
   }
   
+  func filteredAndSortedSubviews(from: [String: View]) -> [View] {
+    return from.values
+      .filter { !$0.isMainView }
+      .sorted { a, b in
+        guard let originA = a.frame?.origin, let originB = b.frame?.origin else { return true }
+        return hypot(originA.x, originA.y) < hypot(originB.x, originB.y)
+    }
+  }
+    
 }
 
 extension FileRepresentation {
@@ -86,7 +100,7 @@ extension FileRepresentation {
     output += mainView.superInit(objC: true) + newLine()
     output += "if (self) {" + newLine()
     
-    let subviews: [View] = viewDict.values.filter { !$0.isMainView }
+    let subviews = filteredAndSortedSubviews(from: viewDict)
 
     output += setup(for: subviews, objC: true)
 
@@ -99,7 +113,12 @@ extension FileRepresentation {
     
     var constraintsString = ""
     //outputString += "var layoutConstraints = [NSLayoutConstraint]()\n
-    constraints.forEach { constraintsString += $0.codeString(objC: true) }
+    constraints
+      .sorted { a, b in
+        guard let firstItemNameA = a.firstItemName, let firstItemNameB = b.firstItemName else { return true }
+        return firstItemNameA < firstItemNameB
+      }
+      .forEach { constraintsString += $0.codeString(objC: true) }
     
     if constraintsString.count > 0 {
       output += "    [NSLayoutConstraint activateConstraints:\n@[\n"

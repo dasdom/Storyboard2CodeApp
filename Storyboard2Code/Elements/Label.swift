@@ -74,7 +74,7 @@ final class Label: View {
       }
     }
     if let font = font {
-      if font.codeString != "UIFont.systemFont(ofSize: 17)" { // Default
+      if font.codeString() != "UIFont.systemFont(ofSize: 17)" { // Default
         string += "\(userLabel).font = \(font.codeString)\n"
       }
     }

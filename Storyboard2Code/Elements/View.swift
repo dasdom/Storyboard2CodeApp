@@ -7,6 +7,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   var font: Font? = nil
   var type = ElementType.UIView
   var rect: CGRect? = nil
+  var frame: CGRect? = nil
   var colors: [Color] = []
   let isOpaque: Bool?
   var opaqueDefault = true
@@ -102,12 +103,12 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
       string += setup("clipsToBounds", value: "\(clips)", objC: objC)
     }
     for color in colors {
-      if !(color.key == "textColor" && color.codeString == "UIColor.darkText") { // Defaults
+      if !(color.key == "textColor" && color.codeString() == "UIColor.darkText") { // Defaults
         string += "    "
         if !isMainView {
           string += userLabel + "."
         }
-        string += "\(color.key) = \(color.codeString)\n"
+        string += "\(color.key) = \(color.codeString())\n"
       }
     }
     return string

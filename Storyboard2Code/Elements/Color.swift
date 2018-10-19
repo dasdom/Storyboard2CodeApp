@@ -49,7 +49,7 @@ extension Color {
 }
 
 extension Color: AttributeCodeGeneratable {
-  public var codeString: String {
+  func codeString(objC: Bool = false) -> String {
     switch self {
     case .redGreenBlueRepresentation(_, let red, let green, let blue, let alpha):
       return String(format: "UIColor(red: %.3lf, green: %.3lf, blue: %.3lf, alpha: %.3lf)", red, green, blue, alpha)
