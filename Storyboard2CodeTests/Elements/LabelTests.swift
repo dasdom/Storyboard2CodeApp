@@ -146,7 +146,7 @@ extension LabelTests {
     
     let result = sut.setupString(objC: true)
     
-    let expected = "_fooLabel.text = \"Foo\""
+    let expected = "_fooLabel.text = @\"Foo\";"
     XCTAssertEqual(result.trimmed, expected)
   }
   

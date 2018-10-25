@@ -64,7 +64,15 @@ final class Label: View {
       if objC {
         string += "_"
       }
-      string += "\(userLabel).text = \"\(text)\"\n"
+      string += "\(userLabel).text = "
+      if objC {
+        string += "@"
+      }
+      string += "\"\(text)\""
+      if objC {
+        string += ";"
+      }
+      string += "\n"
     }
     if let horizontalHuggingPriority = horizontalHuggingPriority, horizontalHuggingPriority != horizontalHuggingPriorityDefault {
       if objC {
@@ -75,11 +83,11 @@ final class Label: View {
     }
     if let font = font {
       if font.codeString() != "UIFont.systemFont(ofSize: 17)" { // Default
-        string += "\(userLabel).font = \(font.codeString)\n"
+        string += "    \(userLabel).font = \(font.codeString)\n"
       }
     }
     if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
-      string += "\(userLabel).lineBreakMode = .\(lineBreakMode.codeString)\n"
+      string += "    \(userLabel).lineBreakMode = .\(lineBreakMode.codeString)\n"
     }
     return string
   }

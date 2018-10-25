@@ -80,7 +80,7 @@ final class TextField: View {
     }
     if let font = font {
       //      if font.codeString != "UIFont.systemFontOfSize(14)" { // Default
-      string += "\(userLabel).font = \(font.codeString())\n"
+      string += "    \(userLabel).font = \(font.codeString())\n"
       //      }
     }
     if let textInputTraits = textInputTraits {

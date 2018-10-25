@@ -11,6 +11,8 @@
 		F21895DF1CE8A6700077960F /* DynamicCellsTableViewTests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */; };
 		F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E21CECF9D60077960F /* ScrollViewTests.swift */; };
 		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
+		F21DCFCE2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */; };
+		F21DCFD02181B4160073953E /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DCFCF2181B4160073953E /* StackView.swift */; };
 		F221E3F82169ED4C00BAF162 /* ViewMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F72169ED4C00BAF162 /* ViewMargin.swift */; };
 		F221E3FA216FE41D00BAF162 /* ConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */; };
 		F221E3FC2171CAE500BAF162 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3FB2171CAE400BAF162 /* StringExtension.swift */; };
@@ -76,6 +78,8 @@
 		F21895DE1CE8A6700077960F /* DynamicCellsTableViewTests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DynamicCellsTableViewTests.xml; sourceTree = "<group>"; };
 		F21895E21CECF9D60077960F /* ScrollViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollViewTests.swift; path = Storyboard2CodeTests/Elements/ScrollViewTests.swift; sourceTree = SOURCE_ROOT; };
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView_StoryboardXMLParserDelegateTests.swift; sourceTree = "<group>"; };
+		F21DCFCF2181B4160073953E /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		F221E3F72169ED4C00BAF162 /* ViewMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMargin.swift; sourceTree = "<group>"; };
 		F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintTests.swift; sourceTree = "<group>"; };
 		F221E3FB2171CAE400BAF162 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				F230C45A1CD34A93000DBA33 /* View.swift */,
 				F230C45B1CD34A93000DBA33 /* ViewController.swift */,
 				F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */,
+				F21DCFCF2181B4160073953E /* StackView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			children = (
 				F2E9255C1E1DA10B009BCA86 /* FileRepresentationTests.swift */,
 				F2E9255D1E1DA10B009BCA86 /* StoryboardXMLParserDelegateTests.swift */,
+				F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				F230C46A1CD34A93000DBA33 /* Constraint.swift in Sources */,
 				F2BE608B1E2C178600AC307B /* TableViewCellContentView.swift in Sources */,
 				F230C46D1CD34A93000DBA33 /* Protocols.swift in Sources */,
+				F21DCFD02181B4160073953E /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +474,7 @@
 				F2CD138C215FB776001792D2 /* TableViewTests.swift in Sources */,
 				F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */,
 				F210976D1CF972780056E90E /* DynamicCellsTableViewTests.swift in Sources */,
+				F21DCFCE2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
