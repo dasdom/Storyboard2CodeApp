@@ -13,6 +13,7 @@
 		F21895E51CECFA730077960F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21895E41CECFA730077960F /* ScrollView.swift */; };
 		F21DCFCE2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */; };
 		F21DCFD02181B4160073953E /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DCFCF2181B4160073953E /* StackView.swift */; };
+		F21DCFD821859FE10073953E /* StackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DCFD721859FE10073953E /* StackViewTests.swift */; };
 		F221E3F82169ED4C00BAF162 /* ViewMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F72169ED4C00BAF162 /* ViewMargin.swift */; };
 		F221E3FA216FE41D00BAF162 /* ConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */; };
 		F221E3FC2171CAE500BAF162 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221E3FB2171CAE400BAF162 /* StringExtension.swift */; };
@@ -80,6 +81,7 @@
 		F21895E41CECFA730077960F /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView_StoryboardXMLParserDelegateTests.swift; sourceTree = "<group>"; };
 		F21DCFCF2181B4160073953E /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		F21DCFD721859FE10073953E /* StackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewTests.swift; sourceTree = "<group>"; };
 		F221E3F72169ED4C00BAF162 /* ViewMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMargin.swift; sourceTree = "<group>"; };
 		F221E3F9216FE41D00BAF162 /* ConstraintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintTests.swift; sourceTree = "<group>"; };
 		F221E3FB2171CAE400BAF162 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -229,14 +231,14 @@
 				F21895E41CECFA730077960F /* ScrollView.swift */,
 				F230C4581CD34A93000DBA33 /* SegmentedControl.swift */,
 				F230C46E1CD34AEC000DBA33 /* Slider.swift */,
+				F21DCFCF2181B4160073953E /* StackView.swift */,
 				F2662DCB1D1EDFE8000D6449 /* TableView.swift */,
 				F2E925621E2124B3009BCA86 /* TableViewCell.swift */,
+				F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */,
 				F28E6A5D1DF2189C007D0114 /* TableViewController.swift */,
 				F230C4591CD34A93000DBA33 /* TextField.swift */,
 				F230C45A1CD34A93000DBA33 /* View.swift */,
 				F230C45B1CD34A93000DBA33 /* ViewController.swift */,
-				F2BE608A1E2C178600AC307B /* TableViewCellContentView.swift */,
-				F21DCFCF2181B4160073953E /* StackView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -266,6 +268,7 @@
 				F21895E21CECF9D60077960F /* ScrollViewTests.swift */,
 				F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */,
 				F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */,
+				F21DCFD721859FE10073953E /* StackViewTests.swift */,
 				F2CD138F2160C126001792D2 /* TableViewCellTests.swift */,
 				F2CD138B215FB776001792D2 /* TableViewTests.swift */,
 				F2F7BB701CDBE5A90002BAFF /* TextFieldTests.swift */,
@@ -364,11 +367,11 @@
 				TargetAttributes = {
 					F230C42D1CD2AD31000DBA33 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					F230C43C1CD2AD32000DBA33 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 						TestTargetID = F230C42D1CD2AD31000DBA33;
 					};
 				};
@@ -475,6 +478,7 @@
 				F2F7BB711CDBE5A90002BAFF /* TextFieldTests.swift in Sources */,
 				F210976D1CF972780056E90E /* DynamicCellsTableViewTests.swift in Sources */,
 				F21DCFCE2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift in Sources */,
+				F21DCFD821859FE10073953E /* StackViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -580,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -594,11 +598,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Storyboard2Code/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_SWIFT_FLAGS = "-Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2Code;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -609,10 +615,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Storyboard2Code/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2Code;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -627,7 +635,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard2Code.app/Contents/MacOS/Storyboard2Code";
 			};
 			name = Debug;
@@ -642,7 +651,8 @@
 				OTHER_SWIFT_FLAGS = "-Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftandpainless.Storyboard2CodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard2Code.app/Contents/MacOS/Storyboard2Code";
 			};
 			name = Release;

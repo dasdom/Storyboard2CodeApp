@@ -56,7 +56,23 @@ final class Button: View {
   override func setupString(objC: Bool = false) -> String {
     var string = super.setupString(objC: objC)
     if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
-      string += "\(userLabel).titleLabel?.lineBreakMode = .\(lineBreakMode.codeString)\n"
+      string += "    "
+      if objC {
+        string += "_"
+      }
+      string += "\(userLabel).titleLabel"
+      if !objC {
+        string += "?"
+      }
+      string += ".lineBreakMode = "
+      if !objC {
+        string += "."
+      }
+      string += lineBreakMode.codeString(objC: objC)
+      if objC {
+        string += ";"
+      }
+      string += "\n"
     }
     string += stateString(fromStates: states)
     return string

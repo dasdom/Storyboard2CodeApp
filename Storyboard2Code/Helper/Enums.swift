@@ -15,11 +15,11 @@ import Foundation
  - UITableViewCell:    UITableViewCell
  */
 enum ElementType: String {
-  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView, UITableViewCell
+  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView, UITableViewCell, UIStackView
 }
 
 enum Element: String {
-  case view, label, textField, button, segmentedControl, slider, scrollView, tableView, imageView
+  case view, label, textField, button, segmentedControl, slider, scrollView, tableView, imageView, stackView
   
   func create(from dict: [String:String]) -> View {
     switch self {
@@ -32,6 +32,7 @@ enum Element: String {
     case .scrollView: return ScrollView(dict: dict)
     case .tableView: return TableView(dict: dict)
     case .imageView: return ImageView(dict: dict)
+    case .stackView: return StackView(dict: dict)
     }
   }
 }
@@ -47,13 +48,23 @@ enum LineBreakMode: String {
   case ByTruncatingHead = "headTruncation"
   case ByTruncatingMiddle = "middleTruncation"
   
-  var codeString: String {
-    switch self {
-    case .ByTruncatingTail: return "byTruncatingTail"
-    case .ByCharWrapping: return "byCharWrapping"
-    case .ByClipping: return "byClipping"
-    case .ByTruncatingHead: return "byTruncatingHead"
-    case .ByTruncatingMiddle: return "byTruncatingMiddle"
+  func codeString(objC: Bool = false) -> String {
+    if objC {
+      switch self {
+      case .ByTruncatingTail: return "NSLineBreakByTruncatingTail"
+      case .ByCharWrapping: return "NSLineBreakByCharWrapping"
+      case .ByClipping: return "NSLineBreakByClipping"
+      case .ByTruncatingHead: return "NSLineBreakByTruncatingHead"
+      case .ByTruncatingMiddle: return "NSLineBreakByTruncatingMiddle"
+      }
+    } else {
+      switch self {
+      case .ByTruncatingTail: return "byTruncatingTail"
+      case .ByCharWrapping: return "byCharWrapping"
+      case .ByClipping: return "byClipping"
+      case .ByTruncatingHead: return "byTruncatingHead"
+      case .ByTruncatingMiddle: return "byTruncatingMiddle"
+      }
     }
   }
 }

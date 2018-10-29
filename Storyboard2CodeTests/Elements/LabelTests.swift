@@ -139,6 +139,26 @@ extension LabelTests {
 
 // MARK: - ObjC
 extension LabelTests {
+  func test_labelSetupString_HasExpectedOutputFor_textAlignment_objC() {
+    let attr = ["textAlignment": "justified", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attr)
+    
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooLabel.textAlignment = NSTextAlignmentJustified;"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
+  func test_labelSetupString_HasExpectedOutputFor_lineBreakMode_objC() {
+    let attr = ["lineBreakMode": "headTruncation", "id": "42", "userLabel": "fooLabel"]
+    let sut = Label(dict: attr)
+    
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooLabel.lineBreakMode = NSLineBreakByTruncatingHead;"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
   func test_labelSetupString_HasExpectedOutputFor_Text_objC() {
     let attr = ["id": "42", "userLabel": "fooLabel"]
     let sut = Label(dict: attr)

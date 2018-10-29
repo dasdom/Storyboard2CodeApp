@@ -2,8 +2,9 @@
 
 import UIKit
 
-let tableViewCell = UITableViewCell(style: .subtitle, reuseIdentifier: "foo")
-
-let font = UIFont(name: "Foo", size: 15)
+let foo = UIView()
+let bar = UIView()
+let stackView = UIStackView(arrangedSubviews: [])
+stackView.axis = .vertical
 
 

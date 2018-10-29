@@ -64,7 +64,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     }
   }
   
-  override func controlTextDidChange(_ obj: Notification) {
+  func controlTextDidChange(_ obj: Notification) {
     if let path = ((obj as NSNotification).userInfo?["NSFieldEditor"] as? NSTextView)?.string {
       print(path)
       
@@ -128,7 +128,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   
   @IBAction func objCCheckButtonChanged(_ sender: NSButton) {
     
-    objC = sender.state == NSOnState
+    objC = sender.state == NSControl.StateValue.on
     updateUI()
   }
 }

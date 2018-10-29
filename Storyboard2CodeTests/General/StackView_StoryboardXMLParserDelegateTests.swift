@@ -23,17 +23,21 @@ class StackView_StoryboardXMLParserDelegateTests: XCTestCase {
   
   func test_parsingOfStackview_createsStackView() {
     let xmlString = """
-      <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" id="PAT-K4-wPh" userLabel="blaStackView">
-        <rect key="frame" x="0.0" y="0.0" width="42" height="51"/>
+      <view id="mainId" userLabel="mainLabel">
         <subviews>
-          <label id="zdB-V2-Pkc" userLabel="fooLabel">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-          </label>
-          <label id="Ju8-oh-HLB" userLabel="barLabel">
-            <rect key="frame" x="0.0" y="30.5" width="42" height="20.5"/>
-          </label>
+          <stackView axis="vertical" spacing="10" id="stackViewId" userLabel="blaStackView">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="51"/>
+            <subviews>
+              <label id="zdB-V2-Pkc" userLabel="firstLabel">
+                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+              </label>
+              <label id="Ju8-oh-HLB" userLabel="secondLabel">
+                <rect key="frame" x="0.0" y="30.5" width="42" height="20.5"/>
+              </label>
+            </subviews>
+          </stackView>
         </subviews>
-      </stackView>
+      </view>
       """
     let xmlData = xmlString.data(using: .utf8)!
     
@@ -41,8 +45,8 @@ class StackView_StoryboardXMLParserDelegateTests: XCTestCase {
     parser.delegate = sut
     parser.parse()
     
-    let stackView = sut.viewDict["blaStackView"]
-    XCTAssert(stackView is StackView)
+    let stackView = sut.viewDict["stackViewId"] as! StackView
+    XCTAssertEqual(stackView.arrangedSubviews.first?.userLabel, "firstLabel")
+    XCTAssertEqual(stackView.arrangedSubviews.last?.userLabel, "secondLabel")
   }
-
 }

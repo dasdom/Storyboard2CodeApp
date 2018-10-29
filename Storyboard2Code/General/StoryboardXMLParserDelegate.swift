@@ -226,7 +226,11 @@ extension StoryboardXMLParserDelegate {
   /// - Parameter view: the view to be added
   func addView(_ view: View) {
     if let lastView = tempViews.last, lastView !== mainView, !(lastView is TableViewCell) {
-      view.superViewName = lastView.userLabel
+      if let stackView = lastView as? StackView {
+        stackView.arrangedSubviews.append(view)
+      } else {
+        view.superViewName = lastView.userLabel
+      }
     }
     viewDict[view.id] = view
     if !(view is TableViewCell) {
@@ -296,7 +300,7 @@ extension StoryboardXMLParserDelegate {
       let firstAttribute = constraint.firstAttribute
       if firstAttribute.hasSuffix("Margin"), let firstItemName = constraint.firstItemName  {
           mutableConstraint.firstItemName = "\(firstItemName)Margins"
-          mutableConstraint.firstAttribute = firstAttribute.substring(to: String.Index(encodedOffset: firstAttribute.count-6))
+        mutableConstraint.firstAttribute = String(firstAttribute[..<String.Index(encodedOffset: firstAttribute.count-6)])
       }
       
       if let _ = constraint.secondItem {
@@ -305,7 +309,7 @@ extension StoryboardXMLParserDelegate {
       
       if let secondAttribute = constraint.secondAttribute, secondAttribute.hasSuffix("Margin"), let secondItemName = constraint.secondItemName {
         mutableConstraint.secondItemName = "\(secondItemName)Margins"
-        mutableConstraint.secondAttribute = secondAttribute.substring(to: String.Index(encodedOffset: secondAttribute.count-6))
+        mutableConstraint.secondAttribute = String(secondAttribute[..<String.Index(encodedOffset: secondAttribute.count-6)])
       }
       
       return mutableConstraint

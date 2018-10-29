@@ -153,3 +153,16 @@ class ButtonTests: XCTestCase {
     XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
   }
 }
+
+// MARK: - ObjC
+extension ButtonTests {
+  func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode_objC() {
+    let attr = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
+    let sut = Button(dict: attr)
+    
+    let result = sut.setupString(objC: true)
+    
+    let expected = "_fooButton.titleLabel.lineBreakMode = NSLineBreakByClipping;"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+}

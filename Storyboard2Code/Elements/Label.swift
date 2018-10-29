@@ -87,8 +87,28 @@ final class Label: View {
       }
     }
     if let lineBreakMode = lineBreakMode, lineBreakMode != lineBreakModeDefault {
-      string += "    \(userLabel).lineBreakMode = .\(lineBreakMode.codeString)\n"
+      string += "    "
+      if objC {
+        string += "_"
+      }
+      string += "\(userLabel).lineBreakMode = "
+      if !objC {
+        string += "."
+      }
+      string += lineBreakMode.codeString(objC: objC)
+      if objC {
+        string += ";"
+      }
+      string += "\n"
     }
     return string
+  }
+  
+  override func configureForObjC() {
+    super.configureForObjC()
+    
+    if let textAlignment = textAlignment {
+      self.textAlignment = "NSTextAlignment\(textAlignment.capitalizeFirst)"
+    }
   }
 }
