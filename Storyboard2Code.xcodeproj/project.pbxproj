@@ -54,6 +54,8 @@
 		F2CD138C215FB776001792D2 /* TableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CD138B215FB776001792D2 /* TableViewTests.swift */; };
 		F2CD13902160C126001792D2 /* TableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CD138F2160C126001792D2 /* TableViewCellTests.swift */; };
 		F2D0BC832179F9DE00092247 /* FontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D0BC822179F9DE00092247 /* FontTests.swift */; };
+		F2E01275218DC6FC00432564 /* SafeAreaLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E01274218DC6FC00432564 /* SafeAreaLayoutGuide.swift */; };
+		F2E01277218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E01276218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift */; };
 		F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */; };
 		F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */; };
 		F2E925311E16F7DC009BCA86 /* TestImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E925301E16F7DC009BCA86 /* TestImages.xcassets */; };
@@ -138,6 +140,8 @@
 		F2CD138B215FB776001792D2 /* TableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewTests.swift; sourceTree = "<group>"; };
 		F2CD138F2160C126001792D2 /* TableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellTests.swift; sourceTree = "<group>"; };
 		F2D0BC822179F9DE00092247 /* FontTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTests.swift; sourceTree = "<group>"; };
+		F2E01274218DC6FC00432564 /* SafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaLayoutGuide.swift; sourceTree = "<group>"; };
+		F2E01276218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift; sourceTree = "<group>"; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
 		F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewTests.swift; sourceTree = "<group>"; };
 		F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewTests.storyboard; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 				F230C4601CD34A93000DBA33 /* Protocols.swift */,
 				F2B3CEEF1E11543000FA8AC7 /* TextInputTraits.swift */,
 				F221E3F72169ED4C00BAF162 /* ViewMargin.swift */,
+				F2E01274218DC6FC00432564 /* SafeAreaLayoutGuide.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				F2E9255C1E1DA10B009BCA86 /* FileRepresentationTests.swift */,
 				F2E9255D1E1DA10B009BCA86 /* StoryboardXMLParserDelegateTests.swift */,
 				F21DCFCD2181ABEF0073953E /* StackView_StoryboardXMLParserDelegateTests.swift */,
+				F2E01276218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				F230C4631CD34A93000DBA33 /* Font.swift in Sources */,
 				F230C4691CD34A93000DBA33 /* ViewController.swift in Sources */,
 				F2E925631E2124B3009BCA86 /* TableViewCell.swift in Sources */,
+				F2E01275218DC6FC00432564 /* SafeAreaLayoutGuide.swift in Sources */,
 				F230C4511CD2B066000DBA33 /* DropTextField.swift in Sources */,
 				F2662DCC1D1EDFE8000D6449 /* TableView.swift in Sources */,
 				F254ED8E1CD50CFA00505DD3 /* CodeCreator.swift in Sources */,
@@ -464,6 +471,7 @@
 				F21895E31CECF9D60077960F /* ScrollViewTests.swift in Sources */,
 				F2E9252D1E16F6F8009BCA86 /* ImageViewTests.swift in Sources */,
 				F2D0BC832179F9DE00092247 /* FontTests.swift in Sources */,
+				F2E01277218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift in Sources */,
 				F2E2EF831CD7F2E900079EB8 /* LabelTests.swift in Sources */,
 				F230C47A1CD38F81000DBA33 /* DataLoader.swift in Sources */,
 				F230C4781CD38C6E000DBA33 /* StoryboardXMLHelper.swift in Sources */,

@@ -64,7 +64,7 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString.trimmed, "[_foo.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
+    XCTAssertEqual(constraintString.trimmed, "[self.foo.topAnchor constraintEqualToAnchor:self.bar.bottomAnchor],")
   }
   
   func test_constraintWithContentView_objC() {
@@ -78,7 +78,7 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString.trimmed, "[self.contentView.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
+    XCTAssertEqual(constraintString.trimmed, "[self.contentView.topAnchor constraintEqualToAnchor:self.bar.bottomAnchor],")
   }
   
   func test_constraintWithEmptyFirstItemName_objC() {
@@ -92,7 +92,7 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString.trimmed, "[self.topAnchor constraintEqualToAnchor:_bar.bottomAnchor],")
+    XCTAssertEqual(constraintString.trimmed, "[self.topAnchor constraintEqualToAnchor:self.bar.bottomAnchor],")
   }
   
   func test_constraintEqualToConstant_objC() {
@@ -104,6 +104,6 @@ extension ConstraintTests {
     
     let constraintString = sut.codeString(objC: true)
     
-    XCTAssertEqual(constraintString.trimmed, "[_foo.widthAnchor constraintEqualToConstant:23],")
+    XCTAssertEqual(constraintString.trimmed, "[self.foo.widthAnchor constraintEqualToConstant:23],")
   }
 }

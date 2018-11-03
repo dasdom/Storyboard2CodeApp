@@ -4,7 +4,12 @@ import UIKit
 
 let foo = UIView()
 let bar = UIView()
-let stackView = UIStackView(arrangedSubviews: [])
-stackView.axis = .vertical
+let fooStackView = UIStackView(arrangedSubviews: [])
+fooStackView.axis = .vertical
+fooStackView.spacing = 10
+//fooStackView.distribution = .fillEqually
+//fooStackView.alignment = .top
 
+fooStackView.distribution == .fill
+fooStackView.alignment == .fill
 

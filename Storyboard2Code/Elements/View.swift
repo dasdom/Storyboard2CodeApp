@@ -20,6 +20,7 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   let autoresizesSubviews: Bool?
   let clearsContextBeforeDrawing: Bool?
   let tag: Int?
+  var safeAreaLayoutGuide: SafeAreaLayoutGuide?
   
   let id: String
   let userLabel: String

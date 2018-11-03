@@ -102,6 +102,12 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
             tempViews.last?.frame = rect
           }
         }
+      case "viewLayoutGuide":
+        if attributeDict["key"] == "safeArea" {
+          if let id = attributeDict["id"] {
+            tempViews.last?.safeAreaLayoutGuide = SafeAreaLayoutGuide(id: id)
+          }
+        }
       default:
         //      print("start: \(elementName)")
         break

@@ -574,7 +574,7 @@ extension StoryboardXMLParserDelegateTests {
     parser.parse()
     
     let lastFileRepresentation = sut.fileRepresentations.last!
-    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:_topScrollView.trailingAnchor constant:52],"
+    let expectedString = "[scrollViewMargins.trailingAnchor constraintEqualToAnchor:self.topScrollView.trailingAnchor constant:52],"
     XCTAssertEqual(lastFileRepresentation.constraints.first?.codeString(objC: true).trimmed, expectedString)
   }
 }

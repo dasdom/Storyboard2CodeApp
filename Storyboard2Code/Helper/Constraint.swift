@@ -112,7 +112,7 @@ struct Constraint: AttributeCreatable, ConstraintCodeGeneratable {
         string += "contentView"
       } else {
         if objC, itemName.count > 0, !itemName.hasSuffix("Margins") {
-          string += "_"
+          string += "self."
         }
         string += itemName
       }
