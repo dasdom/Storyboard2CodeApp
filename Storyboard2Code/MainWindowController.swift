@@ -91,7 +91,7 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   @IBAction func export(_ sender: AnyObject) {
     let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
     
-    if objC {
+    if !objC {
       for (key, value) in swiftCodeStrings {
         let outputPath = "\(paths.first!)/\(key).swift"
         do {

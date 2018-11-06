@@ -17,18 +17,6 @@ class StackViewTests: XCTestCase {
     XCTAssertEqual(result.trimmed, expected)
   }
   
-  func test_initWithArrangedViews_hasExpectedOutput() {
-    let attr = ["id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    sut.arrangedSubviews.append(Label(dict: ["id": "123", "userLabel": "firstLabel"]))
-    sut.arrangedSubviews.append(Label(dict: ["id": "456", "userLabel": "secondLabel"]))
-
-    let result = sut.initString()
-    
-    let expected = "fooStackView = UIStackView(arrangedSubviews:[firstLabel, secondLabel])"
-    XCTAssertEqual(result.trimmed, expected)
-  }
-  
   func test_setupString_whenAxisIsVertical() {
     let attr = ["axis": "vertical", "id": "42", "userLabel": "fooStackView"]
     let sut = StackView(dict: attr)
@@ -88,18 +76,6 @@ extension StackViewTests {
     let result = sut.initString(objC: true)
     
     let expected = "_fooStackView = [[UIStackView alloc] init];"
-    XCTAssertEqual(result.trimmed, expected)
-  }
-  
-  func test_initWithArrangedViews_hasExpectedOutput_objC() {
-    let attr = ["id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    sut.arrangedSubviews.append(Label(dict: ["id": "123", "userLabel": "firstLabel"]))
-    sut.arrangedSubviews.append(Label(dict: ["id": "456", "userLabel": "secondLabel"]))
-    
-    let result = sut.initString(objC: true)
-    
-    let expected = "_fooStackView = [[UIStackView alloc] initWithArrangedSubviews:@[_firstLabel, _secondLabel]];"
     XCTAssertEqual(result.trimmed, expected)
   }
   

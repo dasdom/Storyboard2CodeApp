@@ -49,4 +49,29 @@ class StackView_StoryboardXMLParserDelegateTests: XCTestCase {
     XCTAssertEqual(stackView.arrangedSubviews.first?.userLabel, "firstLabel")
     XCTAssertEqual(stackView.arrangedSubviews.last?.userLabel, "secondLabel")
   }
+  
+  func test_parsingOfStackview_arrangedSubview_returnsEmptyAddToSubviewString() {
+    let xmlString = """
+      <view id="mainId" userLabel="mainLabel">
+        <subviews>
+          <stackView axis="vertical" spacing="10" id="stackViewId" userLabel="blaStackView">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="51"/>
+            <subviews>
+              <label id="zdB-V2-Pkc" userLabel="firstLabel">
+                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+              </label>
+            </subviews>
+          </stackView>
+        </subviews>
+      </view>
+      """
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    let stackView = sut.viewDict["stackViewId"] as! StackView
+    XCTAssertEqual(stackView.arrangedSubviews.first?.addToSuperString().trimmed, "")
+  }
 }

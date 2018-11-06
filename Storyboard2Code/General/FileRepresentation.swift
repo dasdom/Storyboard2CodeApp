@@ -34,6 +34,8 @@ struct FileRepresentation: CodeGeneratable {
     
     outputString += setup(for: [mainView])
     
+    outputString += addArrangedSubviews(for: subviews)
+    
     let addString = addToSuperView(for: subviews)
     outputString += addString.isEmpty ? "" : addString + newLine()
     
@@ -88,7 +90,14 @@ struct FileRepresentation: CodeGeneratable {
         return hypot(originA.x, originA.y) < hypot(originB.x, originB.y)
     }
   }
-    
+  
+  func addArrangedSubviews(for subviews: [View], objC: Bool = false) -> String {
+    let stackViews = subviews.filter { $0 is StackView }
+    let lines = stackViews.map { (stackView) -> String in
+      (stackView as! StackView).addArrangedSubviews(objC: objC)
+    }
+    return lines.joined(separator: "\n")
+  }
 }
 
 extension FileRepresentation {
@@ -105,6 +114,8 @@ extension FileRepresentation {
     output += setup(for: subviews, objC: true)
 
     output += setup(for: [mainView], objC: true)
+    
+    output += addArrangedSubviews(for: subviews, objC: true) + newLine(2)
 
     let addString = addToSuperView(for: subviews, objC: true)
     output += addString.isEmpty ? "" : addString + newLine()

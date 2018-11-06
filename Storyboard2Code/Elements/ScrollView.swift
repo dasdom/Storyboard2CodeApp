@@ -61,6 +61,10 @@ class ScrollView: View {
     temp.append("maximumZoomScale")
     temp.append("bouncesZoom")
     temp.append("keyboardDismissMode")
+    
+    /// From the docs: "The opaque property has no effect in system-provided classes such as UIButton, UILabel, UITableViewCell, and so on."
+    temp = temp.filter { $0 != "isOpaque" }
+    
     return temp
   }
 }

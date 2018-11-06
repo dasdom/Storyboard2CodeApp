@@ -22,6 +22,7 @@ final class StoryboardXMLParserDelegate: NSObject {
   fileprivate var currentText: String?
   var viewMargins: Set<ViewMargin> = []
   var layoutGuides: [LayoutGuide] = []
+  var safeAreaLayoutGuides: [SafeAreaLayoutGuide] = []
 //  private var currentSegmentedControl: SegmentedControl?
   var fileRepresentations: [FileRepresentation] = []
 //  var tableViews: [TableView] = []
@@ -105,7 +106,8 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
       case "viewLayoutGuide":
         if attributeDict["key"] == "safeArea" {
           if let id = attributeDict["id"] {
-            tempViews.last?.safeAreaLayoutGuide = SafeAreaLayoutGuide(id: id)
+//            tempViews.last?.safeAreaLayoutGuide = SafeAreaLayoutGuide(id: id)
+            safeAreaLayoutGuides.append(SafeAreaLayoutGuide(id: id))
           }
         }
       default:
@@ -233,6 +235,7 @@ extension StoryboardXMLParserDelegate {
   func addView(_ view: View) {
     if let lastView = tempViews.last, lastView !== mainView, !(lastView is TableViewCell) {
       if let stackView = lastView as? StackView {
+        view.isArrangedSubview = true
         stackView.arrangedSubviews.append(view)
       } else {
         view.superViewName = lastView.userLabel
@@ -366,8 +369,16 @@ extension StoryboardXMLParserDelegate {
     let mainUserLabel = mainView?.userLabel
     
     constraints = constraintsWithReplacedItemName(from: constraints, mainUserLabel: mainUserLabel, viewNameForId: { id in
-      viewDict[id]?.userLabel
-    })
+      
+      var name = viewDict[id]?.userLabel
+      for safeAreaLayoutGuide in safeAreaLayoutGuides {
+        if safeAreaLayoutGuide.id == id {
+          name = "safeAreaLayoutGuide"
+          break
+        }
+      }
+      return name
+     })
     
     viewMargins = viewMargins(from: constraints, mainUserLabel: mainUserLabel)
     

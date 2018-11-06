@@ -20,14 +20,15 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   let autoresizesSubviews: Bool?
   let clearsContextBeforeDrawing: Bool?
   let tag: Int?
-  var safeAreaLayoutGuide: SafeAreaLayoutGuide?
   
   let id: String
   let userLabel: String
   
   /// Used to generate code like `fooView.addSubview(barView)`
   var superViewName: String?
+  
   var isMainView: Bool = false
+  var isArrangedSubview: Bool = false
   
   required init(dict: [String : String]) {
     translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"].flatMap  { $0 == "YES" }

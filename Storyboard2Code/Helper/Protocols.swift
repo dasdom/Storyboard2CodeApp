@@ -23,6 +23,8 @@ protocol ElementCodeGeneratable {
   func addToSuperString(objC: Bool) -> String
   var superViewName: String? { get }
   var isMainView: Bool { get set }
+  var isArrangedSubview: Bool { get set }
+
   func setup(_ property: String, value: String, isEnumValue: Bool, objC: Bool) -> String
 }
 
@@ -41,7 +43,7 @@ extension ElementCodeGeneratable {
   
   /// Default implementation of the addToSuperview string
   func addToSuperString(objC: Bool = false) -> String {
-    guard isMainView == false else { return "" }
+    guard isMainView == false && isArrangedSubview == false else { return "" }
     
     var string = "    "
     if let superViewName = superViewName {

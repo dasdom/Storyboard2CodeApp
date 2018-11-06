@@ -12,4 +12,9 @@ fooStackView.spacing = 10
 
 fooStackView.distribution == .fill
 fooStackView.alignment == .fill
+fooStackView.isOpaque == true
+
+//foo.safeAreaLayoutGuide
+
+fooStackView.addArrangedSubview(foo)
 

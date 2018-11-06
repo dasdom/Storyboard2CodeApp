@@ -37,7 +37,7 @@ final class Button: View {
     
     super.init(dict: dict)
     
-    opaqueDefault = false
+//    opaqueDefault = false
     
     type = .UIButton
   }
@@ -97,6 +97,10 @@ final class Button: View {
     temp.append("showsTouchWhenHighlighted")
     temp.append("adjustsImageWhenHighlighted")
     temp.append("adjustsImageWhenDisabled")
+    
+    /// From the docs: "The opaque property has no effect in system-provided classes such as UIButton, UILabel, UITableViewCell, and so on."
+    temp = temp.filter { $0 != "isOpaque" }
+    
     return temp
   }
 }

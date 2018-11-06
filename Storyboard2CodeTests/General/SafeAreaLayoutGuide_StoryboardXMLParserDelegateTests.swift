@@ -33,7 +33,26 @@ class SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests: XCTestCase {
     parser.delegate = sut
     parser.parse()
     
-    let view = sut.viewDict["viewId"]!
-    XCTAssertEqual(view.safeAreaLayoutGuide?.id, "6Tk-OE-BBY")
+    let safeAreaLayoutGuide = sut.safeAreaLayoutGuides.first
+    XCTAssertEqual(safeAreaLayoutGuide?.id, "6Tk-OE-BBY")
+  }
+  
+  func test_parsing_setsItemNameInConstraint() {
+    let xmlString = """
+      <view key="view" contentMode="scaleToFill" id="viewId">
+        <constraints>
+          <constraint firstItem="Dim-RV-AiE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rP8-Yv-KhH"/>
+        </constraints>
+        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+      </view>
+      """
+    let xmlData = xmlString.data(using: .utf8)!
+    
+    let parser = XMLParser(data: xmlData)
+    parser.delegate = sut
+    parser.parse()
+    
+    let constraint = sut.constraints.first
+    XCTAssertEqual(constraint?.secondItemName, "safeAreaLayoutGuide")
   }
 }
