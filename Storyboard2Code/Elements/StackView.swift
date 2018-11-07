@@ -95,7 +95,7 @@ final class StackView : View {
   func addArrangedSubviews(objC: Bool = false) -> String {
     let lines = arrangedSubviews.map({ (view) -> String in
       if objC {
-        return "[_\(userLabel) addArrangedSubview:___\(view.userLabel)];"
+        return "[_\(userLabel) addArrangedSubview:_\(view.userLabel)];"
       } else {
         return "\(userLabel).addArrangedSubview(\(view.userLabel))"
       }
