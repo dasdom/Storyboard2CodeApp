@@ -114,7 +114,6 @@
 		F230C4731CD38B70000DBA33 /* ButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		F230C4771CD38C6E000DBA33 /* StoryboardXMLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardXMLHelper.swift; sourceTree = "<group>"; };
 		F230C4791CD38F81000DBA33 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
-		F230C47D1CD3FB66000DBA33 /* Elements.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Elements.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F23DF4C21CDFD2DE00D9939E /* SliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTests.swift; sourceTree = "<group>"; };
 		F23DF4C61CE2763300D9939E /* SegmentedControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTests.swift; sourceTree = "<group>"; };
 		F250784F1DFA01A70053BC3B /* ButtonTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ButtonTests.storyboard; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		F2D0BC822179F9DE00092247 /* FontTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTests.swift; sourceTree = "<group>"; };
 		F2E01274218DC6FC00432564 /* SafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaLayoutGuide.swift; sourceTree = "<group>"; };
 		F2E01276218DC7AD00432564 /* SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaLayoutGuide_StoryboardXMLParserDelegateTests.swift; sourceTree = "<group>"; };
+		F2E012982195A74E00432564 /* ScratchPad.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchPad.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F2E2EF821CD7F2E900079EB8 /* LabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTests.swift; sourceTree = "<group>"; };
 		F2E9252C1E16F6F8009BCA86 /* ImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewTests.swift; sourceTree = "<group>"; };
 		F2E9252E1E16F743009BCA86 /* ImageViewTests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewTests.storyboard; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		F230C4251CD2AD31000DBA33 = {
 			isa = PBXGroup;
 			children = (
-				F230C47D1CD3FB66000DBA33 /* Elements.playground */,
+				F2E012982195A74E00432564 /* ScratchPad.playground */,
 				F230C4301CD2AD31000DBA33 /* Storyboard2Code */,
 				F230C4401CD2AD32000DBA33 /* Storyboard2CodeTests */,
 				F230C42F1CD2AD31000DBA33 /* Products */,

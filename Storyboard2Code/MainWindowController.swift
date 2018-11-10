@@ -11,6 +11,8 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
   @IBOutlet var codeTextView: NSTextView!
   @IBOutlet var objCButton: NSButton!
   @IBOutlet var objCCheckButton: NSButton!
+  @IBOutlet var authorTextField: NSTextField!
+  @IBOutlet var companyTextField: NSTextField!
   var codeCreator = CodeCreator()
   var objC = false
   
@@ -47,6 +49,9 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
     dropTextField.addObserver(self, forKeyPath: "droppedFilePath", options: .new, context: nil)
     
     dropTextField.delegate = self
+    //authorTextField.delegate = self
+    
+    NotificationCenter.default.addObserver(self, selector:#selector(textDidChange), name: NSControl.textDidChangeNotification, object: nil)
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -76,6 +81,18 @@ class MainWindowController: NSWindowController, NSTextFieldDelegate {
       xmlData = data
       
       storyboardTextView.string = dataString as String
+    }
+  }
+  
+  @objc func textDidChange(_ notification: Notification) {
+    if let textField = notification.object as? NSTextField {
+      if textField == authorTextField {
+        codeCreator.author = textField.stringValue
+        updateUI()
+      } else if textField == companyTextField {
+        codeCreator.company = textField.stringValue
+        updateUI()
+      }
     }
   }
   

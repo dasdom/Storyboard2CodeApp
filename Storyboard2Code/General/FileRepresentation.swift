@@ -34,7 +34,7 @@ struct FileRepresentation: CodeGeneratable {
     
     outputString += setup(for: [mainView])
     
-    outputString += addArrangedSubviews(for: subviews)
+    outputString += addArrangedSubviews(for: subviews) + newLine(2)
     
     let addString = addToSuperView(for: subviews)
     outputString += addString.isEmpty ? "" : addString + newLine()
@@ -79,7 +79,14 @@ struct FileRepresentation: CodeGeneratable {
   
   func addToSuperView(for subviews: [View], objC: Bool = false) -> String {
     let views = subviews.filter { $0.userLabel != "contentView_of_a_tableviewcell" }
-    return views.reduce("") { $0 + $1.addToSuperString(objC: objC) + newLine() }
+    return views.reduce("") {
+      var string = $0
+      let addToString = $1.addToSuperString(objC: objC)
+      if addToString.count > 0 {
+        string += addToString + newLine()
+      }
+      return string
+    }
   }
   
   func filteredAndSortedSubviews(from: [String: View]) -> [View] {

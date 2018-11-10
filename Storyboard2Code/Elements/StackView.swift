@@ -26,42 +26,6 @@ final class StackView : View {
     type = ElementType.UIStackView
   }
   
-//  override func initString(objC: Bool = false) -> String {
-//    if arrangedSubviews.count < 1 {
-//      return super.initString(objC: objC)
-//    }
-//    
-//    var initString = "    "
-//    if objC {
-//      initString += "_"
-//    }
-//    
-//    initString += "\(userLabel) = "
-//    if objC {
-//      initString += "[[\(type.rawValue) alloc] initWithArrangedSubviews:@["
-//    } else {
-//      initString += "\(type.rawValue)(arrangedSubviews:["
-//    }
-//    
-//    let arrangedSubviewNames = arrangedSubviews.map { view -> String in
-//      var name = ""
-//      if objC {
-//        name += "_"
-//      }
-//      name += view.userLabel
-//      return name
-//    }
-//    initString += arrangedSubviewNames.joined(separator: ", ")
-//    
-//    if objC {
-//      initString += "]];\n"
-//    } else {
-//      initString += "])\n"
-//    }
-//    
-//    return initString
-//  }
-  
   override func reflectable() -> [String] {
     var temp = super.reflectable()
     temp.append("axis")
@@ -95,9 +59,9 @@ final class StackView : View {
   func addArrangedSubviews(objC: Bool = false) -> String {
     let lines = arrangedSubviews.map({ (view) -> String in
       if objC {
-        return "[_\(userLabel) addArrangedSubview:_\(view.userLabel)];"
+        return "    [_\(userLabel) addArrangedSubview:_\(view.userLabel)];"
       } else {
-        return "\(userLabel).addArrangedSubview(\(view.userLabel))"
+        return "    \(userLabel).addArrangedSubview(\(view.userLabel))"
       }
     })
     return lines.joined(separator: "\n")
