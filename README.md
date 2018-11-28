@@ -21,7 +21,7 @@ The project is in pre-alpha status. If I had to give a number of the progress, I
 - [x] UITableView 
 - [x] UIImageView
 - [x] UITableViewCell
-- [ ] SaveAreaGuides
+- [ ] SafeAreaGuides
 - [ ] IBActions
 - [ ] Segues
 - [ ] Size Classes
