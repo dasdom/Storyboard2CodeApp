@@ -1,7 +1,3 @@
-//
-//  ScrollViewTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 18.05.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -11,22 +7,10 @@ import XCTest
 
 class ScrollViewTests: XCTestCase {
   
-  var sut: ScrollView!
-  
-  override func setUp() {
-    super.setUp()
-    
-    sut = ScrollView(dict: ["id": "42", "userLabel": "fooScrollView"])
-  }
-  
-  override func tearDown() {
-    sut = nil
-    
-    super.tearDown()
-  }
-  
   func test_segmentedControlPropertyString_HasExpectedOutput() {
-    
+    let attr = ["id": "42", "userLabel": "fooScrollView"]
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.propertyString()
     
     let expected = "let fooScrollView: UIScrollView"
@@ -34,6 +18,8 @@ class ScrollViewTests: XCTestCase {
   }
   
   func test_segmentedControlInitString_HasExpectedOutput() {
+    let attr = ["id": "42", "userLabel": "fooScrollView"]
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
     
     let result = sut.initString()
     
@@ -45,8 +31,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["translatesAutoresizingMaskIntoConstraints": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.translatesAutoresizingMaskIntoConstraints = false"
@@ -57,8 +43,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["directionalLockEnabled": "YES",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.directionalLockEnabled = true"
@@ -69,8 +55,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["bounces": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.bounces = false"
@@ -81,8 +67,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["alwaysBounceVertical": "YES",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.alwaysBounceVertical = true"
@@ -93,8 +79,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["scrollEnabled": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.scrollEnabled = false"
@@ -105,8 +91,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["pagingEnabled": "YES",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.pagingEnabled = true"
@@ -117,8 +103,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["showsHorizontalScrollIndicator": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.showsHorizontalScrollIndicator = false"
@@ -129,8 +115,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["showsVerticalScrollIndicator": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.showsVerticalScrollIndicator = false"
@@ -141,8 +127,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["indicatorStyle": "black",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.indicatorStyle = .black"
@@ -153,8 +139,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["delaysContentTouches": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.delaysContentTouches = false"
@@ -165,8 +151,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["canCancelContentTouches": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.canCancelContentTouches = false"
@@ -177,8 +163,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["minimumZoomScale": "5",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.minimumZoomScale = 5"
@@ -189,8 +175,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["maximumZoomScale": "3",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.maximumZoomScale = 3"
@@ -201,8 +187,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["bouncesZoom": "NO",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.bouncesZoom = false"
@@ -213,8 +199,8 @@ class ScrollViewTests: XCTestCase {
     let attr = ["keyboardDismissMode": "onDrag",
                 "id": "42",
                 "userLabel": "fooScrollView"]
-    let sut = ScrollView(dict: attr)
-    
+    let sut = Builder.builder(for: .scrollView).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooScrollView.keyboardDismissMode = .onDrag"

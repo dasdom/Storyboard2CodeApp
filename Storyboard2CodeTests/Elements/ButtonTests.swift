@@ -1,7 +1,3 @@
-//
-//  ButtonTests.swift
-//  Storyboard2Code
-//
 //  Created by dasdom on 29.04.16.
 //  Copyright © 2016 dasdom. All rights reserved.
 //
@@ -12,8 +8,8 @@ import XCTest
 class ButtonTests: XCTestCase {
   
   func test_buttonPropertyString_HasExpectedOutput() {
-    let attributesDict = ["id": "cfU-u7-b0P", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["id": "cfU-u7-b0P", "userLabel": "fooButton"]
+    let sut = Builder.builder(for: .button).build(attributes: attr)
 
     let result = sut.propertyString()
     
@@ -22,9 +18,9 @@ class ButtonTests: XCTestCase {
   }
   
   func test_buttonInitString_HasExpectedOutput() {
-    let attributesDict = ["buttonType": "roundedRect", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
-    
+    let attr = ["buttonType": "roundedRect", "id": "42", "userLabel": "fooButton"]
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.initString()
     
     let expectedOutput = "fooButton = UIButton(type: .system)"
@@ -32,39 +28,39 @@ class ButtonTests: XCTestCase {
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_enabled() {
-    let attributesDict = ["enabled": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
-    
+    let attr = ["enabled": "NO", "id": "42", "userLabel": "fooButton"]
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
-    let expectedOutput = "fooButton.enabled = false"
+    let expectedOutput = "fooButton.isEnabled = false"
     XCTAssertEqual(result.trimmed, expectedOutput)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_highlighted() {
     let attr = ["highlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
-    let expected = "fooButton.highlighted = true"
+    let expected = "fooButton.isHighlighted = true"
     XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_selected() {
     let attr = ["selected": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
-    let expected = "fooButton.selected = true"
+    let expected = "fooButton.isSelected = true"
     XCTAssertEqual(result.trimmed, expected)
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_contentHorizontalAlignment() {
     let attr = ["contentHorizontalAlignment": "left", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooButton.contentHorizontalAlignment = .left"
@@ -73,8 +69,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_contentVerticalAlignment() {
     let attr = ["contentVerticalAlignment": "top", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooButton.contentVerticalAlignment = .top"
@@ -83,8 +79,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_reversesTitleShadowWhenHighlighted() {
     let attr = ["reversesTitleShadowWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooButton.reversesTitleShadowWhenHighlighted = true"
@@ -93,8 +89,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_showsTouchWhenHighlighted() {
     let attr = ["showsTouchWhenHighlighted": "YES", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooButton.showsTouchWhenHighlighted = true"
@@ -103,8 +99,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenHighlighted() {
     let attr = ["adjustsImageWhenHighlighted": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooButton.adjustsImageWhenHighlighted = false"
@@ -113,8 +109,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_adjustsImageWhenDisabled() {
     let attr = ["adjustsImageWhenDisabled": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooButton.adjustsImageWhenDisabled = false"
@@ -123,8 +119,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode() {
     let attr = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooButton.titleLabel?.lineBreakMode = .byClipping"
@@ -133,8 +129,8 @@ class ButtonTests: XCTestCase {
   
   func test_buttonSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
     let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooButton.translatesAutoresizingMaskIntoConstraints = false"
@@ -142,12 +138,12 @@ class ButtonTests: XCTestCase {
   }
   
   func test_buttonSetupString_HasExpectedOutputFor_textColor() {
-    let attributesDict = ["id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attributesDict)
+    let attr = ["id": "42", "userLabel": "fooButton"]
+    let sut = Builder.builder(for: .button).build(attributes: attr)
     let color = Color(dict: ["key": "titleColor", "red": "1", "green": "1", "blue": "0.400", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
     var state = ButtonState(dict: ["key": "normal", "title": "Button 1"])
-    state.titleColor = color
-    sut.states.append(state)
+    state.set(titleColor: color)
+    (sut as! Button).add(state: state)
     
     let expectedOutput = "fooButton.setTitle(\"Button 1\", for: .normal)\nfooButton.setTitleColor(UIColor(red: 1.000, green: 1.000, blue: 0.400, alpha: 1.000), for: .normal)\n"
     XCTAssertEqual(sut.setupString(objC: false), expectedOutput)
@@ -158,8 +154,8 @@ class ButtonTests: XCTestCase {
 extension ButtonTests {
   func test_buttonSetupString_HasExpectedOutputFor_lineBreakMode_objC() {
     let attr = ["lineBreakMode": "clip", "id": "42", "userLabel": "fooButton"]
-    let sut = Button(dict: attr)
-    
+    let sut = Builder.builder(for: .button).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooButton.titleLabel.lineBreakMode = NSLineBreakByClipping;"

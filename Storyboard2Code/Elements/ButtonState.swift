@@ -5,24 +5,28 @@
 import Foundation
 
 struct ButtonState: AttributeCreatable, ControlStateCodeGeneratable {
-  let key: String
-  let title: String?
-  var titleColor: Color? = nil
+  private let state: String
+  private let title: String?
+  private var titleColor: Color? = nil
   
   init(dict: [String : String]) {
-    key = dict[Key.key.rawValue]!
+    state = dict[Key.key.rawValue]!
     title = dict[Key.title.rawValue]
   }
   
   func codeString(_ userLabel: String) -> String {
     var string = ""
     if let title = title {
-      string += "\(userLabel).setTitle(\"\(title)\", for: .\(key))\n"
+      string += "\(userLabel).setTitle(\"\(title)\", for: .\(state))\n"
     }
     if let titleColor = titleColor {
-      string += "\(userLabel).setTitleColor(\(titleColor.codeString()), for: .\(key))\n"
+      string += "\(userLabel).setTitleColor(\(titleColor.codeString()), for: .\(state))\n"
     }
     return string
+  }
+  
+  mutating func set(titleColor: Color) {
+    self.titleColor = titleColor
   }
 }
 

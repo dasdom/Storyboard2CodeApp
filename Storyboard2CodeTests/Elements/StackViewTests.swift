@@ -9,8 +9,8 @@ class StackViewTests: XCTestCase {
 
   func test_init_hasExpectedOutput() {
     let attr = ["id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.initString()
     
     let expected = "fooStackView = UIStackView()"
@@ -19,8 +19,8 @@ class StackViewTests: XCTestCase {
   
   func test_setupString_whenAxisIsVertical() {
     let attr = ["axis": "vertical", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString()
     
     let expected = "fooStackView.axis = .vertical"
@@ -29,8 +29,8 @@ class StackViewTests: XCTestCase {
 
   func test_setupString_whenSpacingIsPresent() {
     let attr = ["spacing": "10", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString()
     
     let expected = "fooStackView.spacing = 10"
@@ -39,8 +39,8 @@ class StackViewTests: XCTestCase {
   
   func test_setupString_whenDistributionIsPresent() {
     let attr = ["distribution": "fillEqually", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString()
     
     let expected = "fooStackView.distribution = .fillEqually"
@@ -49,8 +49,8 @@ class StackViewTests: XCTestCase {
   
   func test_setupString_whenDistributionIsDefault() {
     let attr = ["distribution": "fill", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString()
     
     XCTAssertEqual(result.trimmed, "")
@@ -58,8 +58,8 @@ class StackViewTests: XCTestCase {
   
   func test_setupString_whenAlignmentIsPresent() {
     let attr = ["alignment": "top", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString()
     
     let expected = "fooStackView.alignment = .top"
@@ -71,8 +71,8 @@ class StackViewTests: XCTestCase {
 extension StackViewTests {
   func test_init_hasExpectedOutput_objC() {
     let attr = ["id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.initString(objC: true)
     
     let expected = "_fooStackView = [[UIStackView alloc] init];"
@@ -81,8 +81,8 @@ extension StackViewTests {
   
   func test_setupString_whenAxisIsVertical_objC() {
     let attr = ["axis": "vertical", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooStackView.axis = UILayoutConstraintAxisVertical;"
@@ -91,8 +91,8 @@ extension StackViewTests {
   
   func test_setupString_whenSpacingIsPresent_ojbC() {
     let attr = ["spacing": "10", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooStackView.spacing = 10;"
@@ -101,8 +101,8 @@ extension StackViewTests {
   
   func test_setupString_whenDistributionIsPresent_objC() {
     let attr = ["distribution": "fillEqually", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooStackView.distribution = UIStackViewDistributionFillEqually;"
@@ -111,8 +111,8 @@ extension StackViewTests {
   
   func test_setupString_whenAlignmentIsPresent_objC() {
     let attr = ["alignment": "top", "id": "42", "userLabel": "fooStackView"]
-    let sut = StackView(dict: attr)
-    
+    let sut = Builder.builder(for: .stackView).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooStackView.alignment = UIStackViewAlignmentTop;"

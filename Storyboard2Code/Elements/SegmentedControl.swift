@@ -17,21 +17,17 @@ extension Segment {
 }
 
 class SegmentedControl: View {
-  var selectedSegmentIndex: Int?
-  var segments = [Segment]()
-  var momentary: Bool?
+  private var segments = [Segment]()
   
-  required init(dict: [String : String]) {
-    selectedSegmentIndex = dict["selectedSegmentIndex"] != nil ? Int(dict["selectedSegmentIndex"]!) : nil
-    momentary = dict["momentary"].flatMap { $0 == "YES" }
-    
-    super.init(dict: dict)
-    
-    type = ElementType.UISegmentedControl
+  func add(segment: Segment) {
+      segments.append(segment)
   }
   
   override func setupString(objC: Bool = false) -> String {
     var string = super.setupString(objC: objC)
+    
+    // TODO: There should be a better solution than using for loops.
+    //       Maybe something like Property and PropergyConfig?
     for (index, segment) in segments.enumerated() {
       string += "\(userLabel).insertSegment(withTitle:\"\(segment.title)\", at: \(index), animated: false)\n"
     }
@@ -40,16 +36,6 @@ class SegmentedControl: View {
         string += "\(userLabel).setEnabled(\(enabled), forSegmentAtIndex: \(index))\n"
       }
     }
-    if let selectedSegmentIndex = selectedSegmentIndex {
-      string += setup("selectedSegmentIndex", value: "\(selectedSegmentIndex)", isEnumValue: false)
-    }
     return string
-  }
-  
-  override func reflectable() -> [String] {
-    var temp = super.reflectable()
-//    temp.append("selectedSegmentIndex")
-    temp.append("momentary")
-    return temp
   }
 }

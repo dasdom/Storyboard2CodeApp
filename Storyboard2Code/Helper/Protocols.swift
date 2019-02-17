@@ -16,7 +16,7 @@ protocol AttributeCreatable {
  */
 protocol ElementCodeGeneratable {
   var userLabel: String { get }
-  var type: ElementType { get }
+  var elementType: ElementType { get }
   func propertyString(objC: Bool) -> String
   func initString(objC: Bool) -> String
   func setupString(objC: Bool) -> String
@@ -35,9 +35,9 @@ extension ElementCodeGeneratable {
     guard userLabel != "contentView_of_a_tableviewcell" else { return "" }
     
     if objC {
-      return "@property (nonatomic) \(type.rawValue) *\(userLabel);"
+      return "@property (nonatomic) \(elementType.className) *\(userLabel);"
     } else {
-      return "  let \(userLabel): \(type.rawValue)"
+      return "  let \(userLabel): \(elementType.className)"
     }
   }
   

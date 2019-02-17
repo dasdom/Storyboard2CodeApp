@@ -21,10 +21,10 @@ class TableViewCellTests: XCTestCase {
     XCTAssertEqual(sut.viewControllerExtension, "")
   }
   
-  func test_setupForContentView() {
-    let result = sut.stringFromChild(target: "contentView_of_a_tableviewcell", label: "foo", value: true, reflectable: ["foo"])
-    
-    XCTAssertEqual(result.trimmed, "self.contentView.foo = true")
-  }
+//  func test_setupForContentView() {
+//    let result = sut.stringFromChild(target: "contentView_of_a_tableviewcell", label: "foo", value: true, reflectable: ["foo"])
+//    
+//    XCTAssertEqual(result.trimmed, "self.contentView.foo = true")
+//  }
   
 }

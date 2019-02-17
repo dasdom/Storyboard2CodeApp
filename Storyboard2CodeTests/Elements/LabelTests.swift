@@ -9,8 +9,8 @@ class LabelTests: XCTestCase {
   
   func test_labelPropertyString_HasExpectedOutput() {
     let attr = ["id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.propertyString()
     
     let expectedOutput = "let fooLabel: UILabel"
@@ -19,8 +19,8 @@ class LabelTests: XCTestCase {
   
   func test_labelInitString_HasExpectedOutput() {
     let attr = ["id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.initString()
 
     let expected = "fooLabel = UILabel()"
@@ -29,8 +29,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_textAlignment() {
     let attr = ["textAlignment": "justified", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.textAlignment = .justified"
@@ -39,8 +39,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_lineBreakMode() {
     let attr = ["lineBreakMode": "headTruncation", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.lineBreakMode = .byTruncatingHead"
@@ -49,8 +49,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_numberOfLines() {
     let attr = ["numberOfLines": "0", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.numberOfLines = 0"
@@ -59,8 +59,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_minimumScaleFactor() {
     let attr = ["minimumScaleFactor": "0.5", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.minimumScaleFactor = 0.5"
@@ -69,8 +69,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_enabled() {
     let attr = ["enabled": "NO", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.enabled = false"
@@ -79,8 +79,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_highlighted() {
     let attr = ["highlighted": "YES", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.highlighted = true"
@@ -89,8 +89,8 @@ class LabelTests: XCTestCase {
   
   func test_labelSetupString_HasExpectedOutputFor_translatesAutoresizingMaskIntoConstraints() {
     let attr = ["translatesAutoresizingMaskIntoConstraints": "NO", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = "fooLabel.translatesAutoresizingMaskIntoConstraints = false"
@@ -99,8 +99,8 @@ class LabelTests: XCTestCase {
 
   func test_labelSetupString_HasExpectedOutputFor_Text() {
     let attr = ["id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    sut.text = "Foo"
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+    sut.set(text: "Foo")
     
     let result = sut.setupString(objC: false)
 
@@ -117,6 +117,16 @@ class LabelTests: XCTestCase {
   
   // Ignored because not in the currect documentation:
   // - adjustsLetterSpacingToFitWidth="YES"
+  
+  func test_labelSetupString_hasExpectedOutputFor_horizontalHuggingPriority() {
+    let attr = ["id": "42", "userLabel": "fooLabel", "horizontalHuggingPriority": "123"]
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+    
+    let result = sut.setupString()
+    
+    let expected = "fooLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 123), for: .horizontal)"
+    XCTAssertEqual(result.trimmed, expected)
+  }
 }
 
 extension LabelTests {
@@ -128,8 +138,8 @@ extension LabelTests {
                 "contentMode": "left",
                 "id": "42",
                 "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
 
     let expected = ""
@@ -141,8 +151,8 @@ extension LabelTests {
 extension LabelTests {
   func test_labelSetupString_HasExpectedOutputFor_textAlignment_objC() {
     let attr = ["textAlignment": "justified", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooLabel.textAlignment = NSTextAlignmentJustified;"
@@ -151,8 +161,8 @@ extension LabelTests {
   
   func test_labelSetupString_HasExpectedOutputFor_lineBreakMode_objC() {
     let attr = ["lineBreakMode": "headTruncation", "id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
     let expected = "_fooLabel.lineBreakMode = NSLineBreakByTruncatingHead;"
@@ -161,8 +171,8 @@ extension LabelTests {
   
   func test_labelSetupString_HasExpectedOutputFor_Text_objC() {
     let attr = ["id": "42", "userLabel": "fooLabel"]
-    let sut = Label(dict: attr)
-    sut.text = "Foo"
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+    sut.set(text: "Foo")
     
     let result = sut.setupString(objC: true)
     
@@ -172,11 +182,11 @@ extension LabelTests {
   
   func test_labelSetupString_hasExpectedOutputFor_horizontalHuggingPriority_objC() {
     let attr = ["id": "42", "userLabel": "fooLabel", "horizontalHuggingPriority": "123"]
-    let sut = Label(dict: attr)
-    
+    let sut = Builder.builder(for: .label).build(attributes: attr)
+
     let result = sut.setupString(objC: true)
     
-    let expected = "[_fooLabel setContentHuggingPriority:123 forOrientation:NSLayoutConstraintOrientationHorizontal];"
+    let expected = "[_fooLabel setContentHuggingPriority:123 forAxis:UILayoutConstraintAxisHorizontal];"
     XCTAssertEqual(result.trimmed, expected)
   }
 }

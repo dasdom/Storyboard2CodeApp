@@ -37,12 +37,29 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
     if let lastView = tempViews.last as? TableViewCell, let _ = lastView.style  {
       return
     }
-    if let view = Element(rawValue: elementName)?.create(from: attributeDict) {
+    
+    if let elementType = ElementType(rawValue: elementName) {
+      var view = Builder.builder(for: elementType).build(attributes: attributeDict)
+  
+//    if let view = Element(rawValue: elementName)?.create(from: attributeDict) {
+      if let viewAsTableViewCell = view as? TableViewCell {
+        
+        if let styleName = attributeDict[TableViewCell.Key.style.rawValue] {
+          viewAsTableViewCell.style = TableViewCell.Style(stringLiteral: styleName)
+        } else {
+          viewAsTableViewCell.style = nil
+        }
+        
+        view = viewAsTableViewCell
+        tableViewCell = viewAsTableViewCell
+      }
+
       addView(view)
       if mainView == nil {
         view.isMainView = true
         mainView = view
       }
+      
     } else {
       
       switch elementName {
@@ -62,15 +79,17 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
         addView(tableViewCellContentView)
       case "segment":
         if let segmentedControl = tempViews.last as? SegmentedControl {
-          segmentedControl.segments.append(Segment(dict: attributeDict))
+//          segmentedControl.segments.append(Segment(dict: attributeDict))
+          segmentedControl.add(segment: Segment(dict: attributeDict))
         }
       case "color":
         let color = Color(dict: attributeDict)
         if currentState != nil {
-          currentState?.titleColor = color
+//          currentState?.titleColor = color
+          currentState?.set(titleColor: color)
         } else {
           //        print(tempViews.last, attributeDict)
-          tempViews.last?.colors.append(color)
+          tempViews.last?.add(color: color)
         }
       case "fontDescription":
         font = Font(dict: attributeDict)
@@ -124,45 +143,13 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
   func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
     
     switch elementName {
-    case "label":
-      if tempViews.last?.type == .UILabel {
-        _ = tempViews.popLast()
-      }
-    case "textField":
-      if tempViews.last?.type == .UITextField {
-        _ = tempViews.popLast()
-      }
-    case "view":
-      if tempViews.last?.type == .UIView {
-        _ = tempViews.popLast()
-      }
-    case "button":
-      if tempViews.last?.type == .UIButton {
-        _ = tempViews.popLast()
-      }
-    case "segmentedControl":
-      if tempViews.last?.type == .UISegmentedControl {
-        _ = tempViews.popLast()
-      }
-    case "slider":
-      if tempViews.last?.type == .UISlider {
-        _ = tempViews.popLast()
-      }
-    case "tableView":
-      if tempViews.last?.type == .UITableView {
-        _ = tempViews.popLast()
-      }
-    case "scrollView":
-      if tempViews.last?.type == .UIScrollView {
-        _ = tempViews.popLast()
-      }
-    case "imageView":
-      if tempViews.last?.type == .UIImageView {
+    case "label", "textField", "view", "button", "segmentedControl", "slider", "tableView", "scrollView", "stackView", "imageView":
+      if tempViews.last?.elementType == ElementType(rawValue: elementName) {
         _ = tempViews.popLast()
       }
     case "state":
       if let button = tempViews.last as? Button {
-        button.states.append(currentState!)
+        button.add(state: currentState!)
         currentState = nil
       } else {
         fatalError("not supported yet")
@@ -177,7 +164,7 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
         let scene = FileRepresentation(mainView: tableViewCell, viewDict: tableViewSubviewDict, viewMargins: viewMargins, constraints: constraints, viewController: viewController!, controllerConstraints: nil)
         fileRepresentations.append(scene)
        
-        if tempViews.last?.type == .UITableViewCell {
+        if tempViews.last?.elementType == ElementType(rawValue: elementName) {
           _ = tempViews.popLast()
         }
         
@@ -195,11 +182,9 @@ extension StoryboardXMLParserDelegate: XMLParserDelegate {
       constraints.removeAll()
       controllerConstraints.removeAll()
     case "string":
-      if let label = tempViews.last as? Label {
-        label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")
-      } else {
-        fatalError("not supported yet")
-      }
+//      guard let label = tempViews.last as? Label else { fatalError("not supported yet") }
+//      label.text = currentText?.replacingOccurrences(of: "\n", with: "\\n")
+      assert(false, "Not implemented yet")
     case "scene":
       configureConstraints()
       if let mainView = mainView {
