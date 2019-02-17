@@ -7,21 +7,7 @@ import Foundation
 final class TableViewCell: View {
   
   var style: Style? = nil
-//
-//  required init(dict: [String : String]) {
-//
-//    if let styleName = dict[Key.style.rawValue] {
-//      style = Style(stringLiteral: styleName)
-//    } else {
-//      style = nil
-//    }
-//
-//    super.init(dict: dict)
-//
-////    type = ElementType.UITableViewCell
-//    isMainView = true
-//  }
-//
+
   override func superInit(objC: Bool = false) -> String {
     if let style = style {
       if objC {

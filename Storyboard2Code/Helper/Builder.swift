@@ -179,10 +179,14 @@ extension Builder {
       case .textField:
         propertyConfigs.append(contentsOf: [
           PropertyConfig(keyMapping: .key("borderStyle"), valueFormat: .enumCase),
+          PropertyConfig(keyMapping: .key("contentHorizontalAlignment"), valueFormat: .enumCase),
+          PropertyConfig(keyMapping: .key("contentVerticalAlignment"), valueFormat: .enumCase),
           PropertyConfig(keyMapping: .key("placeholder"), valueFormat: .string),
+          PropertyConfig(keyMapping: .key("text"), valueFormat: .string),
           PropertyConfig(keyMapping: .key("textAlignment"), valueFormat: .enumCase),
           PropertyConfig(keyMapping: .key("clearsOnBeginEditing"), valueFormat: .bool),
           PropertyConfig(keyMapping: .key("clearButtonMode"), valueFormat: .enumCase),
+          PropertyConfig(keyMapping: .key("minimumFontSize"), valueFormat: .number),
           ])
       default:
         break

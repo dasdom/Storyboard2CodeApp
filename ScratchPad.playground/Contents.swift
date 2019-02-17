@@ -1,4 +1,6 @@
 import UIKit
 
-let view = UIView()
-view.contentMode == .scaleToFill
+let view = UITextField()
+view.minimumFontSize
+view.minimumFontSize = 30
+

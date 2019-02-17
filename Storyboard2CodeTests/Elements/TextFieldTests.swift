@@ -39,6 +39,30 @@ class TextFieldTests: XCTestCase {
     XCTAssertEqual(result.trimmed, expected)
   }
   
+  func test_textFieldSetupString_HasExpectedOutputFor_contentHorizontalAlignment() {
+    let attr = ["contentHorizontalAlignment": "right",
+                "id": "42",
+                "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+    
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.contentHorizontalAlignment = .right"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
+  func test_textFieldSetupString_HasExpectedOutputFor_contentVerticalAlignment() {
+    let attr = ["contentVerticalAlignment": "bottom",
+                "id": "42",
+                "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+    
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.contentVerticalAlignment = .bottom"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
   func test_textFieldSetupString_HasExpectedOutputFor_clipsSubviews() {
     let attr = ["clipsSubviews": "YES",
                           "id": "42",
@@ -75,6 +99,18 @@ class TextFieldTests: XCTestCase {
     XCTAssertEqual(result.trimmed, expected)
   }
   
+  func test_textFieldSetupString_HasExpectedOutputFor_text() {
+    let attr = ["text": "foobar",
+                "id": "42",
+                "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+    
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.text = \"foobar\""
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
   func test_textFieldSetupString_HasExpectedOutputFor_textAlignment() {
     let attr = ["textAlignment": "center",
                           "id": "42",
@@ -101,10 +137,10 @@ class TextFieldTests: XCTestCase {
   
   func test_textFieldSetupString_HasExpectedOutputFor_clearButtonMode() {
     let attr = ["clearButtonMode": "whileEditing",
-                          "id": "42",
-                          "userLabel": "fooTextField"]
+                "id": "42",
+                "userLabel": "fooTextField"]
     let sut = Builder.builder(for: .textField).build(attributes: attr)
-
+    
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.clearButtonMode = .whileEditing"
@@ -112,6 +148,18 @@ class TextFieldTests: XCTestCase {
   }
   
 //  minimumFontSize="17"
+  func test_textFieldSetupString_HasExpectedOutputFor_minimumFontSize() {
+    let attr = ["minimumFontSize": "30",
+                "id": "42",
+                "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+    
+    let result = sut.setupString(objC: false)
+    
+    let expected = "fooTextField.minimumFontSize = 30"
+    XCTAssertEqual(result.trimmed, expected)
+  }
+  
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocapitalizationType() {
     let attr = ["id": "42", "userLabel": "fooTextField"]
@@ -238,12 +286,13 @@ class TextFieldTests: XCTestCase {
 extension TextFieldTests {
   func test_textFieldSetupString_HasNoOutputForDefaultValues() {
     let attr = ["opaque": "NO",
-                          "contentHorizontalAlignment": "left",
-                          "contentVerticalAlignment": "center",
-                          "id": "42",
-                          "userLabel": "fooTextField"]
+                "contentHorizontalAlignment": "left",
+                "contentVerticalAlignment": "center",
+                "id": "42",
+                "userLabel": "fooTextField",
+                "minimumFontSize": "14"]
     let sut = Builder.builder(for: .textField).build(attributes: attr)
-
+    
     let result = sut.setupString(objC: false)
     
     let expected = ""
