@@ -8,7 +8,8 @@ import XCTest
 class FileRepresentationTests: XCTestCase {
   
   func test_simpleCodeGeneration() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
     let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
@@ -31,17 +32,18 @@ class FileRepresentationTests: XCTestCase {
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
     for (index, line) in linesWithoutEmptyLines.enumerated() {
-      XCTAssertEqual(line.trimmed, expectedOutput[index])
+      XCTAssertEqual(line.trimmed, expectedOutput[index], "line: \(index)")
     }
   }
   
   func test_codeGeneration_sortsViews_1() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label1 = Label(dict: ["id": "123", "userLabel": "oneLabel"])
+    let label1 = Builder.builder(for: .label).build(attributes: ["id": "123", "userLabel": "oneLabel"])
     label1.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
-    let label2 = Label(dict: ["id": "456", "userLabel": "twoLabel"])
+    let label2 = Builder.builder(for: .label).build(attributes: ["id": "456", "userLabel": "twoLabel"])
     label2.frame = CGRect(x: 11, y: 10, width: 20, height: 20)
     let scene = FileRepresentation(mainView: mainView, viewDict: ["123":label1,"456":label2], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
     
@@ -74,12 +76,13 @@ class FileRepresentationTests: XCTestCase {
   }
   
   func test_codeGeneration_sortsViews_2() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label1 = Label(dict: ["id": "123", "userLabel": "oneLabel"])
+    let label1 = Builder.builder(for: .label).build(attributes: ["id": "123", "userLabel": "oneLabel"])
     label1.frame = CGRect(x: 10, y: 11, width: 20, height: 20)
-    let label2 = Label(dict: ["id": "456", "userLabel": "twoLabel"])
+    let label2 = Builder.builder(for: .label).build(attributes: ["id": "456", "userLabel": "twoLabel"])
     label2.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
     let scene = FileRepresentation(mainView: mainView, viewDict: ["123":label1,"456":label2], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
     
@@ -112,11 +115,12 @@ class FileRepresentationTests: XCTestCase {
   }
   
   func test_tableViewCellCodeGeneration() {
-    let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
+    let attr = ["id": "42", "userLabel": "fooCell"]
+    let mainView = Builder.builder(for: .tableViewCell).build(attributes: attr)
     mainView.isMainView = true
     let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let cellContentView = TableViewCellContentView(dict: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
-    let label = Label(dict: ["id" : "12345", "userLabel": "blaLabel"])
+    let cellContentView = Builder.builder(for: .tableViewCellContentView).build(attributes: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
+    let label = Builder.builder(for: .label).build(attributes: ["id" : "12345", "userLabel": "blaLabel"])
     label.superViewName = "contentView_of_a_tableviewcell"
     let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label,"34":cellContentView], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
     
@@ -136,19 +140,20 @@ class FileRepresentationTests: XCTestCase {
     
     let lines = scene.swiftCodeString.components(separatedBy: "\n")
     let linesWithoutEmptyLines = lines.filter { $0.count > 0 }
-    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count)
+    XCTAssertEqual(linesWithoutEmptyLines.count, expectedOutput.count, "lines: \(linesWithoutEmptyLines)")
     for (index, line) in linesWithoutEmptyLines.enumerated() {
-      XCTAssertEqual(line.trimmed, expectedOutput[index])
+      XCTAssertEqual(line.trimmed, expectedOutput[index], "line: \(index)")
     }
   }
   
   func test_codeGeneration_addArrangedSubviews() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label = Label(dict: ["id": "123", "userLabel": "oneLabel"])
+    let label = Builder.builder(for: .label).build(attributes: ["id": "123", "userLabel": "oneLabel"])
     label.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
-    let stackView = StackView(dict: ["id": "456", "userLabel": "stackView"])
+    let stackView = Builder.builder(for: .stackView).build(attributes: ["id": "456", "userLabel": "stackView"]) as! StackView
     stackView.frame = CGRect(x: 10, y: 11, width: 20, height: 20)
     stackView.arrangedSubviews.append(label)
     label.isArrangedSubview = true
@@ -186,7 +191,8 @@ class FileRepresentationTests: XCTestCase {
 // MARK: - ObjC
 extension FileRepresentationTests {
   func test_simpleCodeGeneration_objCHeader() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
     let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
@@ -204,10 +210,11 @@ extension FileRepresentationTests {
   }
   
   func test_codeGenerationWithProperties_objCHeader() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label = Label(dict: ["id": "123", "userLabel": "123Label"])
+    let label = Builder.builder(for: .label).build(attributes: ["id": "123", "userLabel": "123Label"])
     let scene = FileRepresentation(mainView: mainView, viewDict: ["123":label], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
     
     let expectedOutput = ["#import <UIKit/UIKit.h>",
@@ -224,7 +231,8 @@ extension FileRepresentationTests {
   }
   
   func test_simpleCodeGeneration_objCImplementation() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
     let scene = FileRepresentation(mainView: mainView, viewDict: [:], viewMargins: [], constraints: [], viewController: viewController, controllerConstraints: nil)
@@ -250,11 +258,11 @@ extension FileRepresentationTests {
   }
   
   func test_tableViewCellCodeGeneration_objC() {
-    let mainView = TableViewCell(dict: ["id": "42", "userLabel": "fooCell"])
+    let mainView = Builder.builder(for: .tableViewCell).build(attributes: ["id": "42", "userLabel": "fooCell"])
     mainView.isMainView = true
     let tableViewController = TableViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let cellContentView = TableViewCellContentView(dict: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
-    let label = Label(dict: ["id" : "12345", "userLabel": "blaLabel"])
+    let cellContentView = Builder.builder(for: .tableViewCellContentView).build(attributes: ["id": "34", "tableViewCell": "42", "userLabel": "contentView_of_a_tableviewcell"])
+    let label = Builder.builder(for: .label).build(attributes: ["id" : "12345", "userLabel": "blaLabel"])
     label.superViewName = "contentView_of_a_tableviewcell"
     let scene = FileRepresentation(mainView: mainView, viewDict: ["12345":label, "34": cellContentView], viewMargins: [], constraints: [], viewController: tableViewController, controllerConstraints: nil)
     
@@ -281,12 +289,13 @@ extension FileRepresentationTests {
   }
   
   func test_codeGeneration_addArrangedSubviews_objC() {
-    let mainView = View(dict: ["id": "42", "userLabel": "fooView"])
+    let attr = ["id": "42", "userLabel": "fooView"]
+    let mainView = Builder.builder(for: .view).build(attributes: attr)
     mainView.isMainView = true
     let viewController = ViewController(dict: ["id": "23", "customClass" : "Foo"])
-    let label = Label(dict: ["id": "123", "userLabel": "oneLabel"])
+    let label = Builder.builder(for: .label).build(attributes: ["id": "123", "userLabel": "oneLabel"])
     label.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
-    let stackView = StackView(dict: ["id": "456", "userLabel": "stackView"])
+    let stackView = Builder.builder(for: .stackView).build(attributes: ["id": "456", "userLabel": "stackView"]) as! StackView
     stackView.frame = CGRect(x: 10, y: 11, width: 20, height: 20)
     stackView.arrangedSubviews.append(label)
     label.isArrangedSubview = true

@@ -42,7 +42,7 @@ class StoryboardXMLParserDelegateTests: XCTestCase {
       """
     
     parseAndCheckArrays(for: xmlString)
-    XCTAssertTrue(sut.viewDict.values.first is ImageView)
+    XCTAssertTrue(sut.viewDict.values.first is ImageView, "\(type(of: sut.viewDict.values.first)) is not ImageView")
   }
   
   func test_parsesLabel() {

@@ -6,34 +6,38 @@ import Foundation
 
 final class TableView: ScrollView {
   
-  let separatorStyle: String?
-  var separatorStyleDefault = "default"
-  let sectionIndexMinimumDisplayRowCount: String?
-  let allowsSelectionDuringEditing: Bool?
-  let allowsMultipleSelection: Bool?
-  let rowHeight: String?
-  let sectionHeaderHeight: String?
-  let sectionFooterHeight: String?
-  var cells: [TableViewCell]  
+//  let separatorStyle: String?
+//  var separatorStyleDefault = "default"
+//  let sectionIndexMinimumDisplayRowCount: String?
+//  let allowsSelectionDuringEditing: Bool?
+//  let allowsMultipleSelection: Bool?
+//  let rowHeight: String?
+//  let sectionHeaderHeight: String?
+//  let sectionFooterHeight: String?
+  var cells: [TableViewCell] = []
 //  var isEmbeddedTableView = false
   
   required init(dict: [String : String]) {
     
-    separatorStyle = dict["separatorStyle"]
-    sectionIndexMinimumDisplayRowCount = dict["sectionIndexMinimumDisplayRowCount"]
-    allowsSelectionDuringEditing = dict["allowsSelectionDuringEditing"].flatMap { $0 == "YES" }
-    allowsMultipleSelection = dict["allowsMultipleSelection"].flatMap { $0 == "YES" }
-    rowHeight = dict["rowHeight"]
-    sectionHeaderHeight = dict["sectionHeaderHeight"]
-    sectionFooterHeight = dict["sectionFooterHeight"]
+//    separatorStyle = dict["separatorStyle"]
+//    sectionIndexMinimumDisplayRowCount = dict["sectionIndexMinimumDisplayRowCount"]
+//    allowsSelectionDuringEditing = dict["allowsSelectionDuringEditing"].flatMap { $0 == "YES" }
+//    allowsMultipleSelection = dict["allowsMultipleSelection"].flatMap { $0 == "YES" }
+//    rowHeight = dict["rowHeight"]
+//    sectionHeaderHeight = dict["sectionHeaderHeight"]
+//    sectionFooterHeight = dict["sectionFooterHeight"]
     
     cells = []
     
     super.init(dict: dict)
 
-    alwaysBounceVerticalDefault = true
+//    alwaysBounceVerticalDefault = true
     
-    type = ElementType.UITableView
+//    type = ElementType.UITableView
+  }
+  
+  override init(id: String, elementType: ElementType, userLabel: String, properties: [Property]) {
+    super.init(id: id, elementType: elementType, userLabel: userLabel, properties: properties)
   }
   
 //  override var selfNameForMessaging: String {
@@ -55,7 +59,7 @@ final class TableView: ScrollView {
     
     outputString += "super.init(frame: frame, style: style)" + newLine()
     
-    outputString += reflectedSetup()
+//    outputString += reflectedSetup()
     
     for color in colors {
       if !(color.key == "textColor" && color.codeString() == "UIColor.darkText()") { // Defaults
@@ -69,18 +73,18 @@ final class TableView: ScrollView {
     return outputString
   }
   
-  override func reflectable() -> [String] {
-    var temp = super.reflectable()
-    if separatorStyle != separatorStyleDefault { temp.append("separatorStyle") }
-    temp.append("sectionIndexMinimumDisplayRowCount")
-    temp.append("allowsSelectionDuringEditing")
-    temp.append("allowsMultipleSelection")
-    temp.append("rowHeight")
-    temp.append("sectionHeaderHeight")
-    temp.append("sectionFooterHeight")
-    print(temp)
-    return temp
-  }
+//  override func reflectable() -> [String] {
+//    var temp = super.reflectable()
+//    if separatorStyle != separatorStyleDefault { temp.append("separatorStyle") }
+//    temp.append("sectionIndexMinimumDisplayRowCount")
+//    temp.append("allowsSelectionDuringEditing")
+//    temp.append("allowsMultipleSelection")
+//    temp.append("rowHeight")
+//    temp.append("sectionHeaderHeight")
+//    temp.append("sectionFooterHeight")
+//    print(temp)
+//    return temp
+//  }
   
   override var viewControllerExtension: String {
     var string = "override func loadView()" + startBlock()

@@ -14,9 +14,9 @@ import Foundation
  - UIImageView:        UIImageView
  - UITableViewCell:    UITableViewCell
  */
-enum ElementType: String {
-  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView, UITableViewCell, UIStackView
-}
+//enum ElementType: String {
+//  case UIView, UILabel, UITextField, UIButton, UISegmentedControl, UISlider, UIScrollView, UITableView, UIImageView, UITableViewCell, UIStackView
+//}
 
 enum Element: String {
   case view, label, textField, button, segmentedControl, slider, scrollView, tableView, imageView, stackView
@@ -42,28 +42,33 @@ enum Element: String {
  * in the storyboard is different to the string to be used in code.
  */
 enum LineBreakMode: String {
-  case ByTruncatingTail = "tailTruncation"
-  case ByCharWrapping = "charWrapping"
-  case ByClipping = "clip"
-  case ByTruncatingHead = "headTruncation"
-  case ByTruncatingMiddle = "middleTruncation"
+  case tailTruncation
+  case charWrapping
+  case clip
+  case headTruncation
+  case middleTruncation
+  
+  static var mapValue = { (value: String, objC: Bool) -> String in
+    let lineBreakMode = LineBreakMode(rawValue: value)
+    return lineBreakMode?.codeString(objC: objC) ?? ""
+  }
   
   func codeString(objC: Bool = false) -> String {
     if objC {
       switch self {
-      case .ByTruncatingTail: return "NSLineBreakByTruncatingTail"
-      case .ByCharWrapping: return "NSLineBreakByCharWrapping"
-      case .ByClipping: return "NSLineBreakByClipping"
-      case .ByTruncatingHead: return "NSLineBreakByTruncatingHead"
-      case .ByTruncatingMiddle: return "NSLineBreakByTruncatingMiddle"
+      case .tailTruncation: return "NSLineBreakByTruncatingTail"
+      case .charWrapping: return "NSLineBreakByCharWrapping"
+      case .clip: return "NSLineBreakByClipping"
+      case .headTruncation: return "NSLineBreakByTruncatingHead"
+      case .middleTruncation: return "NSLineBreakByTruncatingMiddle"
       }
     } else {
       switch self {
-      case .ByTruncatingTail: return "byTruncatingTail"
-      case .ByCharWrapping: return "byCharWrapping"
-      case .ByClipping: return "byClipping"
-      case .ByTruncatingHead: return "byTruncatingHead"
-      case .ByTruncatingMiddle: return "byTruncatingMiddle"
+      case .tailTruncation: return "byTruncatingTail"
+      case .charWrapping: return "byCharWrapping"
+      case .clip: return "byClipping"
+      case .headTruncation: return "byTruncatingHead"
+      case .middleTruncation: return "byTruncatingMiddle"
       }
     }
   }

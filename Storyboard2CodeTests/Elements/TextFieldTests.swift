@@ -7,21 +7,10 @@ import XCTest
 
 class TextFieldTests: XCTestCase {
   
-  var sut: TextField!
-  
-  override func setUp() {
-    super.setUp()
-    
-    sut = TextField(dict: ["id": "42", "userLabel": "fooTextField"])
-  }
-  
-  override func tearDown() {
-    sut = nil
-    super.tearDown()
-  }
-  
   func test_textFieldPropertyString_HasExpectedOutput() {
-    
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.propertyString()
     
     let expected = "let fooTextField: UITextField"
@@ -29,6 +18,8 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_textFieldInitString_HasExpectedOutput() {
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
     
     let result = sut.initString()
 
@@ -40,8 +31,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["translatesAutoresizingMaskIntoConstraints": "NO",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.translatesAutoresizingMaskIntoConstraints = false"
@@ -52,8 +43,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["clipsSubviews": "YES",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.clipsToBounds = true"
@@ -64,8 +55,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["borderStyle": "line",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.borderStyle = .line"
@@ -76,8 +67,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["placeholder": "foo",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.placeholder = \"foo\""
@@ -88,8 +79,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["textAlignment": "center",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.textAlignment = .center"
@@ -100,8 +91,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["clearsOnBeginEditing": "YES",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.clearsOnBeginEditing = true"
@@ -112,8 +103,8 @@ class TextFieldTests: XCTestCase {
     let attr = ["clearButtonMode": "whileEditing",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = "fooTextField.clearButtonMode = .whileEditing"
@@ -123,8 +114,10 @@ class TextFieldTests: XCTestCase {
 //  minimumFontSize="17"
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocapitalizationType() {
-    let attr = ["autocapitalizationType": "allCharacters"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["autocapitalizationType": "allCharacters"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -133,8 +126,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_autocorrectionType() {
-    let attr = ["autocorrectionType": "no"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["autocorrectionType": "no"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -143,8 +138,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_spellCheckingType() {
-    let attr = ["spellCheckingType": "no"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["spellCheckingType": "no"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -153,8 +150,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardType() {
-    let attr = ["keyboardType": "twitter"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["keyboardType": "twitter"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -163,8 +162,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_keyboardAppearance() {
-    let attr = ["keyboardAppearance": "alert"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["keyboardAppearance": "alert"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -173,8 +174,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_returnKeyType() {
-    let attr = ["returnKeyType": "send"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["returnKeyType": "send"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -183,8 +186,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_enablesReturnKeyAutomatically() {
-    let attr = ["enablesReturnKeyAutomatically": "YES"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["enablesReturnKeyAutomatically": "YES"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -193,8 +198,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func test_TextFieldSetupString_HasExpectedOutputFor_secureTextEntry() {
-    let attr = ["secureTextEntry": "YES"]
-    sut.textInputTraits = TextInputTraits(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["secureTextEntry": "YES"]
+    sut.textInputTraits = TextInputTraits(dict: attr2)
     
     let result = sut.setupString(objC: false)
     
@@ -203,8 +210,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasTextColorString() {
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
     let color = Color(dict: ["key": "textColor", "red": "1", "green": "0", "blue": "0", "alpha": "1", "colorSpace": "custom", "customColorSpace": "sRGB"])
-    sut.colors.append(color)
+    sut.add(color: color)
     
     let result = sut.setupString(objC: false)
     
@@ -213,8 +222,10 @@ class TextFieldTests: XCTestCase {
   }
   
   func testTextFieldSetupString_HasFontString() {
-    let attr = ["key": "fontDescription", "name": "AvenirNext-Regular", "family": "Avenir Next", "pointSize":"20"]
-    let font = Font(dict: attr)
+    let attr = ["id": "42", "userLabel": "fooTextField"]
+    let sut = Builder.builder(for: .textField).build(attributes: attr) as! TextField
+    let attr2 = ["key": "fontDescription", "name": "AvenirNext-Regular", "family": "Avenir Next", "pointSize":"20"]
+    let font = Font(dict: attr2)
     sut.font = font
     
     let result = sut.setupString(objC: false)
@@ -231,8 +242,8 @@ extension TextFieldTests {
                           "contentVerticalAlignment": "center",
                           "id": "42",
                           "userLabel": "fooTextField"]
-    let sut = TextField(dict: attr)
-    
+    let sut = Builder.builder(for: .textField).build(attributes: attr)
+
     let result = sut.setupString(objC: false)
     
     let expected = ""

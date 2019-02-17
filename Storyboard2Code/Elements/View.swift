@@ -1,28 +1,17 @@
 import Foundation
 
 /// Class to store everything needed to generate UIView code
-class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGeneratable {
-  let clipsSubviews: Bool?
-  var clipsSubviewsDefault = false
-  var font: Font? = nil
-  var type = ElementType.UIView
-  var rect: CGRect? = nil
-  var frame: CGRect? = nil
-  var colors: [Color] = []
-  let isOpaque: Bool?
-  var opaqueDefault = true
-  let userInteractionEnabled: Bool?
-  var userInteractionEnabledDefault = true
-  var contentMode: String?
-  var contentModeDefault = "scaleToFill"
-  let translatesAutoresizingMaskIntoConstraints: Bool?
-  var translatesAutoresizingMaskIntoConstraintsDefault = true
-  let autoresizesSubviews: Bool?
-  let clearsContextBeforeDrawing: Bool?
-  let tag: Int?
+class View: AttributeCreatable, ElementCodeGeneratable, CodeGeneratable {
   
+  var font: Font? = nil
+
+  var frame: CGRect? = nil
+  private(set) var colors: [Color] = []
+
   let id: String
   let userLabel: String
+  private var properties: [Property]
+  let elementType: ElementType
   
   /// Used to generate code like `fooView.addSubview(barView)`
   var superViewName: String?
@@ -30,36 +19,23 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   var isMainView: Bool = false
   var isArrangedSubview: Bool = false
   
-  required init(dict: [String : String]) {
-    translatesAutoresizingMaskIntoConstraints = dict["translatesAutoresizingMaskIntoConstraints"].flatMap  { $0 == "YES" }
-    isOpaque                    = dict["opaque"].flatMap { $0 == "YES" }
-    contentMode                 = dict["contentMode"]
-    clipsSubviews               = dict["clipsSubviews"].flatMap { $0 == "YES" }
-    userInteractionEnabled      = dict["userInteractionEnabled"].flatMap { $0 == "YES" }
-    autoresizesSubviews         = dict["autoresizesSubviews"].flatMap { $0 == "YES" }
-    clearsContextBeforeDrawing  = dict["clearsContextBeforeDrawing"].flatMap { $0 == "YES" }
-    
-    if let tagString = dict["tag"] {
-      tag = Int(tagString)
-    } else {
-      tag = nil
-    }
-    
-    id = dict["id"]!
-    
-    let userLabel: String
-    if let userLabelFromDict = dict["userLabel"] {
-      userLabel = userLabelFromDict
-    } else {
-      userLabel = "id_" + id.replacingOccurrences(of: "-", with: "")
-
-      print("#########################################################")
-      print("# userLabel missing in storyboard")
-      print("# found attributes: \(dict)")
-      print("# Using id as userLabel: \(userLabel)")
-      print("#########################################################")
-    }
+  func defaultValues() -> [KeyMapping : String] {
+    return [:]
+  }
+  
+  init(id: String, elementType: ElementType, userLabel: String, properties: [Property]) {
+    self.id = id
+    self.elementType = elementType
     self.userLabel = userLabel
+    self.properties = properties
+  }
+  
+  required init(dict: [String : String]) {
+    
+    self.id = "42"
+    self.elementType = .view
+    self.userLabel = "notImplementedYet"
+    self.properties = []
   }
   
   func superInit(objC: Bool = false) -> String {
@@ -87,23 +63,24 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
   func initString(objC: Bool = false) -> String {
     guard isMainView == false else { return "" }
     if objC {
-      return "    _\(userLabel) = [[\(type.rawValue) alloc] init];\n"
+      return "    _\(userLabel) = [[\(elementType.className) alloc] init];\n"
     } else {
-      return "    \(userLabel) = \(type.rawValue)()\n"
+      return "    \(userLabel) = \(elementType.className)()\n"
     }
   }
   
   func setupString(objC: Bool = false) -> String {
 //    guard isMainView == false else { return "" }
-    if objC {
-      configureForObjC()
-    }
+    let properties = objC ? configuredPropertiesForObjC(from: self.properties) : self.properties
     
     var string = ""
-    string += reflectedSetup(objC: objC)
-    if let clips = clipsSubviews, clips != clipsSubviewsDefault {
-      string += setup("clipsToBounds", value: "\(clips)", objC: objC)
+
+    for property in properties {
+      if defaultValues()[property.keyMapping] != property.value {
+        string += property.code(forMainView: isMainView, objC: objC)
+      }
     }
+    
     for color in colors {
       if !(color.key == "textColor" && color.codeString() == "UIColor.darkText") { // Defaults
         string += "    "
@@ -113,64 +90,43 @@ class View: AttributeCreatable, ElementCodeGeneratable, Reflectable, CodeGenerat
         string += "\(color.key) = \(color.codeString())\n"
       }
     }
+    
     return string
   }
   
-  func configureForObjC() {
-    if let contentMode = contentMode {
-      self.contentMode = "UIViewContentMode\(contentMode.capitalizeFirst)"
+  func configuredPropertiesForObjC(from properties: [Property]) -> [Property] {
+    
+    return properties.map { property -> Property in
+      
+      switch property.keyMapping {
+      case .key("contentMode"):
+        return property.propertyReplacing(value: "UIViewContentMode\(property.value.capitalizeFirst)")
+      case .key("textAlignment"):
+        return property.propertyReplacing(value: "NSTextAlignment\(property.value.capitalizeFirst)")
+      default:
+        return property
+      }
+      
+//      if case KeyMapping.key("contentMode") = property.keyMapping {
+//        return property.propertyReplacing(value: "UIViewContentMode\(property.value.capitalizeFirst)")
+//      } else {
+//        return property
+//      }
     }
-  }
-  
-  /**
-   Retuns an array of property names of properties that can be used to
-   generate code using reflection.
-   
-   - returns: array of property names
-   */
-  func reflectable() -> [String] {
-    var temp: [String] = []
-    if translatesAutoresizingMaskIntoConstraints != translatesAutoresizingMaskIntoConstraintsDefault { temp.append("translatesAutoresizingMaskIntoConstraints") }
-    if isOpaque != opaqueDefault {
-      temp.append("isOpaque")
-      temp.append("opaque")
-    }
-    if contentMode != contentModeDefault { temp.append("contentMode") }
-    if userInteractionEnabled != userInteractionEnabledDefault { temp.append("userInteractionEnabled") }
-    temp.append("autoresizesSubviews")
-    temp.append("clearsContextBeforeDrawing")
-    temp.append("tag")
-    return temp
   }
   
   var selfNameForMessaging: String {
     return isMainView ? "" : "\(self.userLabel)"
   }
   
-  func reflectedSetup(objC: Bool = false) -> String {
-    
-    let reflectableNames = reflectable()
-    let mirror = Mirror(reflecting: self)
-    var string = ""
-    if let superclassMirror = mirror.superclassMirror {
-      if let superSuperClassMirror = superclassMirror.superclassMirror {
-        for child in superSuperClassMirror.children {
-          string += stringFromChild(target: selfNameForMessaging, label: child.label, value: child.value, reflectable: reflectableNames, objC: objC)
-        }
-      }
-      for child in superclassMirror.children {
-        string += stringFromChild(target: selfNameForMessaging, label:child.label, value: child.value, reflectable: reflectableNames, objC: objC)
-      }
+  func add(color: Color) {
+    colors.append(color)
+  }
+  
+  func set(text: String) {
+    let config = PropertyConfig(keyMapping: .key("text"), valueFormat: .string)
+    if let textProperty = Property(userLabel: userLabel, config: config, attributes: ["text": text]) {
+      properties.append(textProperty)
     }
-    for child in mirror.children {
-      let childLabel: String?
-      if child.label == "isOpaque", objC {
-        childLabel = "opaque"
-      } else {
-        childLabel = child.label
-      }
-      string += stringFromChild(target: selfNameForMessaging, label:childLabel, value: child.value, reflectable: reflectableNames, objC: objC)
-    }
-    return string
   }
 }

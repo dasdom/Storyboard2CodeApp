@@ -6,22 +6,22 @@ import Foundation
 
 final class TableViewCell: View {
   
-  let style: Style?
-  
-  required init(dict: [String : String]) {
-    
-    if let styleName = dict[Key.style.rawValue] {
-      style = Style(stringLiteral: styleName)
-    } else {
-      style = nil
-    }
-    
-    super.init(dict: dict)
-    
-    type = ElementType.UITableViewCell
-    isMainView = true
-  }
-  
+  var style: Style? = nil
+//
+//  required init(dict: [String : String]) {
+//
+//    if let styleName = dict[Key.style.rawValue] {
+//      style = Style(stringLiteral: styleName)
+//    } else {
+//      style = nil
+//    }
+//
+//    super.init(dict: dict)
+//
+////    type = ElementType.UITableViewCell
+//    isMainView = true
+//  }
+//
   override func superInit(objC: Bool = false) -> String {
     if let style = style {
       if objC {
@@ -37,7 +37,7 @@ final class TableViewCell: View {
       }
     }
   }
-  
+
   override func overrideInit(objC: Bool = false) -> String {
     if objC {
       return "- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier"
@@ -45,7 +45,7 @@ final class TableViewCell: View {
       return "override init(style: UITableViewCellStyle, reuseIdentifier: String?)"
     }
   }
-  
+
   override var viewControllerExtension: String {
     return ""
   }

@@ -19,7 +19,7 @@ struct FileRepresentation: CodeGeneratable {
   var swiftCodeString: String {
     var outputString = "import UIKit"
     outputString += newLine(2)
-    outputString += classDefinition(name: className, superclass: mainView.type.rawValue)
+    outputString += classDefinition(name: className, superclass: mainView.elementType.className)
     outputString += startBlock()
     
     let subviews = filteredAndSortedSubviews(from: viewDict)
@@ -155,7 +155,7 @@ extension FileRepresentation {
   func objCHeaderCode() -> String {
     var output = "#import <UIKit/UIKit.h>"
     output += newLine(2)
-    output += interface(name: mainView.userLabel.capitalizeFirst, superclass: mainView.type.rawValue)
+    output += interface(name: mainView.userLabel.capitalizeFirst, superclass: mainView.elementType.className)
     output += newLine()
     let subviews: [View] = viewDict.values.filter { !$0.isMainView }
     output += properties(for: subviews, objC: true) + newLine()
